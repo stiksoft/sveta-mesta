@@ -56,7 +56,7 @@ main{flex:1;position:relative;min-height:0}
 .credits a:hover{color:var(--gold)}
 .stagewrap{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-end;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .stagewrap.center{justify-content:center}
-.card{position:relative;width:100%;max-width:680px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{position:relative;width:100%;max-width:760px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;flex-direction:column;gap:14px;min-width:0}
 .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron);font-weight:700}
 h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;color:var(--candana)}
 h1{font-size:clamp(34px,7vw,56px);line-height:1.05;color:var(--gold)}
@@ -84,7 +84,8 @@ input::placeholder,textarea::placeholder{color:#7f86a8}
 .src{font-size:13px;color:var(--muted);font-style:italic}
 .prog{height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
 .prog i{display:block;height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold))}
-.mantra{font-family:var(--f-display);font-size:clamp(18px,3.4vw,22px);line-height:1.6;color:var(--gold);text-align:center;text-wrap:balance}
+.mantra{font-family:var(--f-display);font-size:clamp(13px,3.6vw,22px);line-height:1.7;color:var(--gold);text-align:center}
+.ml{display:block;white-space:nowrap}
 .stages{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
 .st{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;min-width:0}
 .st .dot{width:22px;height:22px;flex:none;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -120,7 +121,33 @@ input::placeholder,textarea::placeholder{color:#7f86a8}
 .dev div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
 .dev b{display:block;color:var(--candana);margin-bottom:4px}
 .dev p{font-size:14px;color:var(--muted)}
-.chant{font-size:13px;color:var(--muted);text-align:center}
+.chant{font-size:clamp(11px,3.2vw,14px);color:var(--muted);text-align:center;line-height:1.6}
+.mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);grid-auto-rows:0;gap:3px;overflow:hidden}
+.mosaic .tile{position:relative;overflow:hidden;min-width:0;min-height:0}
+.mosaic .tile.big{grid-column:span 2;grid-row:span 2}
+.mosaic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;animation:kb 22s ease-in-out infinite alternate}
+.mosaic img.in{opacity:1}
+.mosaic .tile span{position:absolute;left:8px;bottom:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,229,188,.85);text-shadow:0 1px 3px #000}
+@media (max-aspect-ratio:1/1){.mosaic{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)}}
+.place-head .where{display:flex;align-items:center;gap:10px;min-width:0}
+.minimap{width:96px;height:auto;flex:none}
+.bigmap{width:100%;max-width:520px;margin:0 auto;display:block;height:auto}
+.mapwrap{display:flex;flex-direction:column;gap:6px;align-items:center}
+.legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.card.wide{max-width:960px}
+.gallery{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.thumb{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.2);min-width:0}
+.thumb .ph{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden}
+.thumb .ph svg,.thumb .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb .ph img{opacity:0;transition:opacity .8s}.thumb .ph img.in{opacity:1}
+.thumb .no{position:absolute;top:6px;left:6px;z-index:2;background:var(--gold);color:var(--night);font-weight:700;font-size:12px;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.thumb figcaption{padding:8px 10px;display:grid;gap:2px}
+.thumb b{font-size:13px;line-height:1.25;color:var(--candana);font-weight:600}
+.thumb small{font-size:11.5px;line-height:1.3;color:var(--muted)}
+@keyframes pulse{0%{r:4;opacity:.9}100%{r:14;opacity:0}}
+.pulse{animation:pulse 1.6s ease-out infinite}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}.mosaic img{animation:none}}
 @media (prefers-reduced-motion:reduce){.burst svg{animation:none;opacity:1}.photo{animation:none}}
 @media (max-width:520px){.card{padding:18px 16px}.q{font-size:17px}.brand small{display:none}}
 </style>
@@ -253,6 +280,7 @@ const STAGES = [
 ];
 
 const MANTRA = "Hare Krišna Hare Krišna Krišna Krišna Hare Hare Hare Rāma Hare Rāma Rāma Rāma Hare Hare";
+const MANTRA_HTML = '<span class="ml">Hare Krišna Hare Krišna Krišna Krišna Hare Hare</span><span class="ml">Hare Rāma Hare Rāma Rāma Rāma Hare Hare</span>';
 const LADDER = ["śraddhā","sādhu-saṅga","bhajana-kriyā","anartha-nivṛtti","niṣṭhā","ruci","āsakti","bhāva","prema"];
 const TOTALQ = STAGES.reduce((s,x)=>s+x.qs.length,0);
 
@@ -340,6 +368,65 @@ function scene(sc){
   return g+`<rect width="1200" height="800" fill="url(#ov)"/></svg>`;
 }
 
+
+/* ---------- Zemljevid (shematski) ---------- */
+const GEO={gangotri:[79.08,30.92],kailas:[81.31,31.07],badri:[79.49,30.74],mukti:[83.87,28.82],haridwar:[78.16,29.95],prayag:[81.88,25.43],kasi:[83.01,25.31],gaya:[85.0,24.78],tirumala:[79.35,13.68],ahobilam:[78.73,15.13],srirangam:[78.69,10.86],udupi:[74.75,13.34],naimisa:[80.49,27.35],ayodhya:[82.2,26.8],kuruksetra:[76.85,29.97],dvaraka:[68.97,22.24],mayapur:[88.39,23.42],navadvip:[88.36,23.41],puri:[85.82,19.8],rathayatra:[85.83,19.81],gambhira:[85.82,19.8],mathura:[77.67,27.49],vrindavan:[77.7,27.58],govardhan:[77.46,27.5],varsana:[77.38,27.65],radhakunda:[77.49,27.52],radhadamodar:[77.7,27.58]};
+const VRAJA=['mathura','vrindavan','govardhan','varsana','radhakunda'];
+const prj=(lon,lat)=>[(lon-66)*9.3,(37-lat)*10];
+const pts=a=>a.map(([x,y])=>prj(x,y).map(v=>v.toFixed(1)).join(',')).join(' ');
+const INDIA=[[68.3,23.7],[68.6,23.2],[69.3,22.8],[68.9,22.3],[69.6,21.6],[70.9,20.8],[72.1,21.2],[72.6,22.2],[72.5,21.6],[72.8,21.0],[72.9,20.2],[72.8,19.0],[73.3,17.0],[73.8,15.5],[74.6,13.5],[75.0,12.5],[75.7,11.3],[76.3,9.9],[77.0,8.3],[77.55,8.08],[78.2,8.9],[79.0,9.3],[79.3,10.3],[79.8,11.5],[80.3,13.1],[80.1,15.0],[81.3,16.3],[82.3,17.0],[83.3,17.7],[84.9,19.3],[86.0,19.9],[86.9,21.3],[87.5,21.8],[88.2,21.6],[88.9,21.7],[88.9,22.8],[88.6,24.0],[88.1,24.5],[88.5,25.4],[88.3,26.0],[88.6,26.4],[89.0,26.3],[89.8,25.9],[90.0,25.25],[92.0,25.1],[92.4,24.3],[91.6,24.1],[91.4,23.2],[91.8,23.0],[92.3,21.5],[92.6,21.9],[93.3,22.9],[94.2,23.9],[94.6,25.0],[95.2,26.0],[96.0,27.0],[97.3,27.9],[96.0,28.4],[94.0,28.0],[92.0,27.9],[91.6,27.8],[89.8,26.8],[88.9,27.1],[88.8,28.1],[88.2,27.9],[88.0,26.4],[87.0,26.4],[85.0,26.9],[83.3,27.4],[81.1,28.5],[80.1,28.9],[80.9,30.3],[80.2,30.8],[79.0,31.4],[78.7,32.0],[78.4,32.6],[79.4,33.0],[78.9,34.3],[80.0,35.4],[77.8,35.6],[76.0,36.0],[74.8,37.0],[73.6,36.8],[74.0,35.4],[74.0,34.0],[74.6,32.8],[74.6,31.0],[73.9,30.0],[72.8,28.6],[71.2,27.9],[70.2,27.4],[69.6,26.6],[70.4,25.7],[71.0,24.4],[69.5,24.2]];
+const NEPAL=[[80.1,28.9],[81.1,28.5],[83.3,27.4],[85.0,26.9],[87.0,26.4],[88.0,26.4],[88.2,27.9],[86.5,28.0],[85.5,28.3],[84.0,28.8],[82.5,29.9],[81.5,30.4],[80.9,30.3]];
+const LANKA=[[79.9,9.8],[80.9,8.9],[81.8,7.5],[81.4,6.2],[80.1,6.0],[79.8,7.5]];
+const GANGA=[[79.08,30.92],[78.6,30.3],[78.16,29.95],[78.4,29.0],[79.2,27.6],[79.9,27.0],[80.9,26.3],[81.88,25.43],[83.0,25.3],[84.5,25.5],[86.0,25.3],[87.6,24.9],[88.1,24.3],[88.36,23.41],[88.3,22.6],[88.1,21.8]];
+const YAMUNA=[[78.4,31.0],[77.6,30.0],[77.2,28.6],[77.7,27.58],[78.0,27.2],[79.5,26.4],[81.88,25.43]];
+const KAVERI=[[75.7,12.4],[77.0,12.3],[78.0,11.0],[78.69,10.86],[79.8,10.9]];
+const GANDAKI=[[83.87,28.82],[84.1,27.5],[85.2,25.6]];
+const ROUTE=[];STAGES.forEach(st=>st.qs.forEach(q=>{const k=(q.p==='rathayatra'||q.p==='gambhira')?'puri':q.p==='radhadamodar'?'vrindavan':q.p==='navadvip'?'mayapur':q.p;if(!ROUTE.includes(k))ROUTE.push(k)}));
+function baseMap(thin){
+  const sw=thin?1.6:1;
+  return `<rect width="300" height="310" fill="none"/>
+  <polygon points="${pts(INDIA)}" fill="rgba(244,229,188,.09)" stroke="rgba(233,184,78,.65)" stroke-width="${sw}" stroke-linejoin="round"/>
+  <polygon points="${pts(NEPAL)}" fill="rgba(244,229,188,.04)" stroke="rgba(233,184,78,.4)" stroke-width="${sw*.8}" stroke-dasharray="2 2"/>
+  <polygon points="${pts(LANKA)}" fill="rgba(244,229,188,.05)" stroke="rgba(233,184,78,.35)" stroke-width="${sw*.8}"/>
+  ${[GANGA,YAMUNA,KAVERI,GANDAKI].map(r=>`<polyline points="${pts(r)}" fill="none" stroke="#7FA3E0" stroke-width="${thin?2:1.2}" stroke-linecap="round" opacity=".85"/>`).join('')}`;
+}
+function miniMap(key){
+  const [x,y]=prj(...GEO[key]);
+  return `<svg class="minimap" viewBox="0 0 300 310" role="img" aria-label="Lega na zemljevidu"><title>Lega: ${esc(PLACES[key].name)}</title>${baseMap(true)}
+  <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="14" fill="none" stroke="#EE7F2D" stroke-width="3" class="pulse"/>
+  <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#EE7F2D" stroke="#F4E5BC" stroke-width="2.5"/></svg>`;
+}
+/* state: k => 'done'|'now'|'next' */
+function bigMap(state,numbers){
+  const col=k=>{const t=state?state(k):'done';return t==='now'?'#EE7F2D':t==='next'?'rgba(174,179,206,.55)':'#E9B84E'};
+  const main=ROUTE.filter(k=>!VRAJA.includes(k));
+  const routePts=ROUTE.map(k=>VRAJA.includes(k)?GEO.vrindavan:GEO[k]);
+  let g=`<svg class="bigmap" viewBox="0 0 300 310" role="img" aria-label="Zemljevid svetih mest"><title>Zemljevid svetih mest v igri</title>${baseMap(false)}
+  <text x="${prj(86,33.5)[0]}" y="${prj(86,33.5)[1]}" fill="rgba(174,179,206,.6)" font-size="8" letter-spacing="2" text-anchor="middle">TIBET</text>
+  <text x="${prj(84.6,28.2)[0]}" y="${prj(84.6,28.2)[1]}" fill="rgba(174,179,206,.6)" font-size="6.5" letter-spacing="1.5" text-anchor="middle">NEPAL</text>
+  <text x="${prj(79,22)[0]}" y="${prj(79,22)[1]}" fill="rgba(174,179,206,.45)" font-size="10" letter-spacing="4" text-anchor="middle">INDIJA</text>
+  <text x="${prj(85.6,15.2)[0]}" y="${prj(85.6,15.2)[1]}" fill="rgba(127,163,224,.6)" font-size="6.5" font-style="italic" text-anchor="middle">Bengalski zaliv</text>
+  <text x="${prj(68.5,17)[0]}" y="${prj(68.5,17)[1]}" fill="rgba(127,163,224,.6)" font-size="6.5" font-style="italic" text-anchor="middle">Arabsko morje</text>
+  <polyline points="${pts(routePts)}" fill="none" stroke="rgba(238,127,45,.55)" stroke-width="1" stroke-dasharray="3 3"/>`;
+  main.forEach(k=>{const [x,y]=prj(...GEO[k]);const n=ROUTE.indexOf(k)+1;
+    g+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${numbers?5.2:3.4}" fill="${col(k)}" stroke="#0D1330" stroke-width="1"/>${numbers?`<text x="${x.toFixed(1)}" y="${(y+2).toFixed(1)}" font-size="5.6" font-weight="700" text-anchor="middle" fill="#0D1330">${n}</text>`:''}`});
+  // Vraja marker + inset
+  const [vx,vy]=prj(...GEO.vrindavan);
+  g+=`<rect x="${(vx-6).toFixed(1)}" y="${(vy-6).toFixed(1)}" width="12" height="12" fill="none" stroke="#F4E5BC" stroke-width=".8" rx="2"/>
+  <line x1="${(vx+6).toFixed(1)}" y1="${(vy+6).toFixed(1)}" x2="214" y2="200" stroke="rgba(244,229,188,.45)" stroke-width=".7"/>
+  <rect x="212" y="198" width="86" height="80" rx="5" fill="rgba(13,19,48,.94)" stroke="rgba(233,184,78,.65)" stroke-width=".8"/>
+  <text x="255" y="208" font-size="6.5" letter-spacing="1.5" text-anchor="middle" fill="#E9B84E">VRAJA</text>`;
+  const ip=(lon,lat)=>[216+(lon-77.30)*165,214+(27.72-lat)*190];
+  const yam=[[77.66,27.72],[77.72,27.6],[77.69,27.55],[77.68,27.47],[77.74,27.40]];
+  g+=`<polyline points="${yam.map(p=>ip(...p).map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#7FA3E0" stroke-width="1.6"/>
+  <text x="${ip(77.655,27.69)[0].toFixed(1)}" y="${ip(77.655,27.69)[1].toFixed(1)}" font-size="4.6" fill="rgba(127,163,224,.8)" font-style="italic" text-anchor="end">Jamuna</text>`;
+  const lab={mathura:'Mathurā',vrindavan:'Vṛndāvana',govardhan:'Govardhana',varsana:'Varṣāṇā',radhakunda:'Rādhā-kuṇḍa'};
+  const off={mathura:[0,10,'middle'],vrindavan:[-6,-4,'end'],govardhan:[-2,10,'middle'],varsana:[6,2,'start'],radhakunda:[6,2,'start']};
+  VRAJA.forEach(k=>{let [x,y]=ip(...GEO[k]);if(k==='radhakunda'){x+=7;y-=4}const n=ROUTE.indexOf(k)+1;
+    g+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${numbers?4.6:3}" fill="${col(k)}" stroke="#0D1330" stroke-width=".8"/>${numbers?`<text x="${x.toFixed(1)}" y="${(y+1.8).toFixed(1)}" font-size="5" font-weight="700" text-anchor="middle" fill="#0D1330">${n}</text>`:''}<text x="${(x+off[k][0]).toFixed(1)}" y="${(y+off[k][1]).toFixed(1)}" font-size="4.8" fill="#F4E5BC" text-anchor="${off[k][2]}">${lab[k]}</text>`});
+  return g+'</svg>';
+}
+
 /* ---------- Stanje ---------- */
 const KEY='sveta-mesta-v1';
 let S=null;
@@ -357,7 +444,7 @@ function renderPlayers(active){
   $('players').innerHTML=S.players.map((p,i)=>`<div class="pchip ${active===i?'on':''}">${TILAKA(active===i?'#E9B84E':'#AEB3CE')}<span>${esc(p.name)}</span><b>${p.score}</b></div>`).join('');
 }
 const COMMONS='https://commons.wikimedia.org/wiki/';
-const photoUrl=f=>COMMONS+'Special:FilePath/'+encodeURIComponent(f)+'?width=1800';
+const photoUrl=(f,w=1800)=>COMMONS+'Special:FilePath/'+encodeURIComponent(f)+'?width='+w;
 let sceneKey=null;
 function setScene(key){
   if(key===sceneKey&&$('scene').firstChild) return; sceneKey=key;
@@ -369,8 +456,26 @@ function setScene(key){
 function stageEl(html,center){const el=$('stage');el.className='stagewrap'+(center?' center':'');el.innerHTML=html;el.scrollTop=0}
 
 /* ---------- Zasloni ---------- */
+let mosaicTimer=null;
+function startScene(){
+  sceneKey='__start';
+  const keys=['radhakunda','puri','mayapur','kailas','vrindavan','srirangam','haridwar','dvaraka','govardhan'];
+  const pool=Object.keys(PLACES).filter(k=>PLACES[k].img&&!['gambhira','radhadamodar','navadvip'].includes(k));
+  const tile=(k,i)=>`<div class="tile${i===0?' big':''}" data-k="${k}"><img alt="${esc(PLACES[k].name)}" src="${photoUrl(PLACES[k].img,i===0?1600:800)}" onload="this.classList.add('in')" onerror="this.remove()"><span>${esc(PLACES[k].name.split(' – ')[0].split(' (')[0])}</span></div>`;
+  $('scene').innerHTML=scene(PLACES.radhakunda.sc)+`<div class="mosaic">${keys.map(tile).join('')}</div><div class="shade"></div>`;
+  clearInterval(mosaicTimer); let n=0;
+  mosaicTimer=setInterval(()=>{
+    if(sceneKey!=='__start'){clearInterval(mosaicTimer);return}
+    const tiles=[...document.querySelectorAll('.mosaic .tile')].slice(1); if(!tiles.length)return;
+    const t=tiles[n++%tiles.length]; const used=[...document.querySelectorAll('.mosaic .tile')].map(x=>x.dataset.k);
+    const free=pool.filter(k=>!used.includes(k)); if(!free.length)return;
+    const k=free[Math.floor(Math.random()*free.length)];
+    const im=new Image(); im.alt=PLACES[k].name; im.onload=()=>{const old=t.querySelector('img');t.dataset.k=k;t.querySelector('span').textContent=PLACES[k].name.split(' – ')[0].split(' (')[0];t.prepend(im);requestAnimationFrame(()=>im.classList.add('in'));if(old)setTimeout(()=>old.remove(),1500)};
+    im.src=photoUrl(PLACES[k].img,800);
+  },4500);
+}
 function startScreen(){
-  S=null;renderPlayers();setScene('radhakunda');
+  S=null;renderPlayers();startScene();
   const saved=load();
   stageEl(`<div class="card">
     <div class="eyebrow">Družabna igra · 1–4 igralci</div>
@@ -384,7 +489,7 @@ function startScreen(){
     </ul></div>
     <div class="setup-players">${[0,1,2,3].map(i=>`<input type="text" id="pn${i}" placeholder="${i===0?'Ime igralca 1':'Igralec '+(i+1)+' (neobvezno)'}" maxlength="18" autocomplete="off">`).join('')}</div>
     <div class="row"><button class="btn" id="go">Začni romanje</button><button class="btn ghost" id="howto" type="button">Navodila in video</button>${saved&&!saved.done?`<button class="btn ghost" id="resume">Nadaljuj shranjeno igro</button>`:''}</div>
-    <p class="chant">${MANTRA}</p>
+    <p class="chant">${MANTRA_HTML}</p>
   </div>`,true);
   $('pn0').value='Bhakta';
   $('howto').onclick=helpScreen;
@@ -402,6 +507,8 @@ function mapScreen(){
     <h2>${st.name}</h2>
     <p>${st.intro}</p>
     <div class="stages">${STAGES.map((x,i)=>`<div class="st ${i<S.stage?'done':i===S.stage?'now':''} ${x.main?'main':''}"><div class="dot">${i<S.stage?'✓':i+1}</div><div style="min-width:0"><div class="nm">${x.name}</div><div class="sb">${x.sub}</div></div></div>`).join('')}</div>
+    <div class="mapwrap">${bigMap(k=>{const si=STAGES.findIndex(x=>x.qs.some(q=>q.p===k||(k==='puri'&&['rathayatra','gambhira'].includes(q.p))||(k==='vrindavan'&&q.p==='radhadamodar')||(k==='mayapur'&&q.p==='navadvip')));return si<S.stage?'done':si===S.stage?'now':'next'},false)}
+      <div class="legend"><span><i style="background:#E9B84E"></i>obiskano</span><span><i style="background:#EE7F2D"></i>ta stopnja</span><span><i style="background:rgba(174,179,206,.55)"></i>sledi</span></div></div>
     <div style="display:grid;gap:10px">${lad}</div>
     <p class="src">Lestvica stopenj vdanosti po Nektarju vdanosti (Bhakti-rasāmṛta-sindhu) je tu le simbol napredka v igri.</p>
     <div class="row"><button class="btn" id="enter">Vstopi: ${st.name}</button><button class="link" id="quit">Nova igra</button></div>
@@ -416,7 +523,7 @@ function qScreen(fb){
   const answered=fb&&(fb.type==='ok'||fb.type==='reveal');
   stageEl(`<div class="card">
     <div class="prog"><i style="width:${(S.gq/TOTALQ*100).toFixed(1)}%"></i></div>
-    <div class="place-head"><div><div class="eyebrow">${st.name} · ${S.qi+1}/${st.qs.length}</div><h2>${P.name}</h2></div><div class="loc">${P.loc}</div></div>
+    <div class="place-head"><div style="min-width:0"><div class="eyebrow">${st.name} · ${S.qi+1}/${st.qs.length}</div><h2>${P.name}</h2></div><div class="where">${miniMap(q.p)}<div class="loc" style="max-width:150px">${P.loc}</div></div></div>
     <div class="muted" style="font-size:14px">Na vrsti: <b style="color:var(--candana)">${esc(cur().name)}</b> · ${S.att===1?'4 tilake':'2 tilaki'}</div>
     <div class="q">${q.q}</div>
     ${fb?fbHtml(fb,q):''}
@@ -458,7 +565,7 @@ function mantraScreen(fb){
     <h2>Petje svetih imen</h2>
     <p>Za to dobo Kali je Gospod določil en sam proces: harer nāma harer nāma harer nāmaiva kevalam, kalau nāsty eva nāsty eva nāsty eva gatir anyathā. Sveto ime je edina pot.</p>
     <p class="src">Bṛhan-nāradīya Purāṇa, navedeno v Caitanya-caritāmṛti, Ādi 17.21</p>
-    ${fb==='ok'?`<div class="fb ok"><strong>${esc(p.name)}: +4 tilake</strong><div class="mantra">${MANTRA}</div></div>`:fb==='no'?`<div class="fb hint"><strong>Skoraj. Mantra ima 16 imen:</strong><div class="mantra">${MANTRA}</div></div>`:''}
+    ${fb==='ok'?`<div class="fb ok"><strong>${esc(p.name)}: +4 tilake</strong><div class="mantra">${MANTRA_HTML}</div></div>`:fb==='no'?`<div class="fb hint"><strong>Skoraj. Mantra ima 16 imen:</strong><div class="mantra">${MANTRA_HTML}</div></div>`:''}
     ${fb?`<div class="row"><button class="btn" id="mnext">${S.mp+1<S.players.length?'Naslednji igralec':'Na pot naprej'}</button></div>`:`
     <div class="muted" style="font-size:14px">Na vrsti: <b style="color:var(--candana)">${esc(p.name)}</b> · napiši Hare Krišna mahā-mantro po spominu za 4 dodatne tilake</div>
     <textarea id="mt" placeholder="Hare …" aria-label="Mahā-mantra"></textarea>
@@ -477,14 +584,19 @@ function endScreen(){
   renderPlayers(-1);setScene('vrindavan');
   const r=[...S.players].sort((a,b)=>b.score-a.score);
   const tie=r.length>1&&r[0].score===r[1].score;
-  stageEl(`<div class="card">
+  const gal=ROUTE.map((k,i)=>{const P=PLACES[k];return `<figure class="thumb"><div class="ph">${scene(P.sc)}${P.img?`<img loading="lazy" alt="${esc(P.name)}" src="${photoUrl(P.img,480)}" onload="this.classList.add('in')" onerror="this.remove()">`:''}<span class="no">${i+1}</span></div><figcaption><b>${esc(P.name)}</b><small>${esc(P.loc)}</small></figcaption></figure>`}).join('');
+  stageEl(`<div class="card wide">
     <div class="eyebrow">Romanje je dokončano · Vṛndāvana</div>
     <h2>${S.players.length>1?(tie?'Neodločeno med najboljšimi':`Zmagovalec: ${esc(r[0].name)}`):`${esc(r[0].name)}, prišel si do Vṛndāvane`}</h2>
     <div class="rank">${r.map((p,i)=>`<div class="r ${i===0?'first':''}"><span class="pos">${i+1}</span><span class="nm">${esc(p.name)}<br><span class="muted" style="font-size:13px">${p.ok} pravilnih · stopnja ${LADDER[rankOf(p)]}</span></span><span class="pts">${TILAKA('#E9B84E')}${p.score}</span></div>`).join('')}</div>
     <p>Šrī Caitanya Mahāprabhu je prinesel Krišna-premo vsem, brez razlike. Romanje po svetih mestih se v srcu nadaljuje s petjem svetih imen.</p>
-    <div class="mantra">${MANTRA}</div>
+    <div class="mantra">${MANTRA_HTML}</div>
+    <h3>Pot romanja</h3>
+    <div class="mapwrap">${bigMap(null,true)}<span class="src">Shematski zemljevid. Številke ustrezajo sličicam spodaj.</span></div>
+    <h3>Sveta mesta v igri</h3>
+    <div class="gallery">${gal}</div>
     <div class="row"><button class="btn" id="again">Igraj znova</button></div>
-  </div>`,true);
+  </div>`);
   $('again').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){};startScreen()};
 }
 
