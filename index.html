@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Mukta:wght@400;600;700&display=swap">
 <style>
+/* Start: Rādhā-kuṇḍa at dusk, a procession of temple-arch windows drifts across like a pilgrimage, a slow golden mandala turns behind. */
 /* Layout: one-screen pilgrimage — painted holy-place scene fills the stage, a lamp-lit card floats over it; header carries players' tilaka scores. Single dark śyāma world. */
 :root{
   --night:#0D1330; --night2:#17204A; --panel:rgba(13,19,48,.86);
@@ -27,16 +28,21 @@
   --f-body:"Mukta","Noto Sans","Segoe UI",system-ui,sans-serif;
   color-scheme:dark;
 }
-html,body{height:100%}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;overscroll-behavior:none}
 body{background:var(--night);color:var(--candana);font-family:var(--f-body);font-size:16px;line-height:1.5;margin:0;overflow:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
 button{font:inherit;cursor:pointer}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 #app{height:100%;display:flex;flex-direction:column}
-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line);background:var(--night);position:relative;z-index:5}
-.brand{font-family:var(--f-display);font-size:20px;color:var(--gold);letter-spacing:.02em;margin-right:auto}
+@supports (height:100dvh){#app{height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}}
+header{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;flex:none;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line);background:var(--night);position:relative;z-index:5}
+.brand{font-family:var(--f-display);font-size:20px;color:var(--gold);letter-spacing:.02em;margin-right:auto;flex:none;white-space:nowrap}
 .brand small{font-family:var(--f-body);font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:8px}
-.players{display:flex;gap:8px;flex-wrap:wrap}
+.players{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;min-width:0;flex:0 1 auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.players::-webkit-scrollbar{display:none}
+.pchip{flex:none}
+#helpBtn{flex:none}
 .pchip{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
 .pchip.on{border-color:var(--gold);color:var(--candana);background:rgba(233,184,78,.1)}
 .pchip b{color:var(--gold)}
@@ -54,8 +60,12 @@ main{flex:1;position:relative;min-height:0}
 .credits{display:grid;gap:4px;font-size:13px;columns:2 220px}
 .credits a{color:var(--muted);display:block;break-inside:avoid}
 .credits a:hover{color:var(--gold)}
-.stagewrap{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-end;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.stagewrap.center{justify-content:center}
+.stagewrap{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;display:flex;flex-direction:column;justify-content:flex-start;padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.stagewrap>.card{margin-top:auto;flex:none}
+.stagewrap.center>.card{margin-block:auto}
+:root{--a1:clamp(80px,9vw,130px);--a2:clamp(60px,6.5vw,96px);--p1t:14px;--p2t:calc(var(--p1t) + var(--a1)*4/3 + 14px)}
+.stagewrap.start{padding-top:calc(var(--p2t) + var(--a2)*4/3 + 20px)}
+.stagewrap.start>.card{background:rgba(13,19,48,.80)}
 .card{position:relative;width:100%;max-width:760px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;flex-direction:column;gap:14px;min-width:0}
 .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron);font-weight:700}
 h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;color:var(--candana)}
@@ -122,13 +132,24 @@ input::placeholder,textarea::placeholder{color:#7f86a8}
 .dev b{display:block;color:var(--candana);margin-bottom:4px}
 .dev p{font-size:14px;color:var(--muted)}
 .chant{font-size:clamp(11px,3.2vw,14px);color:var(--muted);text-align:center;line-height:1.6}
-.mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);grid-auto-rows:0;gap:3px;overflow:hidden}
-.mosaic .tile{position:relative;overflow:hidden;min-width:0;min-height:0}
-.mosaic .tile.big{grid-column:span 2;grid-row:span 2}
-.mosaic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease;animation:kb 22s ease-in-out infinite alternate}
-.mosaic img.in{opacity:1}
-.mosaic .tile span{position:absolute;left:8px;bottom:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,229,188,.85);text-shadow:0 1px 3px #000}
-@media (max-aspect-ratio:1/1){.mosaic{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)}}
+.hero{position:absolute;inset:0;overflow:hidden}
+.hero .base{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;animation:kb 40s ease-in-out infinite alternate;filter:saturate(1.15) brightness(.72)}
+.hero .base.in{opacity:1}
+.hero .tint{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 30%,rgba(238,127,45,.30),transparent 70%),linear-gradient(180deg,rgba(13,19,48,.55) 0%,rgba(23,32,74,.25) 40%,rgba(13,19,48,.95) 88%);mix-blend-mode:normal}
+.mandala{position:absolute;left:50%;top:26%;width:min(110vw,820px);height:auto;transform:translate(-50%,-50%);animation:spin 160s linear infinite;opacity:.55;pointer-events:none}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.procession{position:absolute;left:0;right:0;overflow:hidden;pointer-events:none}
+.procession.p1{top:var(--p1t)}
+.procession.p2{top:var(--p2t);opacity:.8}
+.track{display:flex;gap:clamp(12px,2vw,22px);width:max-content;animation:drift 90s linear infinite}
+.p2 .track{animation-duration:120s;animation-direction:reverse}
+@keyframes drift{to{transform:translateX(-50%)}}
+.arch{position:relative;flex:none;width:var(--a1);aspect-ratio:3/4;border-radius:999px 999px 8px 8px;overflow:hidden;border:2px solid rgba(233,184,78,.85);box-shadow:0 0 0 4px rgba(13,19,48,.55),0 0 0 5px rgba(233,184,78,.35),0 10px 30px rgba(0,0,0,.45);background:var(--night2)}
+.p2 .arch{width:var(--a2)}
+.arch svg,.arch img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.arch img{opacity:0;transition:opacity 1s}.arch img.in{opacity:1}
+.arch b{position:absolute;left:0;right:0;bottom:0;padding:14px 4px 5px;text-align:center;font-family:var(--f-display);font-weight:400;font-size:clamp(10px,1.1vw,13px);line-height:1.15;color:var(--candana);background:linear-gradient(180deg,transparent,rgba(13,19,48,.92))}
+.hero .fade-b{position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(180deg,transparent,var(--night))}
 .place-head .where{display:flex;align-items:center;gap:10px;min-width:0}
 .minimap{width:96px;height:auto;flex:none}
 .bigmap{width:100%;max-width:520px;margin:0 auto;display:block;height:auto}
@@ -147,9 +168,10 @@ input::placeholder,textarea::placeholder{color:#7f86a8}
 .thumb small{font-size:11.5px;line-height:1.3;color:var(--muted)}
 @keyframes pulse{0%{r:4;opacity:.9}100%{r:14;opacity:0}}
 .pulse{animation:pulse 1.6s ease-out infinite}
-@media (prefers-reduced-motion:reduce){.pulse{animation:none}.mosaic img{animation:none}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}.base,.track,.mandala{animation:none!important}}
 @media (prefers-reduced-motion:reduce){.burst svg{animation:none;opacity:1}.photo{animation:none}}
-@media (max-width:520px){.card{padding:18px 16px}.q{font-size:17px}.brand small{display:none}}
+@media (max-width:520px){.card{padding:18px 16px}.q{font-size:17px}.brand small{display:none}.brand{font-size:18px}.pchip{padding:3px 8px 3px 6px;font-size:13px}.btn.small{padding:6px 10px}}
+@media (max-width:380px){.pchip span{max-width:56px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}
 </style>
 
 </head>
@@ -453,26 +475,31 @@ function setScene(key){
   if(P&&P.img) h+=`<img class="photo" alt="${esc(P.name)}" src="${photoUrl(P.img)}" onload="this.classList.add('in')" onerror="this.remove();var c=document.querySelector('.credit');if(c)c.remove()"><div class="shade"></div><div class="frame"></div><a class="credit" href="${COMMONS}File:${encodeURIComponent(P.img)}" target="_blank" rel="noopener">Foto: Wikimedia Commons</a>`;
   $('scene').innerHTML=h;
 }
-function stageEl(html,center){const el=$('stage');el.className='stagewrap'+(center?' center':'');el.innerHTML=html;el.scrollTop=0}
+function stageEl(html,center){const el=$('stage');el.className='stagewrap'+(center===true?' center':center?' '+center:'');el.innerHTML=html;el.scrollTop=0;
+  el.querySelectorAll('input,textarea').forEach(i=>i.addEventListener('focus',()=>setTimeout(()=>{try{i.scrollIntoView({block:'center',behavior:'smooth'})}catch(e){}},350)))}
 
 /* ---------- Zasloni ---------- */
-let mosaicTimer=null;
+function mandalaSvg(){
+  let g='<svg class="mandala" viewBox="-200 -200 400 400" aria-hidden="true">';
+  [190,150,112,74].forEach((r,i)=>g+=`<circle r="${r}" fill="none" stroke="#E9B84E" stroke-opacity="${.22+i*.06}" stroke-width="${i===0?1.2:.8}" ${i%2?'stroke-dasharray="2 5"':''}/>`);
+  for(let i=0;i<16;i++) g+=`<ellipse rx="16" ry="58" cy="-128" transform="rotate(${i*22.5})" fill="rgba(238,127,45,.06)" stroke="#E9B84E" stroke-opacity=".35" stroke-width=".8"/>`;
+  for(let i=0;i<8;i++) g+=`<ellipse rx="22" ry="44" cy="-62" transform="rotate(${i*45+22.5})" fill="rgba(233,184,78,.05)" stroke="#E9B84E" stroke-opacity=".4" stroke-width=".8"/>`;
+  for(let i=0;i<32;i++) g+=`<circle r="2" cy="-170" transform="rotate(${i*11.25})" fill="#E9B84E" fill-opacity=".45"/>`;
+  return g+'<circle r="18" fill="none" stroke="#E9B84E" stroke-opacity=".5"/></svg>';
+}
 function startScene(){
   sceneKey='__start';
-  const keys=['radhakunda','puri','mayapur','kailas','vrindavan','srirangam','haridwar','dvaraka','govardhan'];
-  const pool=Object.keys(PLACES).filter(k=>PLACES[k].img&&!['gambhira','radhadamodar','navadvip'].includes(k));
-  const tile=(k,i)=>`<div class="tile${i===0?' big':''}" data-k="${k}"><img alt="${esc(PLACES[k].name)}" src="${photoUrl(PLACES[k].img,i===0?1600:800)}" onload="this.classList.add('in')" onerror="this.remove()"><span>${esc(PLACES[k].name.split(' – ')[0].split(' (')[0])}</span></div>`;
-  $('scene').innerHTML=scene(PLACES.radhakunda.sc)+`<div class="mosaic">${keys.map(tile).join('')}</div><div class="shade"></div>`;
-  clearInterval(mosaicTimer); let n=0;
-  mosaicTimer=setInterval(()=>{
-    if(sceneKey!=='__start'){clearInterval(mosaicTimer);return}
-    const tiles=[...document.querySelectorAll('.mosaic .tile')].slice(1); if(!tiles.length)return;
-    const t=tiles[n++%tiles.length]; const used=[...document.querySelectorAll('.mosaic .tile')].map(x=>x.dataset.k);
-    const free=pool.filter(k=>!used.includes(k)); if(!free.length)return;
-    const k=free[Math.floor(Math.random()*free.length)];
-    const im=new Image(); im.alt=PLACES[k].name; im.onload=()=>{const old=t.querySelector('img');t.dataset.k=k;t.querySelector('span').textContent=PLACES[k].name.split(' – ')[0].split(' (')[0];t.prepend(im);requestAnimationFrame(()=>im.classList.add('in'));if(old)setTimeout(()=>old.remove(),1500)};
-    im.src=photoUrl(PLACES[k].img,800);
-  },4500);
+  const row1=['puri','mayapur','vrindavan','kailas','srirangam','govardhan','dvaraka','haridwar','badri','varsana'];
+  const row2=['kasi','tirumala','prayag','mukti','udupi','kuruksetra','ayodhya','mathura','ahobilam','gangotri','naimisa','gaya'];
+  const short=n=>n.split(' – ')[0].split(' (')[0];
+  const arch=k=>{const P=PLACES[k];return `<div class="arch">${scene(P.sc)}<img alt="" src="${photoUrl(P.img,360)}" loading="lazy" onload="this.classList.add('in')" onerror="this.remove()"><b>${esc(short(P.name))}</b></div>`};
+  const track=keys=>{const a=keys.map(arch).join('');return `<div class="track">${a}${a}</div>`};
+  $('scene').innerHTML=scene(PLACES.radhakunda.sc)+`<div class="hero">
+    <img class="base" alt="Rādhā-kuṇḍa" src="${photoUrl(PLACES.radhakunda.img,1800)}" onload="this.classList.add('in')" onerror="this.remove()">
+    <div class="tint"></div>${mandalaSvg()}
+    <div class="procession p2">${track(row2)}</div>
+    <div class="procession p1">${track(row1)}</div>
+    <div class="fade-b"></div></div>`;
 }
 function startScreen(){
   S=null;renderPlayers();startScene();
@@ -490,7 +517,7 @@ function startScreen(){
     <div class="setup-players">${[0,1,2,3].map(i=>`<input type="text" id="pn${i}" placeholder="${i===0?'Ime igralca 1':'Igralec '+(i+1)+' (neobvezno)'}" maxlength="18" autocomplete="off">`).join('')}</div>
     <div class="row"><button class="btn" id="go">Začni romanje</button><button class="btn ghost" id="howto" type="button">Navodila in video</button>${saved&&!saved.done?`<button class="btn ghost" id="resume">Nadaljuj shranjeno igro</button>`:''}</div>
     <p class="chant">${MANTRA_HTML}</p>
-  </div>`,true);
+  </div>`,'start');
   $('pn0').value='Bhakta';
   $('howto').onclick=helpScreen;
   $('go').onclick=()=>{const names=[0,1,2,3].map(i=>$('pn'+i).value.trim()).filter(Boolean);S=fresh(names.length?names:['Bhakta']);save();mapScreen()};
