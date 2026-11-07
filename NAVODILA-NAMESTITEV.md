@@ -27,4 +27,4 @@ Po prvem zagonu igra deluje tudi brez interneta. Napredek igre se shrani na posa
 
 ## 3. Posodobitve
 
-Ko zamenjate datoteke na strežniku, v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v1'` (npr. na v2), da naprave prenesejo novo različico.
+Ko zamenjate datoteke na strežniku, v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v2'` (npr. na v3), da naprave prenesejo novo različico.

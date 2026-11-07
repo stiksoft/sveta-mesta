@@ -44,6 +44,16 @@ header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10p
 main{flex:1;position:relative;min-height:0}
 .scene{position:absolute;inset:0;overflow:hidden}
 .scene svg{width:100%;height:100%;display:block}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;animation:kb 26s ease-in-out infinite alternate;transform-origin:50% 40%}
+.photo.in{opacity:1}
+.shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(13,19,48,.45) 0%,rgba(13,19,48,.08) 30%,rgba(13,19,48,.25) 55%,rgba(13,19,48,.94) 100%),radial-gradient(ellipse at center,transparent 55%,rgba(13,19,48,.55) 100%)}
+.frame{position:absolute;inset:10px;border:1px solid rgba(233,184,78,.35);border-radius:6px;pointer-events:none}
+.credit{position:absolute;top:16px;right:max(20px,env(safe-area-inset-right,0px));z-index:2;font-size:11px;color:rgba(244,229,188,.8);background:rgba(13,19,48,.55);padding:2px 8px;border-radius:999px;text-decoration:none}
+.credit:hover{color:var(--gold)}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+.credits{display:grid;gap:4px;font-size:13px;columns:2 220px}
+.credits a{color:var(--muted);display:block;break-inside:avoid}
+.credits a:hover{color:var(--gold)}
 .stagewrap{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-end;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .stagewrap.center{justify-content:center}
 .card{position:relative;width:100%;max-width:680px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;flex-direction:column;gap:14px;min-width:0}
@@ -111,7 +121,7 @@ input::placeholder,textarea::placeholder{color:#7f86a8}
 .dev b{display:block;color:var(--candana);margin-bottom:4px}
 .dev p{font-size:14px;color:var(--muted)}
 .chant{font-size:13px;color:var(--muted);text-align:center}
-@media (prefers-reduced-motion:reduce){.burst svg{animation:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.burst svg{animation:none;opacity:1}.photo{animation:none}}
 @media (max-width:520px){.card{padding:18px 16px}.q{font-size:17px}.brand small{display:none}}
 </style>
 
@@ -135,32 +145,33 @@ const TILAKA = (c='var(--candana)') => `<svg class="tilaka" viewBox="0 0 24 32" 
 
 /* ---------- Sveta mesta ---------- */
 const PLACES = {
-  gangotri:{name:"Izvor Gange (Gaṅgotrī – Gaumukh)",loc:"Himalaja, Uttarakhand, Indija",sc:{sky:['#22305e','#d9a07a'],peaks:'snow',water:'river',wc:'#a9cde0',sun:1}},
-  kailas:{name:"Kailāsa",loc:"Himalaja, Tibet",sc:{sky:['#101a44','#5d6aa8'],peaks:'kailas',moon:1}},
-  badri:{name:"Badrīnāth (Badarikāśrama)",loc:"ob reki Alaknandi, Uttarakhand, Indija",sc:{sky:['#1a2a5a','#9fb3d8'],peaks:'snow',water:'river',wc:'#7fb0c8',build:'temple',sun:1}},
-  mukti:{name:"Muktināth",loc:"ob reki Gaṇḍakī, Nepal",sc:{sky:['#2a3a74','#e3b98a'],peaks:'rock',water:'river',wc:'#8aa9b8',sun:1}},
-  haridwar:{name:"Haridvār",loc:"kjer Ganga pride iz Himalaje na ravnino, Uttarakhand",sc:{sky:['#2b1f4e','#ee9a4a'],water:'river',wc:'#d79b5c',build:'ghat',sun:1}},
-  prayag:{name:"Prayāga (Allahabad)",loc:"sotočje Gange in Jamune, Uttar Pradeš",sc:{sky:['#24346b','#e9c98d'],water:'confluence',sun:1,trees:'palm'}},
-  kasi:{name:"Kāśī (Varanasi)",loc:"ob Gangi, Uttar Pradeš",sc:{sky:['#1b1640','#d87a4a'],water:'river',wc:'#c58250',build:'ghat',moon:0,sun:1}},
-  gaya:{name:"Gayā",loc:"Bihar, Indija",sc:{sky:['#1d2a54','#c9a46e'],build:'temple',trees:'forest',sun:1}},
-  tirumala:{name:"Tirumala – Šrī Veṅkaṭeśvara (Bālājī)",loc:"Andhra Pradeš, Indija",sc:{sky:['#1a2350','#e6ae6a'],peaks:'hill',hc:'#21304f',build:'gopuram',sun:1}},
-  ahobilam:{name:"Ahobilam – Šrī Narasiṁha",loc:"gričevje Nallamala, Andhra Pradeš",sc:{sky:['#3a1630','#e2763c'],peaks:'rock',build:'temple',sun:1}},
-  srirangam:{name:"Šrī Raṅgam",loc:"otok na reki Kāverī, Tamil Nadu",sc:{sky:['#18224a','#d8b06e'],water:'river',wc:'#6f9cb4',build:'gopuram',trees:'palm',sun:1}},
-  udupi:{name:"Uḍupī",loc:"Karnataka, Indija",sc:{sky:['#1b2652','#cfa06c'],build:'gopuram',trees:'palm',water:'pond',sun:1}},
-  naimisa:{name:"Naimiṣāraṇya",loc:"gozd ob reki Gomatī, Uttar Pradeš",sc:{sky:['#12203f','#7f9f86'],trees:'forest',sun:1}},
-  ayodhya:{name:"Ayodhyā",loc:"ob reki Sarayū, Uttar Pradeš",sc:{sky:['#21275a','#e9b27a'],water:'river',wc:'#88aac6',build:'palace',sun:1}},
-  kuruksetra:{name:"Kurukṣetra",loc:"Haryana, Indija",sc:{sky:['#2a1838','#e59a4a'],build:'chariot',sun:1}},
-  dvaraka:{name:"Dvārakā",loc:"ob Arabskem morju, Gudžarat",sc:{sky:['#13285a','#8fc0d8'],water:'sea',build:'city',sun:1}},
-  mayapur:{name:"Māyāpur – Navadvīpa-dhāma",loc:"ob Gangi, Zahodna Bengalija, Indija",sc:{sky:['#0c1438','#3c4f8c'],water:'river',wc:'#5f7fb5',build:'hut',trees:'palm',moon:1,eclipse:1}},
-  navadvip:{name:"Navadvīpa-dhāma",loc:"devet otokov ob Gangi, Zahodna Bengalija",sc:{sky:['#122050','#d9a36c'],water:'river',wc:'#88a8c8',build:'hut',trees:'palm',sun:1}},
-  puri:{name:"Jagannātha Purī",loc:"ob Bengalskem zalivu, Odiša, Indija",sc:{sky:['#16255a','#f0a85e'],water:'sea',build:'shikhara',sun:1}},
-  gambhira:{name:"Jagannātha Purī – Gambhīrā",loc:"Odiša, Indija",sc:{sky:['#0b1233','#2c3a75'],water:'sea',build:'shikhara',moon:1}},
-  mathura:{name:"Mathurā",loc:"ob Jamuni, Uttar Pradeš",sc:{sky:['#0d1434','#38407a'],water:'river',wc:'#24346a',build:'palace',moon:1}},
-  vrindavan:{name:"Vṛndāvana",loc:"ob Jamuni, Vraja, Uttar Pradeš",sc:{sky:['#1a1e58','#e99a7a'],water:'river',wc:'#2c3f7c',trees:'kadamba',sun:1}},
-  govardhan:{name:"Govardhana",loc:"Vraja, Uttar Pradeš",sc:{sky:['#1b2456','#9ab0d6'],peaks:'hill',hc:'#3e6a4c',trees:'kadamba'}},
-  varsana:{name:"Varṣāṇā",loc:"Vraja, Uttar Pradeš",sc:{sky:['#2a1a50','#f0a3a0'],peaks:'hill',hc:'#3b2d5e',build:'palace',sun:1}},
-  radhakunda:{name:"Rādhā-kuṇḍa",loc:"ob vznožju Govardhana, Vraja",sc:{sky:['#10173e','#4a4f92'],water:'pond',trees:'kadamba',moon:1}},
-  radhadamodar:{name:"Vṛndāvana – tempelj Rādhā-Dāmodara",loc:"Vraja, Uttar Pradeš",sc:{sky:['#1d1f55','#d99872'],build:'temple',trees:'kadamba',sun:1}},
+  gangotri:{img:'Gaumukh_Gangotri_glacier.jpg',name:"Izvor Gange (Gaṅgotrī – Gaumukh)",loc:"Himalaja, Uttarakhand, Indija",sc:{sky:['#22305e','#d9a07a'],peaks:'snow',water:'river',wc:'#a9cde0',sun:1}},
+  kailas:{img:'Kailash_north.JPG',name:"Kailāsa",loc:"Himalaja, Tibet",sc:{sky:['#101a44','#5d6aa8'],peaks:'kailas',moon:1}},
+  badri:{img:'Badrinath_Temple_(front_view).JPG',name:"Badrīnāth (Badarikāśrama)",loc:"ob reki Alaknandi, Uttarakhand, Indija",sc:{sky:['#1a2a5a','#9fb3d8'],peaks:'snow',water:'river',wc:'#7fb0c8',build:'temple',sun:1}},
+  mukti:{img:'Muktinath_Temple,_Mustang,_Nepal.JPG',name:"Muktināth",loc:"ob reki Gaṇḍakī, Nepal",sc:{sky:['#2a3a74','#e3b98a'],peaks:'rock',water:'river',wc:'#8aa9b8',sun:1}},
+  haridwar:{img:'Evening_Aarti_at_Har-ki-Pauri,_Haridwar.jpg',name:"Haridvār",loc:"kjer Ganga pride iz Himalaje na ravnino, Uttarakhand",sc:{sky:['#2b1f4e','#ee9a4a'],water:'river',wc:'#d79b5c',build:'ghat',sun:1}},
+  prayag:{img:'Triveni_Sangam.JPG',name:"Prayāga (Allahabad)",loc:"sotočje Gange in Jamune, Uttar Pradeš",sc:{sky:['#24346b','#e9c98d'],water:'confluence',sun:1,trees:'palm'}},
+  kasi:{img:'Morning_Aarti_of_the_Ganges,_ghats_of_Varanasi.jpg',name:"Kāśī (Varanasi)",loc:"ob Gangi, Uttar Pradeš",sc:{sky:['#1b1640','#d87a4a'],water:'river',wc:'#c58250',build:'ghat',moon:0,sun:1}},
+  gaya:{img:'Vishnupad_temple_gaya_bihar.jpg',name:"Gayā",loc:"Bihar, Indija",sc:{sky:['#1d2a54','#c9a46e'],build:'temple',trees:'forest',sun:1}},
+  tirumala:{img:'Tirumala_gopurams.JPG',name:"Tirumala – Šrī Veṅkaṭeśvara (Bālājī)",loc:"Andhra Pradeš, Indija",sc:{sky:['#1a2350','#e6ae6a'],peaks:'hill',hc:'#21304f',build:'gopuram',sun:1}},
+  ahobilam:{img:'14th_century_Ahobila_Narasimha_Swamy_temple,_Upper_Ahobilam,_Andhra_Pradesh_India_-_4.jpg',name:"Ahobilam – Šrī Narasiṁha",loc:"gričevje Nallamala, Andhra Pradeš",sc:{sky:['#3a1630','#e2763c'],peaks:'rock',build:'temple',sun:1}},
+  srirangam:{img:'Srirangam_Temple_Gopuram.jpg',name:"Šrī Raṅgam",loc:"otok na reki Kāverī, Tamil Nadu",sc:{sky:['#18224a','#d8b06e'],water:'river',wc:'#6f9cb4',build:'gopuram',trees:'palm',sun:1}},
+  udupi:{img:'Udupi_Sri_Krishna_Matha_Temple.jpg',name:"Uḍupī",loc:"Karnataka, Indija",sc:{sky:['#1b2652','#cfa06c'],build:'gopuram',trees:'palm',water:'pond',sun:1}},
+  naimisa:{img:'Naimisharanya_(Neemsar)_01.jpg',name:"Naimiṣāraṇya",loc:"gozd ob reki Gomatī, Uttar Pradeš",sc:{sky:['#12203f','#7f9f86'],trees:'forest',sun:1}},
+  ayodhya:{img:'Ram_Paidi_Ayodhya.jpg',name:"Ayodhyā",loc:"ob reki Sarayū, Uttar Pradeš",sc:{sky:['#21275a','#e9b27a'],water:'river',wc:'#88aac6',build:'palace',sun:1}},
+  kuruksetra:{img:'Sri_Krishna_Chariot_at_Brahma_Sarovar_Kurukshetra.jpg',name:"Kurukṣetra",loc:"Haryana, Indija",sc:{sky:['#2a1838','#e59a4a'],build:'chariot',sun:1}},
+  dvaraka:{img:'Dwarkadhish_Temple,_Dwarka,_Gujarat.JPG',name:"Dvārakā",loc:"ob Arabskem morju, Gudžarat",sc:{sky:['#13285a','#8fc0d8'],water:'sea',build:'city',sun:1}},
+  mayapur:{img:'Iskcon_temple_,_Mayapur.jpg',name:"Māyāpur – Navadvīpa-dhāma",loc:"ob Gangi, Zahodna Bengalija, Indija",sc:{sky:['#0c1438','#3c4f8c'],water:'river',wc:'#5f7fb5',build:'hut',trees:'palm',moon:1,eclipse:1}},
+  navadvip:{img:'Boat_over_River_Ganges_in_Nabadwip.jpg',name:"Navadvīpa-dhāma",loc:"devet otokov ob Gangi, Zahodna Bengalija",sc:{sky:['#122050','#d9a36c'],water:'river',wc:'#88a8c8',build:'hut',trees:'palm',sun:1}},
+  puri:{img:'Jagannath_Temple,_Puri.jpg',name:"Jagannātha Purī",loc:"ob Bengalskem zalivu, Odiša, Indija",sc:{sky:['#16255a','#f0a85e'],water:'sea',build:'shikhara',sun:1}},
+  rathayatra:{img:'Puri_Ratha_Yatra.jpg',name:"Jagannātha Purī – Ratha-yātrā",loc:"Bada Daṇḍa (Velika cesta), Purī, Odiša",sc:{sky:['#16255a','#f0a85e'],build:'chariot',sun:1}},
+  gambhira:{img:'Jagannath_Temple_(night_view),_Puri.jpg',name:"Jagannātha Purī – Gambhīrā",loc:"Odiša, Indija",sc:{sky:['#0b1233','#2c3a75'],water:'sea',build:'shikhara',moon:1}},
+  mathura:{img:'Vishram_Ghat.jpg',name:"Mathurā",loc:"ob Jamuni, Uttar Pradeš",sc:{sky:['#0d1434','#38407a'],water:'river',wc:'#24346a',build:'palace',moon:1}},
+  vrindavan:{img:'Keshighat_Vrindavan.JPG',name:"Vṛndāvana",loc:"ob Jamuni, Vraja, Uttar Pradeš",sc:{sky:['#1a1e58','#e99a7a'],water:'river',wc:'#2c3f7c',trees:'kadamba',sun:1}},
+  govardhan:{img:'Govardhan_hill.JPG',name:"Govardhana",loc:"Vraja, Uttar Pradeš",sc:{sky:['#1b2456','#9ab0d6'],peaks:'hill',hc:'#3e6a4c',trees:'kadamba'}},
+  varsana:{img:'Radharani_Temple_Barsana.jpg',name:"Varṣāṇā",loc:"Vraja, Uttar Pradeš",sc:{sky:['#2a1a50','#f0a3a0'],peaks:'hill',hc:'#3b2d5e',build:'palace',sun:1}},
+  radhakunda:{img:'Radha_kund.jpg',name:"Rādhā-kuṇḍa",loc:"ob vznožju Govardhana, Vraja",sc:{sky:['#10173e','#4a4f92'],water:'pond',trees:'kadamba',moon:1}},
+  radhadamodar:{img:'Radha_Damodar_Temple.JPG',name:"Vṛndāvana – tempelj Rādhā-Dāmodara",loc:"Vraja, Uttar Pradeš",sc:{sky:['#1d1f55','#d99872'],build:'temple',trees:'kadamba',sun:1}},
 };
 
 /* ---------- Stopnje in vprašanja ---------- */
@@ -218,9 +229,9 @@ const STAGES = [
  ]},
  {name:"Jagannātha Purī",sub:"Šrī Kṣetra, kjer je Mahāprabhu živel 18 let",main:1,intro:"V Purīju je Šrī Caitanya preživel zadnjih osemnajst let, plesal pred vozovi Ratha-yātre in okušal ločitev od Krišne v razpoloženju Rādhārāṇī.",qs:[
   {p:'puri',q:"Katera tri Božanstva so čaščena v glavnem templju v Purīju?",all:[["jagannatha","jagannath"],["baladeva","balarama","balabhadra","balaram"],["subhadra"]],show:"Jagannātha, Baladeva in Subhadrā",hint:"Krišna, njegov brat in njegova sestra.",ex:"Gospod Jagannātha je Krišna sam, ob njem sta Baladeva in Subhadrā. Ob pogledu na Jagannātho je Mahāprabhu padal v zanos.",src:"Caitanya-caritāmṛta, Madhya 6"},
-  {p:'puri',q:"Kako se imenuje veliki festival, ko Božanstva na ogromnih vozovih peljejo po ulicah Purīja?",a:["rathayatra","ratha yatra","ratajatra","festival vozov"],show:"Ratha-yātrā",hint:"Ratha pomeni voz.",ex:"Mahāprabhu je s sedmimi skupinami kirtana plesal pred vozom Jagannāthe. Šrīla Prabhupāda je ta festival prinesel na zahod.",src:"Caitanya-caritāmṛta, Madhya 13"},
+  {p:'rathayatra',q:"Kako se imenuje veliki festival, ko Božanstva na ogromnih vozovih peljejo po ulicah Purīja?",a:["rathayatra","ratha yatra","ratajatra","festival vozov"],show:"Ratha-yātrā",hint:"Ratha pomeni voz.",ex:"Mahāprabhu je s sedmimi skupinami kirtana plesal pred vozom Jagannāthe. Šrīla Prabhupāda je ta festival prinesel na zahod.",src:"Caitanya-caritāmṛta, Madhya 13"},
   {p:'puri',q:"Do katerega templja vozijo vozove na Ratha-yātri? (Predstavlja Vṛndāvano.)",a:["gundica","gundicha","gundica mandir"],show:"Guṇḍicā",hint:"Mahāprabhu ga je pred festivalom osebno očistil.",ex:"Mahāprabhu je pred festivalom z bhaktami očistil tempelj Guṇḍicā, kar ponazarja čiščenje srca, preden Krišna sede vanj.",src:"Caitanya-caritāmṛta, Madhya 12–13"},
-  {p:'puri',q:"Kateri kralj Orisse je pred vozom Jagannāthe pometal cesto z zlato metlo in tako prejel Mahāprabhujevo milost?",a:["prataparudra","pratapa rudra","prataparudra maharaja"],show:"Mahārāja Pratāparudra",hint:"Mahāprabhu ga sprva kot sannyāsī ni želel srečati.",ex:"Ker je kralj ponižno opravljal službo pometača, ga je Mahāprabhu objel, ko je kralj recitiral verze iz Gopī-gīte.",src:"Caitanya-caritāmṛta, Madhya 13–14"},
+  {p:'rathayatra',q:"Kateri kralj Orisse je pred vozom Jagannāthe pometal cesto z zlato metlo in tako prejel Mahāprabhujevo milost?",a:["prataparudra","pratapa rudra","prataparudra maharaja"],show:"Mahārāja Pratāparudra",hint:"Mahāprabhu ga sprva kot sannyāsī ni želel srečati.",ex:"Ker je kralj ponižno opravljal službo pometača, ga je Mahāprabhu objel, ko je kralj recitiral verze iz Gopī-gīte.",src:"Caitanya-caritāmṛta, Madhya 13–14"},
   {p:'puri',q:"V obliki s koliko rokami se je Mahāprabhu prikazal velikemu učenjaku Sārvabhaumi Bhaṭṭācāryi?",a:["6","sest","sestimi","sestrok","sadbhuja"],show:"Šest rok (ṣaḍ-bhuja)",hint:"Dve roki Rāme, dve Krišne, dve Caitanye.",ex:"Mahāprabhu je Sārvabhaumi pokazal šestročno obliko: z lokom Rāme, piščaljo Krišne ter palico in vrčem sannyāsīja.",src:"Caitanya-caritāmṛta, Madhya 6"},
   {p:'gambhira',q:"Kateri Caitanyin zaupni spremljevalec in tajnik mu je v Purīju pel pesmi, ki so ustrezale njegovemu razpoloženju?",a:["svarupa damodara","svarupadamodara","svarupa","damodara"],show:"Svarūpa Dāmodara Gosvāmī",hint:"V Krišna-līli je Lalitā-sakhī.",ex:"Svarūpa Dāmodara in Rāya Rāmānanda sta bila Mahāprabhuju ob strani v najglobljem zanosu ločitve.",src:"Caitanya-caritāmṛta, Madhya 10 in Antya"},
   {p:'puri',q:"Katerega bhakto, ki je dnevno pel 300 000 svetih imen, je Mahāprabhu po njegovem odhodu sam nesel in položil v pesek ob morju?",a:["haridasa","haridas","haridasa thakura","namacarya"],show:"Šrīla Haridāsa Ṭhākura",hint:"Imenujejo ga nāmācārya, učitelj svetega imena.",ex:"Haridāsa Ṭhākura je odšel ob gledanju Mahāprabhujevega obraza in petju njegovega imena. Gospod je plesal z njegovim telesom.",src:"Caitanya-caritāmṛta, Antya 11"},
@@ -345,7 +356,16 @@ function renderPlayers(active){
   if(!S){$('players').innerHTML='';return}
   $('players').innerHTML=S.players.map((p,i)=>`<div class="pchip ${active===i?'on':''}">${TILAKA(active===i?'#E9B84E':'#AEB3CE')}<span>${esc(p.name)}</span><b>${p.score}</b></div>`).join('');
 }
-function setScene(key){$('scene').innerHTML=scene(key?PLACES[key].sc:{sky:['#0d1330','#2b2f6e'],moon:1,water:'river',wc:'#1f2f66',trees:'kadamba',peaks:'hill',hc:'#1b2a4a'})}
+const COMMONS='https://commons.wikimedia.org/wiki/';
+const photoUrl=f=>COMMONS+'Special:FilePath/'+encodeURIComponent(f)+'?width=1800';
+let sceneKey=null;
+function setScene(key){
+  if(key===sceneKey&&$('scene').firstChild) return; sceneKey=key;
+  const P=key?PLACES[key]:null;
+  let h=scene(P?P.sc:{sky:['#0d1330','#2b2f6e'],moon:1,water:'river',wc:'#1f2f66',trees:'kadamba',peaks:'hill',hc:'#1b2a4a'});
+  if(P&&P.img) h+=`<img class="photo" alt="${esc(P.name)}" src="${photoUrl(P.img)}" onload="this.classList.add('in')" onerror="this.remove();var c=document.querySelector('.credit');if(c)c.remove()"><div class="shade"></div><div class="frame"></div><a class="credit" href="${COMMONS}File:${encodeURIComponent(P.img)}" target="_blank" rel="noopener">Foto: Wikimedia Commons</a>`;
+  $('scene').innerHTML=h;
+}
 function stageEl(html,center){const el=$('stage');el.className='stagewrap'+(center?' center':'');el.innerHTML=html;el.scrollTop=0}
 
 /* ---------- Zasloni ---------- */
@@ -506,6 +526,9 @@ function helpScreen(){
       <div><b>Mac</b><p>V Chromu: ikona za namestitev v naslovni vrstici. V Safariju: Datoteka → <i>Dodaj v Dock</i>.</p></div>
     </div>
     <p class="src">Nameščena aplikacija se odpre v svojem oknu z ikono tilake in po prvem zagonu deluje tudi brez interneta.</p>
+    <h3>Viri fotografij</h3>
+    <p class="muted" style="font-size:14px">Fotografije svetih mest so z Wikimedia Commons in so prosto dostopne. Avtor in licenca sta navedena na strani vsake slike.</p>
+    <div class="credits">${Object.values(PLACES).filter(x=>x.img).map(x=>`<a href="${COMMONS}File:${encodeURIComponent(x.img)}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join('')}</div>
     <div class="row"><button class="btn" id="hback" type="button">${S?'Nazaj v igro':'Na začetek'}</button></div>
   </div>`);
   if(installEvt) $('installBtn').hidden=false;
