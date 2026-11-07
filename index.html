@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0D1330">
+<meta name="description" content="Vaišnavska kviz-igra romanja po svetih mestih Indije do Vṛndāvane.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sveta mesta">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Sveta mesta</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Mukta:wght@400;600;700&display=swap">
+<style>
+/* Layout: one-screen pilgrimage — painted holy-place scene fills the stage, a lamp-lit card floats over it; header carries players' tilaka scores. Single dark śyāma world. */
+:root{
+  --night:#0D1330; --night2:#17204A; --panel:rgba(13,19,48,.86);
+  --gold:#E9B84E; --saffron:#EE7F2D; --tulasi:#5DA77A; --candana:#F4E5BC;
+  --muted:#AEB3CE; --line:rgba(233,184,78,.28); --bad:#E58A7A;
+  --f-display:"Tiro Devanagari Sanskrit","Noto Serif",Georgia,serif;
+  --f-body:"Mukta","Noto Sans","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:var(--night);color:var(--candana);font-family:var(--f-body);font-size:16px;line-height:1.5;margin:0;overflow:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--night)}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#app{height:100%;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line);background:var(--night);position:relative;z-index:5}
+.brand{font-family:var(--f-display);font-size:20px;color:var(--gold);letter-spacing:.02em;margin-right:auto}
+.brand small{font-family:var(--f-body);font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-left:8px}
+.players{display:flex;gap:8px;flex-wrap:wrap}
+.pchip{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.pchip.on{border-color:var(--gold);color:var(--candana);background:rgba(233,184,78,.1)}
+.pchip b{color:var(--gold)}
+.tilaka{width:14px;height:19px;flex:none}
+main{flex:1;position:relative;min-height:0}
+.scene{position:absolute;inset:0;overflow:hidden}
+.scene svg{width:100%;height:100%;display:block}
+.stagewrap{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-end;padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.stagewrap.center{justify-content:center}
+.card{position:relative;width:100%;max-width:680px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron);font-weight:700}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;color:var(--candana)}
+h1{font-size:clamp(34px,7vw,56px);line-height:1.05;color:var(--gold)}
+h2{font-size:clamp(24px,4.5vw,32px);line-height:1.15}
+h3{font-size:20px}
+.place-head{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.loc{font-size:13px;color:var(--muted)}
+.q{font-size:19px;line-height:1.45;max-width:62ch}
+p{margin:0;max-width:65ch}
+.muted{color:var(--muted)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text],textarea{width:100%;box-sizing:border-box;background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:10px;color:var(--candana);font:inherit;font-size:18px;padding:12px 14px}
+textarea{min-height:96px;resize:vertical;font-size:16px}
+input::placeholder,textarea::placeholder{color:#7f86a8}
+.btn{background:var(--gold);color:var(--night);border:0;border-radius:10px;padding:11px 18px;font-weight:700}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--candana);border:1px solid var(--line);font-weight:600}
+.btn.small{padding:7px 12px;font-size:14px}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;padding:4px 0;font-size:14px}
+.fb{border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.fb.ok{background:rgba(93,167,122,.16);border:1px solid rgba(93,167,122,.5)}
+.fb.no{background:rgba(229,138,122,.12);border:1px solid rgba(229,138,122,.45)}
+.fb.hint{background:rgba(238,127,45,.12);border:1px solid rgba(238,127,45,.45)}
+.fb strong{font-size:17px}
+.src{font-size:13px;color:var(--muted);font-style:italic}
+.prog{height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--saffron),var(--gold))}
+.mantra{font-family:var(--f-display);font-size:clamp(18px,3.4vw,22px);line-height:1.6;color:var(--gold);text-align:center;text-wrap:balance}
+.stages{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.st{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;min-width:0}
+.st .dot{width:22px;height:22px;flex:none;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.st.done .dot{background:var(--tulasi);border-color:var(--tulasi);color:var(--night)}
+.st.now{border-color:var(--gold);background:rgba(233,184,78,.08)}
+.st.now .dot{background:var(--gold);border-color:var(--gold);color:var(--night)}
+.st.main .nm{color:var(--gold)}
+.st .nm{font-weight:600;font-size:15px;line-height:1.25}
+.st .sb{font-size:12px;color:var(--muted);line-height:1.3}
+.ladder{display:flex;gap:4px;flex-wrap:wrap}
+.ladder span{font-size:12px;padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.ladder span.reached{color:var(--candana);border-color:rgba(93,167,122,.6)}
+.ladder span.cur{background:var(--gold);color:var(--night);border-color:var(--gold);font-weight:700}
+.setup-players{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.rules{display:grid;gap:6px;font-size:15px;color:var(--muted)}
+.rules li{max-width:62ch}
+.rules ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.rank{display:grid;gap:8px}
+.rank .r{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-variant-numeric:tabular-nums}
+.rank .r.first{border-color:var(--gold);background:rgba(233,184,78,.1)}
+.rank .pos{font-family:var(--f-display);font-size:22px;color:var(--gold);width:24px}
+.rank .nm{flex:1;min-width:0}
+.rank .pts{display:flex;align-items:center;gap:6px;font-size:20px;color:var(--gold);font-weight:700}
+.burst{position:absolute;left:50%;top:40%;pointer-events:none;display:flex;gap:6px;transform:translateX(-50%)}
+.burst svg{width:26px;height:35px;animation:rise 1.3s ease-out forwards;opacity:0}
+.burst svg:nth-child(2){animation-delay:.08s}.burst svg:nth-child(3){animation-delay:.16s}.burst svg:nth-child(4){animation-delay:.24s}
+@keyframes rise{0%{opacity:0;transform:translateY(20px) scale(.6)}25%{opacity:1;transform:translateY(0) scale(1.1)}100%{opacity:0;transform:translateY(-90px) scale(1)}}
+.help{max-width:760px}
+.help video{width:100%;max-width:100%;border-radius:10px;border:1px solid var(--line);background:#000;aspect-ratio:16/9}
+.help h3{color:var(--gold);margin-top:4px}
+.help ol,.help ul{margin:0;padding-left:20px;display:grid;gap:5px;max-width:65ch}
+.dev{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.dev div{border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.dev b{display:block;color:var(--candana);margin-bottom:4px}
+.dev p{font-size:14px;color:var(--muted)}
+.chant{font-size:13px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){.burst svg{animation:none;opacity:1}}
+@media (max-width:520px){.card{padding:18px 16px}.q{font-size:17px}.brand small{display:none}}
+</style>
+
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand">Sveta mesta <small>romanje do Krišna-preme</small></div>
+    <div class="players" id="players"></div>
+    <button class="btn ghost small" id="helpBtn" type="button">Navodila</button>
+  </header>
+  <main>
+    <div class="scene" id="scene"></div>
+    <div class="stagewrap" id="stage"></div>
+  </main>
+</div>
+
+<script>
+/* ---------- Tilaka ---------- */
+const TILAKA = (c='var(--candana)') => `<svg class="tilaka" viewBox="0 0 24 32" aria-hidden="true"><path d="M7 2 L7 19 Q12 26 17 19 L17 2" fill="none" stroke="${c}" stroke-width="2.8" stroke-linecap="round"/><path d="M12 23 C9 26 9.5 29.6 12 31 C14.5 29.6 15 26 12 23Z" fill="${c}"/></svg>`;
+
+/* ---------- Sveta mesta ---------- */
+const PLACES = {
+  gangotri:{name:"Izvor Gange (Gaṅgotrī – Gaumukh)",loc:"Himalaja, Uttarakhand, Indija",sc:{sky:['#22305e','#d9a07a'],peaks:'snow',water:'river',wc:'#a9cde0',sun:1}},
+  kailas:{name:"Kailāsa",loc:"Himalaja, Tibet",sc:{sky:['#101a44','#5d6aa8'],peaks:'kailas',moon:1}},
+  badri:{name:"Badrīnāth (Badarikāśrama)",loc:"ob reki Alaknandi, Uttarakhand, Indija",sc:{sky:['#1a2a5a','#9fb3d8'],peaks:'snow',water:'river',wc:'#7fb0c8',build:'temple',sun:1}},
+  mukti:{name:"Muktināth",loc:"ob reki Gaṇḍakī, Nepal",sc:{sky:['#2a3a74','#e3b98a'],peaks:'rock',water:'river',wc:'#8aa9b8',sun:1}},
+  haridwar:{name:"Haridvār",loc:"kjer Ganga pride iz Himalaje na ravnino, Uttarakhand",sc:{sky:['#2b1f4e','#ee9a4a'],water:'river',wc:'#d79b5c',build:'ghat',sun:1}},
+  prayag:{name:"Prayāga (Allahabad)",loc:"sotočje Gange in Jamune, Uttar Pradeš",sc:{sky:['#24346b','#e9c98d'],water:'confluence',sun:1,trees:'palm'}},
+  kasi:{name:"Kāśī (Varanasi)",loc:"ob Gangi, Uttar Pradeš",sc:{sky:['#1b1640','#d87a4a'],water:'river',wc:'#c58250',build:'ghat',moon:0,sun:1}},
+  gaya:{name:"Gayā",loc:"Bihar, Indija",sc:{sky:['#1d2a54','#c9a46e'],build:'temple',trees:'forest',sun:1}},
+  tirumala:{name:"Tirumala – Šrī Veṅkaṭeśvara (Bālājī)",loc:"Andhra Pradeš, Indija",sc:{sky:['#1a2350','#e6ae6a'],peaks:'hill',hc:'#21304f',build:'gopuram',sun:1}},
+  ahobilam:{name:"Ahobilam – Šrī Narasiṁha",loc:"gričevje Nallamala, Andhra Pradeš",sc:{sky:['#3a1630','#e2763c'],peaks:'rock',build:'temple',sun:1}},
+  srirangam:{name:"Šrī Raṅgam",loc:"otok na reki Kāverī, Tamil Nadu",sc:{sky:['#18224a','#d8b06e'],water:'river',wc:'#6f9cb4',build:'gopuram',trees:'palm',sun:1}},
+  udupi:{name:"Uḍupī",loc:"Karnataka, Indija",sc:{sky:['#1b2652','#cfa06c'],build:'gopuram',trees:'palm',water:'pond',sun:1}},
+  naimisa:{name:"Naimiṣāraṇya",loc:"gozd ob reki Gomatī, Uttar Pradeš",sc:{sky:['#12203f','#7f9f86'],trees:'forest',sun:1}},
+  ayodhya:{name:"Ayodhyā",loc:"ob reki Sarayū, Uttar Pradeš",sc:{sky:['#21275a','#e9b27a'],water:'river',wc:'#88aac6',build:'palace',sun:1}},
+  kuruksetra:{name:"Kurukṣetra",loc:"Haryana, Indija",sc:{sky:['#2a1838','#e59a4a'],build:'chariot',sun:1}},
+  dvaraka:{name:"Dvārakā",loc:"ob Arabskem morju, Gudžarat",sc:{sky:['#13285a','#8fc0d8'],water:'sea',build:'city',sun:1}},
+  mayapur:{name:"Māyāpur – Navadvīpa-dhāma",loc:"ob Gangi, Zahodna Bengalija, Indija",sc:{sky:['#0c1438','#3c4f8c'],water:'river',wc:'#5f7fb5',build:'hut',trees:'palm',moon:1,eclipse:1}},
+  navadvip:{name:"Navadvīpa-dhāma",loc:"devet otokov ob Gangi, Zahodna Bengalija",sc:{sky:['#122050','#d9a36c'],water:'river',wc:'#88a8c8',build:'hut',trees:'palm',sun:1}},
+  puri:{name:"Jagannātha Purī",loc:"ob Bengalskem zalivu, Odiša, Indija",sc:{sky:['#16255a','#f0a85e'],water:'sea',build:'shikhara',sun:1}},
+  gambhira:{name:"Jagannātha Purī – Gambhīrā",loc:"Odiša, Indija",sc:{sky:['#0b1233','#2c3a75'],water:'sea',build:'shikhara',moon:1}},
+  mathura:{name:"Mathurā",loc:"ob Jamuni, Uttar Pradeš",sc:{sky:['#0d1434','#38407a'],water:'river',wc:'#24346a',build:'palace',moon:1}},
+  vrindavan:{name:"Vṛndāvana",loc:"ob Jamuni, Vraja, Uttar Pradeš",sc:{sky:['#1a1e58','#e99a7a'],water:'river',wc:'#2c3f7c',trees:'kadamba',sun:1}},
+  govardhan:{name:"Govardhana",loc:"Vraja, Uttar Pradeš",sc:{sky:['#1b2456','#9ab0d6'],peaks:'hill',hc:'#3e6a4c',trees:'kadamba'}},
+  varsana:{name:"Varṣāṇā",loc:"Vraja, Uttar Pradeš",sc:{sky:['#2a1a50','#f0a3a0'],peaks:'hill',hc:'#3b2d5e',build:'palace',sun:1}},
+  radhakunda:{name:"Rādhā-kuṇḍa",loc:"ob vznožju Govardhana, Vraja",sc:{sky:['#10173e','#4a4f92'],water:'pond',trees:'kadamba',moon:1}},
+  radhadamodar:{name:"Vṛndāvana – tempelj Rādhā-Dāmodara",loc:"Vraja, Uttar Pradeš",sc:{sky:['#1d1f55','#d99872'],build:'temple',trees:'kadamba',sun:1}},
+};
+
+/* ---------- Stopnje in vprašanja ---------- */
+const STAGES = [
+ {name:"Himalaja",sub:"Ganga, Kailāsa, Badrīnāth, Muktināth",intro:"Romanje se začne visoko v Himalaji, kjer Ganga, ki izvira iz Gospodovih lotosovih stopal, prvič pride na Zemljo.",qs:[
+  {p:'gangotri',q:"Ganga je v vesolje pritekla, ko je Gospodov palček v inkarnaciji pritlikavca predrl ovoj vesolja. Kako se imenuje ta inkarnacija?",a:["vamana","vamanadeva","trivikrama","visnu","urukrama"],show:"Vāmana (Višnu)",hint:"Bali Mahārāju je kot brahmanski deček prosil za tri korake zemlje.",ex:"Ko je Gospod Vāmana stopil čez vesolje, je s palčkom levega stopala predrl njegov ovoj in voda Kāraṇa oceana je pritekla noter kot sveta Ganga. Zato se imenuje Viṣṇupadī.",src:"Šrīmad-Bhāgavatam 5.17"},
+  {p:'gangotri',q:"Kateri kralj je s svojo pokoro privedel Gango na Zemljo, da bi očistil in odrešil svoje prednike?",a:["bhagiratha","bagirata"],show:"Bhagīratha",hint:"Po njem se Ganga v gorah imenuje Bhāgīrathī.",ex:"Kralj Bhagīratha je izvajal hudo pokoro. Ganga je privolila v spust, njen silni tok pa je na glavi zadržal Gospod Šiva.",src:"Šrīmad-Bhāgavatam 9.9"},
+  {p:'kailas',q:"Kdo prebiva na gori Kailāsa in je po Bhāgavatamu največji med vaišnavi (vaiṣṇavānāṁ yathā śambhuḥ)?",a:["siva","sambhu","mahadeva","sankara","rudra"],show:"Gospod Šiva (Śambhu)",hint:"Na glavi nosi Gango, za soprogo ima Pārvatī.",ex:"Bhāgavatam pravi, da je tako kot je Ganga največja med rekami, Šiva največji med vaišnavi. Neprestano meditira na Gospoda Saṅkarṣaṇa.",src:"Šrīmad-Bhāgavatam 12.13.16"},
+  {p:'kailas',q:"V kateri deželi danes leži sveta gora Kailāsa?",a:["tibet","kitajska","tibetu"],show:"Tibet",hint:"Visoka planota severno od Himalaje.",ex:"Kailāsa stoji v zahodnem Tibetu, v bližini jezera Mānasa-sarovara.",src:"lokacija danes"},
+  {p:'badri',q:"Katera dvojna inkarnacija Gospoda od nekdaj izvaja pokoro v Badarikāśrami za dobrobit vseh bitij?",a:["naranarayana","nara narayana","narayana rsi","narayanarsi"],show:"Nara-Nārāyaṇa Ṛṣi",hint:"Dva modreca, sinova Dharme in Mūrti.",ex:"Nara-Nārāyaṇa Ṛṣi kot Gospodov avatar v Badarikāśrami izvaja pokoro, da bi ljudem pokazal pot odpovedi in vdanosti.",src:"Šrīmad-Bhāgavatam 11.4"},
+  {p:'badri',q:"Katerega ljubljenega bhakto je Krišna ob koncu svojih zemeljskih zabav poslal v Badarikāśramo?",a:["uddhava","udava"],show:"Uddhava",hint:"Krišnov prijatelj in svetovalec iz Dvārake, ki je nesel sporočilo gopījam.",ex:"Krišna je Uddhavi podal nauke (Uddhava-gītā) in mu naročil, naj gre v Badarikāśramo ter tam živi v zavesti Krišne.",src:"Šrīmad-Bhāgavatam 11.29"},
+  {p:'mukti',q:"Kako se imenuje sveti kamen iz reke Gaṇḍakī, ki ga vaišnave častijo kot neposredno Božanstvo Gospoda Višnuja?",a:["salagrama","salagram","salagramasila","salagrama sila","silagram"],show:"Śālagrāma-śilā",hint:"Okrogel črn kamen s spiralnimi znamenji.",ex:"Reka Gaṇḍakī, ki teče mimo Muktinātha v Nepalu, je znana po śālagrāma-śilah, ki so oblike Gospoda Nārāyaṇa.",src:"Šrīmad-Bhāgavatam 5.7 (razlaga)"},
+  {p:'mukti',q:"Kateri veliki kralj, po katerem se Zemlja imenuje Bhārata-varṣa, je ob reki Gaṇḍakī v Pulaha-āśrami častil Gospoda?",a:["bharata","bharat","jada bharata","jadabharata"],show:"Bharata Mahārāja",hint:"Zaradi navezanosti na jelenčka se je moral ponovno roditi.",ex:"Bharata Mahārāja je zapustil kraljestvo in v Hari-kṣetri ob Gaṇḍakī častil Gospoda. Navezal se je na jelenčka, se rodil kot jelen in nato kot Jaḍa Bharata.",src:"Šrīmad-Bhāgavatam 5.7–5.8"},
+ ]},
+ {name:"Ob sveti Gangi",sub:"Haridvār, Prayāga, Kāśī, Gayā",intro:"Ganga se spusti na ravnino. Ob njej je Šrī Caitanya Mahāprabhu prejel iniciacijo in poučil Rūpo in Sanātano.",qs:[
+  {p:'haridwar',q:"Ime Haridvār pomeni »vrata k …« komu?",a:["hari","hariju","bogu","gospodu","visnu"],show:"Hariju (Gospodu)",hint:"Eno od imen Gospoda, ki odnaša vse nesrečnosti.",ex:"Haridvār so »vrata k Hariju«, kraj, kjer Ganga zapusti Himalajo in vstopi na ravnino.",src:"ime kraja"},
+  {p:'haridwar',q:"Kateri slepi kralj je po Vidurinem nasvetu zapustil palačo in odšel v Saptasroto pri Haridvārju, kjer je zapustil telo v meditaciji?",a:["dhrtarastra","dritarastra","dhritarastra"],show:"Dhṛtarāṣṭra",hint:"Oče Kauravov, stric Pāṇḍavov.",ex:"Vidura je Dhṛtarāṣṭro opomnil na smrt in starost. Dhṛtarāṣṭra je s Gāndhārī odšel v Himalajo, v Saptasroto pri Haridvārju.",src:"Šrīmad-Bhāgavatam 1.13"},
+  {p:'prayag',q:"Kateremu bhakti je Šrī Caitanya na Prayāgi deset dni podajal nauke o bhakti-rasi?",a:["rupa","rupa gosvami","rupagosvami","sri rupa"],show:"Šrīla Rūpa Gosvāmī",hint:"Kasneje je napisal Bhakti-rasāmṛta-sindhu in Upadeśāmṛto.",ex:"Na Daśāśvamedha-ghāṭi na Prayāgi je Mahāprabhu Rūpi Gosvāmīju razložil vedo o vdanem služenju in transcendentalnih rasah.",src:"Caitanya-caritāmṛta, Madhya 19"},
+  {p:'prayag',q:"Kateri dve sveti reki se vidno stekata na Prayāgi?",all:[["ganga","ganges"],["jamuna","yamuna","jamune"]],show:"Ganga in Jamuna",hint:"Ena je bela, druga temno modra.",ex:"Na Prayāgi se stekata Ganga in Jamuna (po izročilu tudi skrita Sarasvatī). Ko je Mahāprabhu videl Jamuno, je v zanosu skočil vanjo, misleč na Krišno.",src:"Caitanya-caritāmṛta, Madhya 17–18"},
+  {p:'kasi',q:"Kateremu velikemu bhakti, ki je pobegnil iz službe pri muslimanskem vladarju, je Šrī Caitanya v Kāśīju dva meseca razlagal vedo o vdanem služenju?",a:["sanatana","sanatana gosvami","sanatanagosvami"],show:"Šrīla Sanātana Gosvāmī",hint:"Starejši brat Rūpe Gosvāmīja.",ex:"Mahāprabhu je Sanātani razložil sambandho (odnos s Krišno), abhidheyo (vdano služenje) in prayojano (Krišna-premo).",src:"Caitanya-caritāmṛta, Madhya 20–24"},
+  {p:'kasi',q:"Katerega vodjo majavadi sanjasijev v Kāśīju je Šrī Caitanya pridobil za petje svetih imen?",a:["prakasananda","prakasananda sarasvati","prakasanandasarasvati"],show:"Prakāśānanda Sarasvatī",hint:"Sprva je kritiziral Mahāprabhuja, ker poje in pleše.",ex:"Mahāprabhu je pokazal, da je pomen Vedānte vdano služenje Krišni. Prakāśānanda in njegovi učenci so začeli peti Hare Krišna.",src:"Caitanya-caritāmṛta, Ādi 7 in Madhya 25"},
+  {p:'gaya',q:"Od koga je Šrī Caitanya v Gayi prejel iniciacijo?",a:["isvara puri","isvarapuri","isvara"],show:"Īśvara Purī",hint:"Učenec Mādhavendre Purīja.",ex:"Ko je Nimāi Paṇḍita šel v Gayo opravit obred za prednike, je srečal Īśvaro Purīja in od njega sprejel iniciacijo. Od takrat je začel pridigati petje svetih imen.",src:"Caitanya-caritāmṛta, Ādi 17"},
+  {p:'gaya',q:"Katero znamenje Gospoda je Šrī Caitanya častil v templju v Gayi in ob tem padel v zanos?",a:["visnupada","stopinja","stopala","stopinje","odtis stopala","lotosova stopala","visnupada"],show:"Viṣṇu-pāda – odtis Višnujevega stopala",hint:"Ganga izvira iz istega dela Gospodovega telesa.",ex:"V templju Viṣṇu-pāda je odtis Gospodovega stopala. Ko je Mahāprabhu slišal o njegovi slavi, ga je preplavila ekstaza.",src:"Caitanya-bhāgavata, Ādi; Caitanya-caritāmṛta, Ādi 17"},
+ ]},
+ {name:"Južna Indija",sub:"Tirumala, Ahobilam, Šrī Raṅgam, Uḍupī",intro:"Na potovanju po Južni Indiji je Šrī Caitanya obiskal templje Višnuja in Lakṣmī ter povsod navdihnil ljudi k petju Hare Krišna.",qs:[
+  {p:'tirumala',q:"Na katerem hribu stoji tempelj Šrī Veṅkaṭeśvare (Bālājīja)?",a:["venkata","venkatacala","tirumala","venkatadri","sesacala","sesadri","venkatagiri"],show:"Veṅkaṭa (Veṅkaṭācala, Tirumala)",hint:"Ime hriba je del Božanstvovega imena.",ex:"Šrī Caitanya je na poti po jugu obiskal Tirumalo in Veṅkaṭa hribe ter tam videl Gospoda kot štiriročnega Višnuja.",src:"Caitanya-caritāmṛta, Madhya 9"},
+  {p:'tirumala',q:"V kateri indijski zvezni državi danes leži Tirumala (Tirupati)?",a:["andhra","andhra pradesh","andhrapradesh","andra prades"],show:"Andhra Pradeš",hint:"Država ob vzhodni obali, južno od Odiše.",ex:"Tirumala leži nad mestom Tirupati v Andhra Pradešu in je eden najbolj obiskanih templjev na svetu.",src:"lokacija danes"},
+  {p:'ahobilam',q:"Katera inkarnacija Gospoda je čaščena v devetih templjih Ahobilama?",a:["narasimha","nrsimha","narsimha","nrsingha","narasingha","nrsimhadeva"],show:"Gospod Narasiṁha (Nṛsiṁha)",hint:"Pol človek, pol lev.",ex:"Po izročilu je na Ahobilamu Gospod Narasiṁha izstopil iz stebra in ubil demona Hiraṇyakaśipuja.",src:"Šrīmad-Bhāgavatam 7.8; izročilo kraja"},
+  {p:'ahobilam',q:"Katerega petletnega bhakto, sina demona Hiraṇyakaśipuja, je Gospod Narasiṁha zaščitil?",a:["prahlada","prahlad","prahlad maharaja","prahlada maharaja"],show:"Prahlāda Mahārāja",hint:"Sošolce je učil o devetih procesih bhakti.",ex:"Prahlāda je kljub mučenju ostal zvest Gospodu. Narasiṁha se je prikazal iz stebra, nato pa ga je Prahlāda pomiril s svojimi molitvami.",src:"Šrīmad-Bhāgavatam 7.5–7.10"},
+  {p:'srirangam',q:"Kako se imenuje Božanstvo Višnuja, ki v Šrī Raṅgamu počiva na kači Ananta-Šeši?",a:["ranganatha","rangnath","ranganath","sri ranganatha"],show:"Šrī Raṅganātha",hint:"Ime nosi isto besedo kot ime kraja.",ex:"Šrī Raṅgam je največji tempelj Višnuja in Lakṣmī v Južni Indiji ter središče Šrī sampradāye Rāmānujācārye.",src:"Caitanya-caritāmṛta, Madhya 9"},
+  {p:'srirangam',q:"Šrī Caitanya je v Šrī Raṅgamu štiri mesece bival pri Veṅkaṭi Bhaṭṭi. Kateri njegov sin je kasneje postal eden od šestih Gosvāmījev Vṛndāvana?",a:["gopala bhatta","gopalabhatta","gopala bhatta gosvami"],show:"Gopāla Bhaṭṭa Gosvāmī",hint:"V Vṛndāvanu je ustanovil tempelj Rādhā-Ramaṇa.",ex:"V času čāturmāsye je Mahāprabhu živel v hiši Veṅkaṭe Bhaṭṭe. Mladi Gopāla Bhaṭṭa mu je služil in kasneje odšel v Vṛndāvano.",src:"Caitanya-caritāmṛta, Madhya 9"},
+  {p:'udupi',q:"Kateri veliki ačarja je v Uḍupīju vzpostavil Božanstvo Krišne?",a:["madhva","madhvacarya","madvacarya","madhvacarja","anandatirtha"],show:"Šrī Madhvācārya",hint:"Ustanovitelj Brahma-Madhva sampradāye, v kateri je tudi Mahāprabhu.",ex:"Madhvācārya je Božanstvo Krišne prejel z ladje, ki je nasedla ob obali. Šrī Caitanya je obiskal Uḍupī in plesal pred Krišno.",src:"Caitanya-caritāmṛta, Madhya 9.245 (razlaga)"},
+  {p:'udupi',q:"V čem je bilo skrito Božanstvo Krišne, ki ga je Madhvācārya našel na ladji?",a:["gopicandana","gopi candana","glina","glini","kepi gline","candana"],show:"V kepi gopī-candane (svete gline)",hint:"Iz te snovi vaišnave rišejo tilako.",ex:"Božanstvo je bilo v kepi gopī-candane. Madhvācārya ga je prinesel v Uḍupī, kjer je čaščeno še danes.",src:"Caitanya-caritāmṛta, Madhya 9 (razlaga)"},
+ ]},
+ {name:"Dežele dharme",sub:"Naimiṣāraṇya, Ayodhyā, Kurukṣetra, Dvārakā",intro:"Kraji, kjer je bil govorjen Bhāgavatam, kjer je vladal Gospod Rāma in kjer je Krišna govoril Bhagavad-gīto.",qs:[
+  {p:'naimisa',q:"Kdo je modrecem v gozdu Naimiṣāraṇya pripovedoval Šrīmad-Bhāgavatam?",a:["suta","suta gosvami","sutagosvami","ugrasrava"],show:"Sūta Gosvāmī",hint:"Slišal ga je od Śukadeve Gosvāmīja.",ex:"Modreci so v Naimiṣāraṇyi izvajali tisočletno žrtvovanje in Sūto Gosvāmīja vprašali o tem, kar je najbolj koristno za ljudi Kali-yuge.",src:"Šrīmad-Bhāgavatam 1.1"},
+  {p:'naimisa',q:"Kako je ime modrecu, ki je vodil zbrane mudrece v Naimiṣāraṇyi in Sūti postavil vprašanja?",a:["saunaka","sounaka","saunaka rsi"],show:"Śaunaka Ṛṣi",hint:"Njegovo ime se začne s Ś.",ex:"Śaunaka in drugi modreci so postavili šest vprašanj, na katera odgovarja celoten Bhāgavatam.",src:"Šrīmad-Bhāgavatam 1.1"},
+  {p:'ayodhya',q:"Kateri avatar se je kot sin kralja Daśarathe rodil v Ayodhyi?",a:["rama","ramacandra","sri rama","ramachandra"],show:"Gospod Rāmacandra",hint:"Polovica mahā-mantre nosi njegovo ime.",ex:"Gospod Rāma, idealni kralj, se je rodil v Ayodhyi s Sītā-devī kot večno soprogo, Lakṣmaṇo in Hanumānom kot služabnikoma.",src:"Šrīmad-Bhāgavatam 9.10"},
+  {p:'ayodhya',q:"Koliko let je Gospod Rāma po očetovi obljubi preživel v gozdu, preden se je vrnil v Ayodhyo?",a:["14","stirinajst"],show:"14 let",hint:"Dvakrat sedem.",ex:"Da bi očetova beseda ostala resnična, je Rāma s Sīto in Lakṣmaṇo štirinajst let živel v gozdu, nato pa se je zmagoslavno vrnil.",src:"Šrīmad-Bhāgavatam 9.10"},
+  {p:'kuruksetra',q:"Komu je Krišna na bojišču Kurukṣetra govoril Bhagavad-gīto?",a:["arjuna","arjun","arjuni"],show:"Arjuni",hint:"Krišnov prijatelj in najboljši lokostrelec med Pāṇḍavi.",ex:"Gīta se začne z besedami dharma-kṣetre kuru-kṣetre. Krišna kot voznik Arjunovega voza ga uči predanosti Sebi.",src:"Bhagavad-gītā 1.1, 18.66"},
+  {p:'kuruksetra',q:"Ob katerem nebesnem dogodku so se prebivalci Vṛndāvane in gopīje po dolgi ločitvi srečali s Krišno na Kurukṣetri?",a:["soncni mrk","soncnimrk","mrk","mrku","mrk sonca"],show:"Ob sončnem mrku",hint:"Sonce se za nekaj časa skrije.",ex:"Ob sončnem mrku so se vsi zbrali na Kurukṣetri. Gopīje so si želele Krišno odpeljati nazaj v Vṛndāvano; isto razpoloženje je kazal Mahāprabhu na Ratha-yātri.",src:"Šrīmad-Bhāgavatam 10.82; Caitanya-caritāmṛta, Madhya 13"},
+  {p:'dvaraka',q:"Katera je prva med Krišnovimi kraljicami v Dvāraki, inkarnacija boginje sreče?",a:["rukmini","rukminidevi","rukmini devi"],show:"Rukmiṇī-devī",hint:"Krišna jo je ugrabil tik pred njeno poroko s Śiśupālo.",ex:"Rukmiṇī je Krišni poslala pismo po brahmanu. Krišna je prišel in jo odpeljal v Dvārako.",src:"Šrīmad-Bhāgavatam 10.52–54"},
+  {p:'dvaraka',q:"Kaj je revni brahman Sudāmā prinesel kot darilo svojemu prijatelju Krišni v Dvāraki?",a:["riz","rizevi kosmici","kosmici","kosmice","cipiran riz","sploscen riz","stolcen riz","rice"],show:"Zdrobljen (sploščen) riž",hint:"Peščico zrnja, zavito v staro krpo.",ex:"Krišna je z veseljem pojedel Sudāmovo skromno darilo in mu brez njegove prošnje podaril vse bogastvo.",src:"Šrīmad-Bhāgavatam 10.80–81"},
+ ]},
+ {name:"Navadvīpa-dhāma",sub:"rojstni kraj Šrī Caitanye Mahāprabhuja",main:1,intro:"Navadvīpa ima devet otokov, ki predstavljajo devet procesov vdanega služenja. V Māyāpurju se je rodil Šrī Caitanya Mahāprabhu, Rādhā in Krišna v eni osebi, ki je razširil saṅkīrtano.",qs:[
+  {p:'mayapur',q:"Ob katerem nebesnem dogodku se je rodil Šrī Caitanya, ko so vsi ljudje ob Gangi peli sveta imena?",a:["lunin mrk","luninmrk","mrk","mrku","mrk lune"],show:"Ob luninem mrku (na Phālguna pūrṇimo)",hint:"Polna luna se je skrila.",ex:"Mahāprabhu se je rodil leta 1486 ob polni luni meseca Phālguna med luninim mrkom. Ljudje so se kopali v Gangi in peli Hari! Hari!",src:"Caitanya-caritāmṛta, Ādi 13"},
+  {p:'mayapur',q:"Zakaj so malega Caitanyo klicali Nimāi?",a:["nim","neem","nimba","nimbovo","nimbovim","pod drevesom","drevo"],show:"Rodil se je pod drevesom nim (nimba)",hint:"Drevo z grenkimi listi.",ex:"Ker se je rodil pod drevesom nimba, so ga ljubkovalno klicali Nimāi.",src:"Caitanya-caritāmṛta, Ādi 13"},
+  {p:'mayapur',q:"Kako je ime Caitanyini materi?",a:["saci","sacidevi","saci devi","saci mata","sacimata"],show:"Šacī-devī",hint:"Oče je bil Jagannātha Miśra.",ex:"Šacī-devī in Jagannātha Miśra sta bila Gospodova starša. Šacī je Nimāija vzgajala z neizmerno ljubeznijo.",src:"Caitanya-caritāmṛta, Ādi 13"},
+  {p:'navadvip',q:"Kateri starejši bhakta je z Gangino vodo in listi tulasī glasno klical Gospoda, naj se prikaže in reši ljudi Kali-yuge?",a:["advaita","advaita acarya","advaitacarya","advaita prabhu"],show:"Advaita Ācārya",hint:"Inkarnacija Mahā-Viṣṇuja in Šive hkrati.",ex:"Advaita Ācārya je videl, da so ljudje brez vdanosti, zato je častil Gospoda z Gangino vodo in tulasī ter ga s klici priklical na Zemljo.",src:"Caitanya-caritāmṛta, Ādi 3"},
+  {p:'navadvip',q:"Na čigavem dvorišču je Mahāprabhu z bhaktami vso noč pel kirtan za zaprtimi vrati?",a:["srivasa","srivas","srivasa thakura","srivasa angana","srivasaangana"],show:"Na dvorišču Šrīvāse Ṭhākure (Śrīvāsa-aṅgana)",hint:"Njegovo ime se začne s Śrī.",ex:"Leto dni je Mahāprabhu z bhaktami vsako noč pel v hiši Šrīvāse Ṭhākure, kjer je razkril svojo božansko naravo.",src:"Caitanya-caritāmṛta, Ādi 17"},
+  {p:'navadvip',q:"Kako sta se imenovala pijana brata, ki sta Nityānando udarila, a ju je ta z ljubeznijo odrešil?",a:["jagai","madhai","jagaiinmadhai","jagai madhai"],show:"Jagāi in Mādhāi",hint:"Imeni se rimata.",ex:"Mādhāi je Nityānando udaril s črepinjo, Nityānanda pa ju je kljub temu prosil Mahāprabhuja za milost. Oba sta postala bhakti.",src:"Caitanya-caritāmṛta, Ādi 17"},
+  {p:'navadvip',q:"Katerega muslimanskega sodnika, ki je prepovedal kirtan, je Mahāprabhu pridobil z množično procesijo petja?",a:["kazi","cand kazi","candkazi","chand kazi"],show:"Čānd Kazi",hint:"Njegov naziv pomeni sodnik.",ex:"Mahāprabhu je organiziral veliko procesijo s tisoči bakel in ljudi, ki so peli. Kazi se je spreobrnil in obljubil, da kirtana ne bo nihče več oviral.",src:"Caitanya-caritāmṛta, Ādi 17"},
+  {p:'navadvip',q:"Koliko let je bil star Šrī Caitanya, ko je zapustil Navadvīpo in sprejel sannyās?",a:["24","stiriindvajset"],show:"24 let",hint:"Med 20 in 30.",ex:"Ob koncu 24. leta je Mahāprabhu v Kāṭwi sprejel sannyās od Keśave Bhāratīja, da bi lahko pridigal vsem.",src:"Caitanya-caritāmṛta, Ādi 13 in 17"},
+  {p:'mayapur',q:"Kateri veliki ačarja je v 19. stoletju odkril točno rojstno mesto Šrī Caitanye v Māyāpurju?",a:["bhaktivinoda","bhaktivinoda thakura","bhaktivinodthakur","bhaktivinod","jagannatha dasa babaji","jagannath das babaji"],show:"Šrīla Bhaktivinoda Ṭhākura (potrdil Jagannātha dāsa Bābājī)",hint:"Oče Bhaktisiddhānte Sarasvatīja.",ex:"Bhaktivinoda Ṭhākura je odkril Yogapīṭho, Jagannātha dāsa Bābājī pa je to v zanosu potrdil. Šrīla Prabhupāda je v Māyāpurju zgradil svetovno središče ISKCON-a.",src:"Prabhupādove razlage Caitanya-caritāmṛte"},
+ ]},
+ {name:"Jagannātha Purī",sub:"Šrī Kṣetra, kjer je Mahāprabhu živel 18 let",main:1,intro:"V Purīju je Šrī Caitanya preživel zadnjih osemnajst let, plesal pred vozovi Ratha-yātre in okušal ločitev od Krišne v razpoloženju Rādhārāṇī.",qs:[
+  {p:'puri',q:"Katera tri Božanstva so čaščena v glavnem templju v Purīju?",all:[["jagannatha","jagannath"],["baladeva","balarama","balabhadra","balaram"],["subhadra"]],show:"Jagannātha, Baladeva in Subhadrā",hint:"Krišna, njegov brat in njegova sestra.",ex:"Gospod Jagannātha je Krišna sam, ob njem sta Baladeva in Subhadrā. Ob pogledu na Jagannātho je Mahāprabhu padal v zanos.",src:"Caitanya-caritāmṛta, Madhya 6"},
+  {p:'puri',q:"Kako se imenuje veliki festival, ko Božanstva na ogromnih vozovih peljejo po ulicah Purīja?",a:["rathayatra","ratha yatra","ratajatra","festival vozov"],show:"Ratha-yātrā",hint:"Ratha pomeni voz.",ex:"Mahāprabhu je s sedmimi skupinami kirtana plesal pred vozom Jagannāthe. Šrīla Prabhupāda je ta festival prinesel na zahod.",src:"Caitanya-caritāmṛta, Madhya 13"},
+  {p:'puri',q:"Do katerega templja vozijo vozove na Ratha-yātri? (Predstavlja Vṛndāvano.)",a:["gundica","gundicha","gundica mandir"],show:"Guṇḍicā",hint:"Mahāprabhu ga je pred festivalom osebno očistil.",ex:"Mahāprabhu je pred festivalom z bhaktami očistil tempelj Guṇḍicā, kar ponazarja čiščenje srca, preden Krišna sede vanj.",src:"Caitanya-caritāmṛta, Madhya 12–13"},
+  {p:'puri',q:"Kateri kralj Orisse je pred vozom Jagannāthe pometal cesto z zlato metlo in tako prejel Mahāprabhujevo milost?",a:["prataparudra","pratapa rudra","prataparudra maharaja"],show:"Mahārāja Pratāparudra",hint:"Mahāprabhu ga sprva kot sannyāsī ni želel srečati.",ex:"Ker je kralj ponižno opravljal službo pometača, ga je Mahāprabhu objel, ko je kralj recitiral verze iz Gopī-gīte.",src:"Caitanya-caritāmṛta, Madhya 13–14"},
+  {p:'puri',q:"V obliki s koliko rokami se je Mahāprabhu prikazal velikemu učenjaku Sārvabhaumi Bhaṭṭācāryi?",a:["6","sest","sestimi","sestrok","sadbhuja"],show:"Šest rok (ṣaḍ-bhuja)",hint:"Dve roki Rāme, dve Krišne, dve Caitanye.",ex:"Mahāprabhu je Sārvabhaumi pokazal šestročno obliko: z lokom Rāme, piščaljo Krišne ter palico in vrčem sannyāsīja.",src:"Caitanya-caritāmṛta, Madhya 6"},
+  {p:'gambhira',q:"Kateri Caitanyin zaupni spremljevalec in tajnik mu je v Purīju pel pesmi, ki so ustrezale njegovemu razpoloženju?",a:["svarupa damodara","svarupadamodara","svarupa","damodara"],show:"Svarūpa Dāmodara Gosvāmī",hint:"V Krišna-līli je Lalitā-sakhī.",ex:"Svarūpa Dāmodara in Rāya Rāmānanda sta bila Mahāprabhuju ob strani v najglobljem zanosu ločitve.",src:"Caitanya-caritāmṛta, Madhya 10 in Antya"},
+  {p:'puri',q:"Katerega bhakto, ki je dnevno pel 300 000 svetih imen, je Mahāprabhu po njegovem odhodu sam nesel in položil v pesek ob morju?",a:["haridasa","haridas","haridasa thakura","namacarya"],show:"Šrīla Haridāsa Ṭhākura",hint:"Imenujejo ga nāmācārya, učitelj svetega imena.",ex:"Haridāsa Ṭhākura je odšel ob gledanju Mahāprabhujevega obraza in petju njegovega imena. Gospod je plesal z njegovim telesom.",src:"Caitanya-caritāmṛta, Antya 11"},
+  {p:'gambhira',q:"Kako se imenuje majhna soba v hiši Kāśī Miśre, kjer je Mahāprabhu noči preživljal v zanosu ločitve od Krišne?",a:["gambhira","gambira"],show:"Gambhīrā",hint:"Ime pomeni »globoka«.",ex:"V Gambhīri je Mahāprabhu v razpoloženju Rādhārāṇī okušal bolečino ločitve od Krišne. To je vrh njegovih zabav.",src:"Caitanya-caritāmṛta, Antya 14–20"},
+  {p:'puri',q:"Koliko zadnjih let svojih zabav je Šrī Caitanya neprekinjeno preživel v Jagannātha Purīju?",a:["18","osemnajst"],show:"18 let",hint:"Prvih šest let po sannyāsu je potoval, nato je ostal.",ex:"Po sannyāsu je Mahāprabhu šest let potoval, zadnjih osemnajst let pa je ostal v Purīju.",src:"Caitanya-caritāmṛta, Ādi 13"},
+ ]},
+ {name:"Vraja – Vṛndāvana",sub:"večno prebivališče Rādhe in Krišne",main:1,final:1,intro:"Zadnja postaja: Vraja-dhāma, kjer Krišna kot pastirček večno uživa z gopījami, kravami in Šrīmatī Rādhārāṇī. Tu se romanje izpolni.",qs:[
+  {p:'mathura',q:"V čigavem zaporu v Mathuri se je Krišna prikazal Vasudevi in Devakī?",a:["kamsa","kansa","kamse","kamsi"],show:"V zaporu kralja Kaṁse",hint:"Devakījin brat, ki se je bal osmega sina.",ex:"Krišna se je prikazal kot štiriročni Višnu, nato pa ga je Vasudeva čez Jamuno odnesel v Gokulo k Nandu in Yaśodi.",src:"Šrīmad-Bhāgavatam 10.3"},
+  {p:'vrindavan',q:"Katera mati je hotela poredno Krišno zvezati z vrvjo, ki je bila vedno za dva prsta prekratka?",a:["jasoda","yasoda","jasodamata","yasodamayi","jasodi"],show:"Mati Yaśodā",hint:"Zato se Krišna imenuje Dāmodara.",ex:"Ko je Krišna videl materin trud, se je pustil zvezati. Zato se imenuje Dāmodara, »tisti, ki je zvezan okoli pasu«.",src:"Šrīmad-Bhāgavatam 10.9"},
+  {p:'vrindavan',q:"Katero strupeno večglavo kačo je Krišna ukrotil s plesom na njenih glavah v Jamuni?",a:["kaliya","kalija","kaliyo","kalija naga"],show:"Kāliya",hint:"Njeno ime pomeni »temna«.",ex:"Kāliya je zastrupil Jamuno. Krišna je plesal na njegovih glavah, nato pa ga je na prošnjo njegovih žena poslal na otok Ramaṇaka.",src:"Šrīmad-Bhāgavatam 10.16"},
+  {p:'govardhan',q:"Koliko dni je Krišna držal hrib Govardhana na mezincu, da bi zaščitil Vrajavāsije pred Indrovim nalivom?",a:["7","sedem"],show:"Sedem dni",hint:"Toliko je bilo tudi Krišnu let.",ex:"Krišna je pri sedmih letih sedem dni držal Govardhano kot dežnik. Indra je spoznal svojo napako in ga molil.",src:"Šrīmad-Bhāgavatam 10.25"},
+  {p:'vrindavan',q:"Kako se imenuje transcendentalni ples, ki ga je Krišna v jesenski polnočni noči plesal z gopījami ob Jamuni?",a:["rasa","rasalila","rasa lila","rasa ples"],show:"Rāsa-līlā",hint:"Beseda pomeni tudi »okus« odnosa.",ex:"Bhāgavatam pravi, da tisti, ki z vero sliša o rāsa-līli od pravega vira, kmalu doseže vdano služenje in se osvobodi poželenja.",src:"Šrīmad-Bhāgavatam 10.29–33"},
+  {p:'varsana',q:"V katerem kraju na hribu je živela Šrīmatī Rādhārāṇī, hči kralja Vṛṣabhānuja?",a:["varsana","barsana","varsani","barsani","varsano"],show:"Varṣāṇā (Barsana)",hint:"Ime se začne z V ali B.",ex:"Rādhārāṇī je Krišnova notranja energija hlādinī-śakti. Odraščala je v Varṣāṇi, kjer je dom njenega očeta Vṛṣabhānuja.",src:"Krišna, vrhovna Božanska Osebnost; Caitanya-caritāmṛta, Ādi 4"},
+  {p:'radhakunda',q:"Katero jezero je po Rūpi Gosvāmīju (Nektar navodil) najsvetejše mesto, celo nad Govardhano?",a:["radhakunda","radha kunda","radhakund","radha kund"],show:"Rādhā-kuṇḍa",hint:"Nosi ime Krišnove najljubše.",ex:"Rādhā-kuṇḍa je Krišni tako ljuba kot Rādhārāṇī sama. Kopanje v njem in služenje ob njem daruje Krišna-premo.",src:"Šrī Upadeśāmṛta (Nektar navodil), verzi 9–11"},
+  {p:'vrindavan',q:"Kateri od šestih Gosvāmījev je v Vṛndāvanu odkril Božanstvo Šrī Govindajīja, za katerega je bil zgrajen veličasten tempelj?",a:["rupa","rupa gosvami","rupagosvami","sri rupa"],show:"Šrīla Rūpa Gosvāmī",hint:"Prejel je nauke na Prayāgi.",ex:"Rūpa Gosvāmī je našel Govindajīja na Gomā-ṭīli. Sanātana je častil Madana-mohana, Jīva pa Rādhā-Dāmodaro.",src:"Caitanya-caritāmṛta, Ādi 1 in 8 (razlage)"},
+  {p:'radhadamodar',q:"V katerem templju v Vṛndāvanu je Šrīla Prabhupāda živel in začel prevajati Šrīmad-Bhāgavatam, preden je odšel na zahod?",a:["radha damodara","radhadamodara","radha damodar","radhadamodar","damodara"],show:"Tempelj Rādhā-Dāmodara",hint:"Tempelj Jīve Gosvāmīja, ob samādhiju Rūpe Gosvāmīja.",ex:"Prabhupāda je v sobah templja Rādhā-Dāmodara prevajal Bhāgavatam. Kasneje je zgradil tempelj Krišna-Balarāma v Ramaṇa-reti.",src:"Šrīla Prabhupāda-līlāmṛta"},
+  {p:'vrindavan',q:"Kaj je po nauku Šrī Caitanye in Šrīle Prabhupāde končni, peti cilj življenja, višji od osvoboditve?",a:["krsnaprema","krsna prema","prema","ljubezen do krisne","ljubezen do boga","cista ljubezen","ljubezen"],show:"Krišna-prema – čista ljubezen do Krišne",hint:"Pañcama-puruṣārtha, nad dharmo, artho, kāmo in mokṣo.",ex:"Mahāprabhu uči, da je ljubezen do Krišne peti in najvišji cilj. V Kali-yugi jo dosežemo s petjem Hare Krišna mahā-mantre.",src:"Caitanya-caritāmṛta, Ādi 7"},
+ ]},
+];
+
+const MANTRA = "Hare Krišna Hare Krišna Krišna Krišna Hare Hare Hare Rāma Hare Rāma Rāma Rāma Hare Hare";
+const LADDER = ["śraddhā","sādhu-saṅga","bhajana-kriyā","anartha-nivṛtti","niṣṭhā","ruci","āsakti","bhāva","prema"];
+const TOTALQ = STAGES.reduce((s,x)=>s+x.qs.length,0);
+
+/* ---------- Primerjanje odgovorov ---------- */
+function norm(s){
+  s=String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+  s=s.replace(/sh/g,'s').replace(/ch/g,'c').replace(/([tdbgkpj])h/g,'$1').replace(/w/g,'v').replace(/y/g,'j').replace(/ri/g,'r');
+  return s.replace(/(.)\1+/g,'$1');
+}
+function lev(a,b){const m=a.length,n=b.length;let d=Array.from({length:n+1},(_,j)=>j);for(let i=1;i<=m;i++){let p=d[0];d[0]=i;for(let j=1;j<=n;j++){const t=d[j];d[j]=Math.min(d[j]+1,d[j-1]+1,p+(a[i-1]===b[j-1]?0:1));p=t}}return d[n]}
+function hit(inp,alias){
+  const a=norm(alias); if(!a) return false;
+  if(inp===a||inp.includes(a)) return true;
+  const stem=a.replace(/[aeiou]$/,''); if(stem.length>=4&&inp.includes(stem)) return true;
+  if(a.length>=5){const tol=a.length>=9?2:1; if(lev(inp,a)<=tol) return true;}
+  return false;
+}
+function check(q,raw){
+  const inp=norm(raw); if(!inp) return false;
+  if(q.all) return q.all.every(g=>g.some(al=>hit(inp,al)));
+  return q.a.some(al=>hit(inp,al));
+}
+function checkMantra(raw){
+  const t=norm(MANTRA); const i=norm(raw);
+  return i===t || lev(i,t)<=3;
+}
+
+/* ---------- Prizori ---------- */
+function shikhara(x,y,s,sil){
+  return `<g transform="translate(${x} ${y}) scale(${s})">
+  <rect x="-120" y="-40" width="240" height="40" fill="${sil}"/>
+  <path d="M-70 -40 L-70 -90 C-78 -220 -34 -282 0 -292 C34 -282 78 -220 70 -90 L70 -40 Z" fill="${sil}"/>
+  ${[-45,-22,0,22,45].map(v=>`<path d="M${v} -60 C${v*1.05} -170 ${v*.6} -250 ${v*.2} -284" stroke="rgba(233,184,78,.25)" stroke-width="2" fill="none"/>`).join('')}
+  <ellipse cx="0" cy="-298" rx="30" ry="9" fill="${sil}"/><path d="M-8 -306 Q0 -330 8 -306Z" fill="${sil}"/>
+  <circle cx="0" cy="-350" r="18" fill="none" stroke="#E9B84E" stroke-width="4"/>
+  ${[0,45,90,135].map(a=>`<line x1="0" y1="-350" x2="${18*Math.cos(a*Math.PI/180)}" y2="${-350+18*Math.sin(a*Math.PI/180)}" stroke="#E9B84E" stroke-width="2.5" transform="rotate(0)"/><line x1="0" y1="-350" x2="${-18*Math.cos(a*Math.PI/180)}" y2="${-350-18*Math.sin(a*Math.PI/180)}" stroke="#E9B84E" stroke-width="2.5"/>`).join('')}
+  <line x1="0" y1="-330" x2="0" y2="-420" stroke="${sil}" stroke-width="4"/><path d="M0 -420 L70 -404 L0 -388Z" fill="#EE7F2D"/>
+  </g>`;
+}
+function smallTemple(x,y,s,sil){
+  return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-60" y="-50" width="120" height="50" fill="${sil}"/><path d="M-44 -50 C-48 -140 -20 -180 0 -186 C20 -180 48 -140 44 -50Z" fill="${sil}"/><circle cx="0" cy="-194" r="8" fill="${sil}"/><line x1="0" y1="-196" x2="0" y2="-250" stroke="${sil}" stroke-width="3"/><path d="M0 -250 L40 -240 L0 -230Z" fill="#EE7F2D"/></g>`;
+}
+function scene(sc){
+  const sil='#0A0F2A', W=1200;
+  let g=`<svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs>
+  <linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sc.sky[0]}"/><stop offset="1" stop-color="${sc.sky[1]}"/></linearGradient>
+  <linearGradient id="ov" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0D1330" stop-opacity=".15"/><stop offset=".55" stop-color="#0D1330" stop-opacity=".1"/><stop offset="1" stop-color="#0D1330" stop-opacity=".92"/></linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#FFE7A8" stop-opacity=".9"/><stop offset="1" stop-color="#FFE7A8" stop-opacity="0"/></radialGradient>
+  </defs><rect width="1200" height="800" fill="url(#sk)"/>`;
+  if(sc.moon){let r=7;for(let i=0;i<70;i++){r=(r*9301+49297)%233280;const x=r/233280*W;r=(r*9301+49297)%233280;const y=r/233280*420;g+=`<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${i%5?1.2:2}" fill="#F4E5BC" opacity=".7"/>`}
+    g+=`<circle cx="880" cy="170" r="140" fill="url(#glow)" opacity=".35"/><circle cx="880" cy="170" r="58" fill="#F4E5BC"/>`;
+    if(sc.eclipse) g+=`<circle cx="905" cy="158" r="56" fill="#3a1a2a" opacity=".82"/>`;}
+  if(sc.sun) g+=`<circle cx="860" cy="250" r="200" fill="url(#glow)" opacity=".55"/><circle cx="860" cy="250" r="50" fill="#FFE2A0" opacity=".9"/>`;
+  if(sc.peaks==='snow'){
+    g+=`<polygon points="0,520 120,330 220,420 340,250 470,400 600,220 730,380 860,270 990,410 1100,300 1200,380 1200,800 0,800" fill="#3c4a7c" opacity=".85"/>`;
+    [[120,330],[340,250],[600,220],[860,270],[1100,300]].forEach(([x,y])=>g+=`<polygon points="${x-44},${y+62} ${x},${y} ${x+44},${y+62} ${x+20},${y+50} ${x},${y+70} ${x-18},${y+52}" fill="#EEF2FA" opacity=".92"/>`);
+    g+=`<polygon points="0,600 160,470 300,560 450,460 620,580 780,480 940,570 1080,490 1200,560 1200,800 0,800" fill="#222b55"/>`;
+  }
+  if(sc.peaks==='kailas'){
+    g+=`<polygon points="0,560 200,420 330,520 0,620" fill="#2c3768"/><polygon points="870,520 1010,410 1200,500 1200,620" fill="#2c3768"/>`;
+    g+=`<polygon points="330,600 600,170 870,600" fill="#3a4680"/><polygon points="525,290 600,170 675,290 640,276 600,312 560,278" fill="#EEF2FA"/>`;
+    g+=`<path d="M600 312 L600 560" stroke="#EEF2FA" stroke-width="5" opacity=".5"/><rect y="600" width="1200" height="200" fill="#1c2450"/>`;
+  }
+  if(sc.peaks==='rock'){
+    g+=`<path d="M0 560 L90 470 L150 500 L260 390 L340 460 L430 380 L560 480 L660 410 L760 470 L880 380 L990 470 L1100 420 L1200 470 L1200 800 L0 800Z" fill="#5a3f45" opacity=".9"/>`;
+    g+=`<path d="M0 640 L140 560 L260 610 L400 540 L560 620 L720 550 L880 620 L1040 560 L1200 620 L1200 800 L0 800Z" fill="#2b2236"/>`;
+  }
+  if(sc.peaks==='hill'){ g+=`<path d="M-50 640 Q 300 330 650 560 Q 900 430 1250 620 L1250 800 L-50 800Z" fill="${sc.hc||'#2a3a5a'}"/>`; }
+  if(sc.water==='river'){ g+=`<rect y="610" width="1200" height="190" fill="${sc.wc}" opacity=".75"/>`; for(let i=0;i<6;i++) g+=`<path d="M${(i*197)%1100} ${640+i*24} q 30 -8 60 0 t 60 0" stroke="#F4E5BC" stroke-width="2" fill="none" opacity=".35"/>`; }
+  if(sc.water==='sea'){ g+=`<rect y="540" width="1200" height="260" fill="#2a5b8a"/><rect y="540" width="1200" height="6" fill="#9fc6e0" opacity=".5"/>`; for(let i=0;i<9;i++) g+=`<path d="M${(i*263)%1150} ${570+i*22} q 40 -10 80 0 t 80 0" stroke="#d7ecf7" stroke-width="2" fill="none" opacity=".4"/>`; }
+  if(sc.water==='confluence'){ g+=`<polygon points="0,600 1200,600 1200,800 0,800" fill="#a9c7d8"/><polygon points="560,600 1200,600 1200,800 360,800" fill="#24386e"/><path d="M560 600 C520 680 440 740 360 800" stroke="#F4E5BC" stroke-width="2" opacity=".4" fill="none"/>`; }
+  if(sc.water==='pond'){ g+=`<ellipse cx="600" cy="680" rx="460" ry="96" fill="#5a4a6a"/><ellipse cx="600" cy="684" rx="410" ry="78" fill="#2a3a78"/><ellipse cx="600" cy="688" rx="360" ry="62" fill="#3b56a0" opacity=".8"/>`; }
+  const by=sc.water==='sea'?545:sc.water==='river'?612:sc.water==='pond'?600:620;
+  if(sc.build==='shikhara'){ g+=shikhara(600,by,1,sil)+smallTemple(420,by,.55,sil)+smallTemple(790,by,.6,sil); }
+  if(sc.build==='temple'){ g+=smallTemple(600,by,1,sil); }
+  if(sc.build==='gopuram'){ let t=''; for(let i=0;i<6;i++){const w=280-36*i, h=42;t+=`<rect x="${600-w/2}" y="${by-h*(i+1)}" width="${w}" height="${h-4}" fill="${sil}"/>`;} t+=`<rect x="510" y="${by-292}" width="180" height="40" rx="20" fill="${sil}"/>`; [540,575,600,625,660].forEach(x=>t+=`<path d="M${x-6} ${by-292} Q${x} ${by-322} ${x+6} ${by-292}Z" fill="#E9B84E"/>`); t+=`<rect x="570" y="${by-80}" width="60" height="80" rx="30" fill="${sc.sky[1]}" opacity=".35"/>`; g+=t; }
+  if(sc.build==='ghat'){ for(let i=0;i<5;i++) g+=`<rect x="0" y="${by-14*(5-i)}" width="1200" height="14" fill="${i%2?'#3a2f4e':'#2a2240'}"/>`; g+=smallTemple(260,by-70,.7,sil)+smallTemple(600,by-70,.9,sil)+smallTemple(940,by-70,.6,sil); for(let x=120;x<1100;x+=140) g+=`<circle cx="${x}" cy="${by-6}" r="5" fill="#FFC86A"/>`; }
+  if(sc.build==='hut'){ [[430,1],[690,.8]].forEach(([x,s])=>g+=`<g transform="translate(${x} ${by}) scale(${s})"><rect x="-70" y="-70" width="140" height="70" fill="${sil}"/><path d="M-100 -60 Q0 -170 100 -60 Q0 -84 -100 -60Z" fill="#1a1838"/><rect x="-16" y="-48" width="32" height="48" fill="#FFC86A" opacity=".8"/></g>`); }
+  if(sc.build==='palace'){ let t=`<rect x="330" y="${by-150}" width="540" height="150" fill="${sil}"/>`; for(let x=370;x<840;x+=78) t+=`<path d="M${x} ${by} L${x} ${by-70} Q${x+24} ${by-110} ${x+48} ${by-70} L${x+48} ${by}Z" fill="${sc.sky[1]}" opacity=".25"/>`; [380,600,820].forEach((x,i)=>t+=`<rect x="${x-30}" y="${by-200-(i==1?40:0)}" width="60" height="${50+(i==1?40:0)}" fill="${sil}"/><path d="M${x-40} ${by-200-(i==1?40:0)} Q${x} ${by-270-(i==1?40:0)} ${x+40} ${by-200-(i==1?40:0)}Z" fill="${sil}"/>`); g+=t; }
+  if(sc.build==='city'){ let t=''; [[220,.6],[380,.8],[560,1.1],[760,.9],[960,.7]].forEach(([x,s])=>{t+=`<g transform="translate(${x} ${by}) scale(${s})"><rect x="-50" y="-120" width="100" height="120" fill="${sil}"/><path d="M-56 -120 Q0 -210 56 -120Z" fill="#c99a3e"/><line x1="0" y1="-196" x2="0" y2="-240" stroke="${sil}" stroke-width="3"/><path d="M0 -240 L34 -230 L0 -220Z" fill="#EE7F2D"/></g>`}); g+=t; }
+  if(sc.build==='chariot'){ g+=`<rect y="620" width="1200" height="180" fill="#3a2a2a"/><g transform="translate(600 640)"><circle cx="-90" cy="-10" r="62" fill="none" stroke="${sil}" stroke-width="12"/><circle cx="90" cy="-10" r="62" fill="none" stroke="${sil}" stroke-width="12"/>${[0,30,60,90,120,150].map(a=>`<line x1="${-90-62*Math.cos(a*Math.PI/180)}" y1="${-10-62*Math.sin(a*Math.PI/180)}" x2="${-90+62*Math.cos(a*Math.PI/180)}" y2="${-10+62*Math.sin(a*Math.PI/180)}" stroke="${sil}" stroke-width="5"/><line x1="${90-62*Math.cos(a*Math.PI/180)}" y1="${-10-62*Math.sin(a*Math.PI/180)}" x2="${90+62*Math.cos(a*Math.PI/180)}" y2="${-10+62*Math.sin(a*Math.PI/180)}" stroke="${sil}" stroke-width="5"/>`).join('')}<path d="M-160 -60 L160 -60 L130 -150 L-130 -150Z" fill="${sil}"/><path d="M-120 -150 Q0 -240 120 -150Z" fill="${sil}"/><line x1="0" y1="-200" x2="0" y2="-380" stroke="${sil}" stroke-width="6"/><path d="M0 -380 L90 -360 L0 -340Z" fill="#EE7F2D"/></g>`; }
+  if(sc.trees==='palm'){ [[110,1],[1080,1.1],[230,.7]].forEach(([x,s])=>g+=`<g transform="translate(${x} ${by+10}) scale(${s})"><path d="M0 0 Q14 -120 -6 -240" stroke="${sil}" stroke-width="12" fill="none"/>${[-80,-40,0,40,80,140,-140].map(a=>`<path d="M-6 -240 q${a*.6} -40 ${a*1.3} ${20+Math.abs(a)*.25}" stroke="${sil}" stroke-width="9" fill="none" stroke-linecap="round"/>`).join('')}</g>`); }
+  if(sc.trees==='kadamba'){ [[150,1.1],[1050,.95]].forEach(([x,s])=>{let t=`<g transform="translate(${x} ${by+20}) scale(${s})"><rect x="-10" y="-200" width="20" height="200" fill="${sil}"/>`; [[-70,-230,70],[50,-250,80],[0,-310,80],[-90,-300,50],[90,-320,55]].forEach(([cx,cy,r])=>t+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="#142a24"/>`); for(let i=0;i<14;i++) t+=`<circle cx="${-110+i*17}" cy="${-220-((i*53)%120)}" r="6" fill="#F2C14E"/>`; g+=t+'</g>'}); }
+  if(sc.trees==='forest'){ for(let x=-20;x<1240;x+=60){const h=140+((x*37)%90);g+=`<path d="M${x} ${by+20} L${x+30} ${by+20-h} L${x+60} ${by+20}Z" fill="#12261f"/>`} }
+  return g+`<rect width="1200" height="800" fill="url(#ov)"/></svg>`;
+}
+
+/* ---------- Stanje ---------- */
+const KEY='sveta-mesta-v1';
+let S=null;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){return null}}
+function fresh(names){return {players:names.map(n=>({name:n,score:0,ok:0})),stage:0,qi:0,gq:0,att:1,view:'map',mp:0,done:false}}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cur=()=>S.players[S.gq%S.players.length];
+const maxPer=()=>TOTALQ/S.players.length*4+STAGES.length*4;
+function rankOf(p){const f=p.score/maxPer();return Math.min(8,Math.floor(f*9.4))}
+
+function renderPlayers(active){
+  if(!S){$('players').innerHTML='';return}
+  $('players').innerHTML=S.players.map((p,i)=>`<div class="pchip ${active===i?'on':''}">${TILAKA(active===i?'#E9B84E':'#AEB3CE')}<span>${esc(p.name)}</span><b>${p.score}</b></div>`).join('');
+}
+function setScene(key){$('scene').innerHTML=scene(key?PLACES[key].sc:{sky:['#0d1330','#2b2f6e'],moon:1,water:'river',wc:'#1f2f66',trees:'kadamba',peaks:'hill',hc:'#1b2a4a'})}
+function stageEl(html,center){const el=$('stage');el.className='stagewrap'+(center?' center':'');el.innerHTML=html;el.scrollTop=0}
+
+/* ---------- Zasloni ---------- */
+function startScreen(){
+  S=null;renderPlayers();setScene(null);
+  const saved=load();
+  stageEl(`<div class="card">
+    <div class="eyebrow">Družabna igra · 1–4 igralci</div>
+    <h1>Sveta mesta</h1>
+    <p>Romanje skozi ${Object.keys(PLACES).length} svetih krajev Indije – od izvira Gange do Vṛndāvane. Tri glavne postaje so Navadvīpa-dhāma, Jagannātha Purī in na koncu Vṛndāvana.</p>
+    <div class="rules"><ul>
+      <li>Odgovor napišeš sam. Pravilen odgovor v prvem poskusu prinese <b style="color:var(--gold)">4 tilake</b>, po namigu pa 2.</li>
+      <li>Ko odgovora ne veš, se pokaže pravilen odgovor z zgodbo kraja – romanje vedno teče naprej do konca.</li>
+      <li>Po vsaki stopnji lahko napišeš Hare Krišna mahā-mantro za 4 dodatne tilake.</li>
+      <li>Igralci odgovarjajo izmenično. Zmaga, kdor do Vṛndāvane zbere največ tilak.</li>
+    </ul></div>
+    <div class="setup-players">${[0,1,2,3].map(i=>`<input type="text" id="pn${i}" placeholder="${i===0?'Ime igralca 1':'Igralec '+(i+1)+' (neobvezno)'}" maxlength="18" autocomplete="off">`).join('')}</div>
+    <div class="row"><button class="btn" id="go">Začni romanje</button><button class="btn ghost" id="howto" type="button">Navodila in video</button>${saved&&!saved.done?`<button class="btn ghost" id="resume">Nadaljuj shranjeno igro</button>`:''}</div>
+    <p class="chant">${MANTRA}</p>
+  </div>`,true);
+  $('pn0').value='Bhakta';
+  $('howto').onclick=helpScreen;
+  $('go').onclick=()=>{const names=[0,1,2,3].map(i=>$('pn'+i).value.trim()).filter(Boolean);S=fresh(names.length?names:['Bhakta']);save();mapScreen()};
+  if($('resume')) $('resume').onclick=()=>{S=saved;route()};
+}
+function route(){ if(S.done) return endScreen(); if(S.view==='q') return qScreen(); if(S.view==='mantra') return mantraScreen(); mapScreen(); }
+
+function mapScreen(){
+  S.view='map';save();renderPlayers(-1);
+  const st=STAGES[S.stage]; setScene(st.qs[0].p);
+  const lad=S.players.map(p=>{const r=rankOf(p);return `<div><div class="muted" style="font-size:13px;margin-bottom:4px">${esc(p.name)} · ${p.score} tilak</div><div class="ladder">${LADDER.map((l,i)=>`<span class="${i<r?'reached':i===r?'cur':''}">${l}</span>`).join('')}</div></div>`}).join('');
+  stageEl(`<div class="card">
+    <div class="eyebrow">Stopnja ${S.stage+1} od ${STAGES.length}${st.main?' · glavno sveto mesto':''}</div>
+    <h2>${st.name}</h2>
+    <p>${st.intro}</p>
+    <div class="stages">${STAGES.map((x,i)=>`<div class="st ${i<S.stage?'done':i===S.stage?'now':''} ${x.main?'main':''}"><div class="dot">${i<S.stage?'✓':i+1}</div><div style="min-width:0"><div class="nm">${x.name}</div><div class="sb">${x.sub}</div></div></div>`).join('')}</div>
+    <div style="display:grid;gap:10px">${lad}</div>
+    <p class="src">Lestvica stopenj vdanosti po Nektarju vdanosti (Bhakti-rasāmṛta-sindhu) je tu le simbol napredka v igri.</p>
+    <div class="row"><button class="btn" id="enter">Vstopi: ${st.name}</button><button class="link" id="quit">Nova igra</button></div>
+  </div>`);
+  $('enter').onclick=()=>{S.view='q';S.att=1;save();qScreen()};
+  $('quit').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){};startScreen()};
+}
+
+function qScreen(fb){
+  const st=STAGES[S.stage], q=st.qs[S.qi], pl=S.gq%S.players.length, P=PLACES[q.p];
+  renderPlayers(pl); setScene(q.p);
+  const answered=fb&&(fb.type==='ok'||fb.type==='reveal');
+  stageEl(`<div class="card">
+    <div class="prog"><i style="width:${(S.gq/TOTALQ*100).toFixed(1)}%"></i></div>
+    <div class="place-head"><div><div class="eyebrow">${st.name} · ${S.qi+1}/${st.qs.length}</div><h2>${P.name}</h2></div><div class="loc">${P.loc}</div></div>
+    <div class="muted" style="font-size:14px">Na vrsti: <b style="color:var(--candana)">${esc(cur().name)}</b> · ${S.att===1?'4 tilake':'2 tilaki'}</div>
+    <div class="q">${q.q}</div>
+    ${fb?fbHtml(fb,q):''}
+    ${answered?`<div class="row"><button class="btn" id="next">${nextLabel()}</button></div>`:`
+    <form id="f" class="row" autocomplete="off"><input type="text" id="ans" placeholder="Napiši odgovor …" aria-label="Odgovor"><button class="btn" type="submit">Odgovori</button>${S.att===1?`<button class="btn ghost" type="button" id="dunno">Namig</button>`:`<button class="btn ghost" type="button" id="reveal">Pokaži odgovor</button>`}</form>
+    ${fb&&fb.type==='no'?`<button class="link" id="mine" type="button">Moj odgovor je bil pravilen (+${S.att===1?4:2})</button>`:''}`}
+  </div>`);
+  if(answered){$('next').onclick=advance;$('next').focus();return}
+  const inp=$('ans'); inp.focus();
+  $('f').onsubmit=e=>{e.preventDefault();const v=inp.value.trim();if(!v)return;
+    if(check(q,v)) return award(S.att===1?4:2,v);
+    if(S.att===1){S.att=2;save();qScreen({type:'no',first:true,val:v})} else {qScreen({type:'reveal',val:v})}
+  };
+  if($('dunno')) $('dunno').onclick=()=>{S.att=2;save();qScreen({type:'hint'})};
+  if($('reveal')) $('reveal').onclick=()=>qScreen({type:'reveal'});
+  if($('mine')) $('mine').onclick=()=>award(S.att===1?4:2);
+}
+function fbHtml(fb,q){
+  if(fb.type==='ok') return `<div class="fb ok"><strong>Pravilno! +${fb.pts} tilak${fb.pts===4?'e':'i'}</strong><span>${q.show}</span><p>${q.ex}</p><span class="src">${q.src}</span></div>`;
+  if(fb.type==='reveal') return `<div class="fb no"><strong>Pravilen odgovor: ${q.show}</strong><p>${q.ex}</p><span class="src">${q.src}</span></div>`;
+  return `<div class="fb hint"><strong>${fb.type==='no'?'Še ne. Poskusi znova':'Namig'}</strong><span>${q.hint}</span></div>`;
+}
+function award(pts){
+  cur().score+=pts;cur().ok++;S.answered=true;save();
+  qScreen({type:'ok',pts});
+  const b=document.createElement('div');b.className='burst';b.innerHTML=Array(pts).fill(TILAKA('#E9B84E')).join('');$('stage').appendChild(b);setTimeout(()=>b.remove(),1700);
+}
+function nextLabel(){const st=STAGES[S.stage];return S.qi+1<st.qs.length?'Naslednje vprašanje':'Zaključi stopnjo'}
+function advance(){
+  const st=STAGES[S.stage];S.gq++;S.att=1;
+  if(S.qi+1<st.qs.length){S.qi++;save();return qScreen()}
+  S.view='mantra';S.mp=0;save();mantraScreen();
+}
+
+function mantraScreen(fb){
+  const p=S.players[S.mp];renderPlayers(S.mp);setScene(STAGES[S.stage].qs[STAGES[S.stage].qs.length-1].p);
+  stageEl(`<div class="card">
+    <div class="eyebrow">Konec stopnje ${S.stage+1} · Yuga-dharma</div>
+    <h2>Petje svetih imen</h2>
+    <p>Za to dobo Kali je Gospod določil en sam proces: harer nāma harer nāma harer nāmaiva kevalam, kalau nāsty eva nāsty eva nāsty eva gatir anyathā. Sveto ime je edina pot.</p>
+    <p class="src">Bṛhan-nāradīya Purāṇa, navedeno v Caitanya-caritāmṛti, Ādi 17.21</p>
+    ${fb==='ok'?`<div class="fb ok"><strong>${esc(p.name)}: +4 tilake</strong><div class="mantra">${MANTRA}</div></div>`:fb==='no'?`<div class="fb hint"><strong>Skoraj. Mantra ima 16 imen:</strong><div class="mantra">${MANTRA}</div></div>`:''}
+    ${fb?`<div class="row"><button class="btn" id="mnext">${S.mp+1<S.players.length?'Naslednji igralec':'Na pot naprej'}</button></div>`:`
+    <div class="muted" style="font-size:14px">Na vrsti: <b style="color:var(--candana)">${esc(p.name)}</b> · napiši Hare Krišna mahā-mantro po spominu za 4 dodatne tilake</div>
+    <textarea id="mt" placeholder="Hare …" aria-label="Mahā-mantra"></textarea>
+    <div class="row"><button class="btn" id="mcheck">Preveri</button><button class="btn ghost" id="mskip">Preskoči</button></div>`}
+  </div>`);
+  if(fb){$('mnext').onclick=()=>{if(S.mp+1<S.players.length){S.mp++;save();mantraScreen()}else nextStage()};return}
+  $('mt').focus();
+  $('mcheck').onclick=()=>{if(checkMantra($('mt').value)){p.score+=4;save();mantraScreen('ok')}else mantraScreen('no')};
+  $('mskip').onclick=()=>{if(S.mp+1<S.players.length){S.mp++;save();mantraScreen()}else nextStage()};
+}
+function nextStage(){
+  if(S.stage+1<STAGES.length){S.stage++;S.qi=0;S.view='map';save();mapScreen()}
+  else{S.done=true;save();endScreen()}
+}
+function endScreen(){
+  renderPlayers(-1);setScene('vrindavan');
+  const r=[...S.players].sort((a,b)=>b.score-a.score);
+  const tie=r.length>1&&r[0].score===r[1].score;
+  stageEl(`<div class="card">
+    <div class="eyebrow">Romanje je dokončano · Vṛndāvana</div>
+    <h2>${S.players.length>1?(tie?'Neodločeno med najboljšimi':`Zmagovalec: ${esc(r[0].name)}`):`${esc(r[0].name)}, prišel si do Vṛndāvane`}</h2>
+    <div class="rank">${r.map((p,i)=>`<div class="r ${i===0?'first':''}"><span class="pos">${i+1}</span><span class="nm">${esc(p.name)}<br><span class="muted" style="font-size:13px">${p.ok} pravilnih · stopnja ${LADDER[rankOf(p)]}</span></span><span class="pts">${TILAKA('#E9B84E')}${p.score}</span></div>`).join('')}</div>
+    <p>Šrī Caitanya Mahāprabhu je prinesel Krišna-premo vsem, brez razlike. Romanje po svetih mestih se v srcu nadaljuje s petjem svetih imen.</p>
+    <div class="mantra">${MANTRA}</div>
+    <div class="row"><button class="btn" id="again">Igraj znova</button></div>
+  </div>`,true);
+  $('again').onclick=()=>{try{localStorage.removeItem(KEY)}catch(e){};startScreen()};
+}
+
+/* ---------- Navodila ---------- */
+let installEvt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;const b=$('installBtn');if(b)b.hidden=false});
+const standalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
+function helpScreen(){
+  renderPlayers(-1);setScene('navadvip');
+  stageEl(`<div class="card help">
+    <div class="eyebrow">Navodila</div>
+    <h2>Kako igrati Sveta mesta</h2>
+    <video controls playsinline preload="metadata" poster="navodila-poster.jpg" src="navodila.mp4">Video z navodili se v tem brskalniku ne predvaja.</video>
+    <h3>Cilj igre</h3>
+    <p>Prepotuješ sveta mesta Indije od izvira Gange do Vṛndāvane in zbiraš tilake. Ob tem spoznaš zabave Gospoda, Božanstva in velike bhakte, ki so ta mesta obiskali. Zmaga, kdor do konca zbere največ tilak.</p>
+    <h3>Potek</h3>
+    <ol>
+      <li>Vpiši imena 1 do 4 igralcev in pritisni <b>Začni romanje</b>.</li>
+      <li>Romanje ima 7 stopenj: Himalaja, Ob Gangi, Južna Indija, Dežele dharme, Navadvīpa-dhāma, Jagannātha Purī in na koncu Vṛndāvana.</li>
+      <li>Pri vsakem vprašanju v ozadju vidiš sveto mesto. Odgovor napiši v polje in pritisni <b>Odgovori</b> ali tipko Enter.</li>
+      <li>Igralci odgovarjajo izmenično. Kdo je na vrsti, piše nad vprašanjem in je označeno zgoraj.</li>
+    </ol>
+    <h3>Točke – tilake</h3>
+    <ul>
+      <li>Pravilno v prvem poskusu: <b style="color:var(--gold)">+4 tilake</b>.</li>
+      <li>Napačno ali gumb <b>Namig</b>: dobiš namig, pravilno v drugem poskusu prinese +2.</li>
+      <li>Če še vedno ne veš, se pokaže pravilen odgovor z zgodbo kraja in virom. Igra gre naprej, nihče ne obstane.</li>
+      <li>Pravopis ni pomemben: šumniki, diakritike in običajne različice zapisa (Krišna, Krishna, Kṛṣṇa) štejejo enako. Če igra pravilnega odgovora ne prepozna, pritisni <b>Moj odgovor je bil pravilen</b>.</li>
+      <li>Po vsaki stopnji lahko vsak igralec po spominu napiše Hare Krišna mahā-mantro za +4 tilake. To je yuga-dharma za dobo Kali.</li>
+    </ul>
+    <h3>Napredovanje</h3>
+    <p>Na zemljevidu med stopnjami vidiš, kje si na lestvici devetih stopenj vdanosti iz Nektarja vdanosti: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva in prema. Več tilak pomeni višjo stopnjo. Lestvica je simbol napredka v igri. Igra se sproti shranjuje, zato jo lahko nadaljuješ pozneje na isti napravi.</p>
+    <h3>Namestitev kot aplikacija</h3>
+    <div class="row"><button class="btn" id="installBtn" type="button" hidden>Namesti aplikacijo</button>${standalone()?'<span class="muted">Igra že teče kot nameščena aplikacija.</span>':''}</div>
+    <div class="dev">
+      <div><b>Android</b><p>Odpri igro v Chromu. Meni ⋮ → <i>Namesti aplikacijo</i> ali <i>Dodaj na začetni zaslon</i>.</p></div>
+      <div><b>iPhone in iPad</b><p>Odpri igro v Safariju. Gumb Deli (kvadrat s puščico) → <i>Dodaj na začetni zaslon</i> → Dodaj.</p></div>
+      <div><b>Windows in Linux</b><p>Odpri igro v Chromu ali Edgeu. Klikni ikono za namestitev desno v naslovni vrstici ali meni → <i>Namesti Sveta mesta</i>.</p></div>
+      <div><b>Mac</b><p>V Chromu: ikona za namestitev v naslovni vrstici. V Safariju: Datoteka → <i>Dodaj v Dock</i>.</p></div>
+    </div>
+    <p class="src">Nameščena aplikacija se odpre v svojem oknu z ikono tilake in po prvem zagonu deluje tudi brez interneta.</p>
+    <div class="row"><button class="btn" id="hback" type="button">${S?'Nazaj v igro':'Na začetek'}</button></div>
+  </div>`);
+  if(installEvt) $('installBtn').hidden=false;
+  $('installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('installBtn').hidden=true};
+  $('hback').onclick=()=>S?route():startScreen();
+}
+$('helpBtn').onclick=helpScreen;
+if('serviceWorker' in navigator && location.protocol==='https:' && !/claude\.ai|claudeusercontent/.test(location.host)){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})});
+}
+
+startScreen();
+</script>
+
+</body>
+</html>
