@@ -363,9 +363,9 @@ const T={
   endText:'Śrī Caitanya Mahāprabhu je Kṛṣṇa-premo podaril vsem, brez razlike. Romanje po svetih mestih se v srcu nadaljuje s petjem svetih imen.',routeTap:'Pot romanja – tapni točko',placesIn:'Sveta mesta v igri',again:'Igraj znova z novimi vprašanji',home:'Na začetek',
   dailyTitle:'Dnevno romanje',dailyDone:'Današnje romanje je končano',today:'danes',best:'najboljši',days:'zaporednih dni',dailyCome:'Jutri te čaka nova stopnja.',dailyAgain:'Ponovi današnje',
   atlasTitle:'Atlas svetih mest',close:'Zapri',album:'Album',allPlaces:'Vsa sveta mesta',loading:'Nalagam fotografije …',offline:'Fotografije bodo vidne, ko bo naprava povezana z internetom.',lat:'S',lon:'V',
-  sndTitle:'Zvok in glasba',sndTanpura:'Tanpura',sndMine:'Moji bhajani',sndOff:'Izklop',vol:'Glasnost',fx:'Zvočni učinki (zvonček)',add:'Dodaj posnetke',noTracks:'Še nisi dodal posnetkov.',remove:'odstrani',
-  sndNote:'Bhajani Śrīle Prabhupāde so avtorsko zaščiteni (© The Bhaktivedanta Book Trust), zato jih igra ne vsebuje. Album Prabhupāda Bhajans lahko kupiš na <a href="https://store.krishna.com/prabhupada-bhajans-album-download/" target="_blank" rel="noopener">store.krishna.com</a> in posnetke dodaš tukaj. Ostanejo samo na tej napravi in se predvajajo v ozadju igre.',
-  sndAuto:'Brez dodanih posnetkov igra tanpura z zvončki, ki deluje tudi brez interneta.',
+  sndTitle:'Zvok in glasba',sndTanpura:'Tanpura',sndMine:'Mahā-mantra',sndOff:'Izklop',vol:'Glasnost',fx:'Zvočni učinki (zvonček)',add:'Dodaj posnetke',noTracks:'Še nisi dodal posnetkov.',remove:'odstrani',
+  sndNote:'V ozadju igre se predvaja Hare Kṛṣṇa mahā-mantra. Dodaš lahko tudi svoje posnetke bhajanov; ostanejo samo na tej napravi.',
+  sndAuto:'Tanpura z zvončki je vgrajena in deluje tudi brez interneta.',
   helpTitle:'Kako igrati Sveta mesta',videoFile:'navodila.mp4',noVideo:'Video z navodili se v tem brskalniku ne predvaja.',
   backGame:'Nazaj v igro',install:'Namesti aplikacijo',installed:'Igra že teče kot nameščena aplikacija.',
   credits:'Fotografije svetih mest so z Wikimedia Commons in so na voljo pod prostimi licencami. Avtorji so navedeni pri posamezni datoteki na Wikimedia Commons. Zemljevid: © OpenStreetMap; satelitski posnetek: © Esri. Fotografija Śrīle Prabhupāde: zasebni arhiv avtorja igre. Vprašanja so preverjena v knjigah Śrīle Prabhupāde (vedabase.io).'},
@@ -390,9 +390,9 @@ const T={
   endText:'Śrī Caitanya Mahāprabhu gave Kṛṣṇa-prema to everyone without distinction. The pilgrimage to the holy places continues in the heart by chanting the holy names.',routeTap:'Route of the pilgrimage – tap a point',placesIn:'Holy places in the game',again:'Play again with new questions',home:'Back to start',
   dailyTitle:'Daily pilgrimage',dailyDone:'Today’s pilgrimage is complete',today:'today',best:'best',days:'days in a row',dailyCome:'A new stage awaits you tomorrow.',dailyAgain:'Repeat today’s',
   atlasTitle:'Atlas of holy places',close:'Close',album:'Album',allPlaces:'All holy places',loading:'Loading photos …',offline:'Photos will appear when the device is online.',lat:'N',lon:'E',
-  sndTitle:'Sound and music',sndTanpura:'Tanpura',sndMine:'My bhajans',sndOff:'Off',vol:'Volume',fx:'Sound effects (bell)',add:'Add recordings',noTracks:'You have not added any recordings yet.',remove:'remove',
-  sndNote:'Śrīla Prabhupāda’s bhajans are copyrighted (© The Bhaktivedanta Book Trust), so the game does not include them. You can buy the Prabhupāda Bhajans album at <a href="https://store.krishna.com/prabhupada-bhajans-album-download/" target="_blank" rel="noopener">store.krishna.com</a> and add the recordings here. They stay on this device only and play in the background of the game.',
-  sndAuto:'Without added recordings, a tanpura with bells plays, and it works offline too.',
+  sndTitle:'Sound and music',sndTanpura:'Tanpura',sndMine:'Mahā-mantra',sndOff:'Off',vol:'Volume',fx:'Sound effects (bell)',add:'Add recordings',noTracks:'You have not added any recordings yet.',remove:'remove',
+  sndNote:'The Hare Kṛṣṇa mahā-mantra plays in the background of the game. You can also add your own bhajan recordings; they stay on this device only.',
+  sndAuto:'The tanpura with bells is built in and works offline too.',
   helpTitle:'How to play Holy Places',videoFile:'navodila-en.mp4',noVideo:'This browser cannot play the guide video.',
   backGame:'Back to the game',install:'Install the app',installed:'The game is already running as an installed app.',
   credits:'Photos of the holy places are from Wikimedia Commons under free licences; the authors are credited on each file’s Wikimedia Commons page. Map: © OpenStreetMap; satellite imagery: © Esri. Photo of Śrīla Prabhupāda: private archive of the game’s author. The questions were checked against Śrīla Prabhupāda’s books (vedabase.io).'}
@@ -1032,7 +1032,7 @@ function bigMap(state,numbers,clickable){
 
 
 /* ---------- Zvok / Sound ---------- */
-const Snd={ctx:null,out:null,rev:null,mode:store.get('sm-snd','tanpura'),vol:store.get('sm-vol',.5),fx:store.get('sm-fx',true),timer:null,el:null,tracks:[],ti:0,urls:[],
+const Snd={ctx:null,out:null,rev:null,mode:store.get('sm-snd',null),vol:store.get('sm-vol',.5),fx:store.get('sm-fx',true),timer:null,el:null,tracks:[],ti:0,urls:[],
   init(){ if(this.ctx) return; const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return;
     try{ this.ctx=new AC(); this.out=this.ctx.createGain(); this.out.gain.value=this.vol*.5; this.out.connect(this.ctx.destination);
       const len=this.ctx.sampleRate*3.2, ir=this.ctx.createBuffer(2,len,this.ctx.sampleRate);
@@ -1054,13 +1054,14 @@ const Snd={ctx:null,out:null,rev:null,mode:store.get('sm-snd','tanpura'),vol:sto
   fanfare(){ this.resume(); if(!this.fx) return; [0,180,360,620].forEach((d,i)=>setTimeout(()=>this.bell([784,988,1175,1568][i],.1),d)) },
   setVol(v){ this.vol=v; store.set('sm-vol',v); if(this.out) this.out.gain.value=v*.5; if(this.el) this.el.volume=Math.min(1,v) },
   async loadTracks(){ this.tracks=[]; this.urls.forEach(u=>URL.revokeObjectURL(u)); this.urls=[];
-    try{ const list=await idb('getAll'); list.forEach(r=>{const u=URL.createObjectURL(r.blob);this.urls.push(u);this.tracks.push({id:r.id,name:r.name,src:u})}) }catch(e){}
     try{ const r=await fetch('glasba/seznam.json',{cache:'no-store'}); if(r.ok){ const j=await r.json(); (j||[]).forEach(x=>this.tracks.push({id:'f:'+x.file,name:x.title||x.file,src:'glasba/'+x.file,fixed:true})) } }catch(e){}
+    try{ const list=await idb('getAll'); list.forEach(r=>{const u=URL.createObjectURL(r.blob);this.urls.push(u);this.tracks.push({id:r.id,name:r.name,src:u})}) }catch(e){}
   },
-  playTrack(){ if(!this.tracks.length){ return false } if(!this.el){ this.el=new Audio(); this.el.addEventListener('ended',()=>{this.ti=(this.ti+1)%this.tracks.length;this.playTrack();renderSndPanel()}); this.el.addEventListener('error',()=>{this.ti=(this.ti+1)%this.tracks.length}) }
-    this.ti=this.ti%this.tracks.length; const tr=this.tracks[this.ti]; if(this.el.src!==tr.src) this.el.src=tr.src; this.el.volume=Math.min(1,this.vol); this.el.play().catch(()=>{}); return true },
+  chooseDefault(){ if(!this.mode){ this.mode=this.tracks.length?'mine':'tanpura' } },
+  playTrack(){ if(!this.tracks.length){ return false } if(!this.el){ this.el=new Audio(); this.el.addEventListener('ended',()=>{this.ti=(this.ti+1)%this.tracks.length;this.playTrack();renderSndPanel()}); this.el.addEventListener('error',()=>{this.ti=(this.ti+1)%this.tracks.length; if(this.mode==='mine') this.tanpuraOn()}) }
+    this.ti=this.ti%this.tracks.length; const tr=this.tracks[this.ti]; this.el.loop=this.tracks.length===1; if(this.el.src!==tr.src) this.el.src=tr.src; this.el.volume=Math.min(1,this.vol); this.el.play().catch(()=>{}); return true },
   stopTrack(){ if(this.el) this.el.pause() },
-  apply(){ this.resume(); this.tanpuraOff(); this.stopTrack();
+  apply(){ this.chooseDefault(); this.resume(); this.tanpuraOff(); this.stopTrack();
     if(this.mode==='mine'){ if(!this.playTrack()) this.tanpuraOn() } else if(this.mode==='tanpura') this.tanpuraOn();
     const b=$('sndBtn'); if(b) b.classList.toggle('on',this.mode!=='off') },
   setMode(m){ this.mode=m; store.set('sm-snd',m); this.apply(); renderSndPanel() }
@@ -1484,8 +1485,8 @@ const HELP={
   <p>Med stopnjami vidiš zemljevid poti in svojo stopnjo na lestvici devetih stopenj vdanosti iz Nektarja vdanosti: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva in prema. Več tilak pomeni višjo stopnjo. Igra se sproti shranjuje.</p>
   <h3>Atlas svetih mest</h3>
   <p>Gumb <b>Atlas</b> v glavi odpre zemljevid vseh svetih mest na njihovih pravih lokacijah. Tapni točko in preberi opis ter si oglej album fotografij. Na koncu igre se atlas prikaže skupaj z galerijo vseh mest.</p>
-  <h3>Zvok in bhajani</h3>
-  <p>Gumb <b>Zvok</b> v glavi odpre nastavitve. <b>Tanpura</b> je vgrajena in deluje brez interneta. Pri <b>Moji bhajani</b> dodaš svoje posnetke, na primer kupljeni album Prabhupāda Bhajans. Posnetki ostanejo samo na tvoji napravi in se predvajajo v ozadju. Zvonček ob pravilnem odgovoru lahko izklopiš.</p>
+  <h3>Zvok in mahā-mantra</h3>
+  <p>V ozadju igre se predvaja Hare Kṛṣṇa mahā-mantra. Gumb <b>Zvok</b> v glavi odpre nastavitve: izbereš lahko mahā-mantro, vgrajeno <b>tanpuro</b>, ki deluje brez interneta, ali izklop. Dodaš lahko tudi svoje posnetke bhajanov, ki ostanejo samo na tvoji napravi. Zvonček ob pravilnem odgovoru lahko izklopiš.</p>
   <h3>Jezik</h3><p>Gumb <b>EN</b> ali <b>SL</b> v glavi kadar koli zamenja jezik.</p>`,
  en:()=>`<h3>Aim of the game</h3>
   <p>You travel through the holy places of India from the source of the Gaṅgā to Vṛndāvana and collect tilakas. Along the way you learn about the Lord's pastimes, the Deities and the great devotees who visited these places. The questions are based on Śrīla Prabhupāda's books and on verified information about the places. Whoever collects the most tilakas by the end wins.</p>
@@ -1507,8 +1508,8 @@ const HELP={
   <p>Between stages you see the route map and your level on the ladder of nine devotional stages from The Nectar of Devotion: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva and prema. More tilakas mean a higher level. The game saves as you play.</p>
   <h3>Atlas of holy places</h3>
   <p>The <b>Atlas</b> button in the header opens a map of all the holy places at their real locations. Tap a point to read its description and browse its photo album. At the end of the game the atlas appears together with a gallery of all the places.</p>
-  <h3>Sound and bhajans</h3>
-  <p>The <b>Sound</b> button in the header opens the settings. The <b>Tanpura</b> is built in and works offline. Under <b>My bhajans</b> you can add your own recordings, for example the purchased Prabhupāda Bhajans album. They stay on your device only and play in the background. You can switch off the bell for correct answers.</p>
+  <h3>Sound and mahā-mantra</h3>
+  <p>The Hare Kṛṣṇa mahā-mantra plays in the background of the game. The <b>Sound</b> button in the header opens the settings: choose the mahā-mantra, the built-in <b>tanpura</b> (works offline) or off. You can also add your own bhajan recordings, which stay on your device only. You can switch off the bell for correct answers.</p>
   <h3>Language</h3><p>The <b>SL</b> or <b>EN</b> button in the header switches the language at any time.</p>`};
 let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;const b=$('installBtn');if(b)b.hidden=false});
@@ -1541,7 +1542,7 @@ document.addEventListener('pointerdown',()=>{ if(Snd.ctx&&Snd.ctx.state==='suspe
 if('serviceWorker' in navigator && location.protocol==='https:' && !/claude\.ai|claudeusercontent/.test(location.host)){
   window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})});
 }
-Snd.loadTracks();
+Snd.loadTracks().then(()=>{Snd.chooseDefault();renderHeader()});
 langScreen();
 
 </script>
