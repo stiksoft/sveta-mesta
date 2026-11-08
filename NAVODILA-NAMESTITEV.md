@@ -22,7 +22,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v8'` (npr. na v9).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v9'` (npr. na v10).
 
 ## English
 
@@ -31,4 +31,4 @@ This folder contains the whole game as a web app (PWA) for Android, iPhone/iPad,
 1. Upload **all files and the `glasba` folder** to the GitHub repository and enable GitHub Pages (branch `main`, `/ (root)`).
 2. Install on a device: Android – Chrome menu → *Install app*; iPhone – Safari Share → *Add to Home Screen*; Windows/Linux/Mac – the install icon in Chrome or Edge.
 3. Music: the built-in tanpura works offline. Under *Sound → Add recordings* you can add your own bhajans (they stay on that device). With the copyright owner's permission you may also place recordings in `glasba/` and list them in `glasba/seznam.json`. Śrīla Prabhupāda's recordings are © The Bhaktivedanta Book Trust.
-4. After every update raise the number in `const CACHE='sveta-mesta-v8'` in `sw.js`.
+4. After every update raise the number in `const CACHE='sveta-mesta-v9'` in `sw.js`.
