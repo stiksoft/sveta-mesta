@@ -354,6 +354,35 @@ input::placeholder{color:#A6ACCB}
 @media (max-width:640px){.lightbox{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto auto}.lightbox figure{grid-column:1/-1}.lightbox img{max-width:100%;max-height:calc(100dvh - 190px)}.lbnav{grid-row:2;width:100%;height:46px}.lbnav.prev{grid-column:1}.lbnav.next{grid-column:2}.lbbar{grid-row:3}}
 /* tie-break */
 .tbnote{font-size:14.5px;color:#DADDF0}
+
+/* v13 vodnik */
+.lvls{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.atabs{display:flex;gap:6px;flex-wrap:wrap;margin-right:auto}
+.atlas-top h2{margin-right:6px}
+.atabs button{border:1px solid var(--line);background:transparent;color:#DADDF0;border-radius:999px;padding:6px 12px;font-size:13.5px}
+.atabs button.on{background:var(--gold);border-color:var(--gold);color:var(--night);font-weight:700}
+@media (max-width:640px){.atlas-top{flex-wrap:wrap}.atabs{order:3;width:100%}.atabs button{padding:5px 10px;font-size:13px}}
+.warn{background:rgba(238,127,45,.14);border:1px solid rgba(238,127,45,.5);border-radius:10px;padding:8px 12px;font-size:14.5px!important}
+.fest{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px;color:#F1EBD8}
+.fest b{color:var(--candana)}
+a.vb{color:var(--gold);margin-left:8px;white-space:nowrap}
+a.btn{text-decoration:none;display:inline-block}
+.diary textarea,.diary input[type=date],.diary select{width:100%;background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:10px;color:var(--candana);font:inherit;font-size:15px;padding:9px 12px}
+.myph{max-width:100%;border-radius:10px;border:1px solid var(--line);cursor:zoom-in}
+.steps{margin:6px 0 0;padding-left:22px;display:grid;gap:6px}
+.steps button{text-align:left;background:none;border:0;color:var(--candana);font:inherit;font-weight:600;padding:0;text-decoration:underline;text-decoration-color:rgba(233,184,78,.5)}
+.route.on{border-color:var(--gold)}
+.cal.now h4{color:var(--gold)}
+.chips button.l3{border-color:rgba(195,168,245,.6)}
+.lvtag.l3{border-color:rgba(195,168,245,.7);color:#D9CCFA}
+.lvtag+.lvtag{margin-left:4px}
+/* projektor */
+html.big .q{font-size:30px}html.big .opt{font-size:24px;padding:16px 18px}html.big .card h2{font-size:42px}html.big .fb p{font-size:20px}html.big .pchip{font-size:18px}html.big .card{max-width:1100px}
+/* tisk */
+#printArea{display:none}
+@media print{html.printing body>*:not(#printArea){display:none!important}html.printing #printArea{display:block!important;color:#000;background:#fff;font:12pt/1.4 Georgia,serif}
+ html.printing body{background:#fff!important}#printArea h1{font-size:20pt;color:#000}#printArea h2{font-size:15pt;color:#000;margin:14pt 0 6pt}#printArea p{max-width:none;margin:2pt 0}#printArea .psrc{font-size:9pt;color:#444}#printArea li{margin-bottom:8pt;break-inside:avoid}
+ .pcards{display:grid;grid-template-columns:1fr 1fr;gap:8pt}.pcard{border:1px dashed #888;padding:8pt;break-inside:avoid}.pc-h{font-size:9pt;color:#555}.pc-q{font-weight:bold}.pc-a{font-size:9pt;border-top:1px dashed #aaa;padding-top:4pt;margin-top:6pt!important}.pnote{font-size:9pt}}
 </style>
 
 <div id="app">
@@ -372,7 +401,7 @@ input::placeholder{color:#A6ACCB}
 </div>
 <div class="sndpanel" id="sndPanel" hidden></div>
 <div class="atlas" id="atlas" hidden>
-  <div class="atlas-top"><h2 id="atlasTitle">Atlas svetih mest</h2><button class="btn ghost small" id="atlasClose" type="button">Zapri</button></div>
+  <div class="atlas-top"><h2 id="atlasTitle">Atlas svetih mest</h2><div class="atabs" id="atlasTabs"></div><button class="btn ghost small" id="atlasClose" type="button">Zapri</button></div>
   <div class="atlasbox" id="atlasBox"></div>
 </div>
 <div class="lightbox" id="lightbox" hidden><button class="lbnav prev" id="lbPrev" type="button" aria-label="Prejšnja / Previous">‹</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button class="lbnav next" id="lbNext" type="button" aria-label="Naslednja / Next">›</button><div class="lbbar"><span id="lbCount"></span><button class="btn ghost small" id="lbClose" type="button">Zapri</button></div></div>
@@ -404,6 +433,18 @@ const T={
   steals:n=>{const m=n%100;return n+' '+(m===1?'prevzem':m===2?'prevzema':m===3||m===4?'prevzemi':'prevzemov')},srcL:'Vir',
   tbBtn:'Odločilno vprašanje',tbTitle:'Odločilno vprašanje',tbRound:r=>`${r}. krog`,tbNote:'Izenačeni igralci oziroma ekipe odgovorijo vsak na svoje vprašanje. Zmaga, kdor edini odgovori pravilno. Tilake se ne spremenijo.',tbWin:n=>`Zmagovalec po odločilnem vprašanju: ${n}`,tbWinT:n=>`Po odločilnem vprašanju je zmagala ekipa ${n}`,tbShared:'Po petih krogih je še vedno neodločeno – zmago si delite.',tbAgain:'Nihče ni edini odgovoril pravilno – sledi nov krog.',
   doneL2:'Napredno romanje je dokončano · Śrī Raṅgam',
+  lv3:'Vraja-maṇḍala',lv3D:q=>`3 stopnje · Kṛṣṇove zabave v Vraji · ${q} vprašanj`,
+  startIntro3:(n,q,p)=>`Romanje po Vraja-maṇḍali sledi Kṛṣṇovim zabavam iz Śrīmad-Bhāgavatama: od Gokule prek gozdov Vraje do Govardhane, Rādhā-kuṇḍe in Vṛndāvane. ${n} svetih krajev v treh stopnjah; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
+  doneL3:'Romanje po Vraja-maṇḍali je dokončano · Vṛndāvana',grp3:'Vraja-maṇḍala',lvTag3:'Vraja',
+  tabPlaces:'Mesta',tabRoutes:'Poti',tabCal:'Koledar',tabDiary:'Moje romanje',encTravel:'Za romarje',
+  festNote:'Prazniki se ravnajo po lunarnem koledarju, zato so navedeni meseci, v katerih običajno padejo. Točen datum vsako leto preverite v vaiṣṇavskem koledarju.',
+  navBtn:'Navigacija do sem',offBtn:'Shrani fotografije za pot',offBusy:'Shranjujem …',offProg:(a,b)=>`Shranjujem ${a}/${b} …`,offDone:n=>`Shranjeno za pot: ${(n=>{const m=n%100;return n+' '+(m===1?'fotografija':m===2?'fotografiji':m===3||m===4?'fotografije':'fotografij')})(n)}`,offNo:'Shranjevanje v tem brskalniku ni mogoče.',
+  genNote:'Urnikov darśana in āratija ne navajamo, ker se spreminjajo; pred obiskom jih preverite pri templju.',noPhotos:'Za ta kraj še ni preverjenih fotografij.',
+  diaryH:'Moj dnevnik',diaryVisited:'Obiskano',diaryDate:'Datum obiska',diaryNote:'Moj zapis o obisku …',diaryPhoto:'Dodaj svojo fotografijo',diaryMine:'Moja fotografija',diaryTrack:'Glasba ob odprtju tega kraja',
+  diaryCount:(a,b)=>`Obiskani kraji: ${a} od ${b}.`,diaryEmpty:'V dnevniku še ni obiskanih krajev. Pri vsakem kraju lahko označite »Obiskano« ter dodate datum, zapis in svojo fotografijo.',diaryLocal:'Dnevnik in fotografije ostanejo samo na tej napravi.',
+  showRoute:'Pokaži pot',thisMonth:'ta mesec',teacherBtn:'Za učitelje',
+  teachEyebrow:'Za učitelje in skupine',teachTitle:'Tisk in projektor',teachIntro:'Natisnete lahko vsa vprašanja z odgovori, razlagami in viri ali kartice za igro brez naprave. Projektorski način poveča pisavo za igro na velikem zaslonu.',
+  teachN:n=>`${n} vprašanj v zbirki`,printQ:'Natisni vprašanja z odgovori',printC:'Natisni kartice',bigMode:'Projektorski način (večja pisava)',teachNote:'V oknu za tisk lahko izberete »Shrani kot PDF«.',printAns:'Odgovor',printCardsNote:'Kartice razrežite. Pravilen odgovor je na dnu kartice; pred igro ga prepognite.',
   encDei:'Božanstva',encStory:'Zgodba in pomen',encBooks:'Iz knjig in izročila',encSearch:'Išči sveto mesto ali Božanstvo …',encNone:'Ni zadetkov.',grp1:'Osnovno romanje',grp2:'Napredno romanje',zoom:'povečaj',lvTag1:'osnovno',lvTag2:'napredno',
   players:'Igralci',teams:'Ekipe',timerOpt:'Časovna omejitev 30 s',
   pname:i=>i===0?'Ime igralca 1':`Igralec ${i+1} (neobvezno)`,tname:i=>i===0?'Ime ekipe 1':`Ekipa ${i+1} (neobvezno)`,defP:'Bhakta',defT:'Ekipa Gaura',
@@ -439,6 +480,18 @@ const T={
   steals:n=>n+(n===1?' steal':' steals'),srcL:'Source',
   tbBtn:'Tie-break question',tbTitle:'Tie-break question',tbRound:r=>`Round ${r}`,tbNote:'The tied players or teams each answer their own question. Whoever alone answers correctly wins. Tilakas do not change.',tbWin:n=>`Winner after the tie-break: ${n}`,tbWinT:n=>`Winning team after the tie-break: ${n}`,tbShared:'Still tied after five rounds – you share the victory.',tbAgain:'Nobody alone answered correctly – a new round follows.',
   doneL2:'The advanced pilgrimage is complete · Śrī Raṅgam',
+  lv3:'Vraja-maṇḍala',lv3D:q=>`3 stages · Kṛṣṇa's pastimes in Vraja · ${q} questions`,
+  startIntro3:(n,q,p)=>`The pilgrimage through Vraja-maṇḍala follows Kṛṣṇa's pastimes from the Śrīmad-Bhāgavatam: from Gokula through the forests of Vraja to Govardhana, Rādhā-kuṇḍa and Vṛndāvana. ${n} holy places in three stages; every game draws ${q} questions from a pool of ${p}.`,
+  doneL3:'The Vraja-maṇḍala pilgrimage is complete · Vṛndāvana',grp3:'Vraja-maṇḍala',lvTag3:'Vraja',
+  tabPlaces:'Places',tabRoutes:'Routes',tabCal:'Calendar',tabDiary:'My pilgrimage',encTravel:'For pilgrims',
+  festNote:'Festivals follow the lunar calendar, so the months in which they usually fall are given. Check the exact date each year in a Vaiṣṇava calendar.',
+  navBtn:'Navigate here',offBtn:'Save photos for the journey',offBusy:'Saving …',offProg:(a,b)=>`Saving ${a}/${b} …`,offDone:n=>`Saved for the journey: ${n} ${n===1?'photo':'photos'}`,offNo:'Saving is not possible in this browser.',
+  genNote:'Darśana and ārati times are not given because they change; check them with the temple before your visit.',noPhotos:'There are no verified photos of this place yet.',
+  diaryH:'My diary',diaryVisited:'Visited',diaryDate:'Date of visit',diaryNote:'My note about the visit …',diaryPhoto:'Add your own photo',diaryMine:'My photo',diaryTrack:'Music when this place is opened',
+  diaryCount:(a,b)=>`Places visited: ${a} of ${b}.`,diaryEmpty:'No places visited yet. For every place you can tick “Visited” and add a date, a note and your own photo.',diaryLocal:'The diary and photos stay on this device only.',
+  showRoute:'Show the route',thisMonth:'this month',teacherBtn:'For teachers',
+  teachEyebrow:'For teachers and groups',teachTitle:'Print and projector',teachIntro:'You can print all the questions with answers, explanations and sources, or cards for playing without a device. Projector mode enlarges the text for playing on a big screen.',
+  teachN:n=>`${n} questions in the pool`,printQ:'Print questions with answers',printC:'Print cards',bigMode:'Projector mode (larger text)',teachNote:'In the print dialog you can choose “Save as PDF”.',printAns:'Answer',printCardsNote:'Cut out the cards. The correct answer is at the bottom of each card; fold it under before playing.',
   encDei:'Deities',encStory:'History and significance',encBooks:'From the books and tradition',encSearch:'Search a holy place or Deity …',encNone:'No results.',grp1:'Basic pilgrimage',grp2:'Advanced pilgrimage',zoom:'enlarge',lvTag1:'basic',lvTag2:'advanced',
   players:'Players',teams:'Teams',timerOpt:'30-second time limit',
   pname:i=>i===0?'Player 1 name':`Player ${i+1} (optional)`,tname:i=>i===0?'Team 1 name':`Team ${i+1} (optional)`,defP:'Bhakta',defT:'Team Gaura',
@@ -488,8 +541,8 @@ const PLACES = {
  rathayatra:{n:["Jagannātha Purī – Ratha-yātrā","Jagannātha Purī – Ratha-yātrā"],loc:["Velika cesta (Baḍa Daṇḍa), Purī, Odiša","the Grand Road (Baḍa Daṇḍa), Purī, Odisha"],ll:[19.8075,85.8226],q:"Rath Yatra Puri",img:[['Puri_Ratha_Yatra.jpg','Ratha-yātrā v Purīju','Ratha-yātrā in Purī'],['Rath_Yatra_Puri_07-11027.jpg','Vozovi Ratha-yātre','The Ratha-yātrā chariots']],d:["",""]},
  gambhira:{n:["Jagannātha Purī – Gambhīrā","Jagannātha Purī – Gambhīrā"],loc:["hiša Kāśīja Miśre, Purī, Odiša","the house of Kāśī Miśra, Purī, Odisha"],ll:[19.8071,85.8253],q:"",img:[['Jagannath_Temple_(night_view),_Puri.jpg','Tempelj Jagannāthe ponoči','Jagannātha temple at night']],d:["",""]},
  mathura:{n:["Mathurā","Mathurā"],loc:["ob Yamuni, Uttar Pradeš","on the Yamunā, Uttar Pradesh"],ll:[27.5046,77.6699],q:"Vishram Ghat Mathura",img:[['Vishram_Ghat.jpg','Viśrāma-ghāṭa ob Yamuni','Viśrāma-ghāṭa on the Yamunā']],d:["Mesto, kjer se je Kṛṣṇa pojavil v zaporu kralja Kaṁse Vasudevi in Devakī.","The city where Kṛṣṇa appeared before Vasudeva and Devakī in the prison of King Kaṁsa."]},
- vrindavan:{n:["Vṛndāvana","Vṛndāvana"],loc:["ob Yamuni, Vraja, Uttar Pradeš","on the Yamunā, Vraja, Uttar Pradesh"],ll:[27.5826,77.6991],q:"Vrindavan temple Yamuna",img:[['Sri_Krishna_Balaram_Temple,_Vrindavan.JPG','Tempelj ISKCON Kṛṣṇa-Balarāma, Vṛndāvana','ISKCON Kṛṣṇa-Balarāma temple, Vṛndāvana'],['Radha_Syamasundar_Vrindavan_Radhastami_2004.jpg','Śrī Śrī Rādhā-Śyāmasundara, ISKCON Vṛndāvana','Śrī Śrī Rādhā-Śyāmasundara, ISKCON Vṛndāvana'],['Srila_Prabhupada_samadhi_in_Vrindavan.jpg','Samādhi Śrīle Prabhupāde v Vṛndāvanu','Śrīla Prabhupāda’s samādhi in Vṛndāvana'],['Krishna-Balaram-Mandir.JPG','Kṛṣṇa-Balarāma Mandir','Kṛṣṇa-Balarāma Mandir'],['Keshighat_Vrindavan.JPG','Keśī-ghāṭa ob Yamuni','Keśī-ghāṭa on the Yamunā'],['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG','Rādhā in Kṛṣṇa, slika šole Kangra','Rādhā and Kṛṣṇa, Kangra painting']],d:["Večno prebivališče Rādhe in Kṛṣṇe, kjer je Kṛṣṇa pasel krave in plesal rāsa-līlo. Śrīla Prabhupāda je tu zgradil tempelj Kṛṣṇa-Balarāma.","The eternal abode of Rādhā and Kṛṣṇa, where Kṛṣṇa herded the cows and danced the rāsa-līlā. Śrīla Prabhupāda built the Kṛṣṇa-Balarāma temple here."]},
- govardhan:{n:["Govardhana","Govardhana"],loc:["Vraja, Uttar Pradeš","Vraja, Uttar Pradesh"],ll:[27.4982,77.4664],q:"Govardhan hill parikrama",img:[['Govardhan_hill.JPG','Hrib Govardhana','Govardhana Hill'],['Krishna_lifting_Mount_Govardhana.jpg','Kṛṣṇa dviguje Govardhano','Kṛṣṇa lifting Govardhana']],d:["Hrib, ki ga je Kṛṣṇa sedem dni držal na mezincu. Vaiṣṇave ga obhodijo, ker ni različen od Kṛṣṇe.","The hill Kṛṣṇa held on His little finger for seven days. Vaiṣṇavas circumambulate it because it is nondifferent from Kṛṣṇa."]},
+ vrindavan:{n:["Vṛndāvana","Vṛndāvana"],loc:["ob Yamuni, Vraja, Uttar Pradeš","on the Yamunā, Vraja, Uttar Pradesh"],ll:[27.5826,77.6991],q:"Vrindavan temple Yamuna",img:[['Sri_Krishna_Balaram_Temple,_Vrindavan.JPG','Tempelj ISKCON Kṛṣṇa-Balarāma, Vṛndāvana','ISKCON Kṛṣṇa-Balarāma temple, Vṛndāvana'],['Radha_Syamasundar_Vrindavan_Radhastami_2004.jpg','Śrī Śrī Rādhā-Śyāmasundara, ISKCON Vṛndāvana','Śrī Śrī Rādhā-Śyāmasundara, ISKCON Vṛndāvana'],['Srila_Prabhupada_samadhi_in_Vrindavan.jpg','Samādhi Śrīle Prabhupāde v Vṛndāvanu','Śrīla Prabhupāda’s samādhi in Vṛndāvana'],['Krishna-Balaram-Mandir.JPG','Kṛṣṇa-Balarāma Mandir','Kṛṣṇa-Balarāma Mandir'],['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG','Rādhā in Kṛṣṇa, slika šole Kangra','Rādhā and Kṛṣṇa, Kangra painting']],d:["Večno prebivališče Rādhe in Kṛṣṇe, kjer je Kṛṣṇa pasel krave in plesal rāsa-līlo. Śrīla Prabhupāda je tu zgradil tempelj Kṛṣṇa-Balarāma.","The eternal abode of Rādhā and Kṛṣṇa, where Kṛṣṇa herded the cows and danced the rāsa-līlā. Śrīla Prabhupāda built the Kṛṣṇa-Balarāma temple here."]},
+ govardhan:{n:["Govardhana","Govardhana"],loc:["Vraja, Uttar Pradeš","Vraja, Uttar Pradesh"],ll:[27.4982,77.4664],q:"Govardhan hill parikrama",img:[['Govardhan_hill.JPG','Hrib Govardhana','Govardhana Hill']],d:["Hrib, ki ga je Kṛṣṇa sedem dni držal na mezincu. Vaiṣṇave ga obhodijo, ker ni različen od Kṛṣṇe.","The hill Kṛṣṇa held on His little finger for seven days. Vaiṣṇavas circumambulate it because it is nondifferent from Kṛṣṇa."]},
  varsana:{n:["Varṣāṇā","Varṣāṇā"],loc:["Vraja, Uttar Pradeš","Vraja, Uttar Pradesh"],ll:[27.6487,77.3797],q:"Barsana Radha Rani temple",img:[['Radharani_Temple_Barsana.jpg','Tempelj Rādhārāṇī v Varṣāṇi','Rādhārāṇī temple, Varṣāṇā']],d:["Vas na hribu, kjer je odraščala Śrīmatī Rādhārāṇī, hči kralja Vṛṣabhānuja.","The hilltop village where Śrīmatī Rādhārāṇī, the daughter of King Vṛṣabhānu, grew up."]},
  radhakunda:{n:["Rādhā-kuṇḍa","Rādhā-kuṇḍa"],loc:["ob vznožju Govardhane, Vraja","at the foot of Govardhana, Vraja"],ll:[27.5231,77.4893],q:"Radha Kund",img:[['Radha_kund.jpg','Rādhā-kuṇḍa','Rādhā-kuṇḍa']],d:["Jezero, ki je Kṛṣṇi tako ljubo kot Rādhārāṇī sama. Śrīla Rūpa Gosvāmī ga v Nektarju navodil imenuje najvišje med vsemi svetimi kraji.","The lake that is as dear to Kṛṣṇa as Rādhārāṇī Herself. In The Nectar of Instruction, Śrīla Rūpa Gosvāmī calls it the highest of all holy places."]},
  radhadamodar:{n:["Vṛndāvana – tempelj Rādhā-Dāmodara","Vṛndāvana – Rādhā-Dāmodara temple"],loc:["Sevā-kuñja, Vṛndāvana","Sevā-kuñja, Vṛndāvana"],ll:[27.5793,77.6963],q:"Radha Damodar Temple Vrindavan",img:[['Radha_Damodar_Temple.JPG','Tempelj Rādhā-Dāmodara','The Rādhā-Dāmodara temple']],d:["Tempelj, ki ga je ustanovil Śrīla Jīva Gosvāmī. Tu je Śrīla Prabhupāda živel in začel prevajati Śrīmad-Bhāgavatam, preden je odšel na Zahod.","The temple founded by Śrīla Jīva Gosvāmī. Here Śrīla Prabhupāda lived and began translating the Śrīmad-Bhāgavatam before leaving for the West."]},
@@ -499,17 +552,17 @@ const DEI={
  gangotri:["Mati Gaṅgā; v templju Gaṅgotrī je čaščena kot boginja reke.","Mother Gaṅgā; in the Gaṅgotrī temple she is worshiped as the river goddess."],
  kailas:["Gospod Śiva s Pārvatī; gora sama velja za njegovo prebivališče.","Lord Śiva with Pārvatī; the mountain itself is regarded as his abode."],
  badri:["Śrī Badrī-nārāyaṇa (Nara-Nārāyaṇa) v meditativni drži, iz črnega kamna śālagrāma.","Śrī Badrī-nārāyaṇa (Nara-Nārāyaṇa) in a meditative posture, of black śālagrāma stone."],
- mukti:["Śrī Muktinātha (Viṣṇu) iz zlitine kovin; ob templju je 108 vodnih izvirov.","Śrī Muktinātha (Viṣṇu), cast in metal; beside the temple flow 108 water spouts."],
+ mukti:["Śrī Muktinātha (Viṣṇu); ob templju teče 108 vodnih curkov.","Śrī Muktinātha (Viṣṇu); beside the temple flow 108 water spouts."],
  haridwar:["Mati Gaṅgā na Har-ki-pauri, kjer po izročilu leži odtis Viṣṇujevega stopala.","Mother Gaṅgā at Har-ki-pauri, where by tradition there is a footprint of Lord Viṣṇu."],
  prayag:["Sveto sotočje samo; ob njem je tempelj Veṇī-mādhave, Viṣṇuja Prayāge.","The sacred confluence itself; nearby is the temple of Veṇī-mādhava, the Viṣṇu of Prayāga."],
  kasi:["Bindu-mādhava (Viṣṇu) in Viśveśvara (Śiva); Mahāprabhu je obiskal Viśveśvaro.","Bindu-mādhava (Viṣṇu) and Viśveśvara (Śiva); Mahāprabhu visited Viśveśvara."],
  gaya:["Viṣṇupada, odtis Gospodovega stopala v kamnu.","Viṣṇupada, the Lord's footprint in stone."],
  tirumala:["Śrī Veṅkaṭeśvara (Bālājī, Śrīnivāsa), štiriročni Viṣṇu, s Śrīdevī in Bhūdevī.","Śrī Veṅkaṭeśvara (Bālājī, Śrīnivāsa), four-armed Viṣṇu, with Śrīdevī and Bhūdevī."],
- ahobilam:["Devet oblik Gospoda Narasiṁhe (Nava-Narasiṁha), med njimi Ahobila- in Ugra-Narasiṁha.","Nine forms of Lord Narasiṁha (Nava-Narasiṁha), among them Ahobila and Ugra Narasiṁha."],
+ ahobilam:["Devet oblik Gospoda Narasiṁhe (Nava-Narasiṁha), med njimi Ahobila-, Mālola- in Jvālā-Narasiṁha.","Nine forms of Lord Narasiṁha (Nava-Narasiṁha), among them Ahobila, Mālola and Jvālā Narasiṁha."],
  srirangam:["Śrī Raṅganātha, ki leži na Ananta-Śeṣi, z Raṅganāyakī (Lakṣmī).","Śrī Raṅganātha reclining on Ananta-Śeṣa, with Raṅganāyakī (Lakṣmī)."],
  udupi:["Bāla-Kṛṣṇa s palico v eni roki in kepico hrane v drugi; vidi se ga skozi okno Kanakana-kiṇḍi.","Bāla-Kṛṣṇa with a stick in one hand and a lump of food in the other; seen through the Kanakana-kiṇḍi window."],
  naimisa:["Čakra-tīrtha in tempelj Lalitā-devī; kraj je posvečen pripovedovanju Bhāgavatama.","Cakra-tīrtha and the Lalitā-devī temple; the place is sacred to the recitation of the Bhāgavatam."],
- ayodhya:["Śrī Rāma z Sīto, Lakṣmaṇo in Hanumānom; nov tempelj Rāma-janmabhūmi je bil odprt leta 2024.","Śrī Rāma with Sītā, Lakṣmaṇa and Hanumān; the new Rāma-janmabhūmi temple opened in 2024."],
+ ayodhya:["Rām Lallā, Gospod Rāma v podobi otroka, v templju Rāma-janmabhūmi, ki so ga odprli leta 2024.","Rām Lallā, Lord Rāma in the form of a child, in the Rāma-janmabhūmi temple, opened in 2024."],
  kuruksetra:["Brahma-sarovara in Jyotisar, kjer je po izročilu Kṛṣṇa govoril Gīto.","Brahma-sarovara and Jyotisar, where by tradition Kṛṣṇa spoke the Gītā."],
  dvaraka:["Dvārakādhīśa (Raṇchoḍrāya), štiriročni Kṛṣṇa kot kralj Dvārake, v templju Jagat Mandir.","Dvārakādhīśa (Raṇchoḍrāya), four-armed Kṛṣṇa as King of Dvārakā, in the Jagat Mandir."],
  mayapur:["Śrī Śrī Rādhā-Mādhava, Pañca-tattva in Śrī Narasiṁha v templju ISKCON; Yogapīṭha s Śrī Gaurāṅgo.","Śrī Śrī Rādhā-Mādhava, the Pañca-tattva and Śrī Narasiṁha in the ISKCON temple; the Yogapīṭha with Śrī Gaurāṅga."],
@@ -520,7 +573,7 @@ const DEI={
  govardhan:["Hrib Govardhana sam je čaščen kot Kṛṣṇa; govardhana-śile častijo bhakti doma.","Govardhana Hill itself is worshiped as Kṛṣṇa; devotees worship govardhana-śilās at home."],
  varsana:["Śrī Rādhā (Lāḍlī-jī) v templju Śrījī na hribu Brahmā.","Śrī Rādhā (Lāḍlī-jī) in the Śrījī temple on Brahmā Hill."],
  radhakunda:["Jezeri Rādhā-kuṇḍa in Śyāma-kuṇḍa; ob njih so samādhiji Raghunātha dāsa Gosvāmīja in drugih.","The lakes Rādhā-kuṇḍa and Śyāma-kuṇḍa; beside them are the samādhis of Raghunātha dāsa Gosvāmī and others."],
- radhadamodar:["Śrī Śrī Rādhā-Dāmodara in Govardhana-śilā, ki jo je Mahāprabhu dal Sanātani Gosvāmīju.","Śrī Śrī Rādhā-Dāmodara and the Govardhana-śilā Mahāprabhu gave to Sanātana Gosvāmī."],
+ radhadamodar:["Śrī Śrī Rādhā-Dāmodara in Govardhana-śilā, ki jo je po izročilu Mahāprabhu dal Sanātani Gosvāmīju.","Śrī Śrī Rādhā-Dāmodara and the Govardhana-śilā that, by tradition, Mahāprabhu gave to Sanātana Gosvāmī."],
 };
 
 /* Nova mesta napredne stopnje / Places of the advanced level */
@@ -529,8 +582,8 @@ const PLACES2={
   d:["Eden redkih templjev, posvečenih Gospodu Matsyi, ribji inkarnaciji. Zgradili so ga v času Vijayanagarskega cesarstva.","One of the rare temples dedicated to Lord Matsya, the fish incarnation. It was built in the Vijayanagara period."],
   dei:["Vedanārāyaṇa: zgornji del telesa je Viṣṇujev, spodnji ribji; ob njem stojita Śrīdevī in Bhūdevī.","Vedanārāyaṇa: the upper body is Viṣṇu's and the lower body a fish's; Śrīdevī and Bhūdevī stand beside Him."]},
  srikurmam:{n:["Śrīkūrmam – Kūrma-kṣetra","Śrīkūrmam – Kūrma-kṣetra"],loc:["okrožje Srikakulam, Andhra Pradeš","Srikakulam district, Andhra Pradesh"],ll:[18.2717,84.0047],q:"Srikurmam temple",cat:['Kurmanathaswamy_Temple,_Srikurmam'],img:[['Srikurmam_Temple_view_Srikakulam.jpg','Tempelj v Śrīkūrmamu','The Śrīkūrmam temple'],['11th_century_Kurmanatha_Swamy_Temple,_Srikurmam_Andhra_Pradesh_15.jpg','Tempelj Kūrmanātha, 11. stoletje','Kūrmanātha temple, 11th century']],
-  d:["Edini veliki zgodovinski tempelj Gospoda Kūrme. Tu je Śrī Caitanya Mahāprabhu ozdravil gobavega brāhmaṇo Vāsudevo in brāhmaṇi Kūrmi naročil, naj vsakogar uči o Kṛṣṇi.","The only major historical temple of Lord Kūrma. Here Śrī Caitanya Mahāprabhu healed the leper Vāsudeva and told the brāhmaṇa Kūrma to teach everyone about Kṛṣṇa."],
-  dei:["Śrī Kūrmanātha, Gospod v obliki želve, obrnjen proti zahodu; tempelj ima dva zastavna stebra (dhvaja-stambha).","Śrī Kūrmanātha, the Lord in the form of a tortoise, facing west; the temple has two flag posts (dhvaja-stambhas)."]},
+  d:["Najpomembnejši tempelj Gospoda Kūrme. Tu je Śrī Caitanya Mahāprabhu ozdravil gobavega brāhmaṇo Vāsudevo in brāhmaṇi Kūrmi naročil, naj vsakogar uči o Kṛṣṇi.","The most important temple of Lord Kūrma. Here Śrī Caitanya Mahāprabhu healed the leper Vāsudeva and told the brāhmaṇa Kūrma to teach everyone about Kṛṣṇa."],
+  dei:["Śrī Kūrmanātha, Gospod v obliki želve.","Śrī Kūrmanātha, the Lord in the form of a tortoise."]},
  tvaraha:{n:["Tirumala – Śrī Bhū-Varāha","Tirumala – Śrī Bhū-Varāha"],loc:["ob jezeru Svāmī Puṣkariṇī, Tirumala, Andhra Pradeš","by Svāmī Puṣkariṇī lake, Tirumala, Andhra Pradesh"],ll:[13.6839,79.3486],q:"Varaha Swamy temple Tirumala",cat:['Varaha_Swamy_temple,_Tirumala'],img:[['Swami_Pushkarini.jpg','Svāmī Puṣkariṇī v Tirumali','Svāmī Puṣkariṇī in Tirumala']],
   d:["Tirumala velja za Ādi-Varāha-kṣetro. Po izročilu je Gospod Varāha dovolil Śrīnivāsi (Veṅkaṭeśvari), da prebiva na hribu, zato romarji najprej počastijo Varāho.","Tirumala is known as Ādi-Varāha-kṣetra. By tradition Lord Varāha allowed Śrīnivāsa (Veṅkaṭeśvara) to reside on the hill, so pilgrims first honor Varāha."],
   dei:["Śrī Bhū-Varāha-svāmī z Bhūdevī (mater Zemljo).","Śrī Bhū-Varāha-svāmī with Bhūdevī (Mother Earth)."]},
@@ -557,7 +610,7 @@ const PLACES2={
   dei:["Śrī Rāma v štiriročni obliki; po izročilu je Božanstvo našel ribič v morju.","Śrī Rāma in a four-armed form; by tradition a fisherman found the Deity in the sea."]},
  orchha:{n:["Orchha – Rām Rāja","Orchha – Rām Rāja"],loc:["ob reki Betwa, Madhya Pradeš","on the Betwa River, Madhya Pradesh"],ll:[25.3517,78.6418],q:"Ram Raja Temple Orchha",cat:['Ram_Raja_Temple,_Orchha'],img:[],
   d:["Edini tempelj, kjer Rāmo častijo kot vladajočega kralja; policija mu vsak dan izkaže častni pozdrav. Po izročilu je kraljica Gaṇeśa Kuṁvarī Božanstvo prinesla iz Ayodhye in ga postavila v palačo, ki je nato postala tempelj.","The only temple where Rāma is worshiped as the ruling king; the police give Him a guard of honour every day. By tradition Queen Gaṇeśa Kuṁvarī brought the Deity from Ayodhyā and placed Him in the palace, which then became the temple."],
-  dei:["Śrī Rāma Rājā kot kralj, s Sīto, Lakṣmaṇo in Hanumānom.","Śrī Rāma Rājā as king, with Sītā, Lakṣmaṇa and Hanumān."]},
+  dei:["Śrī Rāma Rājā, ki ga častijo kot kralja.","Śrī Rāma Rājā, worshiped as the king."]},
  rameswaram:{n:["Rāmeśvaram","Rāmeśvaram"],loc:["otok Pamban, Tamil Nadu","Pamban Island, Tamil Nadu"],ll:[9.2881,79.3174],q:"Ramanathaswamy temple Rameswaram",cat:[],img:[['Sri_Rameshwaram_Temple,_Rameshwar.jpg','Tempelj Rāmanātha v Rāmeśvaramu','The Rāmanātha temple, Rāmeśvaram']],
   d:["Od tu je Gospod Rāma zgradil most do Laṅke. Śrī Caitanya je v Rāmeśvaramu našel stare liste Kūrma Purāṇe, ki dokazujejo, da je Rāvaṇa ugrabil le iluzorno podobo Sīte.","From here Lord Rāma built the bridge to Laṅkā. In Rāmeśvaram Śrī Caitanya found old leaves of the Kūrma Purāṇa showing that Rāvaṇa kidnapped only an illusory form of Sītā."],
   dei:["Rāmanātha, Śiva-liṅga, ki ga je po izročilu vzpostavil Gospod Rāma; tempelj ima enega najdaljših hodnikov s stebri na svetu.","Rāmanātha, a Śiva-liṅga that by tradition Lord Rāma installed; the temple has one of the longest pillared corridors in the world."]},
@@ -571,7 +624,7 @@ const PLACES2={
   d:["V Jaipurju sta danes dve od treh glavnih Božanstev Vṛndāvane, Govinda in Gopīnātha. V 17. stoletju so ju zaradi napadov vojske cesarja Aurangzeba umaknili iz Vṛndāvane v Radžastan.","Jaipur is now home to two of the three main Deities of Vṛndāvana, Govinda and Gopīnātha. In the 17th century They were moved from Vṛndāvana to Rajasthan because of attacks by Emperor Aurangzeb's army."],
   dei:["Śrī Śrī Rādhā-Govindadeva, ki ga je odkril Śrīla Rūpa Gosvāmī, v templju v vrtu mestne palače; Śrī Śrī Rādhā-Gopīnātha v starem delu mesta.","Śrī Śrī Rādhā-Govindadeva, discovered by Śrīla Rūpa Gosvāmī, in the temple in the City Palace garden; Śrī Śrī Rādhā-Gopīnātha in the old city."]},
  karauli:{n:["Karauli – Madana-mohana","Karauli – Madana-mohana"],loc:["Karauli, Radžastan","Karauli, Rajasthan"],ll:[26.4983,77.0213],q:"Madan Mohan temple Karauli",cat:[],img:[['Madanmohan_Mandir_Vrindavan.JPG','Izvirni tempelj Madana-mohana v Vṛndāvanu','The original Madana-mohana temple in Vṛndāvana']],
-  d:["Tu je danes izvirno Božanstvo Madana-mohana, ki ga je v Vṛndāvanu častil Śrīla Sanātana Gosvāmī. Izvirni tempelj stoji še vedno v Vṛndāvanu ob Yamuni.","The original Deity of Madana-mohana, worshiped in Vṛndāvana by Śrīla Sanātana Gosvāmī, now resides here. The original temple still stands in Vṛndāvana by the Yamunā."],
+  d:["Tu je danes izvirno Božanstvo Madana-mohana, ki ga je v Vṛndāvanu častil Śrīla Sanātana Gosvāmī. Izvirni tempelj Madana-mohana še vedno stoji v Vṛndāvanu.","The original Deity of Madana-mohana, worshiped in Vṛndāvana by Śrīla Sanātana Gosvāmī, now resides here. The original Madana-mohana temple still stands in Vṛndāvana."],
   dei:["Śrī Śrī Rādhā-Madana-mohana, Božanstvo odnosa s Kṛṣṇo (sambandha).","Śrī Śrī Rādhā-Madana-mohana, the Deity of our relationship with Kṛṣṇa (sambandha)."]},
  guruvayur:{n:["Guruvāyūr – Kṛṣṇa","Guruvāyūr – Kṛṣṇa"],loc:["okrožje Thrissur, Kerala","Thrissur district, Kerala"],ll:[10.5946,76.0390],q:"Guruvayur temple",cat:['Guruvayur_Temple'],img:[['Guruvayur-temple-east-1200x980.jpg','Vzhodni vhod templja v Guruvāyūrju','East entrance of the Guruvāyūr temple'],['SreeKrishnaTemple,Guruvayur.JPG','Tempelj Śrī Kṛṣṇe v Guruvāyūrju','Śrī Kṛṣṇa temple, Guruvāyūr']],
   d:["Imenujejo ga »Dvārakā juga«. Po izročilu sta Božanstvo, ki sta ga v Dvāraki častila Vasudeva in Devakī, po potopitvi Dvārake v Kerali vzpostavila Guru (Bṛhaspati) in Vāyu; od tod ime Guru-vāyu-ūr.","Called “the Dvārakā of the South”. By tradition, after Dvārakā sank, the Deity once worshiped there by Vasudeva and Devakī was installed in Kerala by Guru (Bṛhaspati) and Vāyu; hence the name Guru-vāyu-ūr."],
@@ -587,7 +640,7 @@ const PLACES2={
   dei:["Ādi-keśava, ležeči Viṣṇu, eden od 108 Divya-deśam svetišč.","Ādi-keśava, the reclining Viṣṇu, one of the 108 Divya-deśam shrines."]},
  srirangapatna:{n:["Śrīraṅgapaṭṭaṇa – Ādi-Raṅga","Śrīraṅgapaṭṭaṇa – Ādi-Raṅga"],loc:["otok na reki Kāverī, Karnataka","an island in the Kāverī River, Karnataka"],ll:[12.4242,76.6800],q:"Ranganathaswamy Temple Srirangapatna",cat:['Sri_Ranganathaswamy_Temple_(Srirangapatna)'],img:[['Gopuram_of_the_Ranganathaswamy_Temple,_Srirangapatna_Karnataka_India.jpg','Gopuram templja Raṅganātha v Śrīraṅgapaṭṭaṇi','Gopuram of the Raṅganātha temple, Śrīraṅgapaṭṭaṇa']],
   d:["Otoški tempelj na reki Kāverī. Skupaj s Śivanasamudro (Madhya-Raṅga) in Śrī Raṅgamom (Antya-Raṅga) tvori tri svete Raṅge; Śrīraṅgapaṭṭaṇa je Ādi-Raṅga, prva.","An island temple on the Kāverī. With Śivanasamudra (Madhya-Raṅga) and Śrī Raṅgam (Antya-Raṅga) it forms the three sacred Raṅgas; Śrīraṅgapaṭṭaṇa is Ādi-Raṅga, the first."],
-  dei:["Śrī Raṅganātha, ki leži na Ananta-Śeṣi, z Raṅganāyakī.","Śrī Raṅganātha reclining on Ananta-Śeṣa, with Raṅganāyakī."]},
+  dei:["Śrī Raṅganātha, ki leži na Ananta-Śeṣi.","Śrī Raṅganātha reclining on Ananta-Śeṣa."]},
 };
 
 Object.assign(PLACES,PLACES2);
@@ -1146,9 +1199,9 @@ const POOL2 = [
    "The Lord told Satyavrata that on the seventh day from then the three worlds would be inundated by the ocean of devastation, and promised to send him a large boat."],
   ['nagalapuram',[TRAD[0],TRAD[1]],
    "Kaj je posebnega pri Božanstvu Vedanārāyaṇe v Nagalapuramu?",["Zgornji del telesa je Viṣṇujev, spodnji pa ribji","Je izrezljano iz lesa kot Jagannātha","Leži na kači Ananti"],
-   "Vedanārāyaṇa je upodobljen kot Viṣṇu, čigar spodnji del telesa je riba. Ob prazniku Sūrya-pūjā po izročilu sončni žarki več dni zapored skozi gopuram padejo na Božanstvo.",
+   "Vedanārāyaṇa je upodobljen kot Viṣṇu, čigar spodnji del telesa je riba.",
    "What is special about the Deity of Vedanārāyaṇa in Nagalapuram?",["The upper body is Viṣṇu's and the lower body a fish's","He is carved of wood like Jagannātha","He reclines on the serpent Ananta"],
-   "Vedanārāyaṇa is shown as Viṣṇu whose lower body is a fish. By tradition, during the Sūrya-pūjā festival the sun's rays pass through the gopuram and fall on the Deity for several days in a row."],
+   "Vedanārāyaṇa is shown as Viṣṇu whose lower body is a fish."],
   ['srikurmam',[SB+' 8.7.10',SB+' 8.7.10'],
    "Kako je Gospod Kūrma doživljal vrtenje gore Mandara na svojem hrbtu?",["Kot prijetno praskanje telesa","Kot težko breme","Kot bolečino, ki jo je potrpežljivo prenašal"],
    "Ko so polbogovi in demoni pinjili ocean mleka, je velikanska želva vrtenje gore sprejela kot praskanje svojega telesa, zato ji je bilo prijetno.",
@@ -1238,9 +1291,9 @@ const POOL2 = [
    "By tradition the sage Yāda performed austerities here and the Lord revealed Himself in several forms. In the cave Jvālā, Yogānanda and Gaṇḍabheruṇḍa Narasiṁha are worshiped together with Lakṣmī-Narasiṁha."],
   ['ahobilam',[TRAD[0],TRAD[1]],
    "Koliko templjev Gospoda Narasiṁhe po izročilu sestavlja Ahobilam (Nava-Narasiṁha)?",["Devet","Tri","Dvanajst"],
-   "Ahobilam sestavlja devet templjev Narasiṁhe v gričevju Nallamala, med njimi Ahobila-, Kroḍa-, Pāvana- in Ugra-Narasiṁha. Po izročilu se je tu Gospod pojavil iz stebra.",
+   "Ahobilam sestavlja devet templjev Narasiṁhe v gričevju Nallamala, med njimi Ahobila-, Kroḍa-, Mālola- in Pāvana-Narasiṁha. Po izročilu se je tu Gospod pojavil iz stebra.",
    "How many temples of Lord Narasiṁha, by tradition, make up Ahobilam (Nava-Narasiṁha)?",["Nine","Three","Twelve"],
-   "Ahobilam consists of nine Narasiṁha temples in the Nallamala hills, among them Ahobila, Kroḍa, Pāvana and Ugra Narasiṁha. By tradition the Lord emerged from the pillar here."]
+   "Ahobilam consists of nine Narasiṁha temples in the Nallamala hills, among them Ahobila, Kroḍa, Mālola and Pāvana Narasiṁha. By tradition the Lord emerged from the pillar here."]
  ],
  /* C Vāmana in Rāma */ [
   ['thrikkakara',[SB+' 8.19',SB+' 8.19'],
@@ -1367,9 +1420,9 @@ const POOL2 = [
    "When Emperor Aurangzeb's army attacked the temples of Vraja, devotees hid the Deities and took Them under the protection of the Rajput kings. Govinda and Gopīnātha are now in Jaipur and Madana-mohana in Karauli; in Vṛndāvana Their pratibhū forms are worshiped."],
   ['dakor',[SB+' 10.51',SB+' 10.51'],
    "Kateri napadalec je zasledoval Kṛṣṇo do jame, v kateri je spal kralj Mucukunda?",["Kālayavana","Jarāsandha","Śiśupāla"],
-   "Kṛṣṇa je pred Kālayavano navidez bežal z bojišča in ga zvabil v jamo. Tam je Kālayavana brcnil spečega Mucukundo, ki ga je s pogledom sežgal. Zato Kṛṣṇo imenujejo tudi Raṇchoḍ, »tisti, ki je zapustil bojišče«.",
+   "Kṛṣṇa je pred Kālayavano navidez bežal z bojišča in ga zvabil v jamo. Tam je Kālayavana brcnil spečega Mucukundo, ki ga je s pogledom sežgal. Ime Raṇchoḍ (»tisti, ki je zapustil bojišče«) po izročilu spominja na to, da se je Kṛṣṇa umaknil z bojišča.",
    "Which attacker pursued Kṛṣṇa into the cave where King Mucukunda was sleeping?",["Kālayavana","Jarāsandha","Śiśupāla"],
-   "Kṛṣṇa pretended to flee the battlefield before Kālayavana and lured him into a cave. There Kālayavana kicked the sleeping Mucukunda, who burned him to ashes with his glance. That is why Kṛṣṇa is also called Raṇchoḍ, “He who left the battlefield”."],
+   "Kṛṣṇa pretended to flee the battlefield before Kālayavana and lured him into a cave. There Kālayavana kicked the sleeping Mucukunda, who burned him to ashes with his glance. By tradition the name Raṇchoḍ, “He who left the battlefield”, recalls how Kṛṣṇa withdrew from the battlefield."],
   ['dakor',[TRAD[0],TRAD[1]],
    "Kdo je po izročilu Božanstvo Raṇchoḍrāya prinesel iz Dvārake v Ḍākor?",["Bhakta Bodāṇā","Mīrābāī","Narasiṁha Mehta"],
    "Bhakta Bodāṇā je vsako leto peš romal v Dvārako. Ko zaradi starosti ni mogel več, je po izročilu Gospod sam odšel z njim v Ḍākor, kjer Ga častijo še danes.",
@@ -1444,14 +1497,14 @@ const POOL2 = [
    "Although Lakṣmī is spotless and most chaste, she could not enter the rāsa dance. Only one who has the body of a gopī, serving Kṛṣṇa in their mood, can enter it."],
   ['srirangapatna',[TRAD[0],TRAD[1]],
    "Katera tri svetišča Raṅganāthe na reki Kāverī po izročilu tvorijo Ādi-, Madhya- in Antya-Raṅgo?",["Śrīraṅgapaṭṭaṇa, Śivanasamudra in Śrī Raṅgam","Tirumala, Ahobilam in Śrī Raṅgam","Uḍupī, Guruvāyūr in Śrī Raṅgam"],
-   "Na otokih reke Kāverī so trije templji ležečega Raṅganāthe: Śrīraṅgapaṭṭaṇa (Ādi-Raṅga, prvi), Śivanasamudra (Madhya-Raṅga, srednji) in Śrī Raṅgam (Antya-Raṅga, zadnji). Romanje k vsem trem v enem dnevu velja za posebej sveto.",
+   "Na otokih reke Kāverī so trije templji ležečega Raṅganāthe: Śrīraṅgapaṭṭaṇa (Ādi-Raṅga, prvi), Śivanasamudra (Madhya-Raṅga, srednji) in Śrī Raṅgam (Antya-Raṅga, zadnji).",
    "Which three shrines of Raṅganātha on the Kāverī River form, by tradition, the Ādi, Madhya and Antya Raṅga?",["Śrīraṅgapaṭṭaṇa, Śivanasamudra and Śrī Raṅgam","Tirumala, Ahobilam and Śrī Raṅgam","Uḍupī, Guruvāyūr and Śrī Raṅgam"],
-   "On islands of the Kāverī stand three temples of the reclining Raṅganātha: Śrīraṅgapaṭṭaṇa (Ādi-Raṅga, the first), Śivanasamudra (Madhya-Raṅga, the middle) and Śrī Raṅgam (Antya-Raṅga, the last). Visiting all three in one day is considered especially sacred."],
+   "On islands of the Kāverī stand three temples of the reclining Raṅganātha: Śrīraṅgapaṭṭaṇa (Ādi-Raṅga, the first), Śivanasamudra (Madhya-Raṅga, the middle) and Śrī Raṅgam (Antya-Raṅga, the last)."],
   ['srirangapatna',[TRAD[0],TRAD[1]],
    "Kje stoji tempelj Raṅganāthe v Śrīraṅgapaṭṭaṇi?",["Na otoku sredi reke Kāverī","Na vrhu hriba","Na morski obali"],
-   "Śrīraṅgapaṭṭaṇa je otok, ki ga obdajata dva rokava reke Kāverī. Tempelj je po njem dobil ime; Raṅganātha tu leži na Ananta-Śeṣi z Lakṣmī ob stopalih.",
+   "Śrīraṅgapaṭṭaṇa je otok, ki ga obdajata dva rokava reke Kāverī. Mesto je ime dobilo po templju; Raṅganātha tu leži na Ananta-Śeṣi.",
    "Where does the Raṅganātha temple of Śrīraṅgapaṭṭaṇa stand?",["On an island in the middle of the Kāverī","On a hilltop","On the sea coast"],
-   "Śrīraṅgapaṭṭaṇa is an island enclosed by two arms of the Kāverī. The town takes its name from the temple; here Raṅganātha reclines on Ananta-Śeṣa with Lakṣmī at His feet."],
+   "Śrīraṅgapaṭṭaṇa is an island enclosed by two arms of the Kāverī. The town takes its name from the temple; here Raṅganātha reclines on Ananta-Śeṣa."],
   ['srirangam',['Bhagavad-gītā 7.4, razlaga','Bhagavad-gītā 7.4, purport'],
    "Kateri Viṣṇu leži v oceanu mleka in kot Nad-duša prebiva v srcu vsakega bitja?",["Kṣīrodakaśāyī Viṣṇu","Kāraṇodakaśāyī Viṣṇu","Garbhodakaśāyī Viṣṇu"],
    "Kāraṇodakaśāyī Viṣṇu (Mahā-Viṣṇu) ustvarja vesolja, Garbhodakaśāyī Viṣṇu vstopi v vsako vesolje, Kṣīrodakaśāyī Viṣṇu pa leži v oceanu mleka in kot Nad-duša prebiva v srcu vsakega bitja.",
@@ -1475,16 +1528,171 @@ const STAGES2=[
 
 STAGES.forEach(x=>x.lv=1); STAGES[STAGES.length-1].fq=FINALQ; STAGES2[STAGES2.length-1].fq=FINALQ2;
 POOL.push(...POOL2); STAGES.push(...STAGES2);
+/* ---------- Tretje romanje: Vraja-maṇḍala / Third pilgrimage ---------- */
+const PLACES3={
+ gokula:{n:["Gokula (Mahāvana)","Gokula (Mahāvana)"],loc:["ob Yamuni, okrožje Mathura, Uttar Pradeš","on the Yamunā, Mathura district, Uttar Pradesh"],ll:[27.45,77.72],q:"Gokul",cat:['Gokul'],img:[],
+  d:["Vas pastirjev, kamor je Vasudeva prinesel novorojenega Kṛṣṇo k Nandi Mahārāju in materi Yaśodi. Tu so se zgodile Kṛṣṇove otroške zabave: Pūtanā, Tṛṇāvarta, vesolje v ustih in Dāmodara-līlā. Izročilo jih časti v Gokuli in v bližnjem Mahāvanu.","The cowherd village where Vasudeva brought the newborn Kṛṣṇa to Nanda Mahārāja and mother Yaśodā. Here Kṛṣṇa's childhood pastimes took place: Pūtanā, Tṛṇāvarta, the universe in His mouth and the Dāmodara-līlā. Tradition honours them in Gokula and in nearby Mahāvana."]},
+ bhandira:{n:["Bhāṇḍīravana","Bhāṇḍīravana"],loc:["okrožje Mathura, Uttar Pradeš","Mathura district, Uttar Pradesh"],ll:[27.6559,77.7074],q:"",cat:[],img:[],
+  d:["Gozd, ki ga izročilo povezuje z banjanom Bhāṇḍīraka iz Śrīmad-Bhāgavatama. Pod njim so se Kṛṣṇa, Balarāma in pastirčki igrali, ko je med njih prišel demon Pralamba.","A forest that tradition connects with the banyan tree Bhāṇḍīraka of the Śrīmad-Bhāgavatam. Under it Kṛṣṇa, Balarāma and the cowherd boys were playing when the demon Pralamba came among them."]},
+ nandagrama:{n:["Nandagrāma (Nandgaon)","Nandagrāma (Nandgaon)"],loc:["okrožje Mathura, Uttar Pradeš","Mathura district, Uttar Pradesh"],ll:[27.72,77.38],q:"",cat:[],img:[['Lathmar_Holi_2022_in_Nandgaon,_Uttar_Pradesh.jpg','Holi v Nandagrāmu (2022)','Holi in Nandagrāma (2022)']],
+  d:["Vas na hribu, ki jo izročilo časti kot bivališče Nande Mahārāja. Na vrhu hriba stoji tempelj Nandarāya iz 18. stoletja.","A hilltop village that tradition honours as the residence of Nanda Mahārāja. On top of the hill stands the 18th-century Nandarāya temple."],
+  dei:["Kṛṣṇa in Balarāma z Nando in Yaśodo v templju Nandarāya na vrhu hriba.","Kṛṣṇa and Balarāma with Nanda and Yaśodā in the Nandarāya temple on the hilltop."]},
+ vraja:{n:["Vraja-maṇḍala","Vraja-maṇḍala"],loc:["pokrajina okoli Mathure in Vṛndāvane","the region around Mathurā and Vṛndāvana"],ll:[27.55,77.6],q:"",cat:[],img:[],
+  d:["Kṛṣṇova dežela pastirjev z gozdovi, pašniki, hribi in reko Yamuno. Tu so zbrane zabave, pri katerih Śrīmad-Bhāgavatam ne navaja kraja, ki bi ga danes lahko zanesljivo pokazali na zemljevidu.","Kṛṣṇa's land of cowherds, with its forests, pastures, hills and the Yamunā. Gathered here are pastimes for which the Śrīmad-Bhāgavatam names no place that can today be reliably shown on a map."]},
+};
+Object.assign(PLACES,PLACES3);
+const POOL3=[
+ /* A Gokula */ [
+  ['gokula',[SB+' 10.3',SB+' 10.3'],
+   "Kam je Vasudeva prenesel novorojenega Kṛṣṇo iz zapora v Mathuri?",["V Gokulo, v hišo Nande Mahārāja","V Dvārako","V Kurukṣetro"],
+   "Po Gospodovem naročilu je Vasudeva Kṛṣṇo prenesel čez Yamuno v Gokulo, v hišo Nande Mahārāja, in Ga položil k Yaśodi.",
+   "Where did Vasudeva carry the newborn Kṛṣṇa from the prison in Mathurā?",["To Gokula, to the house of Nanda Mahārāja","To Dvārakā","To Kurukṣetra"],
+   "By the Lord's order Vasudeva carried Kṛṣṇa across the Yamunā to Gokula, to the house of Nanda Mahārāja, and placed Him beside Yaśodā."],
+  ['gokula',[SB+' 10.3–10.4',SB+' 10.3–10.4'],
+   "Katero hčer je Vasudeva iz Gokule prinesel nazaj v zapor?",["Yogamāyo, ki se je rodila Yaśodi","Subhadrā","Rohiṇīino hčer"],
+   "Vasudeva je iz Yaśodine postelje vzel novorojeno deklico, Yogamāyo, in jo prinesel v zapor. Ko jo je Kaṁsa hotel ubiti, se mu je izmuznila in se pokazala kot boginja.",
+   "Which daughter did Vasudeva bring back from Gokula to the prison?",["Yogamāyā, born to Yaśodā","Subhadrā","Rohiṇī's daughter"],
+   "Vasudeva took the newborn girl, Yogamāyā, from Yaśodā's bed and brought her to the prison. When Kaṁsa tried to kill her, she slipped from his hands and appeared as a goddess."],
+  ['gokula',[SB+' 10.6',SB+' 10.6'],
+   "Kaj je dosegla Pūtanā, čeprav je prišla Kṛṣṇo ubit s strupom?",["Položaj matere v duhovnem svetu","Rojstvo med polbogovi","Nič, ker je bila demonka"],
+   "Pūtanā je Kṛṣṇi ponudila prsi, namazane s strupom. Ker jih je Kṛṣṇa sesal, je dosegla položaj matere v transcendentalnem svetu. Kaj šele dosežejo tisti, ki Kṛṣṇi z ljubeznijo dajo nekaj dragega.",
+   "What did Pūtanā attain, although she came to kill Kṛṣṇa with poison?",["The position of a mother in the spiritual world","Birth among the demigods","Nothing, because she was a demon"],
+   "Pūtanā offered Kṛṣṇa her breast smeared with poison. Because Kṛṣṇa sucked it, she attained the position of a mother in the transcendental world. How much more do those attain who lovingly offer Kṛṣṇa something dear."],
+  ['gokula',[SB+' 10.7',SB+' 10.7'],
+   "Kako je dojenček Kṛṣṇa prevrnil voz, pod katerim je ležal?",["Brcnil ga je s svojimi nožicami","Prevrnil ga je z jokom","Potisnil ga je z roko"],
+   "Med praznovanjem je Kṛṣṇa ležal pod vozom. Ko je jokal, ker je bil lačen, je z nožicami brcnil voz in ta se je prevrnil.",
+   "How did baby Kṛṣṇa overturn the cart under which He lay?",["He kicked it with His little feet","He overturned it by crying","He pushed it with His hand"],
+   "During a celebration Kṛṣṇa lay under a cart. Crying because He was hungry, He kicked the cart with His little feet and it overturned."],
+  ['gokula',[SB+' 10.7',SB+' 10.7'],
+   "V kakšni obliki je prišel demon Tṛṇāvarta?",["Kot vrtinčasti veter","Kot velika ptica","Kot tele"],
+   "Tṛṇāvarta je kot vrtinčasti veter odnesel Kṛṣṇo v zrak. Kṛṣṇa je postal tako težak, da demon ni mogel več leteti, in ga je zadavil.",
+   "In what form did the demon Tṛṇāvarta come?",["As a whirlwind","As a huge bird","As a calf"],
+   "Tṛṇāvarta carried Kṛṣṇa into the sky as a whirlwind. Kṛṣṇa became so heavy that the demon could fly no more, and He choked him."],
+  ['gokula',[SB+' 10.8',SB+' 10.8'],
+   "Kdo je Kṛṣṇi in Balarāmi dal imeni?",["Garga Muni","Nārada Muni","Vasiṣṭha"],
+   "Na prošnjo Nande Mahārāja je Garga Muni, duhovnik dinastije Yadu, na skrivnem v hlevu opravil obred poimenovanja Kṛṣṇe in Balarāme.",
+   "Who gave Kṛṣṇa and Balarāma Their names?",["Garga Muni","Nārada Muni","Vasiṣṭha"],
+   "At Nanda Mahārāja's request Garga Muni, the priest of the Yadu dynasty, secretly performed the name-giving ceremony of Kṛṣṇa and Balarāma in a cowshed."],
+  ['gokula',[SB+' 10.8',SB+' 10.8'],
+   "Kaj je mati Yaśodā zagledala v Kṛṣṇovih ustih, ko je preverjala, ali je jedel zemljo?",["Celotno vesolje","Zlato kroglico","Kačo Kāliyo"],
+   "Ko so pastirčki potožili, da je Kṛṣṇa jedel zemljo, Mu je Yaśodā pogledala v usta in v njih zagledala vse vesolje. Nato je s Kṛṣṇovo yogamāyo pozabila na to in Ga spet ljubila kot svojega otroka.",
+   "What did mother Yaśodā see in Kṛṣṇa's mouth when she checked whether He had eaten earth?",["The whole universe","A golden ball","The serpent Kāliya"],
+   "When the cowherd boys complained that Kṛṣṇa had eaten earth, Yaśodā looked into His mouth and saw the whole universe. Then by Kṛṣṇa's yogamāyā she forgot it and loved Him again as her child."],
+  ['gokula',[SB+' 10.10',SB+' 10.10'],
+   "Kdo sta bila drevesi yamala-arjuna, ki ju je Kṛṣṇa podrl, ko je vlekel možnar?",["Sinova Kuvere, Nalakūvara in Maṇigrīva","Demona, ki ju je poslal Kaṁsa","Dva brāhmaṇa iz Mathure"],
+   "Nalakūvara in Maṇigrīva, Kuverova sinova, sta bila pijana in gola ter nista izkazala spoštovanja Nāradi Muniju. Nārada ju je preklel, da postaneta drevesi, in jima s tem podaril milost, da ju bo osvobodil Kṛṣṇa.",
+   "Who were the yamala-arjuna trees that Kṛṣṇa pulled down while dragging the mortar?",["Kuvera's sons, Nalakūvara and Maṇigrīva","Demons sent by Kaṁsa","Two brāhmaṇas from Mathurā"],
+   "Nalakūvara and Maṇigrīva, Kuvera's sons, were drunk and naked and showed no respect to Nārada Muni. Nārada cursed them to become trees, and thereby blessed them to be delivered by Kṛṣṇa."],
+  ['gokula',[SB+' 10.11',SB+' 10.11'],
+   "Zakaj so se pastirji iz Gokule preselili v Vṛndāvano?",["Ker so se v Gokuli vrstile nevarnosti za Kṛṣṇo","Zaradi suše in lakote","Ker jim je tako ukazal Kaṁsa"],
+   "Po padcu dreves yamala-arjuna je starejši pastir Upananda svetoval, naj se zaradi vseh nevarnosti, ki so pretile otrokoma, preselijo v Vṛndāvano, ki je polna pašnikov, gozdov in hribov.",
+   "Why did the cowherds of Gokula move to Vṛndāvana?",["Because of the repeated dangers to Kṛṣṇa in Gokula","Because of drought and famine","Because Kaṁsa ordered it"],
+   "After the yamala-arjuna trees fell, the elder cowherd Upananda advised moving to Vṛndāvana, full of pastures, forests and hills, because of all the dangers threatening the two boys."]
+ ],
+ /* B Gozdovi Vraje / Forests of Vraja */ [
+  ['bhandira',[SB+' 10.18',SB+' 10.18'],
+   "Koga je demon Pralamba, preoblečen v pastirčka, med igro nosil na hrbtu?",["Balarāmo","Kṛṣṇo","Śrīdāmo"],
+   "Pralamba se je v igri, kjer poraženi nosi zmagovalca, pomešal med pastirčke in odnesel Balarāmo. Ko je pokazal svojo demonsko obliko, ga je Balarāma ubil s pestjo.",
+   "Whom did the demon Pralamba, disguised as a cowherd boy, carry on his back during a game?",["Balarāma","Kṛṣṇa","Śrīdāmā"],
+   "In a game where the loser carries the winner, Pralamba mixed with the cowherd boys and carried off Balarāma. When he revealed his demonic form, Balarāma killed him with His fist."],
+  ['bhandira',[SB+' 10.18',SB+' 10.18'],
+   "Pod katerim drevesom so se pastirčki igrali, ko je med njih prišel Pralamba?",["Pod banjanom Bhāṇḍīraka","Pod drevesom kadamba","Pod drevesom tamāla"],
+   "Igra je potekala pri banjanu Bhāṇḍīraka. Po njem se imenuje Bhāṇḍīravana, ki ga izročilo časti v okrožju Mathura.",
+   "Under which tree were the cowherd boys playing when Pralamba came among them?",["The banyan Bhāṇḍīraka","A kadamba tree","A tamāla tree"],
+   "The game took place at the banyan tree Bhāṇḍīraka. Bhāṇḍīravana, honoured by tradition in Mathura district, is named after it."],
+  ['vraja',[SB+' 10.19',SB+' 10.19'],
+   "Kaj je Kṛṣṇa naročil pastirčkom, ko jih je obkrožil gozdni požar?",["Naj zaprejo oči; nato je ogenj pogoltnil","Naj zbežijo v Yamuno","Naj kličejo Indro na pomoč"],
+   "Ko je gozdni požar obkrožil pastirčke in krave, je Kṛṣṇa rekel: »Zaprite oči.« Ko so jih zaprli, je pogoltnil ves ogenj.",
+   "What did Kṛṣṇa tell the cowherd boys when a forest fire surrounded them?",["To close their eyes; then He swallowed the fire","To flee into the Yamunā","To call Indra for help"],
+   "When a forest fire surrounded the boys and the cows, Kṛṣṇa said, “Close your eyes.” When they had closed them, He swallowed the entire fire."],
+  ['vraja',[SB+' 10.13',SB+' 10.13'],
+   "Kako dolgo je Kṛṣṇa sam nadomeščal teleta in pastirčke, ki jih je skril Brahmā?",["Eno leto","En dan","Sedem dni"],
+   "Brahmā je skril teleta in pastirčke. Kṛṣṇa se je razširil v natanko takšna teleta in dečke in eno leto nihče v Vraji ni opazil razlike. Brahmā je nato spoznal Kṛṣṇovo moč in Mu molil.",
+   "For how long did Kṛṣṇa Himself replace the calves and boys that Brahmā had hidden?",["One year","One day","Seven days"],
+   "Brahmā hid the calves and cowherd boys. Kṛṣṇa expanded Himself into exactly such calves and boys, and for one year no one in Vraja noticed any difference. Brahmā then understood Kṛṣṇa's power and offered prayers."],
+  ['vraja',[SB+' 10.12',SB+' 10.12'],
+   "V kakšni obliki je prišel demon Aghāsura?",["Kot ogromen udav z odprtimi usti","Kot divji konj","Kot osel"],
+   "Aghāsura, brat Pūtane in Bakāsure, se je razširil v ogromnega udava in odprl usta kot jamo. Pastirčki so vanj vstopili, Kṛṣṇa pa je v njegovem grlu postal tako velik, da je demon umrl.",
+   "In what form did the demon Aghāsura come?",["As a huge python with its mouth open","As a wild horse","As an ass"],
+   "Aghāsura, the brother of Pūtanā and Bakāsura, expanded into a huge python and opened his mouth like a cave. The boys walked in, and Kṛṣṇa grew so large in his throat that the demon died."],
+  ['vraja',[SB+' 10.15',SB+' 10.15'],
+   "Kdo je v gozdu Tālavana ubil demona Dhenuko v obliki osla?",["Balarāma","Kṛṣṇa","Śrīdāmā"],
+   "Pastirčki so želeli jesti sadeže palm v Tālavani, ki ga je varoval Dhenukāsura. Balarāma je demona zgrabil za noge, ga zavrtel in vrgel v drevo.",
+   "Who killed the ass-demon Dhenuka in the Tālavana forest?",["Balarāma","Kṛṣṇa","Śrīdāmā"],
+   "The cowherd boys wanted to eat the palm fruits of Tālavana, guarded by Dhenukāsura. Balarāma seized the demon by his legs, whirled him around and threw him into a tree."],
+  ['vraja',[SB+' 10.22',SB+' 10.22'],
+   "Katero boginjo so mlade gopīje mesec dni častile, da bi Kṛṣṇa postal njihov mož?",["Kātyāyanī","Lakṣmī","Sarasvatī"],
+   "V mesecu Mārgaśīrṣa so se gopīje vsako jutro kopale v Yamuni in častile boginjo Kātyāyanī z molitvijo, da bi Kṛṣṇa, Nandov sin, postal njihov mož.",
+   "Which goddess did the young gopīs worship for a month so that Kṛṣṇa would become their husband?",["Kātyāyanī","Lakṣmī","Sarasvatī"],
+   "In the month of Mārgaśīrṣa the gopīs bathed in the Yamunā every morning and worshiped the goddess Kātyāyanī, praying that Kṛṣṇa, the son of Nanda, would become their husband."],
+  ['vraja',[SB+' 10.23',SB+' 10.23'],
+   "Kdo je lačnim pastirčkom prinesel hrano, ko jih je Kṛṣṇa poslal k brāhmaṇom, ki so izvajali daritev?",["Žene brāhmaṇov","Brāhmaṇi sami","Nanda Mahārāja"],
+   "Brāhmaṇi, zatopljeni v obrede, pastirčkov niso upoštevali. Njihove žene pa so, polne ljubezni do Kṛṣṇe, same prinesle hrano. Brāhmaṇi so pozneje obžalovali svojo napako.",
+   "Who brought food to the hungry cowherd boys when Kṛṣṇa sent them to the brāhmaṇas performing a sacrifice?",["The brāhmaṇas' wives","The brāhmaṇas themselves","Nanda Mahārāja"],
+   "The brāhmaṇas, absorbed in ritual, ignored the boys. But their wives, full of love for Kṛṣṇa, brought the food themselves. The brāhmaṇas later regretted their mistake."]
+ ],
+ /* C Govardhana in ljubezen Vraje / Govardhana and the love of Vraja */ [
+  ['govardhan',[SB+' 10.24',SB+' 10.24'],
+   "Katero daritev je Kṛṣṇa ustavil in namesto nje predlagal čaščenje Govardhane, krav in brāhmaṇ?",["Daritev kralju Indri","Daritev Agniju","Daritev Varuni"],
+   "Kṛṣṇa je Nandi Mahārāju svetoval, naj pripravljeno hrano namesto Indri darujejo hribu Govardhana, kravam in brāhmaṇam. Tako se je začelo čaščenje Govardhane.",
+   "Which sacrifice did Kṛṣṇa stop, proposing instead the worship of Govardhana, the cows and the brāhmaṇas?",["The sacrifice to King Indra","The sacrifice to Agni","The sacrifice to Varuṇa"],
+   "Kṛṣṇa advised Nanda Mahārāja to offer the prepared food not to Indra but to Govardhana Hill, the cows and the brāhmaṇas. Thus the worship of Govardhana began."],
+  ['govardhan',[SB+' 10.27.22–23',SB+' 10.27.22–23'],
+   "Kdo je Kṛṣṇi po dogodku z Govardhano dal ime Govinda?",["Indra, potem ko sta Ga okopala Surabhi in on","Mati Yaśodā","Brahmā ob Njegovem rojstvu"],
+   "Mati Surabhi je Kṛṣṇo okopala s svojim mlekom, Indra pa z nebeško vodo Gaṅge, in Mu dal ime Govinda.",
+   "Who gave Kṛṣṇa the name Govinda after the Govardhana pastime?",["Indra, after he and Surabhi had bathed Him","Mother Yaśodā","Brahmā at His birth"],
+   "Mother Surabhi bathed Kṛṣṇa with her own milk and Indra with heavenly Gaṅgā water, and gave Him the name Govinda."],
+  ['govardhan',[SB+' 10.21.18',SB+' 10.21.18'],
+   "Koga gopīje v »Pesmi flavte« (Veṇu-gīta) imenujejo najboljšega med Harijevimi služabniki?",["Hrib Govardhana","Reko Yamuno","Pāva"],
+   "Gopīje pravijo, da je hrib Govardhana najboljši med Harijevimi služabniki, saj Kṛṣṇi, Balarāmi, kravam in pastirčkom daje vodo, travo, jame in korenine.",
+   "Whom do the gopīs in the “Song of the Flute” (Veṇu-gīta) call the best of Hari's servants?",["Govardhana Hill","The Yamunā River","The peacock"],
+   "The gopīs say that Govardhana Hill is the best of Hari's servants, for it offers Kṛṣṇa, Balarāma, the cows and the cowherd boys water, grass, caves and roots."],
+  ['radhakunda',[CC+', Madhya 18.3–5',CC+', Madhya 18.3–5'],
+   "Kdo je ponovno odkril Rādhā-kuṇḍo, ki je bila takrat le malo vode v riževem polju?",["Śrī Caitanya Mahāprabhu","Śrīla Prabhupāda","Mādhavendra Purī"],
+   "Ko je Mahāprabhu prišel v vas Āriṭ-grāma, je spoznal, da Rādhā-kuṇḍa ni več vidna. Kot vsevedni Gospod jo je skupaj s Śyāma-kuṇḍo odkril v dveh riževih poljih z malo vode in se v njej okopal.",
+   "Who rediscovered Rādhā-kuṇḍa, which was then only a little water in a rice field?",["Śrī Caitanya Mahāprabhu","Śrīla Prabhupāda","Mādhavendra Purī"],
+   "When Mahāprabhu came to the village of Āriṭ-grāma, He understood that Rādhā-kuṇḍa was no longer visible. As the omniscient Lord He discovered it, together with Śyāma-kuṇḍa, in two paddy fields with little water, and bathed there."],
+  ['nandagrama',[TRAD[0],TRAD[1]],
+   "Katera Božanstva so v templju Nandarāya na vrhu hriba v Nandagrāmu?",["Kṛṣṇa in Balarāma z Nando in Yaśodo","Rādhā in Kṛṣṇa z osmimi sakhījami","Sītā in Rāma"],
+   "V templju Nandarāya, ki ga izročilo povezuje z bivališčem Nande Mahārāja, so Kṛṣṇa in Balarāma, ob njih pa Nanda in Yaśodā.",
+   "Which Deities are in the Nandarāya temple on the hilltop at Nandagrāma?",["Kṛṣṇa and Balarāma with Nanda and Yaśodā","Rādhā and Kṛṣṇa with the eight sakhīs","Sītā and Rāma"],
+   "In the Nandarāya temple, which tradition connects with the residence of Nanda Mahārāja, are Kṛṣṇa and Balarāma, with Nanda and Yaśodā beside Them."],
+  ['vraja',[SB+' 10.38',SB+' 10.38'],
+   "Kaj je Akrūra storil, ko je na poti v Vraja zagledal odtise Kṛṣṇovih stopal?",["Skočil je z voza in se valjal v prahu","Pomolil je ob Yamuni","Obrnil se je nazaj v Mathuro"],
+   "Ko je Akrūra v prahu Vraje zagledal odtise Kṛṣṇovih stopal z znamenji lotosa, ječmena in bodila, je v zanosu skočil z voza in se valjal v prahu.",
+   "What did Akrūra do when, on his way to Vraja, he saw Kṛṣṇa's footprints?",["He jumped down from the chariot and rolled in the dust","He prayed by the Yamunā","He turned back to Mathurā"],
+   "When Akrūra saw in the dust of Vraja Kṛṣṇa's footprints marked with the lotus, barleycorn and elephant goad, he jumped down from the chariot in ecstasy and rolled in the dust."],
+  ['vraja',[SB+' 10.47',SB+' 10.47'],
+   "Komu je govorila gopī v »Pesmi čebeli« (Bhramara-gīta), ko je prišel Uddhava?",["Čebeli, ki jo je imela za Kṛṣṇovega sla","Papigi","Labodu"],
+   "Ko je Uddhava prinesel Kṛṣṇovo sporočilo, je ena od gopī zagledala čebelo in ji govorila, kot da je Kṛṣṇov sel. Ta pesem razodeva globino ločitve gopī od Kṛṣṇe.",
+   "To whom did a gopī speak in the “Song to the Bee” (Bhramara-gīta) when Uddhava came?",["A bumblebee she took to be Kṛṣṇa's messenger","A parrot","A swan"],
+   "When Uddhava brought Kṛṣṇa's message, one of the gopīs saw a bumblebee and spoke to it as if it were Kṛṣṇa's messenger. This song reveals the depth of the gopīs' separation from Kṛṣṇa."]
+ ]
+];
+const FINALQ3=['vrindavan',[SB+' 10.47.61',SB+' 10.47.61'],
+ "Uddhava je videl ljubezen gopī. Kaj si je zaželel?",["Da bi se rodil kot grm ali bilka v Vṛndāvani, ki jo gopīje teptajo z nogami","Da bi postal kralj v Mathuri","Da bi dosegel osvoboditev"],
+ "»Naj bom eden od grmov, plezalk ali zelišč v Vṛndāvani, po katerih stopajo gopīje in jih blagoslavljajo s prahom svojih stopal.« Ljubezen prebivalcev Vraje je najvišja popolnost.",
+ "Uddhava saw the love of the gopīs. What did he wish for?",["To be born as a bush or herb in Vṛndāvana, trampled by the gopīs' feet","To become a king in Mathurā","To attain liberation"],
+ "“Let me be one of the bushes, creepers or herbs in Vṛndāvana that the gopīs trample, blessing them with the dust of their feet.” The love of the residents of Vraja is the highest perfection."];
+const STAGES3=[
+ {lv:3,n:["Gokula","Gokula"],sub:["Kṛṣṇove otroške zabave","Kṛṣṇa's childhood pastimes"],pick:5,key:'gokula',intro:["Vraja-maṇḍala je dežela Kṛṣṇovih zabav. Romanje se začne v Gokuli, kjer je Kṛṣṇa kot dojenček in otrok osvobajal demone in razveseljeval mater Yaśodo.","Vraja-maṇḍala is the land of Kṛṣṇa's pastimes. The pilgrimage begins in Gokula, where Kṛṣṇa as a baby and child delivered demons and delighted mother Yaśodā."]},
+ {lv:3,n:["Gozdovi Vraje","Forests of Vraja"],sub:["Bhāṇḍīravana, Tālavana in pašniki","Bhāṇḍīravana, Tālavana and the pastures"],pick:5,img:['Keshighat_Vrindavan.JPG','Yamunā pri Vṛndāvani','The Yamunā at Vṛndāvana'],intro:["V gozdovih Vraje sta Kṛṣṇa in Balarāma s pastirčki pasla teleta in krave, se igrala in premagovala demone.","In the forests of Vraja Kṛṣṇa and Balarāma herded the calves and cows with the cowherd boys, played and defeated demons."]},
+ {lv:3,n:["Govardhana in ljubezen Vraje","Govardhana and the love of Vraja"],sub:["Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndāvana","Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndāvana"],pick:6,main:1,final:1,img:['Krishna_lifting_Mount_Govardhana.jpg','Kṛṣṇa dviguje Govardhano','Kṛṣṇa lifting Govardhana'],intro:["Zadnja stopnja vodi h Govardhani, k Rādhā-kuṇḍi in v Vṛndāvano, kjer se razodeva čista ljubezen prebivalcev Vraje do Kṛṣṇe.","The last stage leads to Govardhana, Rādhā-kuṇḍa and Vṛndāvana, where the pure love of Vraja's residents for Kṛṣṇa is revealed."]},
+];
+
+STAGES3[STAGES3.length-1].fq=FINALQ3; POOL.push(...POOL3); STAGES.push(...STAGES3);
 const LVL=lv=>STAGES.map((x,i)=>x.lv===lv?i:-1).filter(i=>i>=0);
-const placesOf=lv=>{const a=[];LVL(lv).forEach(si=>POOL[si].forEach(q=>{const k=ALIAS[q[0]]||q[0];if(!a.includes(k))a.push(k)}));return a};
-const ATLAS1=placesOf(1), ATLAS2=placesOf(2), ATLAS=[...ATLAS1,...ATLAS2.filter(k=>!ATLAS1.includes(k))];
-const NEW2=ATLAS2.filter(k=>!ATLAS1.includes(k));
+const placesOf=lv=>{const a=[];LVL(lv).forEach(si=>[...POOL[si],...(STAGES[si].fq?[STAGES[si].fq]:[])].forEach(q=>{const k=ALIAS[q[0]]||q[0];if(!a.includes(k))a.push(k)}));return a};
+const ATLAS1=placesOf(1), ATLAS2=placesOf(2), ATLAS3=placesOf(3);
+const NEW2=ATLAS2.filter(k=>!ATLAS1.includes(k)), NEW3=ATLAS3.filter(k=>!ATLAS1.includes(k)&&!ATLAS2.includes(k));
+const ATLAS=[...ATLAS1,...NEW2,...NEW3];
 const MANTRA_W=['Hare','Kṛṣṇa','Hare','Kṛṣṇa','Kṛṣṇa','Kṛṣṇa','Hare','Hare','Hare','Rāma','Hare','Rāma','Rāma','Rāma','Hare','Hare'];
 const MANTRA_HTML='<span class="ml">Hare Kṛṣṇa Hare Kṛṣṇa Kṛṣṇa Kṛṣṇa Hare Hare</span><span class="ml">Hare Rāma Hare Rāma Rāma Rāma Hare Hare</span>';
 const LADDER=["śraddhā","sādhu-saṅga","bhajana-kriyā","anartha-nivṛtti","niṣṭhā","ruci","āsakti","bhāva","prema"];
 const lvQ=lv=>LVL(lv).reduce((s,i)=>s+STAGES[i].pick,0), lvPool=lv=>LVL(lv).reduce((s,i)=>s+POOL[i].length,0)+1;
-const FULLQ=lvQ(1), FULLQ2=lvQ(2), POOLSIZE=lvPool(1), POOLSIZE2=lvPool(2);
-const NPLACES=ATLAS1.length, NPLACES2=ATLAS2.length;
+const FULLQ=lvQ(1), FULLQ2=lvQ(2), FULLQ3=lvQ(3), POOLSIZE=lvPool(1), POOLSIZE2=lvPool(2), POOLSIZE3=lvPool(3);
+const NPLACES=ATLAS1.length, NPLACES2=ATLAS2.length, NPLACES3=ATLAS3.length;
+const stImg=st=>st.img?[st.img[0]]:imgsOf(st.key), stCap=st=>st.img?(L==='en'?st.img[2]:st.img[1]):pn(st.key);
 /* question accessors: Q=[place,src,slq,slo,slex,enq,eno,enex] */
 const qText=Q=>L==='en'?Q[5]:Q[2], qOpts=Q=>L==='en'?Q[6]:Q[3], qEx=Q=>L==='en'?Q[7]:Q[4], qSrc=Q=>tr(Q[1]);
 
@@ -1506,7 +1714,7 @@ const YAMUNA=[[78.4,31.0],[77.6,30.0],[77.2,28.6],[77.7,27.58],[78.0,27.2],[79.5
 const KAVERI=[[75.7,12.4],[77.0,12.3],[78.0,11.0],[78.69,10.86],[79.8,10.9]];
 const GANDAKI=[[83.87,28.82],[84.1,27.5],[85.2,25.6]];
 /* ---------- Zemljevid (SVG, prave koordinate) ---------- */
-const VRAJA=['mathura','vrindavan','govardhan','varsana','radhakunda','radhadamodar'];
+const VRAJA=['mathura','vrindavan','govardhan','varsana','radhakunda','radhadamodar','gokula','bhandira','nandagrama','vraja'];
 const prj=(lon,lat)=>[(lon-66)*9.3,(37-lat)*10];
 const pts=a=>a.map(([x,y])=>prj(x,y).map(v=>v.toFixed(1)).join(',')).join(' ');
 const LL=k=>{const p=PLACES[ALIAS[k]||k].ll;return [p[1],p[0]]};
@@ -1547,8 +1755,8 @@ function bigMap(state,numbers,clickable,keys){
   const ip=(lon,lat)=>[216+(lon-77.30)*165,214+(27.72-lat)*190];
   const yam=[[77.66,27.72],[77.72,27.6],[77.69,27.55],[77.68,27.47],[77.74,27.40]];
   g+=`<polyline points="${yam.map(p=>ip(...p).map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#7FA3E0" stroke-width="1.6"/>`;
-  const lab={mathura:'Mathurā',vrindavan:'Vṛndāvana',govardhan:'Govardhana',varsana:'Varṣāṇā',radhakunda:'Rādhā-kuṇḍa',radhadamodar:''};
-  const off={mathura:[0,10,'middle'],vrindavan:[-6,-4,'end'],govardhan:[-2,10,'middle'],varsana:[6,2,'start'],radhakunda:[6,2,'start'],radhadamodar:[0,0,'start']};
+  const lab={mathura:'Mathurā',vrindavan:'Vṛndāvana',govardhan:'Govardhana',varsana:'Varṣāṇā',radhakunda:'Rādhā-kuṇḍa',radhadamodar:'',gokula:'Gokula',bhandira:'Bhāṇḍīra',nandagrama:'Nandagrāma',vraja:''};
+  const off={mathura:[0,10,'middle'],vrindavan:[-6,-4,'end'],govardhan:[-2,10,'middle'],varsana:[6,2,'start'],radhakunda:[6,2,'start'],radhadamodar:[0,0,'start'],gokula:[-6,2,'end'],bhandira:[-6,2,'end'],nandagrama:[6,2,'start'],vraja:[0,0,'start']};
   VRAJA.filter(k=>keys.includes(k)).forEach(k=>{let [x,y]=ip(...LL(k));if(k==='radhakunda'){x+=7;y-=4}if(k==='radhadamodar'){x-=5;y+=6}const n=keys.indexOf(k)+1;
     g+=`<g${dk(k)}><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${clickable?7:0}" fill="transparent"/><circle${dk(k)} cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${numbers?4.6:3}" fill="${col(k)}" stroke="#0D1330" stroke-width=".8"/>${numbers?`<text x="${x.toFixed(1)}" y="${(y+1.8).toFixed(1)}" font-size="5" font-weight="700" text-anchor="middle" fill="#0D1330" pointer-events="none">${n}</text>`:''}${lab[k]?`<text x="${(x+off[k][0]).toFixed(1)}" y="${(y+off[k][1]).toFixed(1)}" font-size="4.8" fill="#F4E5BC" text-anchor="${off[k][2]}" pointer-events="none">${lab[k]}</text>`:''}</g>`});
   }
@@ -1725,14 +1933,14 @@ let setup=Object.assign({mode:'full',lv:1,teams:false,timer:false,steal:true,nam
 const MAXP=6;
 function startScreen(){
   screenFn=startScreen; S=null; renderHeader(); startScene();
-  const saved=load(); const teams=setup.teams, daily=setup.mode==='daily', lv=setup.lv===2?2:1;
+  const saved=load(); const teams=setup.teams, daily=setup.mode==='daily', lv=[1,2,3].includes(setup.lv)?setup.lv:1;
   const dk=dayKey(), drec=store.get('sm-daily',{});
   const nIn=daily?1:MAXP; const lastFilled=setup.names.slice(0,nIn).reduce((m,v,i)=>v?i:m,-1);
   const vis=daily?1:Math.min(MAXP,Math.max(2,lastFilled+2));
   stageEl(`<div class="card">
     <div class="eyebrow">${t('game')}</div>
     <h1>${t('title')}</h1>
-    <p>${lv===2&&!daily?t('startIntro2',NPLACES2,FULLQ2,POOLSIZE2):t('startIntro',NPLACES,FULLQ,POOLSIZE)}</p>
+    <p>${daily||lv===1?t('startIntro',NPLACES,FULLQ,POOLSIZE):lv===2?t('startIntro2',NPLACES2,FULLQ2,POOLSIZE2):t('startIntro3',NPLACES3,FULLQ3,POOLSIZE3)}</p>
     <div class="modes">
       <button class="mode ${!daily?'on':''}" data-mode="full" type="button"><b>${t('modeFull')}</b><span>${t('modeFullD')}</span></button>
       <button class="mode ${daily?'on':''}" data-mode="daily" type="button"><b>${t('modeDaily')}</b><span>${t('modeDailyD')}${drec[dk]!==undefined?` · ${t('today')}: ${drec[dk]}`:''}</span></button>
@@ -1741,6 +1949,7 @@ function startScreen(){
     <div class="lvls">
       <button class="mode ${lv===1?'on':''}" data-lv="1" type="button"><b>${t('lv1')}</b><span>${t('lv1D',FULLQ)}</span></button>
       <button class="mode ${lv===2?'on':''}" data-lv="2" type="button"><b>${t('lv2')}</b><span>${t('lv2D',FULLQ2)}</span></button>
+      <button class="mode ${lv===3?'on':''}" data-lv="3" type="button"><b>${t('lv3')}</b><span>${t('lv3D',FULLQ3)}</span></button>
     </div>`}
     <div class="rules"><ul>${T[L].rules.map(r=>`<li>${r}</li>`).join('')}</ul></div>
     ${daily?'':`<div class="opts-row"><div class="seg" style="min-width:220px;grid-template-columns:repeat(2,minmax(0,1fr))"><button type="button" data-team="0" class="${!teams?'on':''}">${t('players')}</button><button type="button" data-team="1" class="${teams?'on':''}">${t('teams')}</button></div>
@@ -1748,7 +1957,7 @@ function startScreen(){
       <label class="check" for="stl"><input type="checkbox" id="stl" ${setup.steal?'checked':''}>${t('stealOpt')}</label></div>`}
     <div class="setup-players">${Array.from({length:nIn},(_,i)=>`<input type="text" id="pn${i}" class="${i>=vis?'more':''}" placeholder="${esc(teams&&!daily?t('tname',i):t('pname',i))}" maxlength="18" autocomplete="off" value="${esc(setup.names[i]||'')}">`).join('')}</div>
     ${daily?'':`<div class="codebox"><label class="check" for="gcode" style="font-weight:600">${t('codeL')}</label><input type="text" id="gcode" maxlength="16" autocomplete="off" placeholder="${esc(t('codePh'))}" value="${esc(setup.code||'')}"><span class="note">${t('codeNote')}</span></div>`}
-    <div class="row"><button class="btn" id="go" type="button">${daily?t('beginDaily'):t('begin')}</button>${saved&&!saved.done?`<button class="btn ghost" id="resume" type="button">${t('resume')}</button>`:''}<button class="btn ghost" id="howto" type="button">${t('howto')}</button><button class="btn ghost" id="atlas2" type="button">${t('atlasBtn')}</button><button class="btn ghost" id="dedi" type="button">${t('dedi')}</button></div>
+    <div class="row"><button class="btn" id="go" type="button">${daily?t('beginDaily'):t('begin')}</button>${saved&&!saved.done?`<button class="btn ghost" id="resume" type="button">${t('resume')}</button>`:''}<button class="btn ghost" id="howto" type="button">${t('howto')}</button><button class="btn ghost" id="atlas2" type="button">${t('atlasBtn')}</button><button class="btn ghost" id="teach" type="button">${t('teacherBtn')}</button><button class="btn ghost" id="dedi" type="button">${t('dedi')}</button></div>
     ${chant()}
   </div>`,'start');
   const ins=[...$('stage').querySelectorAll('.setup-players input')];
@@ -1764,7 +1973,7 @@ function startScreen(){
     let names=(daily?setup.names.slice(0,1):setup.names.slice(0,MAXP)).filter(Boolean); if(!names.length) names=[teams&&!daily?t('defT'):t('defP')];
     S=fresh(names,{lv,teams:teams&&!daily,timer:setup.timer&&!daily,steal:setup.steal&&!daily,code:daily?'':setup.code,daily,date:dk}); save(); Snd.resume(); mapScreen() };
   if($('resume')) $('resume').onclick=()=>{S=saved;route()};
-  $('howto').onclick=helpScreen; $('atlas2').onclick=()=>openAtlas(); $('dedi').onclick=dedicationScreen;
+  $('howto').onclick=helpScreen; $('atlas2').onclick=()=>openAtlas(); $('dedi').onclick=dedicationScreen; $('teach').onclick=()=>teacherScreen(lv);
 }
 function route(){ if(S.done){ if(S.view==='tb') return tbScreen(); return S.daily?dailyEnd():endScreen() } if(S.view==='q') return qScreen(); if(S.view==='mantra') return mantraScreen(); mapScreen(); }
 
@@ -1772,12 +1981,12 @@ function route(){ if(S.done){ if(S.view==='tb') return tbScreen(); return S.dail
 function stageOfPlace(k,lv){for(const si of LVL(lv)) if(POOL[si].some(q=>(ALIAS[q[0]]||q[0])===k)) return si; return -1}
 function mapScreen(){
   screenFn=mapScreen; S.view='map';save();renderHeader(-1);
-  const st=ST(), si=SI(), lv=LV(); setBg(null,[st.img[0]]);
+  const st=ST(), si=SI(), lv=LV(); st.img?setBg(null,[st.img[0]]):setBg(st.key);
   const lad=S.players.map(p=>{const r=rankOf(p);return `<div><div class="muted" style="font-size:13.5px;margin-bottom:4px">${esc(p.name)} · ${p.score} ${t('tilak',p.score)}</div><div class="ladder">${LADDER.map((l,i)=>`<span class="${i<r?'reached':i===r?'cur':''}">${l}</span>`).join('')}</div></div>`}).join('');
   const keys=S.daily?placesOf(lv).filter(k=>stageOfPlace(k,lv)===si):placesOf(lv);
   stageEl(`<div class="card">
-    <div class="eyebrow">${S.daily?`<span class="daily-badge">${t('dailyTitle')} · ${S.date}</span>`:`${lv===2?t('lv2'):t('lv1')} · ${t('stageOf',S.pi+1,S.plan.length)}`}${st.main?' · '+t('mainPlace'):''}</div>
-    <div class="intro">${arch([st.img[0]],L==='en'?st.img[2]:st.img[1],500,'lg')}<div style="display:grid;gap:10px;min-width:0"><h2>${tr(st.n)}</h2><p>${tr(st.intro)}</p></div></div>
+    <div class="eyebrow">${S.daily?`<span class="daily-badge">${t('dailyTitle')} · ${S.date}</span>`:`${t('lv'+lv)} · ${t('stageOf',S.pi+1,S.plan.length)}`}${st.main?' · '+t('mainPlace'):''}</div>
+    <div class="intro">${arch(stImg(st),stCap(st),500,'lg')}<div style="display:grid;gap:10px;min-width:0"><h2>${tr(st.n)}</h2><p>${tr(st.intro)}</p></div></div>
     ${S.daily?'':`<div class="stages">${LVL(lv).map((i,n)=>{const x=STAGES[i];return `<div class="st ${i<si?'done':i===si?'now':''} ${x.main?'main':''}"><div class="dot">${i<si?'✓':n+1}</div><div style="min-width:0"><div class="nm">${tr(x.n)}</div><div class="sb">${tr(x.sub)}</div></div></div>`}).join('')}</div>`}
     <div class="mapwrap">${bigMap(k=>{const s=stageOfPlace(k,lv);return s<si?(S.daily?'next':'done'):s===si?'now':'next'},false,true,keys)}
       <div class="legend">${S.daily?'':`<span><i style="background:#E9B84E"></i>${t('visited')}</span>`}<span><i style="background:#EE7F2D"></i>${t('thisStage')}</span>${S.daily?'':`<span><i style="background:rgba(174,179,206,.55)"></i>${t('next')}</span>`}<span>${t('tapPoint')}</span></div></div>
@@ -1912,7 +2121,7 @@ function nextStage(){
 function recordDaily(){ const rec=store.get('sm-daily',{}); const sc=S.players[0].score; if(rec[S.date]===undefined||sc>rec[S.date]) rec[S.date]=sc; store.set('sm-daily',rec) }
 function dailyStats(){ const rec=store.get('sm-daily',{}); let streak=0; let d=dayNum(dayKey()); const keys=new Set(Object.keys(rec).map(dayNum)); while(keys.has(d)){streak++;d--} const best=Math.max(0,...Object.values(rec)); return {today:rec[S.date]??0,best,streak} }
 function dailyEnd(){
-  screenFn=dailyEnd; renderHeader(-1); setBg(null,[ST().img[0]]); Snd.fanfare();
+  screenFn=dailyEnd; renderHeader(-1); ST().img?setBg(null,[ST().img[0]]):setBg(ST().key); Snd.fanfare();
   const s=dailyStats(), p=S.players[0];
   stageEl(`<div class="card">
     <div class="eyebrow"><span class="daily-badge">${t('dailyTitle')} · ${S.date}</span></div>
@@ -1944,7 +2153,7 @@ function endScreen(){
   const keys=placesOf(lv);
   const gal=keys.map((k,i)=>`<button class="thumb" data-k="${k}" type="button"><div class="ph">${photoTag(imgsOf(k),480,'',pn(k))}<span class="no">${i+1}</span></div><div class="cap"><b>${esc(pn(k))}</b><small>${esc(tr(PLACES[k].loc))}</small></div></button>`).join('');
   stageEl(`<div class="card wide">
-    <div class="eyebrow">${lv===2?t('doneL2'):t('done')}</div>
+    <div class="eyebrow">${lv===2?t('doneL2'):lv===3?t('doneL3'):t('done')}</div>
     <h2>${head}</h2>
     ${tie?`<p class="tbnote">${S.tbShared?t('tbShared'):t('tbNote')}</p>${S.tbShared?'':`<div class="row"><button class="btn" id="tbgo" type="button">${t('tbBtn')}</button></div>`}`:''}
     <div class="pair">${arch(['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG'],L==='en'?'Rādhā and Kṛṣṇa':'Rādhā in Kṛṣṇa',500,'lg')}${arch(['Chaitanya-Mahabrabhu-at-Jagannath.jpg','Chaitanya_Mahaprabhu_in_Dhameswar_Mahaprabhu_temple,_Nabadwip.jpg'],'Śrī Caitanya Mahāprabhu',500,'lg')}</div>
@@ -2027,62 +2236,120 @@ async function fetchAlbum(k){
   for(const c of (isk.cat||[])){ (await commonsQuery('generator=categorymembers&gcmtype=file&gcmlimit=12&gcmtitle='+encodeURIComponent('Category:'+c))).filter(goodImg).forEach(p=>add(p.title,big(p),big(p),iskCap)) }
   for(const c of (P.cat||[])){ (await commonsQuery('generator=categorymembers&gcmtype=file&gcmlimit=16&gcmtitle='+encodeURIComponent('Category:'+c))).filter(goodImg).forEach(p=>add(p.title,big(p),big(p),pn(k))) }
   if(isk.kw){ (await commonsQuery('generator=search&gsrnamespace=6&gsrlimit=12&gsrsearch='+encodeURIComponent('ISKCON '+(P.q||short(k))+' filetype:bitmap'))).filter(p=>goodImg(p)&&/iskcon/i.test(p.title)&&isk.kw.test(p.title)).forEach(p=>add(p.title,big(p),big(p),iskCap)) }
-  if(P.q&&out.length<14){ (await commonsQuery('generator=search&gsrnamespace=6&gsrlimit=14&gsrsearch='+encodeURIComponent(P.q+' filetype:bitmap'))).filter(goodImg).slice(0,12).forEach(p=>add(p.title,big(p),big(p),pn(k))) }
   albumCache[ck]=out.slice(0,28);
   return albumCache[ck];
 }
 const deiOf=k=>{const P=PLACES[k];return P.dei||DEI[k]||null};
 function factsOf(k){ const out=[], seen=new Set(); const push=Q=>{ if(!Q||(ALIAS[Q[0]]||Q[0])!==k) return; const ex=qEx(Q); if(seen.has(ex)) return; seen.add(ex); out.push({ex,src:qSrc(Q)}) };
-  POOL.forEach(st=>st.forEach(push)); push(FINALQ); push(FINALQ2); return out }
-const lvOfPlace=k=>ATLAS1.includes(k)?1:2;
+  POOL.forEach(st=>st.forEach(push)); push(FINALQ); push(FINALQ2); push(FINALQ3); return out }
+const lvOfPlace=k=>ATLAS1.includes(k)?1:ATLAS2.includes(k)?2:3;
 const searchText=k=>{const P=PLACES[k];return [P.n[0],P.n[1],P.loc[0],P.loc[1],...(deiOf(k)||[])].join(' ').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()};
-let atlasFocus=null;
-function openAtlas(focus){ atlasFocus=focus||atlasFocus||'mayapur'; $('atlas').hidden=false; $('atlasTitle').textContent=t('atlasTitle'); $('atlasClose').textContent=t('close'); buildAtlas($('atlasBox'),atlasFocus); }
-$('atlasClose').onclick=()=>{$('atlas').hidden=true;$('atlasBox').innerHTML=''};
+let atlasFocus=null, atlasView='place', atlasRoute=null;
+function openAtlas(focus,view){ atlasFocus=focus||atlasFocus||'mayapur'; atlasView=view||'place'; $('atlas').hidden=false; $('atlasTitle').textContent=t('atlasTitle'); $('atlasClose').textContent=t('close');
+  $('atlasTabs').innerHTML=[['place','tabPlaces'],['routes','tabRoutes'],['cal','tabCal'],['diary','tabDiary']].map(([v,k])=>`<button type="button" data-v="${v}" class="${atlasView===v?'on':''}">${t(k)}</button>`).join('');
+  $('atlasTabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{atlasView=b.dataset.v;$('atlasTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));ATL&&ATL.view(atlasView)});
+  buildAtlas($('atlasBox'),atlasFocus); }
+let ATL=null;
+$('atlasClose').onclick=()=>{$('atlas').hidden=true;$('atlasBox').innerHTML='';ATL=null};
 document.addEventListener('keydown',e=>{ if(!$('lightbox').hidden){ if(e.key==='Escape') lbClose(); else if(e.key==='ArrowRight') lbStep(1); else if(e.key==='ArrowLeft') lbStep(-1); return }
   if(e.key==='Escape'){ if(!$('atlas').hidden)$('atlasClose').click(); else if(!$('sndPanel').hidden)$('sndPanel').hidden=true } });
-const VZOOM=['mathura','vrindavan','govardhan','varsana','radhakunda','radhadamodar'];
+const VZOOM=['mathura','vrindavan','govardhan','varsana','radhakunda','radhadamodar','gokula','bhandira','nandagrama'];
 function buildAtlas(box,focus,lvOnly){
+  const overlay=box.id==='atlasBox';
   const keys=lvOnly?placesOf(lvOnly):ATLAS;
   if(!keys.includes(focus)) focus=keys[0];
   box.innerHTML='<div class="amap"></div><div class="apanel"></div>';
   const mapEl=box.querySelector('.amap'), panel=box.querySelector('.apanel');
-  let lmap=null, markers={};
-  const mstyle=(mk,on)=>({radius:on?11:(MAIN.includes(mk)?7:5.5),fillColor:on?'#F4E5BC':(MAIN.includes(mk)?'#E9B84E':(NEW2.includes(mk)?'#7FC8A9':'#EE7F2D'))});
-  const chip=x=>`<button type="button" data-k="${x}" class="${x===focus?'on':''} ${NEW2.includes(x)?'l2':''}">${esc(short(x))}</button>`;
+  let lmap=null, markers={}, routeLayer=null;
+  const fillOf=mk=>MAIN.includes(mk)?'#E9B84E':(NEW2.includes(mk)?'#7FC8A9':(NEW3.includes(mk)?'#C3A8F5':'#EE7F2D'));
+  const mstyle=(mk,on)=>({radius:on?11:(MAIN.includes(mk)?7:5.5),fillColor:on?'#F4E5BC':fillOf(mk),color:DIARY[mk]&&DIARY[mk].v?'#F4E5BC':'#0D1330',weight:DIARY[mk]&&DIARY[mk].v?3:1.5});
+  const chip=x=>`<button type="button" data-k="${x}" class="${x===focus?'on':''} ${NEW2.includes(x)?'l2':''} ${NEW3.includes(x)?'l3':''}">${DIARY[x]&&DIARY[x].v?'✓ ':''}${esc(short(x))}</button>`;
+  const bindChips=root=>root.querySelectorAll('.chips button[data-k]').forEach(b=>b.onclick=()=>{atlasView='place';syncTabs();select(b.dataset.k)});
+  const syncTabs=()=>{ if(overlay) $('atlasTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.v===atlasView)) };
+  const restyle=()=>Object.entries(markers).forEach(([mk,m])=>m.setStyle&&m.setStyle(mstyle(mk,mk===focus)));
+  const drawRoute=r=>{ if(!lmap) return; if(routeLayer){lmap.removeLayer(routeLayer);routeLayer=null} if(!r) return;
+    routeLayer=window.L.polyline(r.steps.map(s=>PLACES[s[0]].ll),{color:'#F4E5BC',weight:3,opacity:.85}).addTo(lmap); lmap.fitBounds(routeLayer.getBounds().pad(.15)) };
   const select=async k=>{
-    focus=k; if(box.id==='atlasBox') atlasFocus=k;
-    const P=PLACES[k], dei=deiOf(k), facts=factsOf(k), lv=lvOfPlace(k), both=ATLAS1.includes(k)&&ATLAS2.includes(k);
-    Object.entries(markers).forEach(([mk,m])=>m.setStyle&&m.setStyle(mstyle(mk,mk===k)));
-    if(lmap){lmap.flyTo(P.ll,VZOOM.includes(k)?11:(['mayapur','navadvip'].includes(k)?12:(NEW2.includes(k)?9:7)),{duration:.8})}
+    focus=k; if(overlay) atlasFocus=k;
+    const P=PLACES[k], dei=deiOf(k), facts=factsOf(k), lv=lvOfPlace(k), d=DIARY[k]||{};
+    restyle();
+    if(lmap&&!atlasRoute){lmap.flyTo(P.ll,VZOOM.includes(k)?11:(['mayapur','navadvip'].includes(k)?12:(NEW2.includes(k)?9:7)),{duration:.8})}
     mapEl.querySelectorAll('circle[data-k]').forEach(c=>c.setAttribute('stroke',c.dataset.k===k?'#F4E5BC':'#0D1330'));
-    const g1=keys.filter(x=>ATLAS1.includes(x)), g2=keys.filter(x=>!ATLAS1.includes(x));
-    panel.innerHTML=`<div class="afind"><input type="search" id="afq" placeholder="${esc(t('encSearch'))}" autocomplete="off"><div class="res" id="afr"></div></div>
+    const fest=festOf(k), note=NOTES[k], nav=navUrl(k);
+    const g=[1,2,3].map(l=>keys.filter(x=>lvOfPlace(x)===l));
+    panel.innerHTML=`${atlasRoute?`<button type="button" class="btn ghost small" id="backRoute">← ${esc(tr(atlasRoute.n))}</button>`:''}
+      <div class="afind"><input type="search" id="afq" placeholder="${esc(t('encSearch'))}" autocomplete="off"><div class="res" id="afr"></div></div>
       <div class="hero-ph" id="aph">${photoTag(imgsOf(k),1600,'',pn(k))}<span class="zoom">⤢ ${t('zoom')}</span></div>
-      <div><div class="eyebrow">${keys.indexOf(k)+1} / ${keys.length}${MAIN.includes(k)?' · '+t('mainPlace'):''}<span class="lvtag ${lv===2?'l2':''}">${both?t('lvTag1')+' · '+t('lvTag2'):lv===2?t('lvTag2'):t('lvTag1')}</span></div><h2 style="font-size:26px">${esc(pn(k))}</h2><div class="loc" style="max-width:none">${esc(tr(P.loc))} · ${P.ll[0].toFixed(3)}° ${t('lat')}, ${P.ll[1].toFixed(3)}° ${t('lon')}</div></div>
+      <div><div class="eyebrow">${keys.indexOf(k)+1} / ${keys.length}${MAIN.includes(k)?' · '+t('mainPlace'):''}${[1,2,3].filter(l=>placesOf(l).includes(k)).map(l=>`<span class="lvtag ${l>1?'l'+l:''}">${t('lvTag'+l)}</span>`).join('')}</div><h2 style="font-size:26px">${esc(pn(k))}</h2><div class="loc" style="max-width:none">${esc(tr(P.loc))}</div></div>
       ${dei?`<section class="enc dei"><h4>${t('encDei')}</h4><p>${esc(tr(dei))}</p></section>`:''}
       ${tr(P.d)?`<section class="enc"><h4>${t('encStory')}</h4><p>${esc(tr(P.d))}</p></section>`:''}
+      <section class="enc"><h4>${t('encTravel')}</h4>
+        ${note?`<p class="warn">${esc(tr(note))}</p>`:''}
+        ${fest.length?`<ul class="fest">${fest.map(f=>`<li><b>${esc(tr(f[1]))}</b> · ${monRange(f[2])}</li>`).join('')}</ul><p class="note">${t('festNote')}</p>`:''}
+        <div class="row">${nav?`<a class="btn small" href="${nav}" target="_blank" rel="noopener">${t('navBtn')}</a>`:''}${overlay?`<button type="button" class="btn ghost small" id="offBtn">${OFF[k]?t('offDone',OFF[k]):t('offBtn')}</button>`:''}</div>
+        <p class="note">${t('genNote')}</p></section>
       <section class="enc"><h4>${t('album')}</h4><div class="album" id="alb"><span class="muted" style="font-size:13.5px">${t('loading')}</span></div></section>
-      ${facts.length?`<section class="enc"><details ${facts.length<=4?'open':''}><summary>${t('encBooks')} · ${facts.length}</summary><ul class="facts">${facts.map(f=>`<li><p>${f.ex}</p><span class="src">${t('srcL')}: ${esc(f.src)}</span></li>`).join('')}</ul></details></section>`:''}
-      <section class="enc">${g1.length?`<div class="grp">${t('grp1')}</div><div class="chips">${g1.map(chip).join('')}</div>`:''}${g2.length?`<div class="grp" style="margin-top:10px">${t('grp2')}</div><div class="chips">${g2.map(chip).join('')}</div>`:''}</section>`;
+      ${facts.length?`<section class="enc"><details ${facts.length<=4?'open':''}><summary>${t('encBooks')} · ${facts.length}</summary><ul class="facts">${facts.map(f=>`<li><p>${f.ex}</p><span class="src">${t('srcL')}: ${esc(f.src)}${vbHtml(f.src)}</span></li>`).join('')}</ul></details></section>`:''}
+      ${overlay?`<section class="enc diary"><h4>${t('diaryH')}</h4>
+        <label class="check" for="dv"><input type="checkbox" id="dv" ${d.v?'checked':''}>${t('diaryVisited')}</label>
+        <input type="date" id="dd" value="${esc(d.date||'')}" aria-label="${esc(t('diaryDate'))}">
+        <textarea id="dn" rows="3" placeholder="${esc(t('diaryNote'))}">${esc(d.note||'')}</textarea>
+        <div class="row"><label class="btn ghost small" for="dp" style="cursor:pointer">${t('diaryPhoto')}</label><input type="file" id="dp" accept="image/*" hidden>${d.photo?`<button type="button" class="btn ghost small" id="dpx">${t('remove')}</button>`:''}</div>
+        <div id="dph"></div>
+        ${Snd.tracks.length?`<label class="check" for="dt" style="display:grid;gap:4px"><span>${t('diaryTrack')}</span><select id="dt"><option value="">—</option>${Snd.tracks.map(x=>`<option value="${esc(x.id)}" ${d.track===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label>`:''}
+      </section>`:''}
+      <section class="enc">${g.map((gg,i)=>gg.length?`<div class="grp" style="margin-top:${i?10:0}px">${t('grp'+(i+1))}</div><div class="chips">${gg.map(chip).join('')}</div>`:'').join('')}</section>`;
     panel.scrollTop=0;
-    panel.querySelectorAll('.chips button').forEach(b=>b.onclick=()=>select(b.dataset.k));
+    bindChips(panel);
+    if($('backRoute')) $('backRoute').onclick=()=>view('routes',atlasRoute.id);
     const q=panel.querySelector('#afq'), res=panel.querySelector('#afr');
     q.oninput=()=>{ const v=q.value.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim(); if(!v){res.innerHTML='';return}
       const hit=keys.filter(x=>searchText(x).includes(v)).slice(0,14);
-      res.innerHTML=hit.length?`<div class="chips">${hit.map(chip).join('')}</div>`:`<span class="muted" style="font-size:13.5px">${t('encNone')}</span>`;
-      res.querySelectorAll('button').forEach(b=>b.onclick=()=>select(b.dataset.k)) };
+      res.innerHTML=hit.length?`<div class="chips">${hit.map(chip).join('')}</div>`:`<span class="muted" style="font-size:13.5px">${t('encNone')}</span>`; bindChips(res) };
+    if(overlay){
+      const upd=()=>{ DIARY[k]=Object.assign(DIARY[k]||{},{v:$('dv').checked,date:$('dd').value,note:$('dn').value}); if($('dt')) DIARY[k].track=$('dt').value; saveDiary(); restyle() };
+      $('dv').onchange=()=>{ if($('dv').checked&&!$('dd').value) $('dd').value=dayKey(); upd() }; $('dd').onchange=upd; $('dn').oninput=upd; if($('dt')) $('dt').onchange=()=>{upd();playPlaceTrack(k)};
+      const showPh=async()=>{ try{ const b=await pidb('get',k); if(b&&$('dph')){ const u=URL.createObjectURL(b); $('dph').innerHTML=`<img class="myph" src="${u}" alt="${esc(t('diaryMine'))}">`; $('dph').querySelector('img').onclick=()=>lightbox([{src:u,cap:t('diaryMine')}],0) } }catch(e){} };
+      if(d.photo) showPh();
+      $('dp').onchange=async e=>{ const f=e.target.files[0]; if(!f) return; try{ const b=await resizePhoto(f); await pidb('put',k,b); DIARY[k]=Object.assign(DIARY[k]||{},{photo:1}); saveDiary(); select(k) }catch(err){} };
+      if($('dpx')) $('dpx').onclick=async()=>{ try{await pidb('delete',k)}catch(e){} if(DIARY[k]) delete DIARY[k].photo; saveDiary(); select(k) };
+      if($('offBtn')) $('offBtn').onclick=e=>saveOffline(k,e.target);
+      playPlaceTrack(k);
+    }
     let al=imgsOf(k).map(x=>({src:photoUrl(x[0],1800),cap:L==='en'?x[2]:x[1]})), ai=0;
     const ph=panel.querySelector('#aph'); ph.onclick=()=>{ if(al.length) lightbox(al,ai) };
     const showHero=i=>{ const a=al[i]; if(!a) return; ai=i; ph.innerHTML=`<img src="${a.src}" alt="${esc(a.cap)}" onload="this.classList.add('in')"><span class="zoom">⤢ ${t('zoom')}</span>`;
       panel.querySelectorAll('#alb button').forEach(x=>x.classList.toggle('on',+x.dataset.i===i)) };
-    const got=await fetchAlbum(k); if(focus!==k) return; const alb=panel.querySelector('#alb'); if(!alb) return;
+    const got=await fetchAlbum(k); if(focus!==k||atlasView!=='place') return; const alb=panel.querySelector('#alb'); if(!alb) return;
     al=got;
-    alb.innerHTML=al.map((a,i)=>`<button type="button" data-i="${i}" class="${i===0?'on':''}" aria-label="${esc(a.cap)}"><img loading="lazy" src="${a.th}" alt="${esc(a.cap)}" onerror="this.parentNode.remove()"></button>`).join('')||`<span class="muted" style="font-size:13.5px">${t('offline')}</span>`;
+    alb.innerHTML=al.map((a,i)=>`<button type="button" data-i="${i}" class="${i===0?'on':''}" aria-label="${esc(a.cap)}"><img loading="lazy" src="${a.th}" alt="${esc(a.cap)}" onerror="this.parentNode.remove()"></button>`).join('')||`<span class="muted" style="font-size:13.5px">${navigator.onLine===false?t('offline'):t('noPhotos')}</span>`;
     alb.querySelectorAll('button').forEach(b=>b.onclick=()=>showHero(+b.dataset.i));
     if(!ph.querySelector('img')&&al.length) showHero(0);
   };
-  const svgFallback=()=>{lmap=null;markers={};mapEl.innerHTML=`<div class="svgfb">${bigMap(null,true,true,keys)}</div>`;bindSvgPoints(mapEl,select)};
+  const view=(v,rid)=>{
+    atlasView=v; syncTabs();
+    if(v==='place'){ atlasRoute=null; drawRoute(null); return select(focus) }
+    if(v==='routes'){
+      const r=rid?ROUTES.find(x=>x.id===rid):null; atlasRoute=r; drawRoute(r);
+      panel.innerHTML=`<h2 style="font-size:24px">${t('tabRoutes')}</h2>${ROUTES.map(x=>`<section class="enc route ${r&&r.id===x.id?'on':''}"><h4>${esc(tr(x.n))}</h4><p>${esc(tr(x.intro))}</p><span class="src">${t('srcL')}: ${esc(tr(x.src))}${vbHtml(tr(x.src))}</span>
+        ${r&&r.id===x.id?`<ol class="steps">${x.steps.map(([k,ref])=>`<li><button type="button" data-k="${k}">${esc(pn(k))}</button> <span class="src">${CC}, ${esc(ref)}</span></li>`).join('')}</ol>`:`<div class="row"><button type="button" class="btn small" data-r="${x.id}">${t('showRoute')}</button></div>`}</section>`).join('')}`;
+      panel.scrollTop=0;
+      panel.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>view('routes',b.dataset.r));
+      panel.querySelectorAll('.steps [data-k]').forEach(b=>b.onclick=()=>{atlasView='place';syncTabs();select(b.dataset.k)});
+      return }
+    atlasRoute=null; drawRoute(null);
+    if(v==='cal'){
+      const now=new Date().getMonth()+1;
+      panel.innerHTML=`<h2 style="font-size:24px">${t('tabCal')}</h2><p class="note">${t('festNote')}</p>${MON.sl.map((_,i)=>{const m=i+1, items=FEST.filter(f=>f[2].includes(m)&&keys.includes(f[0])); const grp=[]; items.forEach(f=>{const n=tr(f[1]); const g=grp.find(x=>x.n===n); g?g.k.push(f[0]):grp.push({n,k:[f[0]]})}); return grp.length?`<section class="enc cal ${m===now?'now':''}"><h4>${MON[L][i]}${m===now?' · '+t('thisMonth'):''}</h4><ul class="fest">${grp.map(g=>`<li><b>${esc(g.n)}</b> · <span class="chips" style="display:inline-flex;flex-wrap:wrap;gap:4px">${g.k.map(k=>`<button type="button" data-k="${k}">${esc(short(k))}</button>`).join('')}</span></li>`).join('')}</ul></section>`:''}).join('')}`;
+      panel.scrollTop=0; bindChips(panel); return }
+    if(v==='diary'){
+      const vis=keys.filter(k=>DIARY[k]&&DIARY[k].v);
+      panel.innerHTML=`<h2 style="font-size:24px">${t('tabDiary')}</h2><p>${t('diaryCount',vis.length,keys.length)}</p>
+        ${vis.length?`<ul class="fest">${vis.map(k=>`<li><span class="chips" style="display:inline-flex"><button type="button" data-k="${k}">✓ ${esc(short(k))}</button></span> ${DIARY[k].date?esc(DIARY[k].date):''}${DIARY[k].note?` · <span class="muted">${esc(DIARY[k].note.slice(0,80))}</span>`:''}</li>`).join('')}</ul>`:`<p class="note">${t('diaryEmpty')}</p>`}<p class="note">${t('diaryLocal')}</p>`;
+      panel.scrollTop=0; bindChips(panel); return }
+  };
+  if(overlay) ATL={view};
+  const svgFallback=()=>{lmap=null;markers={};mapEl.innerHTML=`<div class="svgfb">${bigMap(null,true,true,keys)}</div>`;bindSvgPoints(mapEl,k=>{atlasView='place';syncTabs();select(k)})};
   if(window.L&&navigator.onLine!==false){
     try{
       lmap=window.L.map(mapEl,{zoomControl:true,attributionControl:true,minZoom:4,maxZoom:16}).setView([22.5,80],5);
@@ -2097,20 +2364,119 @@ function buildAtlas(box,focus,lvOnly){
       sw.innerHTML=`<button type="button" data-b="map" class="${baseK==='map'?'on':''}">${L==='en'?'Map':'Zemljevid'}</button><button type="button" data-b="sat" class="${baseK==='sat'?'on':''}">${L==='en'?'Satellite':'Satelit'}</button>`;
       mapEl.appendChild(sw); window.L.DomEvent.disableClickPropagation(sw);
       sw.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.b===baseK) return; lmap.removeLayer(BASE[baseK]); baseK=b.dataset.b; store.set('sm-base',baseK); BASE[baseK].addTo(lmap); sw.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)) });
-      const r1=keys.filter(k=>ATLAS1.includes(k)), r2=lvOnly===1?[]:placesOf(2).filter(k=>keys.includes(k));
-      if(lvOnly!==2&&r1.length) window.L.polyline(r1.map(k=>PLACES[k].ll),{color:'#EE7F2D',weight:1.5,opacity:.6,dashArray:'4 6'}).addTo(lmap);
-      if(r2.length) window.L.polyline(r2.map(k=>PLACES[k].ll),{color:'#7FC8A9',weight:1.5,opacity:.6,dashArray:'2 6'}).addTo(lmap);
+      if(lvOnly===1) window.L.polyline(keys.map(k=>PLACES[k].ll),{color:'#EE7F2D',weight:1.5,opacity:.6,dashArray:'4 6'}).addTo(lmap);
       keys.forEach(k=>{const P=PLACES[k];
-        const m=window.L.circleMarker(P.ll,Object.assign({color:'#0D1330',weight:1.5,fillOpacity:1},mstyle(k,false))).addTo(lmap);
-        m.bindTooltip(short(k),{direction:'top',offset:[0,-6]}); m.on('click',()=>select(k)); markers[k]=m;});
+        const m=window.L.circleMarker(P.ll,Object.assign({fillOpacity:1},mstyle(k,false))).addTo(lmap);
+        m.bindTooltip(short(k),{direction:'top',offset:[0,-6]}); m.on('click',()=>{atlasView='place';syncTabs();atlasRoute=null;drawRoute(null);select(k)}); markers[k]=m;});
       lmap.fitBounds(window.L.latLngBounds(keys.map(k=>PLACES[k].ll)).pad(.08));
       setTimeout(()=>{if(lmap)lmap.invalidateSize()},250);
-      setTimeout(()=>{if(okTiles===0&&box.isConnected){try{lmap.remove()}catch(e){} svgFallback(); select(focus)}},4500);
+      setTimeout(()=>{if(okTiles===0&&box.isConnected){try{lmap.remove()}catch(e){} svgFallback(); view(atlasView,atlasRoute&&atlasRoute.id)}},4500);
     }catch(e){svgFallback()}
   } else svgFallback();
-  select(focus);
+  view(overlay?atlasView:'place');
 }
 function bindSvgPoints(root,fn){root.querySelectorAll('svg g[data-k]').forEach(c=>{c.addEventListener('click',()=>fn?fn(c.dataset.k):openAtlas(c.dataset.k))})}
+/* ---------- Vodnik: navigacija, nasveti, prazniki, poti, dnevnik / Guide ---------- */
+/* Navigacija odpre iskanje po imenu templja v zemljevidih, zato ni odvisna od naših približnih koordinat. */
+const NAV={gangotri:'Gangotri Temple',kailas:'Mount Kailash',badri:'Badrinath Temple',mukti:'Muktinath Temple',haridwar:'Har Ki Pauri Haridwar',prayag:'Triveni Sangam Prayagraj',kasi:'Shri Kashi Vishwanath Temple Varanasi',gaya:'Vishnupad Temple Gaya',
+ tirumala:'Sri Venkateswara Temple Tirumala',ahobilam:'Ahobilam Temple',srirangam:'Sri Ranganathaswamy Temple Srirangam',udupi:'Udupi Sri Krishna Matha',naimisa:'Chakra Tirth Naimisharanya',ayodhya:'Shri Ram Janmabhoomi Mandir Ayodhya',kuruksetra:'Brahma Sarovar Kurukshetra',dvaraka:'Dwarkadhish Temple Dwarka',
+ mayapur:'ISKCON Sri Mayapur Chandrodaya Mandir',navadvip:'Nabadwip',puri:'Shree Jagannath Temple Puri',mathura:'Shri Krishna Janmasthan Mathura',vrindavan:'ISKCON Krishna Balaram Mandir Vrindavan',govardhan:'Govardhan Hill',varsana:'Shri Radha Rani Temple Barsana',radhakunda:'Radha Kund',radhadamodar:'Radha Damodar Temple Vrindavan',
+ nagalapuram:'Vedanarayana Swamy Temple Nagalapuram',srikurmam:'Srikurmam Temple',tvaraha:'Sri Bhu Varaha Swamy Temple Tirumala',srimushnam:'Bhu Varaha Swamy Temple Srimushnam',simhachalam:'Simhachalam Temple',yadagiri:'Yadagirigutta Temple',thrikkakara:'Thrikkakara Vamana Moorthy Temple',sirkazhi:'Thadalan Temple Sirkazhi',
+ bhadrachalam:'Bhadrachalam Sita Ramachandra Swamy Temple',triprayar:'Thriprayar Sree Rama Temple',orchha:'Ram Raja Temple Orchha',rameswaram:'Ramanathaswamy Temple Rameswaram',nathdwara:'Shrinathji Temple Nathdwara',dakor:'Ranchhodraiji Temple Dakor',jaipur:'Govind Dev Ji Temple Jaipur',karauli:'Madan Mohan Ji Temple Karauli',
+ guruvayur:'Guruvayur Sri Krishna Temple',pandharpur:'Vithoba Temple Pandharpur',padmanabha:'Sree Padmanabhaswamy Temple',adikesava:'Adikesava Perumal Temple Thiruvattar',srirangapatna:'Sri Ranganathaswamy Temple Srirangapatna',gokula:'Gokul Mathura',bhandira:'Bhandirvan',nandagrama:'Nand Bhawan Nandgaon'};
+const navUrl=k=>NAV[k]?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(NAV[k]):null;
+const NOTES={
+ badri:["Tempelj je pozimi zaprt. Datume odprtja in zaprtja vsako leto razglasijo.","The temple is closed in winter. The opening and closing dates are announced every year."],
+ gangotri:["Tempelj Gaṅgotrī je pozimi zaprt. Do ledenika Gaumukh vodi gorska pešpot, za katero je potrebno dovoljenje.","The Gaṅgotrī temple is closed in winter. A mountain trail leads to the Gaumukh glacier, for which a permit is required."],
+ kailas:["Kailāsa je v Tibetu (Kitajska). Potovanje je mogoče le s posebnimi dovoljenji.","Kailāsa is in Tibet (China). Travel is possible only with special permits."],
+ mukti:["Muktināth leži na zavarovanem območju Annapurna v Nepalu; tujci potrebujejo dovolilnico ACAP.","Muktināth lies in the Annapurna Conservation Area in Nepal; foreigners need an ACAP permit."],
+ puri:["V tempelj Gospoda Jagannāthe smejo vstopiti le hindujci.","Only Hindus may enter the temple of Lord Jagannātha."],
+ padmanabha:["V tempelj smejo vstopiti le hindujci. Velja strog predpis oblačenja: moški v dhotiju brez srajce, ženske v sariju ali dolgem krilu.","Only Hindus may enter the temple. A strict dress code applies: men in a dhoti without a shirt, women in a sari or long skirt."],
+ guruvayur:["V tempelj smejo vstopiti le hindujci. Moški vstopijo brez srajce.","Only Hindus may enter the temple. Men enter without a shirt."],
+};
+const GENNOTE=["Urnikov darśana in āratija ne navajamo, ker se spreminjajo; pred obiskom jih preverite pri templju.","Darśana and ārati times are not given because they change; check them with the temple before your visit."];
+const MON={sl:['januar','februar','marec','april','maj','junij','julij','avgust','september','oktober','november','december'],en:['January','February','March','April','May','June','July','August','September','October','November','December']};
+/* [kraj, ime praznika SL/EN, meseci (1–12) po gregorijanskem koledarju, v katerih praznik običajno pade] */
+const FEST=[
+ ['puri',['Snāna-yātrā','Snāna-yātrā'],[5,6]],['puri',['Ratha-yātrā','Ratha-yātrā'],[6,7]],
+ ['mayapur',['Gaura-pūrṇimā','Gaura-pūrṇimā'],[2,3]],
+ ['mathura',['Janmāṣṭamī','Janmāṣṭamī'],[8,9]],['dvaraka',['Janmāṣṭamī','Janmāṣṭamī'],[8,9]],['varsana',['Rādhāṣṭamī','Rādhāṣṭamī'],[8,9]],
+ ['vrindavan',['Kārttika, mesec Dāmodare','Kārttika, the month of Dāmodara'],[10,11]],['govardhan',['Govardhana-pūjā','Govardhana-pūjā'],[10,11]],['radhakunda',['Bahulāṣṭamī, pojav Rādhā-kuṇḍe','Bahulāṣṭamī, appearance of Rādhā-kuṇḍa'],[10,11]],
+ ['simhachalam',['Candana-yātrā (Akṣaya-tṛtīyā)','Candana-yātrā (Akṣaya-tṛtīyā)'],[4,5]],['simhachalam',['Nṛsiṁha-caturdaśī','Nṛsiṁha-caturdaśī'],[4,5]],['ahobilam',['Nṛsiṁha-caturdaśī','Nṛsiṁha-caturdaśī'],[4,5]],['yadagiri',['Nṛsiṁha-caturdaśī','Nṛsiṁha-caturdaśī'],[4,5]],
+ ['thrikkakara',['Onam','Onam'],[8,9]],['ayodhya',['Rāma-navamī','Rāma-navamī'],[3,4]],['bhadrachalam',['Rāma-navamī','Rāma-navamī'],[3,4]],
+ ['tirumala',['Brahmotsavam','Brahmotsavam'],[9,10]],['srirangam',['Vaikuṇṭha-ekādaśī','Vaikuṇṭha-ekādaśī'],[12,1]],['guruvayur',['Guruvāyūr-ekādaśī','Guruvāyūr-ekādaśī'],[11,12]],
+ ['pandharpur',['Āṣāḍhī-ekādaśī in peš romanje vārī','Āṣāḍhī-ekādaśī and the vārī pilgrimage on foot'],[6,7]],['kuruksetra',['Gītā-jayantī','Gītā-jayantī'],[11,12]],
+ ['prayag',['Māgha-melā (vsako leto); Kumbha-melā vsakih 12 let','Māgha-melā (every year); Kumbha-melā every 12 years'],[1,2]],['udupi',['Paryāya, menjava čuvarjev maṭhe vsaki dve leti','Paryāya, change of the maṭha’s custodians every two years'],[1]],
+ ['nathdwara',['Annakūṭa','Annakūṭa'],[10,11]],
+];
+const festOf=k=>FEST.filter(f=>f[0]===k);
+const monRange=m=>m.map(x=>MON[L][x-1]).join(L==='en'?'–':'–');
+/* Poti po Caitanya-caritāmṛti / Routes from the Caitanya-caritāmṛta */
+const ROUTES=[
+ {id:'jug',n:['Mahāprabhujevo potovanje po južni Indiji','Mahāprabhu’s tour of South India'],src:[CC+', Madhya 7–9',CC+', Madhya 7–9'],
+  intro:['Śrī Caitanya je po sprejemu sannyāse iz Purīja odšel na jug in povsod navdihnil ljudi k petju Hare Kṛṣṇa. Prikazana so le mesta iz te igre, v vrstnem redu iz Caitanya-caritāmṛte.','After accepting sannyāsa, Śrī Caitanya went south from Purī and inspired people everywhere to chant Hare Kṛṣṇa. Only the places in this game are shown, in the order of the Caitanya-caritāmṛta.'],
+  steps:[['puri','Madhya 7'],['srikurmam','Madhya 7'],['simhachalam','Madhya 8.3'],['ahobilam','Madhya 9.16'],['tirumala','Madhya 9.64'],['srirangam','Madhya 9.79'],['rameswaram','Madhya 9.199'],['adikesava','Madhya 9.234'],['padmanabha','Madhya 9.241'],['udupi','Madhya 9.245'],['pandharpur','Madhya 9.282'],['puri','Madhya 9.335']]},
+ {id:'vraja',n:['Mahāprabhujevo potovanje v Vṛndāvano','Mahāprabhu’s journey to Vṛndāvana'],src:[CC+', Madhya 17–20',CC+', Madhya 17–20'],
+  intro:['Śrī Caitanya je skozi gozd Jhārikhaṇḍa odšel v Vṛndāvano. Na poti nazaj je v Prayāgi poučil Rūpo Gosvāmīja, v Kāśīju pa Sanātano Gosvāmīja.','Śrī Caitanya went to Vṛndāvana through the Jhārikhaṇḍa forest. On the way back He taught Rūpa Gosvāmī in Prayāga and Sanātana Gosvāmī in Kāśī.'],
+  steps:[['puri','Madhya 17'],['kasi','Madhya 17'],['prayag','Madhya 17'],['mathura','Madhya 17'],['vrindavan','Madhya 18'],['radhakunda','Madhya 18.3'],['govardhan','Madhya 18'],['prayag','Madhya 19'],['kasi','Madhya 20']]},
+];
+/* Povezave na poglavja v vedabase.io */
+function vbLinks(src){
+  const out=[], add=(u,l)=>{if(!out.some(o=>o.u===u)) out.push({u,l})};
+  const s=String(src);
+  for(const m of s.matchAll(/(?:Bhāgavatam)\s+(\d+)\.(\d+)/g)) add(`https://vedabase.io/en/library/sb/${m[1]}/${m[2]}/`,`ŚB ${m[1]}.${m[2]}`);
+  if(/Caitanya-caritāmṛta/.test(s)) for(const m of s.matchAll(/(Ādi|Madhya|Antya)\s+(\d+)/g)){ const p={Ādi:'adi',Madhya:'madhya',Antya:'antya'}[m[1]]; add(`https://vedabase.io/en/library/cc/${p}/${m[2]}/`,`CC ${m[1]} ${m[2]}`) }
+  for(const m of s.matchAll(/Bhagavad-gītā\s+(\d+)/g)) add(`https://vedabase.io/en/library/bg/${m[1]}/`,`BG ${m[1]}`);
+  return out.slice(0,3);
+}
+const vbHtml=src=>vbLinks(src).map(o=>` <a class="vb" href="${o.u}" target="_blank" rel="noopener">${esc(o.l)} ↗</a>`).join('');
+/* Dnevnik romanja / Pilgrimage diary */
+const DIARY=store.get('sm-diary',{}); const saveDiary=()=>store.set('sm-diary',DIARY);
+function pidb(op,key,val){ return new Promise((res,rej)=>{ if(!window.indexedDB) return rej('no idb'); const rq=indexedDB.open('sveta-mesta-dnevnik',1);
+  rq.onupgradeneeded=()=>rq.result.createObjectStore('p'); rq.onerror=()=>rej(rq.error);
+  rq.onsuccess=()=>{ const tx=rq.result.transaction('p',op==='get'?'readonly':'readwrite'), st=tx.objectStore('p'); const r=op==='get'?st.get(key):op==='put'?st.put(val,key):st.delete(key); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error) } }) }
+function resizePhoto(file){ return new Promise((res,rej)=>{ const im=new Image(), u=URL.createObjectURL(file); im.onload=()=>{ const s=Math.min(1,1600/Math.max(im.width,im.height)); const c=document.createElement('canvas'); c.width=Math.round(im.width*s); c.height=Math.round(im.height*s); c.getContext('2d').drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); c.toBlob(b=>b?res(b):rej('blob'),'image/jpeg',.85) }; im.onerror=()=>{URL.revokeObjectURL(u);rej('img')}; im.src=u }) }
+/* Shranjevanje za pot brez interneta (v nameščeni aplikaciji) */
+const OFF=store.get('sm-off',{});
+async function saveOffline(k,btn){
+  if(!('caches' in window)){ btn.textContent=t('offNo'); return }
+  btn.disabled=true; btn.textContent=t('offBusy');
+  try{ const al=await fetchAlbum(k); const c=await caches.open('sm-offline'); let n=0;
+    for(const a of al){ for(const u of [a.src,a.th]){ try{ const r=await fetch(u,{mode:'no-cors'}); await c.put(u,r); }catch(e){} } n++; btn.textContent=t('offProg',n,al.length) }
+    OFF[k]=n; store.set('sm-off',OFF); btn.textContent=t('offDone',n);
+  }catch(e){ btn.textContent=t('offNo') } btn.disabled=false }
+/* Glasba ob mestu / Music for a place */
+function playPlaceTrack(k){ const d=DIARY[k]; if(!d||!d.track||Snd.mode==='off') return; const i=Snd.tracks.findIndex(x=>x.id===d.track); if(i<0) return; if(Snd.ti===i&&Snd.mode==='mine') return; Snd.ti=i; Snd.mode='mine'; store.set('sm-snd','mine'); Snd.apply() }
+
+/* ---------- Za učitelje in skupine / For teachers and groups ---------- */
+let BIG=store.get('sm-big',false); document.documentElement.classList.toggle('big',!!BIG);
+function teacherScreen(lvSel){
+  screenFn=()=>teacherScreen(lvSel); renderHeader(-1); setBg('navadvip'); const lv=lvSel||setup.lv||1;
+  stageEl(`<div class="card">
+    <div class="eyebrow">${t('teachEyebrow')}</div><h2>${t('teachTitle')}</h2>
+    <p>${t('teachIntro')}</p>
+    <div class="lvls">${[1,2,3].map(l=>`<button class="mode ${lv===l?'on':''}" data-lv="${l}" type="button"><b>${t('lv'+l)}</b><span>${t('teachN',LVL(l).reduce((s,i)=>s+POOL[i].length,0)+1)}</span></button>`).join('')}</div>
+    <div class="row"><button class="btn" id="prQ" type="button">${t('printQ')}</button><button class="btn ghost" id="prC" type="button">${t('printC')}</button></div>
+    <label class="check" for="bigC"><input type="checkbox" id="bigC" ${BIG?'checked':''}>${t('bigMode')}</label>
+    <p class="note">${t('teachNote')}</p>
+    <div class="row"><button class="btn ghost" id="tback" type="button">${t('home')}</button></div>
+  </div>`);
+  $('stage').querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>teacherScreen(+b.dataset.lv));
+  $('bigC').onchange=e=>{BIG=e.target.checked;store.set('sm-big',BIG);document.documentElement.classList.toggle('big',BIG)};
+  $('prQ').onclick=()=>printSheet(lv,false); $('prC').onclick=()=>printSheet(lv,true);
+  $('tback').onclick=startScreen;
+}
+function printSheet(lv,cards){
+  const qs=[]; LVL(lv).forEach(si=>{ POOL[si].forEach(Q=>qs.push([si,Q])); if(STAGES[si].fq) qs.push([si,STAGES[si].fq]) });
+  const el=document.createElement('div'); el.id='printArea';
+  el.innerHTML=`<h1>${t('title')} · ${t('lv'+lv)}</h1>`+(cards?
+    `<div class="pcards">${qs.map(([si,Q],n)=>{const o=shuffle([0,1,2],rng(n*97+lv)), op=qOpts(Q);return `<div class="pcard"><div class="pc-h">${n+1} · ${esc(pn(Q[0]))}</div><p class="pc-q">${esc(qText(Q))}</p><ol type="a">${o.map(i=>`<li>${esc(op[i])}</li>`).join('')}</ol><p class="pc-a">${t('printAns')}: ${'abc'[o.indexOf(0)]})</p></div>`}).join('')}</div><p class="pnote">${t('printCardsNote')}</p>`
+    :LVL(lv).map(si=>`<h2>${esc(tr(STAGES[si].n))}</h2><ol>${qs.filter(x=>x[0]===si).map(([,Q])=>`<li><p><b>${esc(qText(Q))}</b> <i>(${esc(pn(Q[0]))})</i></p><p>${t('printAns')}: ${esc(qOpts(Q)[0])}. ${esc(qEx(Q))}</p><p class="psrc">${t('srcL')}: ${esc(qSrc(Q))}</p></li>`).join('')}</ol>`).join(''));
+  document.body.appendChild(el); document.documentElement.classList.add('printing');
+  const done=()=>{el.remove();document.documentElement.classList.remove('printing');window.removeEventListener('afterprint',done)};
+  window.addEventListener('afterprint',done); setTimeout(()=>{ try{window.print()}catch(e){} setTimeout(()=>{ if(document.getElementById('printArea')) done() },1500) },60);
+}
+
 /* povečava z listanjem / lightbox gallery */
 let lbList=[], lbI=0;
 function lbShow(){ const a=lbList[lbI]; if(!a) return; $('lbImg').src=a.src.replace(/width=\d+/,'width=2400'); $('lbImg').alt=a.cap||''; $('lbCap').textContent=a.cap||''; $('lbCount').textContent=lbList.length>1?`${lbI+1} / ${lbList.length}`:''; $('lbPrev').hidden=$('lbNext').hidden=lbList.length<2 }
@@ -2126,10 +2492,11 @@ $('lbImg').onerror=function(){ const a=lbList[lbI]; if(a&&this.src!==a.src) this
 const HELP={
  sl:()=>`<h3>Cilj igre</h3>
   <p>Prepotuješ sveta mesta Indije in zbiraš tilake. Ob tem spoznaš Božanstva, templje, zabave Gospoda in velike bhakte, ki so ta mesta obiskali. Vprašanja temeljijo na knjigah Śrīle Prabhupāde; kjer podatek izhaja iz izročila templja ali zgodovine, je to navedeno pri viru. Zmaga, kdor do konca zbere največ tilak.</p>
-  <h3>Dve romanji in dnevna igra</h3>
+  <h3>Tri romanja in dnevna igra</h3>
   <ul><li><b>Osnovno romanje:</b> 7 stopenj, od izvira Gaṅge do Vṛndāvane. Vsaka igra izbere ${FULLQ} novih vprašanj iz zbirke ${POOLSIZE}.</li>
   <li><b>Napredno romanje:</b> 5 stopenj po templjih daśāvatāre (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) in k velikim Božanstvom Kṛṣṇe: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala in ležeči Viṣṇu. ${FULLQ2} vprašanj iz zbirke ${POOLSIZE2}.</li>
-  <li><b>Dnevno romanje:</b> vsak dan druga stopnja iz obeh romanj s 5 vprašanji. Vprašanja so tisti dan za vse enaka. Igra šteje zaporedne dni.</li></ul>
+  <li><b>Vraja-maṇḍala:</b> 3 stopnje po Kṛṣṇovih zabavah v Vraji iz Śrīmad-Bhāgavatama: Gokula, gozdovi Vraje, Govardhana in Vṛndāvana. ${FULLQ3} vprašanj iz zbirke ${POOLSIZE3}.</li>
+  <li><b>Dnevno romanje:</b> vsak dan druga stopnja iz vseh romanj s 5 vprašanji. Vprašanja so tisti dan za vse enaka. Igra šteje zaporedne dni.</li></ul>
   <h3>Potek</h3>
   <ol><li>Izberi način in romanje, vpiši imena igralcev ali ekip ter pritisni <b>Začni romanje</b>.</li>
   <li>Pri vsakem vprašanju v ozadju vidiš fotografijo svetega mesta, ob imenu pa majhen zemljevid. Tapni ga, da odpreš atlas.</li>
@@ -2152,15 +2519,24 @@ const HELP={
   <p>Med stopnjami vidiš zemljevid poti in svojo stopnjo na lestvici devetih stopenj vdanosti iz Nektarja vdanosti: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva in prema. Igra se sproti shranjuje.</p>
   <h3>Atlas – enciklopedija svetih mest</h3>
   <p>Gumb <b>Atlas</b> odpre zemljevid vseh svetih mest obeh romanj. Za vsako mesto so opisana <b>Božanstva</b>, <b>zgodba in pomen</b> ter zapisi <b>iz knjig in izročila</b> z viri. Mesta lahko iščeš po imenu ali Božanstvu. Tapni fotografijo, da jo povečaš, in listaj po albumu s puščicami ali s potegom prsta.</p>
+  <h3>Vodnik za romarje</h3>
+  <ul><li><b>Za romarje:</b> pri vsakem kraju so pomembna pravila za obisk (npr. kje smejo vstopiti le hindujci), glavni prazniki z meseci, v katerih običajno padejo, in gumb <b>Navigacija do sem</b>, ki odpre zemljevid s točnim imenom templja. Urnikov darśana ne navajamo, ker se spreminjajo.</li>
+  <li><b>Poti:</b> Mahāprabhujevo potovanje po južni Indiji in v Vṛndāvano po Caitanya-caritāmṛti, korak za korakom na zemljevidu.</li>
+  <li><b>Koledar:</b> prazniki svetih mest po mesecih; trenutni mesec je poudarjen.</li>
+  <li><b>Moje romanje:</b> označite obiskane kraje, dodajte datum, zapis, svojo fotografijo in glasbo ob odprtju kraja. Vse ostane samo na vaši napravi.</li>
+  <li><b>Shrani fotografije za pot:</b> v nameščeni aplikaciji shrani fotografije kraja, da so vidne tudi brez interneta. Besedila in vprašanja delujejo brez interneta že sama po sebi.</li>
+  <li><b>Iz knjig:</b> pri virih so povezave na poglavja v knjigah Śrīle Prabhupāde na vedabase.io.</li>
+  <li><b>Za učitelje:</b> tisk vseh vprašanj z odgovori, tisk kartic in projektorski način z večjo pisavo.</li></ul>
   <h3>Zvok in mahā-mantra</h3>
   <p>V ozadju igre se predvaja Hare Kṛṣṇa mahā-mantra. Gumb <b>Zvok</b> odpre nastavitve: mahā-mantra, vgrajena <b>tanpura</b>, ki deluje brez interneta, ali izklop. Dodaš lahko tudi svoje posnetke bhajanov, ki ostanejo samo na tvoji napravi.</p>
   <h3>Jezik</h3><p>Gumb <b>EN</b> ali <b>SL</b> v glavi kadar koli zamenja jezik.</p>`,
  en:()=>`<h3>Aim of the game</h3>
   <p>You travel through the holy places of India and collect tilakas. Along the way you learn about the Deities, the temples, the Lord's pastimes and the great devotees who visited these places. The questions are based on Śrīla Prabhupāda's books; where a fact comes from temple tradition or history, the source says so. Whoever collects the most tilakas by the end wins.</p>
-  <h3>Two pilgrimages and a daily game</h3>
+  <h3>Three pilgrimages and a daily game</h3>
   <ul><li><b>Basic pilgrimage:</b> 7 stages, from the source of the Gaṅgā to Vṛndāvana. Every game draws ${FULLQ} new questions from a pool of ${POOLSIZE}.</li>
   <li><b>Advanced pilgrimage:</b> 5 stages through the temples of the daśāvatāra (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) and to the great Deities of Kṛṣṇa: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala and the reclining Viṣṇu. ${FULLQ2} questions from a pool of ${POOLSIZE2}.</li>
-  <li><b>Daily pilgrimage:</b> every day a different stage from both pilgrimages, with 5 questions. The questions are the same for everyone that day. The game counts the days in a row.</li></ul>
+  <li><b>Vraja-maṇḍala:</b> 3 stages through Kṛṣṇa's pastimes in Vraja from the Śrīmad-Bhāgavatam: Gokula, the forests of Vraja, Govardhana and Vṛndāvana. ${FULLQ3} questions from a pool of ${POOLSIZE3}.</li>
+  <li><b>Daily pilgrimage:</b> every day a different stage from all pilgrimages, with 5 questions. The questions are the same for everyone that day. The game counts the days in a row.</li></ul>
   <h3>How it works</h3>
   <ol><li>Choose a mode and a pilgrimage, enter the names of the players or teams and press <b>Begin the pilgrimage</b>.</li>
   <li>Each question shows a photo of the holy place in the background and a small locator map next to its name. Tap the map to open the atlas.</li>
@@ -2183,6 +2559,14 @@ const HELP={
   <p>Between stages you see the route map and your level on the ladder of nine devotional stages from The Nectar of Devotion: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva and prema. The game saves as you play.</p>
   <h3>Atlas – encyclopedia of holy places</h3>
   <p>The <b>Atlas</b> button opens a map of all the holy places of both pilgrimages. For each place it describes the <b>Deities</b>, the <b>history and significance</b> and entries <b>from the books and tradition</b> with sources. You can search places by name or Deity. Tap a photo to enlarge it and browse the album with the arrows or by swiping.</p>
+  <h3>Pilgrim's guide</h3>
+  <ul><li><b>For pilgrims:</b> for each place, important rules for visiting (e.g. where only Hindus may enter), the main festivals with the months in which they usually fall, and a <b>Navigate here</b> button that opens the map with the exact temple name. Darśana times are not given because they change.</li>
+  <li><b>Routes:</b> Mahāprabhu's tour of South India and His journey to Vṛndāvana according to the Caitanya-caritāmṛta, step by step on the map.</li>
+  <li><b>Calendar:</b> the festivals of the holy places by month; the current month is highlighted.</li>
+  <li><b>My pilgrimage:</b> mark the places you have visited and add a date, a note, your own photo and music for the place. Everything stays on your device only.</li>
+  <li><b>Save photos for the journey:</b> in the installed app, saves a place's photos so they show without internet. Texts and questions already work offline.</li>
+  <li><b>From the books:</b> sources link to the chapters of Śrīla Prabhupāda's books on vedabase.io.</li>
+  <li><b>For teachers:</b> print all questions with answers, print cards, and projector mode with larger text.</li></ul>
   <h3>Sound and mahā-mantra</h3>
   <p>The Hare Kṛṣṇa mahā-mantra plays in the background of the game. The <b>Sound</b> button opens the settings: the mahā-mantra, the built-in <b>tanpura</b> (works offline) or off. You can also add your own bhajan recordings, which stay on your device only.</p>
   <h3>Language</h3><p>The <b>SL</b> or <b>EN</b> button in the header switches the language at any time.</p>`};

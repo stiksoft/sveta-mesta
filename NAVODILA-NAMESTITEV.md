@@ -23,7 +23,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v11'` (npr. na v12).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v12'` (npr. na v13).
 
 ## English
 
@@ -39,3 +39,7 @@ This folder contains the whole game as a web app (PWA) for Android, iPhone/iPad,
 - Atlas kot enciklopedija: Božanstva, zgodba, zapisi iz knjig z viri, iskanje, večje fotografije z listanjem · Atlas as an encyclopedia.
 - Ekipe: do 6, enako število vprašanj, prevzem (+2), odločilno vprašanje, koda igre za več naprav · Teams: up to 6, equal questions, steal, tie-break, game code.
 - Posodobitev na telefonu: odprite aplikacijo z internetom, zaprite jo in znova odprite · To update on a phone: open the app online, close it and open it again.
+
+## Novo v različici 12 / New in version 12
+- Tretje romanje Vraja-maṇḍala; vodnik za romarje (navigacija, prazniki, pravila obiska); poti Mahāprabhuja; koledar; dnevnik romanja; shranjevanje fotografij za pot; povezave na vedabase.io; tisk in projektorski način za učitelje.
+- Vraja-maṇḍala pilgrimage; pilgrim's guide (navigation, festivals, visiting rules); Mahāprabhu's routes; calendar; pilgrimage diary; offline photos; vedabase.io links; print and projector mode for teachers.
