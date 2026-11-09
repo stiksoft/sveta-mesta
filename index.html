@@ -445,7 +445,7 @@ const T={
   stealOpt:'Prevzem: ob napačnem odgovoru lahko odgovori naslednji (+2)',codeL:'Koda igre (neobvezno)',codeNote:'Ekipe na različnih napravah vpišejo isto kodo in dobijo enaka vprašanja v enakem vrstnem redu.',codePh:'npr. GAURA108',
   wrongShort:'Napačno.',stealNow:n=>`Prevzem: odgovori lahko ${n} za 2 tilaki.`,stealHow:'Izberite enega od preostalih odgovorov ali prevzem izpustite.',stealTurn:'Prevzem',stealSkip:'Ne prevzamemo',stealOk:n=>`Prevzem je uspel: ${n} +2 tilaki.`,stealNo:n=>`Prevzem ni uspel (${n}).`,stealPass:n=>`Prevzem je izpuščen (${n}).`,
   steals:n=>{const m=n%100;return n+' '+(m===1?'prevzem':m===2?'prevzema':m===3||m===4?'prevzemi':'prevzemov')},srcL:'Vir',
-  tbBtn:'Odločilno vprašanje',tbTitle:'Odločilno vprašanje',tbRound:r=>`${r}. krog`,tbNote:'Izenačeni igralci oziroma ekipe odgovorijo vsak na svoje vprašanje. Zmaga, kdor edini odgovori pravilno. Tilake se ne spremenijo.',tbWin:n=>`Zmagovalec po odločilnem vprašanju: ${n}`,tbWinT:n=>`Po odločilnem vprašanju je zmagala ekipa ${n}`,tbShared:'Po petih krogih je še vedno neodločeno – zmago si delite.',tbAgain:'Nihče ni edini odgovoril pravilno – sledi nov krog.',
+  tbBtn:'Odločilno vprašanje',tbTitle:'Odločilno vprašanje',tbRound:r=>`${r}. krog`,tbNote:'Vsak izenačeni igralec oziroma ekipa odgovori na svoje vprašanje. Zmaga, kdor edini odgovori pravilno. Število tilak se ne spremeni.',tbWin:n=>`Zmagovalec po odločilnem vprašanju: ${n}`,tbWinT:n=>`Po odločilnem vprašanju je zmagala ekipa ${n}`,tbShared:'Po petih krogih je še vedno neodločeno – zmago si delite.',tbAgain:'Nihče ni edini odgovoril pravilno – sledi nov krog.',
   doneL2:'Napredno romanje je dokončano · Śrī Raṅgam',
   lv3:'Navadvīpa-maṇḍala parikramā',lv3D:q=>`2 stopnji · devet otokov Navadvīpe · ${q} vprašanj`,
   lv4:'Ekacakrā parikramā',lv4D:q=>`1 stopnja · rojstni kraj Nityānande Prabhuja · ${q} vprašanj`,
@@ -461,14 +461,14 @@ const T={
   startIntro6:(n,q,p)=>`Vraja-maṇḍala parikramā sledi Kṛṣṇovim zabavam iz Śrīmad-Bhāgavatama: od Gokule prek gozdov Vraje do Govardhane, Rādhā-kuṇḍe in Vṛndāvane. ${n} svetih krajev v treh stopnjah; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
   doneL6:'Vraja-maṇḍala parikramā je dokončana · Vṛndāvana',grp6:'Vraja-maṇḍala',lvTag6:'Vraja',
   tabPlaces:'Mesta',tabRoutes:'Poti',tabCal:'Koledar',tabDiary:'Moje romanje',encTravel:'Za romarje',
-  festNote:'Prazniki se ravnajo po lunarnem koledarju, zato so navedeni meseci, v katerih običajno padejo. Točen datum vsako leto preverite v vaiṣṇavskem koledarju.',
+  festNote:'Prazniki se ravnajo po lunarnem koledarju, zato so navedeni meseci, v katerih običajno padejo. Točen datum vsako leto preveri v vaiṣṇavskem koledarju.',
   navBtn:'Navigacija do sem',offBtn:'Shrani fotografije za pot',offBusy:'Shranjujem …',offProg:(a,b)=>`Shranjujem ${a}/${b} …`,offDone:n=>`Shranjeno za pot: ${(n=>{const m=n%100;return n+' '+(m===1?'fotografija':m===2?'fotografiji':m===3||m===4?'fotografije':'fotografij')})(n)}`,offNo:'Shranjevanje v tem brskalniku ni mogoče.',
-  genNote:'Urnikov darśana in āratija ne navajamo, ker se spreminjajo; pred obiskom jih preverite pri templju.',noPhotos:'Za ta kraj še ni preverjenih fotografij.',
+  genNote:'Urnikov darśana in āratija ne navajamo, ker se spreminjajo; pred obiskom jih preveri pri templju.',noPhotos:'Za ta kraj še ni preverjenih fotografij.',
   diaryH:'Moj dnevnik',diaryVisited:'Obiskano',diaryDate:'Datum obiska',diaryNote:'Moj zapis o obisku …',diaryPhoto:'Dodaj svojo fotografijo',diaryMine:'Moja fotografija',diaryTrack:'Glasba ob odprtju tega kraja',
-  diaryCount:(a,b)=>`Obiskani kraji: ${a} od ${b}.`,diaryEmpty:'V dnevniku še ni obiskanih krajev. Pri vsakem kraju lahko označite »Obiskano« ter dodate datum, zapis in svojo fotografijo.',diaryLocal:'Dnevnik in fotografije ostanejo samo na tej napravi.',
+  diaryCount:(a,b)=>`Obiskani kraji: ${a} od ${b}.`,diaryEmpty:'V dnevniku še ni obiskanih krajev. Pri vsakem kraju lahko označiš »Obiskano« ter dodaš datum, zapis in svojo fotografijo.',diaryLocal:'Dnevnik in fotografije ostanejo samo na tej napravi.',
   showRoute:'Pokaži pot',thisMonth:'ta mesec',teacherBtn:'Za učitelje',
-  teachEyebrow:'Za učitelje in skupine',teachTitle:'Tisk in projektor',teachIntro:'Natisnete lahko vsa vprašanja z odgovori, razlagami in viri ali kartice za igro brez naprave. Projektorski način poveča pisavo za igro na velikem zaslonu.',
-  teachN:n=>`${n} vprašanj v zbirki`,printQ:'Natisni vprašanja z odgovori',printC:'Natisni kartice',bigMode:'Projektorski način (večja pisava)',teachNote:'V oknu za tisk lahko izberete »Shrani kot PDF«.',printAns:'Odgovor',printCardsNote:'Kartice razrežite. Pravilen odgovor je na dnu kartice; pred igro ga prepognite.',
+  teachEyebrow:'Za učitelje in skupine',teachTitle:'Tisk in projektor',teachIntro:'Natisneš lahko vsa vprašanja z odgovori, razlagami in viri ali kartice za igro brez naprave. Projektorski način poveča pisavo za igro na velikem zaslonu.',
+  teachN:n=>`${n} vprašanj v zbirki`,printQ:'Natisni vprašanja z odgovori',printC:'Natisni kartice',bigMode:'Projektorski način (večja pisava)',teachNote:'V oknu za tisk lahko izbereš »Shrani kot PDF«.',printAns:'Odgovor',printCardsNote:'Kartice razreži. Pravilen odgovor je na dnu kartice; pred igro ga prepogni.',
   encDei:'Božanstva',encStory:'Zgodba in pomen',encBooks:'Iz knjig in izročila',encSearch:'Išči sveto mesto ali Božanstvo …',encNone:'Ni zadetkov.',grp1:'Osnovno romanje',grp2:'Napredno romanje',zoom:'povečaj',lvTag1:'osnovno',lvTag2:'napredno',
   players:'Igralci',teams:'Ekipe',timerOpt:'Časovna omejitev 30 s',
   pname:i=>i===0?'Ime igralca 1':`Igralec ${i+1} (neobvezno)`,tname:i=>i===0?'Ime ekipe 1':`Ekipa ${i+1} (neobvezno)`,defP:'Bhakta',defT:'Ekipa Gaura',
@@ -485,7 +485,7 @@ const T={
   endText:'Śrī Caitanya Mahāprabhu je Kṛṣṇa-premo podaril vsem, brez razlike. Romanje po svetih mestih se v srcu nadaljuje s petjem svetih imen.',routeTap:'Pot romanja – tapni točko',placesIn:'Sveta mesta v igri',again:'Igraj znova z novimi vprašanji',home:'Na začetek',
   dailyTitle:'Dnevno romanje',dailyDone:'Današnje romanje je končano',today:'danes',best:'najboljši',days:n=>{const m=n%100;return m===1?'zaporedni dan':m===2?'zaporedna dneva':m===3||m===4?'zaporedni dnevi':'zaporednih dni'},dailyCome:'Jutri te čaka nova stopnja.',dailyAgain:'Ponovi današnje',
   atlasTitle:'Atlas svetih mest',close:'Zapri',album:'Album',allPlaces:'Vsa sveta mesta',loading:'Nalagam fotografije …',offline:'Fotografije bodo vidne, ko bo naprava povezana z internetom.',lat:'S',lon:'V',
-  sndTitle:'Zvok in glasba',sndTanpura:'Tanpura',sndMine:'Mahā-mantra',sndOff:'Izklop',vol:'Glasnost',fx:'Zvočni učinki (zvonček)',add:'Dodaj posnetke',noTracks:'Še nisi dodal posnetkov.',remove:'odstrani',
+  sndTitle:'Zvok in glasba',sndTanpura:'Tanpura',sndMine:'Mahā-mantra',sndOff:'Izklop',vol:'Glasnost',fx:'Zvočni učinki (zvonček)',add:'Dodaj posnetke',noTracks:'Lastnih posnetkov še ni.',remove:'odstrani',
   sndNote:'V ozadju igre se predvaja Hare Kṛṣṇa mahā-mantra. Dodaš lahko tudi svoje posnetke bhajanov; ostanejo samo na tej napravi.',
   sndAuto:'Tanpura z zvončki je vgrajena in deluje tudi brez interneta.',
   helpTitle:'Kako igrati Sveta mesta',videoFile:'navodila.mp4',noVideo:'Video z navodili se v tem brskalniku ne predvaja.',
@@ -502,7 +502,7 @@ const T={
   stealOpt:'Steal: after a wrong answer the next one may answer (+2)',codeL:'Game code (optional)',codeNote:'Teams on different devices enter the same code and get the same questions in the same order.',codePh:'e.g. GAURA108',
   wrongShort:'Wrong.',stealNow:n=>`Steal: ${n} may answer for 2 tilakas.`,stealHow:'Choose one of the remaining answers or pass.',stealTurn:'Steal',stealSkip:'We pass',stealOk:n=>`Steal succeeded: ${n} +2 tilakas.`,stealNo:n=>`Steal failed (${n}).`,stealPass:n=>`Steal passed (${n}).`,
   steals:n=>n+(n===1?' steal':' steals'),srcL:'Source',
-  tbBtn:'Tie-break question',tbTitle:'Tie-break question',tbRound:r=>`Round ${r}`,tbNote:'The tied players or teams each answer their own question. Whoever alone answers correctly wins. Tilakas do not change.',tbWin:n=>`Winner after the tie-break: ${n}`,tbWinT:n=>`Winning team after the tie-break: ${n}`,tbShared:'Still tied after five rounds – you share the victory.',tbAgain:'Nobody alone answered correctly – a new round follows.',
+  tbBtn:'Tie-break question',tbTitle:'Tie-break question',tbRound:r=>`Round ${r}`,tbNote:'Each tied player or team answers their own question. Whoever alone answers correctly wins. The number of tilakas does not change.',tbWin:n=>`Winner after the tie-break: ${n}`,tbWinT:n=>`Winning team after the tie-break: ${n}`,tbShared:'Still tied after five rounds – you share the victory.',tbAgain:'Nobody alone answered correctly – a new round follows.',
   doneL2:'The advanced pilgrimage is complete · Śrī Raṅgam',
   lv3:'Navadvīpa-maṇḍala parikramā',lv3D:q=>`2 stages · the nine islands of Navadvīpa · ${q} questions`,
   lv4:'Ekacakrā parikramā',lv4D:q=>`1 stage · birthplace of Nityānanda Prabhu · ${q} questions`,
@@ -620,7 +620,7 @@ const PLACES2={
   dei:["Śrī Kūrmanātha, Gospod v obliki želve.","Śrī Kūrmanātha, the Lord in the form of a tortoise."]},
  tvaraha:{n:["Tirumala – Śrī Bhū-Varāha","Tirumala – Śrī Bhū-Varāha"],loc:["ob jezeru Svāmī Puṣkariṇī, Tirumala, Andhra Pradeš","by Svāmī Puṣkariṇī lake, Tirumala, Andhra Pradesh"],ll:[13.6839,79.3486],q:"Varaha Swamy temple Tirumala",cat:['Varaha_Swamy_temple,_Tirumala'],img:[['Swami_Pushkarini.jpg','Svāmī Puṣkariṇī v Tirumali','Svāmī Puṣkariṇī in Tirumala']],
   d:["Tirumala velja za Ādi-Varāha-kṣetro. Po izročilu je Gospod Varāha dovolil Śrīnivāsi (Veṅkaṭeśvari), da prebiva na hribu, zato romarji najprej počastijo Varāho.","Tirumala is known as Ādi-Varāha-kṣetra. By tradition Lord Varāha allowed Śrīnivāsa (Veṅkaṭeśvara) to reside on the hill, so pilgrims first honor Varāha."],
-  dei:["Śrī Bhū-Varāha-svāmī z Bhūdevī (mater Zemljo).","Śrī Bhū-Varāha-svāmī with Bhūdevī (Mother Earth)."]},
+  dei:["Śrī Bhū-Varāha-svāmī z Bhūdevī (materjo Zemljo).","Śrī Bhū-Varāha-svāmī with Bhūdevī (Mother Earth)."]},
  srimushnam:{n:["Śrīmuṣṇam – Bhū-Varāha","Śrīmuṣṇam – Bhū-Varāha"],loc:["okrožje Cuddalore, Tamil Nadu","Cuddalore district, Tamil Nadu"],ll:[11.4019,79.4113],q:"Srimushnam Bhu Varaha temple",cat:['Bhu_Varaha_Swamy_temple'],img:[['Srimushnam_bhuvarha_swami_temple_(42).jpg','Tempelj Bhū-Varāhe v Śrīmuṣṇamu','The Bhū-Varāha temple, Śrīmuṣṇam']],
   d:["Eno od osmih svayaṁ-vyakta svetišč Viṣṇuja v Južni Indiji, kjer se je Božanstvo pojavilo samo. Glavno Božanstvo je Gospod Varāha.","One of the eight svayaṁ-vyakta shrines of Viṣṇu in South India, where the Deity manifested by Himself. The presiding Deity is Lord Varāha."],
   dei:["Śrī Bhū-Varāha, samonastalo Božanstvo iz śālagrāma kamna; boginja Ambujavallī.","Śrī Bhū-Varāha, a self-manifested śālagrāma Deity; the goddess Ambujavallī."]},
@@ -631,7 +631,7 @@ const PLACES2={
   d:["Jamski tempelj Gospoda Narasiṁhe na hribu. Leta 2022 so ga na novo zgradili iz kamna.","A cave temple of Lord Narasiṁha on a hill. It was rebuilt in stone in 2022."],
   dei:["Lakṣmī-Narasiṁha; v jami so čaščene oblike Jvālā-, Yogānanda- in Gaṇḍabheruṇḍa-Narasiṁha.","Lakṣmī-Narasiṁha; in the cave the forms Jvālā, Yogānanda and Gaṇḍabheruṇḍa Narasiṁha are worshiped."]},
  thrikkakara:{n:["Thrikkakara – Vāmana","Thrikkakara – Vāmana"],loc:["pri Kochiju, Kerala","near Kochi, Kerala"],ll:[10.0346,76.3290],q:"Thrikkakara temple",cat:['Thrikkakkara_Temple'],img:[['Thrikkakara_Temple_2.jpg','Tempelj Vāmane v Thrikkakari','The Vāmana temple, Thrikkakara'],['Thrikkakara_Temple_DSC09337.JPG','Tempelj Thrikkakara','Thrikkakara temple']],
-  d:["Eden redkih templjev Gospoda Vāmane. Po keralskem izročilu je tu Vāmana poslal kralja Bali Mahārāja v nižje planete; zato je tempelj središče praznika Onam.","One of the few temples of Lord Vāmana. By Kerala tradition Vāmana sent King Bali Mahārāja to the lower planets here, so the temple is the centre of the Onam festival."],
+  d:["Eden redkih templjev Gospoda Vāmane. Po keralskem izročilu je tu Vāmana poslal kralja Balija Mahārāja v nižje planete; zato je tempelj središče praznika Onam.","One of the few temples of Lord Vāmana. By Kerala tradition Vāmana sent King Bali Mahārāja to the lower planets here, so the temple is the centre of the Onam festival."],
   dei:["Vāmana-mūrti (Trikkākkarappan), Viṣṇu kot brāhmaṇski deček.","Vāmana-mūrti (Trikkākkarappan), Viṣṇu as a brāhmaṇa boy."]},
  sirkazhi:{n:["Sīrkāḻi – Trivikrama","Sīrkāḻi – Trivikrama"],loc:["okrožje Mayiladuthurai, Tamil Nadu","Mayiladuthurai district, Tamil Nadu"],ll:[11.2386,79.7387],q:"Thadalan temple Sirkazhi",cat:['Thadalan_Kovil'],img:[],
   d:["Tempelj Tiru-kāḻi-cīrāma-viṇṇagaram (Thadalan), eden od 108 Divya-deśam svetišč Viṣṇuja, opevanih v pesmih Āḻvārjev.","The Tiru-kāḻi-cīrāma-viṇṇagaram (Thadalan) temple, one of the 108 Divya-deśam shrines of Viṣṇu praised in the hymns of the Āḻvārs."],
@@ -664,11 +664,11 @@ const PLACES2={
   d:["Imenujejo ga »Dvārakā juga«. Po izročilu sta Božanstvo, ki sta ga v Dvāraki častila Vasudeva in Devakī, po potopitvi Dvārake v Kerali vzpostavila Guru (Bṛhaspati) in Vāyu; od tod ime Guru-vāyu-ūr.","Called “the Dvārakā of the South”. By tradition, after Dvārakā sank, the Deity once worshiped there by Vasudeva and Devakī was installed in Kerala by Guru (Bṛhaspati) and Vāyu; hence the name Guru-vāyu-ūr."],
   dei:["Guruvāyūrappan: štiriročni Kṛṣṇa s školjko, diskom, buzdovanom in lotosom, v obliki, v kateri se je pojavil Vasudevi in Devakī.","Guruvāyūrappan: four-armed Kṛṣṇa with conch, disc, club and lotus, in the form in which He appeared to Vasudeva and Devakī."]},
  pandharpur:{n:["Paṇḍharpur – Viṭhṭhala","Paṇḍharpur – Viṭhṭhala"],loc:["ob reki Bhīmā (Candrabhāgā), Maharaštra","on the Bhīmā (Candrabhāgā) River, Maharashtra"],ll:[17.6669,75.3302],q:"Vithoba temple Pandharpur",cat:['Vithoba_Temple,_Pandharpur'],img:[],
-  d:["Śrī Caitanya je obiskal tempelj Viṭhṭhala Ṭhākure, tu srečal Śrī Raṅgo Purīja in izvedel, da je njegov starejši brat Śaṅkarāraṇya (Viśvarūpa) tu dosegel popolnost. Vsako leto sem peš romajo stotisoči (vārī).","Śrī Caitanya visited the temple of Viṭhṭhala Ṭhākura, met Śrī Raṅga Purī here and learned that His elder brother Śaṅkarāraṇya (Viśvarūpa) had attained perfection here. Every year hundreds of thousands come on foot (the vārī)."],
+  d:["Śrī Caitanya je obiskal tempelj Viṭhṭhala Ṭhākure, tu srečal Śrī Raṅgo Purīja in izvedel, da je Njegov starejši brat Śaṅkarāraṇya (Viśvarūpa) tu dosegel popolnost. Vsako leto sem peš romajo stotisoči (vārī).","Śrī Caitanya visited the temple of Viṭhṭhala Ṭhākura, met Śrī Raṅga Purī here and learned that His elder brother Śaṅkarāraṇya (Viśvarūpa) had attained perfection here. Every year hundreds of thousands come on foot (the vārī)."],
   dei:["Viṭhṭhala (Viṭhobā), Kṛṣṇa, ki stoji na opeki z rokami na bokih; ob njem Rukmiṇī (Rakhumāī).","Viṭhṭhala (Viṭhobā), Kṛṣṇa standing on a brick with His hands on His hips; beside Him Rukmiṇī (Rakhumāī)."]},
  padmanabha:{n:["Thiruvananthapuram – Ananta Padmanābha","Thiruvananthapuram – Ananta Padmanābha"],loc:["Thiruvananthapuram, Kerala","Thiruvananthapuram, Kerala"],ll:[8.4828,76.9436],q:"Padmanabhaswamy temple",cat:['Padmanabhaswamy_Temple'],img:[['Sree_Padmanabhaswamy_temple_Thiruvananthapuram,_kerala.jpg','Tempelj Padmanābhasvāmī','The Padmanābhasvāmī temple']],
   d:["Śrī Caitanya je pri Anantu Padmanābhi ostal dva ali tri dni. Tempelj je leta 2011 zaslovel, ko so v njegovih kleteh odkrili ogromne zaklade.","Śrī Caitanya stayed two or three days at Ananta Padmanābha. In 2011 the temple became famous when enormous treasures were found in its vaults."],
-  dei:["Ananta Padmanābha, Viṣṇu, ki leži na Ananta-Śeṣi (ananta-śayana); iz popka mu raste lotos z Brahmo. Romarji ga vidijo skozi tri vrata: obraz, popek in stopala.","Ananta Padmanābha, Viṣṇu reclining on Ananta-Śeṣa (ananta-śayana), with a lotus bearing Brahmā growing from His navel. Pilgrims see Him through three doors: face, navel and feet."]},
+  dei:["Ananta Padmanābha, Viṣṇu, ki leži na Ananta-Śeṣi (ananta-śayana); iz popka Mu raste lotos z Brahmājem. Romarji ga vidijo skozi tri vrata: obraz, popek in stopala.","Ananta Padmanābha, Viṣṇu reclining on Ananta-Śeṣa (ananta-śayana), with a lotus bearing Brahmā growing from His navel. Pilgrims see Him through three doors: face, navel and feet."]},
  adikesava:{n:["Tiruvaṭṭār – Ādi-keśava","Tiruvaṭṭār – Ādi-keśava"],loc:["okrožje Kanyakumari, Tamil Nadu","Kanyakumari district, Tamil Nadu"],ll:[8.3328,77.2653],q:"Adikesava Perumal temple Thiruvattar",cat:['Adikesava_Perumal_Temple,_Kanniyakumari'],img:[['Thiruvattaru_-_Adhi_kesava_perumal_koil_-_Front_view.jpg','Tempelj Ādi-keśava v Tiruvaṭṭārju','The Ādi-keśava temple, Tiruvaṭṭār'],['Thiruvattar_Adhi_Kesava_Temple.JPG','Tempelj Ādi-keśava','Ādi-keśava temple']],
   d:["V tem templju ob reki Payasvinī je Śrī Caitanya našel poglavje Brahma-saṁhite, ga prepisal in ga prinesel v Purī. Danes je to ena najdragocenejših knjig Gauḍīya vaiṣṇavov.","In this temple on the Payasvinī River Śrī Caitanya found a chapter of the Brahma-saṁhitā, copied it and brought it to Purī. Today it is one of the most treasured books of the Gauḍīya Vaiṣṇavas."],
   dei:["Ādi-keśava, ležeči Viṣṇu, eden od 108 Divya-deśam svetišč.","Ādi-keśava, the reclining Viṣṇu, one of the 108 Divya-deśam shrines."]},
@@ -683,7 +683,12 @@ const ALIAS={rathayatra:'puri',gambhira:'puri'};
 const ISK={vrindavan:{cat:['ISKCON_Temple,_Vrindavan'],kw:/vrindavan|vrindaban/i},mayapur:{cat:['ISKCON_Temple,_Mayapur','Samadhi_Mandir_of_Srila_Prabhupada,_ISKCON,_Mayapur'],kw:/mayapur/i},tirumala:{cat:['ISKCON_Temple,_Tirupati'],kw:/tirupat/i},
  dvaraka:{kw:/dwar/i},kuruksetra:{kw:/kurukshetra/i},haridwar:{kw:/haridwar/i},prayag:{kw:/prayag|allahabad/i},kasi:{kw:/varanasi|benares/i},ayodhya:{kw:/ayodhya/i},puri:{kw:/puri\b/i},mathura:{kw:/mathura/i},udupi:{kw:/udupi/i},navadvip:{kw:/nabadwip|navadvip/i},govardhan:{kw:/govardhan/i}};
 const MAIN=['mayapur','navadvip','puri','vrindavan','radhakunda','govardhan','varsana','mathura','radhadamodar'];
-const pn=k=>tr(PLACES[k].n), short=k=>pn(k).split(' – ')[0].split(' (')[0];
+const pn=k=>tr(PLACES[k].n);
+const SHC={};
+function short(k){ const P=PLACES[k]; if(P.s) return tr(P.s); const parts=pn(k).split(' – '), f=parts[0].split(' (')[0];
+  if(parts.length>1){ if(!SHC[L]){ const c={}; Object.keys(PLACES).forEach(x=>{const y=tr(PLACES[x].n).split(' – ')[0].split(' (')[0]; c[y]=(c[y]||0)+1}); SHC[L]=c }
+    if(SHC[L][f]>1){ const r=parts[1].split(' (')[0]; return r.charAt(0).toUpperCase()+r.slice(1) } }
+  return f }
 
 /* ---------- Zbirka vprašanj / Question pool ----------
    [kraj, [vir SL, vir EN], vprašanje SL, [pravilno, napačno, napačno] SL, razlaga SL, question EN, [correct, wrong, wrong] EN, explanation EN]
@@ -737,7 +742,7 @@ const POOL = [
    "Which devotee did Kṛṣṇa send to Badarikāśrama at the end of His earthly pastimes?",["Uddhava","Arjuna","Akrūra"],
    "Kṛṣṇa instructed Uddhava (the Uddhava-gītā) and told him to go to Badarikāśrama and live there in Kṛṣṇa consciousness."],
   ['mukti',[SB+' 5.7.8–10',SB+' 5.7.8–10'],
-   "Kako se imenuje sveti kamen iz reke Gaṇḍakī, ki ga vaiṣṇave častijo kot Gospoda Nārāyaṇa?",["Śālagrāma-śilā","Govardhana-śilā","Kaustubha"],
+   "Kako se imenuje sveti kamen iz reke Gaṇḍakī, ki ga vaiṣṇave častijo kot Gospoda Nārāyaṇo?",["Śālagrāma-śilā","Govardhana-śilā","Kaustubha"],
    "Bhāgavatam pravi, da je Gaṇḍakī najboljša med rekami in da śālagrāma-śile očiščujejo vse kraje ob njej. Reka izvira v nepalskem Mustangu, kjer stoji Muktināth.",
    "What is the sacred stone from the Gaṇḍakī River that Vaiṣṇavas worship as Lord Nārāyaṇa?",["Śālagrāma-śilā","Govardhana-śilā","Kaustubha"],
    "The Bhāgavatam says the Gaṇḍakī is the best of rivers and that the śālagrāma-śilās purify all places along it. The river rises in Mustang, Nepal, where Muktināth stands."],
@@ -794,7 +799,7 @@ const POOL = [
    "Which leader of the Māyāvādī sannyāsīs in Kāśī did Mahāprabhu win over to chanting the holy names?",["Prakāśānanda Sarasvatī","Keśava Bhāratī","Īśvara Purī"],
    "Mahāprabhu showed that the purport of Vedānta is devotional service to Kṛṣṇa. Prakāśānanda and his followers then began to chant “Kṛṣṇa! Kṛṣṇa!”"],
   ['kasi',[CC+', Ādi 7.46; Madhya 17.89',CC+', Ādi 7.46; Madhya 17.89'],
-   "Pri katerem bhakti je Mahāprabhu v Kāśīju redno prejemal hrano?",["Pri Tapanu Miśri","Pri Kāśīju Miśri","Pri Jagannāthu Miśri"],
+   "Pri katerem bhakti je Mahāprabhu v Kāśīju redno prejemal hrano?",["Pri Tapani Miśri","Pri Kāśīju Miśri","Pri Jagannāthi Miśri"],
    "Mahāprabhu je v Vārāṇasīju redno jedel v hiši Tapane Miśre. Njegov prijatelj Candraśekhara je Gospodu prav tako služil.",
    "At whose house did Mahāprabhu regularly take His meals in Kāśī?",["Tapana Miśra","Kāśī Miśra","Jagannātha Miśra"],
    "In Vārāṇasī Mahāprabhu regularly took His meals at the house of Tapana Miśra. His friend Candraśekhara also served the Lord."],
@@ -804,7 +809,7 @@ const POOL = [
    "Whom did Śrī Caitanya meet in Gayā and accept initiation from?",["Īśvara Purī","Mādhavendra Purī","Keśava Bhāratī"],
    "In Gayā Nimāi Paṇḍita met Īśvara Purī, a disciple of Mādhavendra Purī, and accepted initiation from him. After that He began preaching the chanting of the holy names."],
   ['gaya',[CC+', Ādi 17.8 (razlaga)',CC+', Ādi 17.8 (purport)'],
-   "Zakaj je Nimāi Paṇḍita odšel v Gayo?",["Da bi prednikom daroval piṇḍo","Da bi sprejel sannyāsa","Da bi tam poučeval sanskrt"],
+   "Zakaj je Nimāi Paṇḍita odšel v Gayo?",["Da bi prednikom daroval piṇḍo","Da bi sprejel sannyāso","Da bi tam poučeval sanskrt"],
    "Mahāprabhu je šel v Gayo, da bi svojim prednikom, posebno očetu, spoštljivo daroval piṇḍo. Tam je srečal svojega duhovnega učitelja.",
    "Why did Nimāi Paṇḍita go to Gayā?",["To offer piṇḍa to His forefathers","To accept sannyāsa","To teach Sanskrit there"],
    "Mahāprabhu went to Gayā to offer respectful oblations (piṇḍa) to His forefathers, especially His father. There He met His spiritual master."]
@@ -831,7 +836,7 @@ const POOL = [
    "To which incarnation of the Lord are the temples of Ahobilam dedicated?",["Lord Narasiṁha","Lord Vāmana","Lord Paraśurāma"],
    "Ahobilam has nine temples of Lord Narasiṁha. The Caitanya-caritāmṛta says that on His tour of the South, Mahāprabhu visited Ahovala-nṛsiṁha."],
   ['ahobilam',[SB+' 7.5–7.10',SB+' 7.5–7.10'],
-   "Katerega petletnega bhakto, sina demona Hiraṇyakaśipuja, je zaščitil Gospod Narasiṁha?",["Prahlādo Mahārāja","Dhruvo Mahārāja","Bali Mahārāja"],
+   "Katerega petletnega bhakto, sina demona Hiraṇyakaśipuja, je zaščitil Gospod Narasiṁha?",["Prahlādo Mahārāja","Dhruvo Mahārāja","Balija Mahārāja"],
    "Prahlāda je kljub mučenju ostal zvest Gospodu in sošolce učil vdanega služenja. Narasiṁha je ubil Hiraṇyakaśipuja, Prahlāda pa ga je pomiril s svojimi molitvami.",
    "Which five-year-old devotee, the son of the demon Hiraṇyakaśipu, did Lord Narasiṁha protect?",["Prahlāda Mahārāja","Dhruva Mahārāja","Bali Mahārāja"],
    "Despite being tortured, Prahlāda stayed faithful to the Lord and taught his classmates devotional service. Narasiṁha killed Hiraṇyakaśipu, and Prahlāda pacified Him with his prayers."],
@@ -868,7 +873,7 @@ const POOL = [
   ['udupi',[CC+', Madhya 9.245 (razlaga)',CC+', Madhya 9.245 (purport)'],
    "V čem je bilo skrito Božanstvo Kṛṣṇe, ki ga je Madhvācārya prejel z ladje?",["V veliki kepi gopī-candane","V zlati skrinji","V lotosovem cvetu"],
    "Madhvācārya je z obale rešil ladjo, ki je plula proti Dvāraki. Za plačilo je želel le nekaj gopī-candane. Ko so mu prinesli veliko kepo, se je ta razlomila in v njej je bilo Božanstvo Kṛṣṇe.",
-   "Inside what was the Deity of Kṛṣṇa hidden that Madhvācārya received from a ship?",["A big lump of gopī-candana","A golden chest","A lotus flower"],
+   "The Deity of Kṛṣṇa that Madhvācārya received from a ship was hidden inside what?",["A big lump of gopī-candana","A golden chest","A lotus flower"],
    "From the shore Madhvācārya saved a ship bound for Dvārakā. As a gift he accepted only some gopī-candana. When the big lump was brought, it broke apart and revealed the Deity of Kṛṣṇa."],
   ['udupi',[CC+', Madhya 9.245 (razlaga)',CC+', Madhya 9.245 (purport)'],
    "Kaj drži Božanstvo Kṛṣṇe v Uḍupīju v rokah?",["V eni roki palico, v drugi kepico hrane","Piščal","Lok in puščice"],
@@ -970,7 +975,7 @@ const POOL = [
    "Which devotee worshiped the Lord with Gaṅgā water and tulasī leaves, calling Him to appear and deliver the people of Kali-yuga?",["Advaita Ācārya","Śrīvāsa Ṭhākura","Haridāsa Ṭhākura"],
    "Advaita Ācārya saw that people had no devotion, so he worshiped the Lord with Gaṅgā water and tulasī and called Him down to earth."],
   ['navadvip',[CC+', Ādi 17.34–35',CC+', Ādi 17.34–35'],
-   "V čigavi hiši je Mahāprabhu z bhaktami leto dni vsako noč pel kīrtana?",["V hiši Śrīvāse Ṭhākure","V hiši Advaite Ācārye","V hiši Murārija Gupte"],
+   "V čigavi hiši je Mahāprabhu z bhaktami leto dni vsako noč pel kīrtano?",["V hiši Śrīvāse Ṭhākure","V hiši Advaite Ācārye","V hiši Murārija Gupte"],
    "Leto dni je Mahāprabhu z bhaktami vsako noč pel Hare Kṛṣṇa mahā-mantro v hiši Śrīvāse Ṭhākure. Vrata so bila zaprta, da ne bi motili posmehljivci.",
    "In whose house did Mahāprabhu chant kīrtana with His devotees every night for a whole year?",["Śrīvāsa Ṭhākura's house","Advaita Ācārya's house","Murāri Gupta's house"],
    "For one full year Mahāprabhu chanted the Hare Kṛṣṇa mahā-mantra with His devotees every night at Śrīvāsa Ṭhākura's house. The doors were kept closed against mockers."],
@@ -980,13 +985,13 @@ const POOL = [
    "What were the names of the two brothers the Lord delivered, though one of them struck Nityānanda?",["Jagāi and Mādhāi","Rūpa and Sanātana","Gopāla and Govinda"],
    "Mādhāi struck Nityānanda with a piece of earthen pot, yet Nityānanda still begged mercy for them. Both brothers became devotees."],
   ['navadvip',[CC+', Ādi 17.124–222; '+SB+', Uvod',CC+', Ādi 17.124–222; '+SB+', Introduction'],
-   "Katerega muslimanskega sodnika, ki je prepovedal kīrtana, je Mahāprabhu pridobil z mogočno procesijo petja?",["Cānd Kāzīja","Husena Šaha","Bijlī Khāna"],
-   "Kāzī je razbil mṛdaṅgo in prepovedal kīrtana na ulicah. Mahāprabhu je pred njegovo hišo pripeljal procesijo sto tisoč ljudi z mṛdaṅgami in karatālami. Kāzī je nato rekel, da saṅkīrtane ne sme nihče več ovirati.",
+   "Katerega muslimanskega sodnika, ki je prepovedal kīrtano, je Mahāprabhu pridobil z mogočno procesijo petja?",["Cānd Kāzīja","Husena Šaha","Bijlī Khāna"],
+   "Kāzī je razbil mṛdaṅgo in prepovedal kīrtano na ulicah. Mahāprabhu je pred njegovo hišo pripeljal procesijo sto tisoč ljudi z mṛdaṅgami in karatālami. Kāzī je nato rekel, da saṅkīrtane ne sme nihče več ovirati.",
    "Which Muslim magistrate, who had forbidden kīrtana, did Mahāprabhu win over with a mighty chanting procession?",["Chand Kazi (Cānd Kāzī)","Hussain Shah","Bijli Khan"],
    "The Kazi broke a mṛdaṅga and banned street kīrtana. Mahāprabhu led a procession of a hundred thousand people with mṛdaṅgas and karatālas to his house. The Kazi then declared that no one should check the saṅkīrtana movement."],
   ['navadvip',[SB+', Uvod; '+CC+', Ādi 17.268–272',SB+', Introduction; '+CC+', Ādi 17.268–272'],
-   "Koliko let je bil Śrī Caitanya star, ko je sprejel sannyāsa?",["Ob koncu 24. leta","30 let","18 let"],
-   "Ob koncu svojega 24. leta, v mesecu Māgha, je Mahāprabhu v Kāṭwi sprejel sannyāsa od Keśave Bhāratīja, da bi lahko pridigal vsem.",
+   "Koliko let je bil Śrī Caitanya star, ko je sprejel sannyāso?",["Ob koncu 24. leta","30 let","18 let"],
+   "Ob koncu svojega 24. leta, v mesecu Māgha, je Mahāprabhu v Kāṭwi sprejel sannyāso od Keśave Bhāratīja, da bi lahko pridigal vsem.",
    "How old was Śrī Caitanya when He accepted sannyāsa?",["At the end of His 24th year","30 years","18 years"],
    "At the end of His twenty-fourth year, in the month of Māgha, Mahāprabhu accepted sannyāsa from Keśava Bhāratī at Katwa, so that He could preach to everyone."],
   ['mayapur',['Prabhupādove razlage '+CC+'; zgodovina Gauḍīya vaiṣṇavizma',"Prabhupāda's purports to "+CC+'; Gauḍīya Vaiṣṇava history'],
@@ -1047,7 +1052,7 @@ const POOL = [
    "To which temple are the chariots pulled during Ratha-yātrā?",["The Guṇḍicā temple","The Ṭoṭā-gopīnātha temple","The Ālālanātha temple"],
    "Before the festival Mahāprabhu and His devotees cleansed the Guṇḍicā temple. This shows how the heart must be cleansed before Kṛṣṇa can sit there."],
   ['rathayatra',[CC+', Madhya 13.15; Madhya 14',CC+', Madhya 13.15; Madhya 14'],
-   "Kako je kralj Pratāparudra služil Gospodu Jagannāthi na Ratha-yātri?",["Cesto je pometal z metlo z zlatim ročajem","Sam je vlekel voz","Pel je na čelu kīrtana"],
+   "Kako je kralj Pratāparudra služil Gospodu Jagannāthi na Ratha-yātri?",["Cesto je pometal z metlo z zlatim ročajem","Sam je vlekel voz","Pel je na čelu kīrtane"],
    "Kralj je cesto pred vozom ponižno pometal z metlo z zlatim ročajem. Ta služba je Mahāprabhuja razveselila, zato je kralja pozneje objel, ko je ta recitiral verze iz Gopī-gīte.",
    "How did King Pratāparudra serve Lord Jagannātha at Ratha-yātrā?",["He swept the road with a broom with a golden handle","He pulled the chariot alone","He led the kīrtana"],
    "The king humbly swept the road before the chariot with a broom that had a golden handle. This service pleased Mahāprabhu, who later embraced the king when he recited verses from the Gopī-gītā."],
@@ -1092,7 +1097,7 @@ const POOL = [
    "What is the food offered to Lord Jagannātha called?",["Mahā-prasāda","Caraṇāmṛta","Āratī"],
    "Food offered to Jagannātha is mahā-prasāda and is nondifferent from the Lord. Mahāprabhu honored it with great love."],
   ['rathayatra',[CC+', Madhya 13.48–52',CC+', Madhya 13.48–52'],
-   "Koliko skupin kīrtana je Mahāprabhu organiziral na Ratha-yātri?",["Sedem","Tri","Dvanajst"],
+   "Koliko skupin kīrtane je Mahāprabhu organiziral na Ratha-yātri?",["Sedem","Tri","Dvanajst"],
    "Bilo je sedem skupin saṅkīrtane, v vsaki sta dva bhakti igrala na boben. Mahāprabhu je hkrati izvajal zabave v vseh sedmih skupinah.",
    "How many kīrtana parties did Mahāprabhu organize at Ratha-yātrā?",["Seven","Three","Twelve"],
    "There were seven saṅkīrtana parties, each with two drummers. Mahāprabhu performed His pastimes in all seven parties simultaneously."],
@@ -1145,7 +1150,7 @@ const POOL = [
    "Rādhā-kuṇḍa is as dear to Kṛṣṇa as Rādhārāṇī Herself. Whoever bathes and serves there awakens love of Kṛṣṇa."],
   ['vrindavan',[CC+', Ādi 8 (razlaga)',CC+', Ādi 8 (purport)'],
    "Kateri od šestih Gosvāmījev je v Vṛndāvanu odkril Božanstvo Śrī Govindajīja?",["Śrīla Rūpa Gosvāmī","Śrīla Sanātana Gosvāmī","Śrīla Jīva Gosvāmī"],
-   "Rūpa Gosvāmī je Govindajīja našel na Gomā-ṭīli. Sanātana je častil Madana-mohana, Jīva pa Rādhā-Dāmodaro.",
+   "Rūpa Gosvāmī je Govindajīja našel na Gomā-ṭīli. Sanātana je častil Madana-mohano, Jīva pa Rādhā-Dāmodaro.",
    "Which of the Six Gosvāmīs discovered the Deity of Śrī Govindajī in Vṛndāvana?",["Śrīla Rūpa Gosvāmī","Śrīla Sanātana Gosvāmī","Śrīla Jīva Gosvāmī"],
    "Rūpa Gosvāmī found Govindajī at Gomā-ṭīlā. Sanātana worshiped Madana-mohana, and Jīva worshiped Rādhā-Dāmodara."],
   ['radhadamodar',['Śrīla Prabhupāda-līlāmṛta','Śrīla Prabhupāda-līlāmṛta'],
@@ -1223,7 +1228,7 @@ const POOL2 = [
    "King Satyavrata was offering water on the bank of the Kṛtamālā when a small fish appeared in his palms. It was Lord Matsya. Satyavrata later became Vaivasvata Manu."],
   ['nagalapuram',[SB+' 8.24.45',SB+' 8.24.45'],
    "S čim je kralj Satyavrata med potopom privezal ladjo na rog Gospoda Matsye?",["S kačo Vāsuki, ki je služila kot vrv","Z vrvjo iz kokosovih vlaken","S stebli lotosov"],
-   "Po Gospodovem navodilu je kralj ladjo privezal na rog ribe in pri tem kot vrv uporabil veliko kačo Vāsuki. Tako je bil zadovoljen in začel moliti h Gospodu.",
+   "Po Gospodovem navodilu je kralj ladjo privezal na rog ribe in pri tem kot vrv uporabil veliko kačo Vāsuki. Zadovoljen je nato začel moliti h Gospodu.",
    "With what did King Satyavrata tie the boat to Lord Matsya's horn during the deluge?",["With the serpent Vāsuki as a rope","With a coconut-fibre rope","With lotus stems"],
    "Following the Lord's instructions, the King anchored the boat to the fish's horn, using the great serpent Vāsuki as a rope. Satisfied, he began offering prayers to the Lord."],
   ['nagalapuram',[SB+' 8.24.32',SB+' 8.24.32'],
@@ -1438,17 +1443,17 @@ const POOL2 = [
    "According to Prabhupāda's explanation, on what platform do we worship Govinda?",["The platform of transcendental service","The platform of reestablishing our forgotten relationship","The platform of perfection"],
    "The three Deities of Vṛndāvana have absorbed the hearts of the Gauḍīya Vaiṣṇavas. Madana-mohana reestablishes our forgotten relationship with Kṛṣṇa, Govinda is worshiped on the platform of transcendental service, and the perfected appreciate Kṛṣṇa as Gopījana-vallabha."],
   ['karauli',[CC+', Ādi 1.19',CC+', Ādi 1.19'],
-   "Kaj po Prabhupādovi razlagi pomeni čaščenje Madana-mohana?",["Ponovno vzpostavljanje pozabljenega odnosa z Bogom","Okušanje popolne ljubezni gopī","Služenje na ravni zrelega bhakte"],
-   "Čaščenje Madana-mohana je na ravni ponovne vzpostavitve našega pozabljenega odnosa z Osebnostjo Božanstva. Zato je Madana-mohana posebej milostljiv do začetnikov.",
+   "Kaj po Prabhupādovi razlagi pomeni čaščenje Madana-mohane?",["Ponovno vzpostavljanje pozabljenega odnosa z Bogom","Okušanje popolne ljubezni gopī","Služenje na ravni zrelega bhakte"],
+   "Čaščenje Madana-mohane je na ravni ponovne vzpostavitve našega pozabljenega odnosa z Osebnostjo Božanstva. Zato je Madana-mohana posebej milostljiv do začetnikov.",
    "According to Prabhupāda's explanation, what does the worship of Madana-mohana mean?",["Reestablishing our forgotten relationship with God","Tasting the perfect love of the gopīs","Service on the level of a mature devotee"],
    "The worship of Madana-mohana is on the platform of reestablishing our forgotten relationship with the Personality of Godhead. Therefore Madana-mohana is especially merciful to beginners."],
   ['jaipur',[CC+', Ādi 1.19',CC+', Ādi 1.19'],
-   "Katero od treh glavnih Božanstev Vṛndāvane predstavlja popolnost, Kṛṣṇo kot ljubljenca gopī iz Vraje?",["Gopīnātha (Gopījana-vallabha)","Madana-mohana","Govinda"],
+   "Katero od treh glavnih Božanstev Vṛndāvane predstavlja popolnost – Kṛṣṇo kot ljubljenca gopī iz Vraje?",["Gopīnātha (Gopījana-vallabha)","Madana-mohana","Govinda"],
    "Ko bhakta doseže popolnost, lahko Kṛṣṇo ceni kot Gopījana-vallabho, Gospoda, ki je v veselje dekletom iz Vraje. Gopīnātha je danes v Jaipurju.",
-   "Which of the three main Deities of Vṛndāvana represents perfection, Kṛṣṇa as the beloved of the gopīs of Vraja?",["Gopīnātha (Gopījana-vallabha)","Madana-mohana","Govinda"],
+   "Which of the three main Deities of Vṛndāvana represents perfection – Kṛṣṇa as the beloved of the gopīs of Vraja?",["Gopīnātha (Gopījana-vallabha)","Madana-mohana","Govinda"],
    "When a devotee reaches perfection, he can appreciate Kṛṣṇa as Gopījana-vallabha, the pleasure of the damsels of Vraja. Gopīnātha now resides in Jaipur."],
   ['jaipur',[HIST[0],HIST[1]],
-   "Zakaj so Govindo, Gopīnātho in Madana-mohana v 17. stoletju odnesli iz Vṛndāvane v Radžastan?",["Zaradi napadov vojske cesarja Aurangzeba","Zaradi poplave reke Yamune","Ker jih je kupil radžastanski kralj"],
+   "Zakaj so Govindo, Gopīnātho in Madana-mohano v 17. stoletju odnesli iz Vṛndāvane v Radžastan?",["Zaradi napadov vojske cesarja Aurangzeba","Zaradi poplave reke Yamune","Ker jih je kupil radžastanski kralj"],
    "Ko je vojska cesarja Aurangzeba napadala templje v Vraji, so bhakte Božanstva skrili in jih prenesli pod zaščito radžputskih kraljev. Govinda in Gopīnātha sta danes v Jaipurju, Madana-mohana v Karauliju; v Vṛndāvani častijo njihove nadomestne podobe (pratibhū).",
    "Why were Govinda, Gopīnātha and Madana-mohana taken from Vṛndāvana to Rajasthan in the 17th century?",["Because of attacks by Emperor Aurangzeb's army","Because of a flood of the Yamunā","Because a Rajasthani king bought Them"],
    "When Emperor Aurangzeb's army attacked the temples of Vraja, devotees hid the Deities and took Them under the protection of the Rajput kings. Govinda and Gopīnātha are now in Jaipur and Madana-mohana in Karauli; in Vṛndāvana Their pratibhū forms are worshiped."],
@@ -1463,9 +1468,9 @@ const POOL2 = [
    "Who, by tradition, brought the Raṇchoḍrāya Deity from Dvārakā to Dakor?",["The devotee Bodāṇā","Mīrābāī","Narasiṁha Mehta"],
    "The devotee Bodāṇā walked to Dvārakā every year. When old age prevented him, by tradition the Lord Himself went with him to Dakor, where He is worshiped to this day."],
   ['guruvayur',[SB+' 10.3.9–10',SB+' 10.3.9–10'],
-   "V kateri obliki se je Kṛṣṇa ob rojstvu najprej pokazal Vasudevi in Devakī in v kateri ga častijo tudi v Guruvāyūrju?",["Štiriročni, s školjko, diskom, buzdovanom in lotosom","Dvoročni pastirček s flavto","Dete na listu banjana"],
+   "V kateri obliki se je Kṛṣṇa ob rojstvu najprej pokazal Vasudevi in Devakī in v kateri ga častijo tudi v Guruvāyūrju?",["Kot štiriročni Viṣṇu s školjko, diskom, buzdovanom in lotosom","Kot dvoročni pastirček s flavto","Kot dete na listu banjana"],
    "Vasudeva je zagledal čudovito dete s štirimi rokami, ki so držale školjko, disk, buzdovan in lotos. Guruvāyūrappan je upodobljen v tej obliki.",
-   "In what form did Kṛṣṇa first show Himself to Vasudeva and Devakī at His birth, the form also worshiped in Guruvāyūr?",["Four-armed, with conch, disc, club and lotus","A two-armed cowherd boy with a flute","A baby on a banyan leaf"],
+   "In what form did Kṛṣṇa first show Himself to Vasudeva and Devakī at His birth, the form also worshiped in Guruvāyūr?",["As four-armed Viṣṇu with conch, disc, club and lotus","As a two-armed cowherd boy with a flute","As a baby on a banyan leaf"],
    "Vasudeva saw a wonderful child with four arms holding a conch, disc, club and lotus. Guruvāyūrappan is shown in this form."],
   ['guruvayur',[TRAD[0],TRAD[1]],
    "Od kod po izročilu izvira ime Guruvāyūr?",["Od Guruja (Bṛhaspatija) in Vāyuja, ki sta tu vzpostavila Božanstvo","Od imena reke, ki teče mimo","Od kralja, ki je zgradil tempelj"],
@@ -1473,7 +1478,7 @@ const POOL2 = [
    "Where, by tradition, does the name Guruvāyūr come from?",["From Guru (Bṛhaspati) and Vāyu, who installed the Deity here","From the name of the river that flows past","From the king who built the temple"],
    "When Dvārakā sank, by tradition Bṛhaspati, the teacher of the demigods, and Vāyu, the wind-god, rescued the Deity worshiped in Dvārakā and installed Him in Kerala. Ūr means “place”."],
   ['pandharpur',[CC+', Madhya 9.282',CC+', Madhya 9.282'],
-   "Katero Božanstvo je Mahāprabhu obiskal v Pāṇḍarapuri?",["Viṭhṭhala Ṭhākura","Raṇchoḍrāya","Raṅganātha"],
+   "Katero Božanstvo je Mahāprabhu obiskal v Pāṇḍarapuri?",["Viṭhṭhalo Ṭhākuro","Raṇchoḍrāyo","Raṅganātho"],
    "Mahāprabhu je v Pāṇḍarapuri z veliko ljubeznijo obiskal tempelj Viṭhṭhala Ṭhākure, tam pel in plesal ter se okopal v reki Bhīmā.",
    "Which Deity did Mahāprabhu visit in Pāṇḍarapura?",["Viṭhṭhala Ṭhākura","Raṇchoḍrāya","Raṅganātha"],
    "In Pāṇḍarapura Mahāprabhu lovingly visited the temple of Viṭhṭhala Ṭhākura, chanted and danced there, and bathed in the Bhīmā River."],
@@ -1583,7 +1588,7 @@ const POOL3=[
    "Where did Vasudeva carry the newborn Kṛṣṇa from the prison in Mathurā?",["To Gokula, to the house of Nanda Mahārāja","To Dvārakā","To Kurukṣetra"],
    "By the Lord's order Vasudeva carried Kṛṣṇa across the Yamunā to Gokula, to the house of Nanda Mahārāja, and placed Him beside Yaśodā."],
   ['gokula',[SB+' 10.3–10.4',SB+' 10.3–10.4'],
-   "Katero hčer je Vasudeva iz Gokule prinesel nazaj v zapor?",["Yogamāyo, ki se je rodila Yaśodi","Subhadrā","Rohiṇīino hčer"],
+   "Katero hčer je Vasudeva iz Gokule prinesel nazaj v zapor?",["Yogamāyo, ki se je rodila Yaśodi","Subhadro","Rohiṇīino hčer"],
    "Vasudeva je iz Yaśodine postelje vzel novorojeno deklico, Yogamāyo, in jo prinesel v zapor. Ko jo je Kaṁsa hotel ubiti, se mu je izmuznila in se pokazala kot boginja.",
    "Which daughter did Vasudeva bring back from Gokula to the prison?",["Yogamāyā, born to Yaśodā","Subhadrā","Rohiṇī's daughter"],
    "Vasudeva took the newborn girl, Yogamāyā, from Yaśodā's bed and brought her to the prison. When Kaṁsa tried to kill her, she slipped from his hands and appeared as a goddess."],
@@ -1641,7 +1646,7 @@ const POOL3=[
    "When a forest fire surrounded the boys and the cows, Kṛṣṇa said, “Close your eyes.” When they had closed them, He swallowed the entire fire."],
   ['vraja',[SB+' 10.13',SB+' 10.13'],
    "Kako dolgo je Kṛṣṇa sam nadomeščal teleta in pastirčke, ki jih je skril Brahmā?",["Eno leto","En dan","Sedem dni"],
-   "Brahmā je skril teleta in pastirčke. Kṛṣṇa se je razširil v natanko takšna teleta in dečke in eno leto nihče v Vraji ni opazil razlike. Brahmā je nato spoznal Kṛṣṇovo moč in Mu molil.",
+   "Brahmā je skril teleta in pastirčke. Kṛṣṇa se je razširil v natanko takšna teleta in dečke in eno leto nihče v Vraji ni opazil razlike. Brahmā je nato spoznal Kṛṣṇovo moč in Mu izrekel molitve.",
    "For how long did Kṛṣṇa Himself replace the calves and boys that Brahmā had hidden?",["One year","One day","Seven days"],
    "Brahmā hid the calves and cowherd boys. Kṛṣṇa expanded Himself into exactly such calves and boys, and for one year no one in Vraja noticed any difference. Brahmā then understood Kṛṣṇa's power and offered prayers."],
   ['vraja',[SB+' 10.12',SB+' 10.12'],
@@ -1651,7 +1656,7 @@ const POOL3=[
    "Aghāsura, the brother of Pūtanā and Bakāsura, expanded into a huge python and opened his mouth like a cave. The boys walked in, and Kṛṣṇa grew so large in his throat that the demon died."],
   ['vraja',[SB+' 10.15',SB+' 10.15'],
    "Kdo je v gozdu Tālavana ubil demona Dhenuko v obliki osla?",["Balarāma","Kṛṣṇa","Śrīdāmā"],
-   "Pastirčki so želeli jesti sadeže palm v Tālavani, ki ga je varoval Dhenukāsura. Balarāma je demona zgrabil za noge, ga zavrtel in vrgel v drevo.",
+   "Pastirčki so želeli jesti sadeže palm v gozdu Tālavana, ki ga je varoval Dhenukāsura. Balarāma je demona zgrabil za noge, ga zavrtel in vrgel v drevo.",
    "Who killed the ass-demon Dhenuka in the Tālavana forest?",["Balarāma","Kṛṣṇa","Śrīdāmā"],
    "The cowherd boys wanted to eat the palm fruits of Tālavana, guarded by Dhenukāsura. Balarāma seized the demon by his legs, whirled him around and threw him into a tree."],
   ['vraja',[SB+' 10.22',SB+' 10.22'],
@@ -1673,11 +1678,11 @@ const POOL3=[
    "Kṛṣṇa advised Nanda Mahārāja to offer the prepared food not to Indra but to Govardhana Hill, the cows and the brāhmaṇas. Thus the worship of Govardhana began."],
   ['govardhan',[SB+' 10.27.22–23',SB+' 10.27.22–23'],
    "Kdo je Kṛṣṇi po dogodku z Govardhano dal ime Govinda?",["Indra, potem ko sta Ga okopala Surabhi in on","Mati Yaśodā","Brahmā ob Njegovem rojstvu"],
-   "Mati Surabhi je Kṛṣṇo okopala s svojim mlekom, Indra pa z nebeško vodo Gaṅge, in Mu dal ime Govinda.",
+   "Mati Surabhi je Kṛṣṇo okopala s svojim mlekom, Indra pa Ga je okopal z nebeško vodo Gaṅge in Mu dal ime Govinda.",
    "Who gave Kṛṣṇa the name Govinda after the Govardhana pastime?",["Indra, after he and Surabhi had bathed Him","Mother Yaśodā","Brahmā at His birth"],
-   "Mother Surabhi bathed Kṛṣṇa with her own milk and Indra with heavenly Gaṅgā water, and gave Him the name Govinda."],
+   "Mother Surabhi bathed Kṛṣṇa with her own milk, and Indra bathed Him with heavenly Gaṅgā water and gave Him the name Govinda."],
   ['govardhan',[SB+' 10.21.18',SB+' 10.21.18'],
-   "Koga gopīje v »Pesmi flavte« (Veṇu-gīta) imenujejo najboljšega med Harijevimi služabniki?",["Hrib Govardhana","Reko Yamuno","Pāva"],
+   "Koga gopīje v »Pesmi flavte« (Veṇu-gīta) imenujejo najboljšega med Harijevimi služabniki?",["Hrib Govardhana","Reko Yamuno","Pava"],
    "Gopīje pravijo, da je hrib Govardhana najboljši med Harijevimi služabniki, saj Kṛṣṇi, Balarāmi, kravam in pastirčkom daje vodo, travo, jame in korenine.",
    "Whom do the gopīs in the “Song of the Flute” (Veṇu-gīta) call the best of Hari's servants?",["Govardhana Hill","The Yamunā River","The peacock"],
    "The gopīs say that Govardhana Hill is the best of Hari's servants, for it offers Kṛṣṇa, Balarāma, the cows and the cowherd boys water, grass, caves and roots."],
@@ -1692,7 +1697,7 @@ const POOL3=[
    "Which Deities are in the Nandarāya temple on the hilltop at Nandagrāma?",["Kṛṣṇa and Balarāma with Nanda and Yaśodā","Rādhā and Kṛṣṇa with the eight sakhīs","Sītā and Rāma"],
    "In the Nandarāya temple, which tradition connects with the residence of Nanda Mahārāja, are Kṛṣṇa and Balarāma, with Nanda and Yaśodā beside Them."],
   ['vraja',[SB+' 10.38',SB+' 10.38'],
-   "Kaj je Akrūra storil, ko je na poti v Vraja zagledal odtise Kṛṣṇovih stopal?",["Skočil je z voza in se valjal v prahu","Pomolil je ob Yamuni","Obrnil se je nazaj v Mathuro"],
+   "Kaj je Akrūra storil, ko je na poti v Vrajo zagledal odtise Kṛṣṇovih stopal?",["Skočil je z voza in se valjal v prahu","Pomolil je ob Yamuni","Obrnil se je nazaj v Mathuro"],
    "Ko je Akrūra v prahu Vraje zagledal odtise Kṛṣṇovih stopal z znamenji lotosa, ječmena in bodila, je v zanosu skočil z voza in se valjal v prahu.",
    "What did Akrūra do when, on his way to Vraja, he saw Kṛṣṇa's footprints?",["He jumped down from the chariot and rolled in the dust","He prayed by the Yamunā","He turned back to Mathurā"],
    "When Akrūra saw in the dust of Vraja Kṛṣṇa's footprints marked with the lotus, barleycorn and elephant goad, he jumped down from the chariot in ecstasy and rolled in the dust."],
@@ -1719,12 +1724,12 @@ STAGES3[STAGES3.length-1].fq=FINALQ3; POOL.push(...POOL3); STAGES.push(...STAGES
 const SMD='https://srimayapurdhama.com/wp-content/uploads/';
 const SITE=['srimayapurdhama.com (ISKCON Māyāpur)','srimayapurdhama.com (ISKCON Mayapur)'];
 const dv=(n,proc,procEn,places,placesEn,img,cap)=>({n:[n,n],loc:["Navadvīpa-maṇḍala, Zahodna Bengalija","Navadvīpa-maṇḍala, West Bengal"],at:'mayapur',img:[[SMD+img,cap,cap]],src:SITE,
-  d:[`Eden od devetih otokov Navadvīpe. Povezan je z vdanim služenjem ${proc}. Med svetimi kraji otoka so ${places}.`,`One of the nine islands of Navadvīpa. It is connected with the devotional process of ${procEn}. Its holy places include ${placesEn}.`]});
+  d:[`Eden od devetih otokov Navadvīpe. Predstavlja ${proc}, enega od devetih procesov vdanega služenja. Med svetimi kraji otoka so ${places}.`,`One of the nine islands of Navadvīpa. It is connected with the devotional process of ${procEn}. Its holy places include ${placesEn}.`]});
 const PLACES4={
  yogapitha:{n:["Yogapīṭha – kraj pojavitve Śrī Caitanye","Yogapīṭha – birthplace of Śrī Caitanya"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Yogapitha-%E2%80%93-Birthplace-of-Sri-Chaitanya-Mahaprabhu-scaled.jpg','Yogapīṭha','Yogapīṭha']],src:SITE,
   d:["Kraj, kjer se je pojavil Śrī Caitanya Mahāprabhu. Odkril ga je Śrīla Bhaktivinoda Ṭhākura, potrdil pa Śrīla Jagannātha dāsa Bābājī.","The place where Śrī Caitanya Mahāprabhu appeared. It was discovered by Śrīla Bhaktivinoda Ṭhākura and confirmed by Śrīla Jagannātha dāsa Bābājī."]},
  srivasa:{n:["Śrīvāsa-aṅgana (Khol-bhāṅgā-ḍāṅgā)","Śrīvāsa-aṅgana (Khol-bhāṅgā-ḍāṅgā)"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/SriSrivasAngan.jpg','Śrīvāsa-aṅgana','Śrīvāsa-aṅgana']],src:SITE,
-  d:["Dvorišče Śrīvāse Ṭhākure, kjer je Mahāprabhu z bhaktami ponoči pel kīrtana. Ime Khol-bhāṅgā-ḍāṅgā spominja na mṛdaṅgo (khol), ki jo je razbil Kāzī.","The courtyard of Śrīvāsa Ṭhākura, where Mahāprabhu held night-long kīrtana with His devotees. The name Khol-bhāṅgā-ḍāṅgā recalls the mṛdaṅga (khol) broken by the Kāzī."]},
+  d:["Dvorišče Śrīvāse Ṭhākure, kjer je Mahāprabhu z bhaktami ponoči pel kīrtano. Ime Khol-bhāṅgā-ḍāṅgā spominja na mṛdaṅgo (khol), ki jo je razbil Kāzī.","The courtyard of Śrīvāsa Ṭhākura, where Mahāprabhu held night-long kīrtana with His devotees. The name Khol-bhāṅgā-ḍāṅgā recalls the mṛdaṅga (khol) broken by the Kāzī."]},
  advaitabh:{n:["Advaita-bhavana","Advaita-bhavana"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Sri-Advaita-bhavan-scaled.jpg','Advaita-bhavana','Advaita-bhavana']],src:SITE,
   d:["Hiša Advaite Ācārye v Māyāpurju. Advaita Ācārya je s klicanjem Gospoda pripomogel k Njegovi pojavitvi.","The house of Advaita Ācārya in Māyāpur. By calling for the Lord, Advaita Ācārya helped bring about His appearance."]},
  murari:{n:["Hiša Murārija Gupte","House of Murāri Gupta"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Sri-Ram-Sita-Lakshman-Hanuman.jpg','Rāma, Sītā, Lakṣmaṇa in Hanumān','Rāma, Sītā, Lakṣmaṇa and Hanumān']],src:SITE,
@@ -1738,14 +1743,14 @@ const PLACES4={
   d:["Maṭha s samādhijem Śrīle Bhaktisiddhānte Sarasvatīja Gosvāmīja, duhovnega učitelja Śrīle Prabhupāde.","The maṭha with the samādhi of Śrīla Bhaktisiddhānta Sarasvatī Gosvāmī, the spiritual master of Śrīla Prabhupāda."]},
  gangadasa:{n:["Šola Gaṅgādāse Paṇḍita","School of Gaṅgādāsa Paṇḍita"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Sri-Sri-Siksha-Ashtakam.jpg','Gaṅgādāsa Paṇḍita ṭol','Gaṅgādāsa Paṇḍita ṭol']],src:SITE,
   d:["Ṭol (šola) Gaṅgādāse Paṇḍita, kjer se je kot učenec šolal Nimāi.","The ṭol (school) of Gaṅgādāsa Paṇḍita, where Nimāi studied as a pupil."]},
- simanta:dv("Sīmantadvīpa","s poslušanjem (śravaṇam)","hearing (śravaṇam)","samādhi Cānd Kāzīja, aṅgana Kholāveče Śrīdhare in Sīmantinī-mandira","the samādhi of Chand Kazi, the courtyard of Kholāvecā Śrīdhara and the Sīmantinī-mandira",'2024/08/ChandKazi_Samadhi-scaled.jpg','Samādhi Cānd Kāzīja'),
- godruma:dv("Godrumadvīpa","s petjem (kīrtanam)","chanting (kīrtanam)","Svānanda-sukhada-kuñja, bhajana-kuṭīra Śrīle Bhaktivinode Ṭhākure, Surabhi-kuñja, Hari-hara-kṣetra in Nṛsiṁha-pallī","Svānanda-sukhada-kuñja, the bhajana-kuṭīra of Śrīla Bhaktivinoda Ṭhākura, Surabhi-kuñja, Hari-hara-kṣetra and Nṛsiṁha-pallī",'2024/08/Sri-Swananda-Sukhada-Kunja.jpg','Svānanda-sukhada-kuñja'),
- madhya:dv("Madhyadvīpa","s spominjanjem (smaraṇam)","remembering (smaraṇam)","Pañcaveṇī (Mahā-prayāga), Brāhmaṇa-puṣkara, Uccahaṭṭa (Kurukṣetra), Naimiṣāraṇya in kraj bhajana sedmih ṛṣijev","Pañcaveṇī (Mahā-prayāga), Brāhmaṇa-puṣkara, Uccahaṭṭa (Kurukṣetra), Naimiṣāraṇya and the bhajana place of the seven ṛṣis",'2024/08/Pancaveni3.jpg','Pañcaveṇī'),
- kola:Object.assign(dv("Koladvīpa","s služenjem lotosovim stopalom (pāda-sevanam)","serving the lotus feet (pāda-sevanam)","tempelj Dhāmeśvara Mahāprabhu, bhajana-kuṭīra Śrīle Jagannātha dāse Bābājīja, Prauḍhā-māyā in samādhi Vaṁśīdāse Bābājīja","the Dhāmeśvara Mahāprabhu temple, the bhajana-kuṭīra of Śrīla Jagannātha dāsa Bābājī, Prauḍhā-māyā and the samādhi of Vaṁśīdāsa Bābājī",'2024/08/Bhajan-Kutir-of-Jagannatha-Dasa-Babaji-Maharaja.jpg','Bhajana-kuṭīra Jagannātha dāse Bābājīja'),{at:'navadvip'}),
- ritu:dv("Ṛtudvīpa","s čaščenjem Božanstva (arcanam)","worshiping the Deity (arcanam)","Campahaṭṭa, Vidyānagara, Samudragaḍa in Rātupura z Rādhā-kuṇḍo in Śyāma-kuṇḍo","Campahaṭṭa, Vidyānagara, Samudragaḍa and Rātupura with Rādhā-kuṇḍa and Śyāma-kuṇḍa",'2024/08/Ratupura_Radhakund_Shyamkund2.jpg','Rātupura'),
- jahnu:dv("Jahnudvīpa","z molitvijo (vandanam)","praying (vandanam)","āśrama modreca Jahnuja in Bhīṣma-ṭilā","the āśrama of the sage Jahnu and Bhīṣma-ṭilā",'2024/08/JahnuMuni2.jpg','Āśrama Jahnu Munija'),
- modadruma:dv("Modadrumadvīpa","s služenjem (dāsyam)","servitude (dāsyam)","rojstni kraj Vṛndāvane dāse Ṭhākure v Māmgāchiju, hiša Vāsudeve Datte in śrī-pāṭ Sāraṅge Murārija Ṭhākure","the birthplace of Vṛndāvana dāsa Ṭhākura at Māmgāchi, the house of Vāsudeva Datta and the śrī-pāṭ of Sāraṅga Murāri Ṭhākura",'2025/03/Vasudeva-Dutta-house.jpeg','Hiša Vāsudeve Datte'),
- rudra:dv("Rudradvīpa","s prijateljstvom (sakhyam)","friendship (sakhyam)","Rudradvīpa Gauḍīya Maṭha, Nidayā-ghāṭa, Śaṅkarapura in Śrī Pulina","Rudradvīpa Gauḍīya Maṭha, Nidayā-ghāṭa, Śaṅkarapura and Śrī Pulina",'2024/08/rudradvipa-gaudiya-math2-scaled.jpg','Rudradvīpa Gauḍīya Maṭha'),
+ simanta:dv("Sīmantadvīpa","śravaṇam (poslušanje)","hearing (śravaṇam)","samādhi Cānd Kāzīja, aṅgana Kholāveče Śrīdhare in Sīmantinī-mandira","the samādhi of Chand Kazi, the courtyard of Kholāvecā Śrīdhara and the Sīmantinī-mandira",'2024/08/ChandKazi_Samadhi-scaled.jpg','Samādhi Cānd Kāzīja'),
+ godruma:dv("Godrumadvīpa","kīrtanam (petje)","chanting (kīrtanam)","Svānanda-sukhada-kuñja, bhajana-kuṭīra Śrīle Bhaktivinode Ṭhākure, Surabhi-kuñja, Hari-hara-kṣetra in Nṛsiṁha-pallī","Svānanda-sukhada-kuñja, the bhajana-kuṭīra of Śrīla Bhaktivinoda Ṭhākura, Surabhi-kuñja, Hari-hara-kṣetra and Nṛsiṁha-pallī",'2024/08/Sri-Swananda-Sukhada-Kunja.jpg','Svānanda-sukhada-kuñja'),
+ madhya:dv("Madhyadvīpa","smaraṇam (spominjanje)","remembering (smaraṇam)","Pañcaveṇī (Mahā-prayāga), Brāhmaṇa-puṣkara, Uccahaṭṭa (Kurukṣetra), Naimiṣāraṇya in kraj bhajana sedmih ṛṣijev","Pañcaveṇī (Mahā-prayāga), Brāhmaṇa-puṣkara, Uccahaṭṭa (Kurukṣetra), Naimiṣāraṇya and the bhajana place of the seven ṛṣis",'2024/08/Pancaveni3.jpg','Pañcaveṇī'),
+ kola:Object.assign(dv("Koladvīpa","pāda-sevanam (služenje lotosovim stopalom)","serving the lotus feet (pāda-sevanam)","tempelj Dhāmeśvara Mahāprabhu, bhajana-kuṭīra Śrīle Jagannātha dāse Bābājīja, Prauḍhā-māyā in samādhi Vaṁśīdāse Bābājīja","the Dhāmeśvara Mahāprabhu temple, the bhajana-kuṭīra of Śrīla Jagannātha dāsa Bābājī, Prauḍhā-māyā and the samādhi of Vaṁśīdāsa Bābājī",'2024/08/Bhajan-Kutir-of-Jagannatha-Dasa-Babaji-Maharaja.jpg','Bhajana-kuṭīra Jagannātha dāse Bābājīja'),{at:'navadvip'}),
+ ritu:dv("Ṛtudvīpa","arcanam (čaščenje Božanstva)","worshiping the Deity (arcanam)","Campahaṭṭa, Vidyānagara, Samudragaḍa in Rātupura z Rādhā-kuṇḍo in Śyāma-kuṇḍo","Campahaṭṭa, Vidyānagara, Samudragaḍa and Rātupura with Rādhā-kuṇḍa and Śyāma-kuṇḍa",'2024/08/Ratupura_Radhakund_Shyamkund2.jpg','Rātupura'),
+ jahnu:dv("Jahnudvīpa","vandanam (molitev)","praying (vandanam)","āśrama modreca Jahnuja in Bhīṣma-ṭilā","the āśrama of the sage Jahnu and Bhīṣma-ṭilā",'2024/08/JahnuMuni2.jpg','Āśrama Jahnu Munija'),
+ modadruma:dv("Modadrumadvīpa","dāsyam (služenje)","servitude (dāsyam)","rojstni kraj Vṛndāvane dāse Ṭhākure v Māmgāchiju, hiša Vāsudeve Datte in śrī-pāṭ Sāraṅge Murārija Ṭhākure","the birthplace of Vṛndāvana dāsa Ṭhākura at Māmgāchi, the house of Vāsudeva Datta and the śrī-pāṭ of Sāraṅga Murāri Ṭhākura",'2025/03/Vasudeva-Dutta-house.jpeg','Hiša Vāsudeve Datte'),
+ rudra:dv("Rudradvīpa","sakhyam (prijateljstvo)","friendship (sakhyam)","Rudradvīpa Gauḍīya Maṭha, Nidayā-ghāṭa, Śaṅkarapura in Śrī Pulina","Rudradvīpa Gauḍīya Maṭha, Nidayā-ghāṭa, Śaṅkarapura and Śrī Pulina",'2024/08/rudradvipa-gaudiya-math2-scaled.jpg','Rudradvīpa Gauḍīya Maṭha'),
  /* Ekacakrā */
  ekacakra:{n:["Ekacakrā – rojstni kraj Nityānande Prabhuja","Ekacakrā – birthplace of Nityānanda Prabhu"],loc:["okrožje Birbhum, Zahodna Bengalija","Birbhum district, West Bengal"],ll:[24.0614,87.8478],img:[[SMD+'2025/01/Ekacakra_Nandan_Nityananda_birthplace_Photo-Album.jpg','Garbhavāsa, rojstni kraj Nityānande','Garbhavāsa, birthplace of Nityānanda']],src:SITE,
   d:["Vas v Rāḍha-deśi, kjer se je pojavil Nityānanda Prabhu. Njegov oče je bil Hāḍāi Paṇḍita, mati Padmāvatī. Kraj rojstva se imenuje Garbhavāsa.","The village in Rāḍha-deśa where Nityānanda Prabhu appeared. His father was Hāḍāi Paṇḍita and His mother Padmāvatī. The birthplace is called Garbhavāsa."]},
@@ -1764,7 +1769,7 @@ const PLACES4={
   d:["Sveto jezerce, imenovano po Nityānandovi materi Padmāvatī-devī.","A sacred pond named after Nityānanda's mother, Padmāvatī-devī."]},
  /* Purī */
  gundica:{n:["Purī – tempelj Guṇḍicā","Purī – Guṇḍicā temple"],loc:["na koncu Velike ceste (Baḍa Daṇḍa), Purī","at the end of the Grand Road (Baḍa Daṇḍa), Purī"],ll:[19.8169,85.8404],cat:['Gundicha_Temple'],img:[],
-  d:["Tempelj, imenovan tudi Jagannāthov vrtni dvorec, približno 3 km od glavnega templja. Ob Ratha-yātri sem pripeljejo Jagannātho, Baladevo in Subhadrā, ki tu ostanejo sedem dni.","Also called Jagannātha's garden house, about 3 km from the main temple. At Ratha-yātrā Jagannātha, Baladeva and Subhadrā are brought here and stay for seven days."]},
+  d:["Tempelj, imenovan tudi Jagannāthov vrtni dvorec, približno 3 km od glavnega templja. Ob Ratha-yātri sem pripeljejo Jagannātho, Baladevo in Subhadro, ki tu ostanejo sedem dni.","Also called Jagannātha's garden house, about 3 km from the main temple. At Ratha-yātrā Jagannātha, Baladeva and Subhadrā are brought here and stay for seven days."]},
  haridas:{n:["Purī – samādhi Haridāse Ṭhākure","Purī – samādhi of Haridāsa Ṭhākura"],loc:["ob morju, Purī","by the sea, Purī"],at:'puri',img:[],
   d:["Ob morski obali je Śrī Caitanya sam položil telo Haridāse Ṭhākure v grob in ga pokril s peskom.","On the seashore Śrī Caitanya Himself placed the body of Haridāsa Ṭhākura in the grave and covered it with sand."]},
  siddhabakula:{n:["Purī – Siddha-bakula","Purī – Siddha-bakula"],loc:["Purī","Purī"],at:'puri',img:[],
@@ -1773,15 +1778,102 @@ const PLACES4={
   d:["Tempelj Gopīnāthe, ki mu je služil Gadādhara Paṇḍita.","The temple of Gopīnātha, whom Gadādhara Paṇḍita served."],dei:["Ṭoṭā-gopīnātha (Kṛṣṇa).","Ṭoṭā-gopīnātha (Kṛṣṇa)."]},
  narendra:{n:["Purī – Narendra-sarovara","Purī – Narendra-sarovara"],loc:["Purī","Purī"],at:'puri',img:[],
   d:["Veliko sveto jezero v Purīju, kjer ob prazniku Candana-yātrā Božanstva vozijo v čolnih.","A large sacred lake in Purī where the Deities are taken boating during the Candana-yātrā festival."]},
- alalanatha:{n:["Brahmagiri – Ālālanātha","Brahmagiri – Ālālanātha"],loc:["Brahmagiri, približno 23 km od Purīja","Brahmagiri, about 23 km from Purī"],at:'puri',img:[],
-  d:["Tempelj, ki ga romarji obiščejo v času anavasare, ko Jagannātha v Purīju ni viden. Po izročilu je tja odšel tudi Mahāprabhu; tam je kamen, na katerem je pel saṅkīrtana.","A temple visited during anavasara, when Jagannātha is not seen in Purī. By tradition Mahāprabhu also went there; a stone on which He performed saṅkīrtana is still there."]},
+ alalanatha:{n:["Brahmagiri – Ālālanātha","Brahmagiri – Ālālanātha"],s:['Ālālanātha','Ālālanātha'],loc:["Brahmagiri, približno 23 km od Purīja","Brahmagiri, about 23 km from Purī"],at:'puri',img:[],
+  d:["Tempelj, ki ga romarji obiščejo v času anavasare, ko Jagannātha v Purīju ni viden. Po izročilu je tja odšel tudi Mahāprabhu; tam je kamen, na katerem je pel saṅkīrtano.","A temple visited during anavasara, when Jagannātha is not seen in Purī. By tradition Mahāprabhu also went there; a stone on which He performed saṅkīrtana is still there."]},
 };
 Object.assign(PLACES,PLACES4);
+/* Dopolnitve krajev Navadvīpe in Ekacakre (vir: srimayapurdhama.com, ISKCON Māyāpur) */
+const im=(f,sl,en)=>[SMD+f,sl,en||sl];
+Object.assign(PLACES.yogapitha,{
+ img:[PLACES.yogapitha.img[0],im('2024/08/Neem-Tree.jpg','Drevo nimba, kraj Mahāprabhujeve pojavitve','The neem tree, place of Mahāprabhu’s appearance'),im('2024/08/Sri-Sacidevi_JagannathaMisra_Nimai.jpg','Śacī-devī, Jagannātha Miśra in Nimāi','Śacī-devī, Jagannātha Miśra and Nimāi'),im('2024/08/SriGaurSundar_SriLaxmipriyadevi_SriBisnupriyadevi3.jpg','Gaura-sundara z Lakṣmīpriyo in Viṣṇupriyo','Gaura-sundara with Lakṣmīpriyā and Viṣṇupriyā'),im('2024/08/SriPancatattva_SriJagannathdev2.jpg','Pañca-tattva in Jagannātha','Pañca-tattva and Jagannātha'),im('2024/08/Discovery-of-Lord-Sri-Caitanyas-Birthsite-1888.jpeg','Odkritje kraja pojavitve (1888)','Discovery of the birthsite (1888)'),im('2024/08/Gour-kunda-2-scaled.jpg','Gaura-kuṇḍa','Gaura-kuṇḍa')],
+ d:["Kraj, kjer se je Śrī Caitanya Mahāprabhu pojavil pod drevesom nimba. Leta 1888 ga je odkril Śrīla Bhaktivinoda Ṭhākura, potrdil pa Śrīla Jagannātha dāsa Bābājī. Tu so tudi Gaura-kuṇḍa in spomenik Śrīli Bhaktivinodi Ṭhākuri.","The place where Śrī Caitanya Mahāprabhu appeared beneath a neem tree. It was discovered in 1888 by Śrīla Bhaktivinoda Ṭhākura and confirmed by Śrīla Jagannātha dāsa Bābājī. Here are also Gaura-kuṇḍa and a memorial to Śrīla Bhaktivinoda Ṭhākura."],
+ dei:["Śacī-devī, Jagannātha Miśra in Nimāi; Gaura-sundara z Lakṣmīpriyo in Viṣṇupriyo; Adhokṣaja Viṣṇu; Gaurāṅga z Rādhā-Mādhavo; Pañca-tattva z Jagannātho; Gaura-Gadādhara z Lakṣmī-Nṛsiṁhadevo; Gopīśvara in Kṣetrapāla Śiva.","Śacī-devī, Jagannātha Miśra and Nimāi; Gaura-sundara with Lakṣmīpriyā and Viṣṇupriyā; Adhokṣaja Viṣṇu; Gaurāṅga with Rādhā-Mādhava; the Pañca-tattva with Jagannātha; Gaura-Gadādhara with Lakṣmī-Nṛsiṁhadeva; Gopīśvara and Kṣetrapāla Śiva."]});
+Object.assign(PLACES.srivasa,{
+ img:[PLACES.srivasa.img[0],im('2025/11/Gour-Nityananda2.jpg','Gaura-Nityānanda z razbito mṛdaṅgo','Gaura-Nityānanda with the broken mṛdaṅga'),im('2025/11/Mahaprakash-lila.jpg','Mahā-prakāśa-līlā','Mahā-prakāśa-līlā'),im('2025/09/srivas_Panchatattva-and-Nrsimhadeva.jpg','Pañca-tattva in Nṛsiṁhadeva','Pañca-tattva and Nṛsiṁhadeva'),im('2024/08/Radha-Madan-Mohan-Gourhari.jpg','Rādhā-Madana-mohana in Gaurahari','Rādhā-Madana-mohana and Gaurahari')],
+ d:["Dom Śrīvāse Ṭhākure, ki je Nārada Muni. Tu je Mahāprabhu z bhaktami ponoči pel kīrtano; zato kraj imenujejo rojstni kraj kīrtane. Tu se je zgodila mahā-prakāśa-līlā. Ko je Śrīvāsi med kīrtano umrl sin, ga je Mahāprabhu potolažil, da sta On in Nityānanda njegova sinova. Ime Khol-bhāṅgā-ḍāṅgā spominja na mṛdaṅgo (khol), ki jo je razbil Kāzī.","The home of Śrīvāsa Ṭhākura, who is Nārada Muni. Here Mahāprabhu held night-long kīrtana with His devotees, so the place is called the birthplace of kīrtana. The mahā-prakāśa-līlā took place here. When Śrīvāsa’s son died during kīrtana, Mahāprabhu consoled him, saying that He and Nityānanda were his sons. The name Khol-bhāṅgā-ḍāṅgā recalls the mṛdaṅga (khol) broken by the Kāzī."],
+ dei:["Gaura-Nityānanda z razbito mṛdaṅgo, Pañca-tattva, Nṛsiṁhadeva, Rādhā-Madana-mohana in Gaurahari.","Gaura-Nityānanda with the broken mṛdaṅga, the Pañca-tattva, Nṛsiṁhadeva, Rādhā-Madana-mohana and Gaurahari."]});
+PLACES.mayapur.img.push(['https://srimayapurdhama.com/wp-content/uploads/2025/08/Srila-Prabhupada-Samadhi_Kisora_Aug2025_sq-scaled.jpg','Puṣpa-samādhi Śrīle Prabhupāde, Māyāpur','Śrīla Prabhupāda’s puṣpa-samādhi, Māyāpur']);
+PLACES.simanta.d=["Eden od devetih otokov Navadvīpe; predstavlja śravaṇam (poslušanje). Po Navadvīpa-dhāma-māhātmyi (6. poglavje) je Pārvatī tu meditirala na Gaurāṅgo; ko se ji je prikazal, si je prah z Njegovih stopal dala na prečo (sīmanta), zato se otok imenuje Sīmantadvīpa. Gaurāṅga ji je razložil, da je Njegova energija, in tu ostala kot boginja otoka. Na otoku so tudi samādhi Cānd Kāzīja, aṅgana Kholāveče Śrīdhare in Sīmantinī-mandira.","One of the nine islands of Navadvīpa; it represents śravaṇam (hearing). According to the Navadvīpa-dhāma-māhātmya (chapter 6), Pārvatī meditated on Gaurāṅga here; when He appeared, she placed the dust of His feet on the parting of her hair (sīmanta), so the island is called Sīmantadvīpa. Gaurāṅga explained to her that she is His energy, and she remained here as the goddess of the island. The samādhi of Chand Kazi, the courtyard of Kholāvecā Śrīdhara and the Sīmantinī-mandira are also here."];
+PLACES.godruma.img.push(im('2024/08/Surabhi-kunj-scaled.jpg','Surabhi-kuñja','Surabhi-kuñja'),im('2024/08/Harihara.jpg','Hari-hara-kṣetra','Hari-hara-kṣetra'),im('2024/08/Narasimhapalli.jpg','Nṛsiṁha-pallī','Nṛsiṁha-pallī'));
+/* Ekacakrā */
+Object.assign(PLACES.ekacakra,{s:['Garbhavāsa','Garbhavāsa'],
+ img:[PLACES.ekacakra.img[0],im('2025/02/Garbhavasa_Nityananda.jpg','Garbhavāsa','Garbhavāsa'),im('2024/12/Ekacakra_Nandan_Nityananda_birthplace-3.jpg','Tempelj na rojstnem kraju Nityānande','The temple at Nityānanda’s birthplace')],
+ d:["Garbhavāsa je kraj, kjer se je Nityānanda Prabhu pojavil 13. dan svetle polovice meseca Māgha. Njegova starša sta bila Hāḍāi Paṇḍita in Padmāvatī. Ob templju sta Ṣaṣṭhī-talā, kjer so šesti dan po Njegovem rojstvu častili boginjo Ṣaṣṭhī, in Viśvarūpa-talā, kjer je po izročilu počival Viśvarūpa, Mahāprabhujev starejši brat, potem ko je sprejel sannyāso. Vas se danes imenuje Vīrcandrapur.","Garbhavāsa is where Nityānanda Prabhu appeared on the 13th day of the bright half of the month of Māgha. His parents were Hāḍāi Paṇḍita and Padmāvatī. Beside the temple are Ṣaṣṭhī-talā, where the goddess Ṣaṣṭhī was worshiped on the sixth day after His birth, and Viśvarūpa-talā, where by tradition Viśvarūpa, Mahāprabhu’s elder brother, rested after accepting sannyāsa. The village is today called Vīrcandrapur."]});
+Object.assign(PLACES.bankima,{s:['Baṅkima Rāya','Baṅkima Rāya'],
+ img:[PLACES.bankima.img[0],im('2025/01/Ekacakra_sundaranga_Bankima_raya_temple.jpg','Tempelj Baṅkima Rāya','Baṅkima Rāya temple')],
+ d:["Baṅkima Rāya (Bāṅkā Rāya) je edino Božanstvo, ki ga je vzpostavil Nityānanda Prabhu sam. Po pripovedovanju duhovnikov je Nityānanda vstopil v telo Baṅkima Rāya; zato je na Gospodovi desni Božanstvo Jāhnavā-devī, na levi pa Śrīmatī Rādhārāṇī. Rādhārāṇī so našli pod drevesom nimba v Bhaḍḍāpuri, zato jo imenujejo Bhaḍḍāpurera Ṭhākurāṇī. Tempelj je leta 1924 poškodovala strela.","Baṅkima Rāya (Bāṅkā Rāya) is the only Deity installed by Nityānanda Prabhu Himself. According to the priests, Nityānanda entered the body of Baṅkima Rāya; therefore the Deity of Jāhnavā-devī stands on the Lord’s right and Śrīmatī Rādhārāṇī on His left. Rādhārāṇī was found under a neem tree at Bhaḍḍāpura, so She is called Bhaḍḍāpurera Ṭhākurāṇī. The temple was damaged by lightning in 1924."],
+ dei:["Baṅkima Rāya (Kṛṣṇa), na desni Jāhnavā-devī, na levi Śrīmatī Rādhārāṇī; na drugih oltarjih Muralīdhara, Rādhā-Mādhava, Manomohana, Vṛndāvana-candra, Gaura-Nitāi in Yogamāyā.","Baṅkima Rāya (Kṛṣṇa), with Jāhnavā-devī on His right and Śrīmatī Rādhārāṇī on His left; on other altars Muralīdhara, Rādhā-Mādhava, Manomohana, Vṛndāvana-candra, Gaura-Nitāi and Yogamāyā."]});
+Object.assign(PLACES.kadamba,{s:['Kadamba-khaṇḍī-ghāṭa','Kadamba-khaṇḍī-ghāṭa'],img:[PLACES.kadamba.img[0],im('2025/02/Sundaranga_Kadamba-khandi-3.jpg','Kadamba-khaṇḍī-ghāṭa','Kadamba-khaṇḍī-ghāṭa')],
+ d:["Ghāṭa na vzhodni strani templja Baṅkima Rāya, ob reki, ki jo krajani imenujejo Yamunā. Po izročilu je tu po vodi priplavalo Božanstvo Baṅkima Rāya; Nityānanda Ga je sam dvignil in vzpostavil v templju.","A ghāṭa on the eastern side of the Baṅkima Rāya temple, on a river the locals call the Yamunā. By tradition the Deity of Baṅkima Rāya came floating on the water here; Nityānanda Himself lifted Him and installed Him in the temple."]});
+Object.assign(PLACES.hantugada,{s:['Hāṅṭugāḍā','Hāṅṭugāḍā'],img:[PLACES.hantugada.img[0],im('2025/02/Nandan_hantugada-5-scaled.jpg','Jezero v Hāṅṭugāḍi','The lake at Hāṅṭugāḍā')],
+ d:["Po izročilu je Nityānanda Prabhu na ta kraj prinesel vse svete kraje, zato se ljudje iz okoliških vasi kopajo tu namesto v Gaṅgi. Ime spominja na praznik dadhi-ciḍā (sploščen riž z jogurtom), pri katerem je Nityānanda prasādam sprejel kleče (hāṅṭu pomeni koleno). Jezero ima vodo vse leto; velika sejma sta ob Goṣṭhāṣṭamī in na Nityānandov pojavni dan.","By tradition Nityānanda Prabhu brought all the holy places here, so people from the surrounding villages bathe here instead of in the Gaṅgā. The name recalls the dadhi-ciḍā festival (flat rice with yogurt), at which Nityānanda received prasādam kneeling (hāṅṭu means knee). The lake holds water all year; large fairs are held at Goṣṭhāṣṭamī and on Nityānanda’s appearance day."]});
+Object.assign(PLACES.pandavatala,{s:['Pāṇḍava-tala','Pāṇḍava-tala'],img:[PLACES.pandavatala.img[0],im('2025/02/Ekacakra_Temple_pandavas-scaled.jpg','Tempelj Pāṇḍavov v Ekacakri','The Pāṇḍava temple at Ekacakrā'),im('2024/12/Bhima_Bakasura.jpg','Bhīma in Bakāsura','Bhīma and Bakāsura')],
+ d:["Po izročilu so tu med izgnanstvom prikrito živeli pet Pāṇḍavov in Draupadī. Med izgnanstvom so bivali pri brāhmaṇski družini, ki jo je ogrožal demon Bakāsura; Kuntī je Bhīmi naročila, naj ga ubije (Śrīmad-Bhāgavatam 1.13 omenja njihove stiske v izgnanstvu).","By tradition the five Pāṇḍavas and Draupadī lived here incognito during their exile. During the exile they stayed with a brāhmaṇa family troubled by the demon Bakāsura; Kuntī told Bhīma to kill him (Śrīmad-Bhāgavatam 1.13 mentions their hardships in exile)."]});
+Object.assign(PLACES.bakula,{s:['Bakula-tala','Bakula-tala'],img:[PLACES.bakula.img[0],im('2025/02/Sundaranga_Bakulatala-6-scaled.jpg','Bakula-tala','Bakula-tala')],
+ d:["Kraj vzhodno od Garbhavāse, kjer je Nityānanda dvanajst let živel in se igral s prijatelji. Staro drevo bakula je imelo veje kot kačje glave in so ga imeli za Ananto; Nityānanda je po izročilu njegovi dve debli združil v eno, da so prijatelji lažje skakali z veje na vejo. Po Caitanya-bhāgavati je Nityānanda s prijatelji uprizarjal Kṛṣṇove in Rāmove zabave; ko je igral Lakṣmaṇo, zadetega z orožjem śakti, so vsi mislili, da je res mrtev. Pod drevesom je po izročilu zakopana Njegova popkovina (nāḍipoṅtā).","A place east of Garbhavāsa where Nityānanda lived for twelve years and played with His friends. The old bakula tree had branches like serpent hoods and was regarded as Ananta; by tradition Nityānanda joined its two trunks into one so that His friends could jump more easily from branch to branch. According to the Caitanya-bhāgavata, Nityānanda and His friends enacted the pastimes of Kṛṣṇa and Rāma; when He played Lakṣmaṇa struck by the śakti weapon, everyone thought He had really died. By tradition His navel-cord (nāḍipoṅtā) is buried beneath the tree."]});
+Object.assign(PLACES.padmavati,{s:['Jezerce Padmāvatī','Padmāvatī pond'],img:[PLACES.padmavati.img[0],im('2025/02/Nandan_Padmavat_pond-6-scaled.jpg','Jezerce Padmāvatī','Padmāvatī pond')],
+ d:["Jezerce za rojstnim krajem Nityānande, imenovano po Njegovi materi Padmāvatī. Podaril ga je Mukuṭanārāyaṇa Roy, tast Hāḍāija Paṇḍita. Padmāvatī je tu vsak dan kopala malega Nitāija.","The pond behind Nityānanda’s birthplace, named after His mother Padmāvatī. It was given by Mukuṭanārāyaṇa Roy, Hāḍāi Paṇḍita’s father-in-law. Padmāvatī bathed little Nitāi here every day."]});
+PLACES.iskconek={n:["Ekacakrā – tempelj ISKCON","Ekacakrā – ISKCON temple"],s:['ISKCON Ekacakrā','ISKCON Ekacakrā'],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',lv:4,src:SITE,
+ img:[im('2024/12/Ekacakra_Nandan_temple_inside.jpg','Śrī Śrī Nityānanda-candra in Gaurāṅga Rāya','Śrī Śrī Nityānanda-candra and Gaurāṅga Rāya'),im('2024/12/Sri-Sri-Radha-Vrindavan-Mohan.jpg','Śrī Śrī Rādhā-Vṛndāvana-mohana z Lalito in Viśākho','Śrī Śrī Rādhā-Vṛndāvana-mohana with Lalitā and Viśākhā'),im('2024/12/Ekacakra_Srila-Prabhupada.jpg','Śrīla Prabhupāda','Śrīla Prabhupāda')],
+ d:["Tempelj ISKCON v Ekacakri, ki slavi Nityānando Prabhuja; ob njem sta razstava o Nityānandi in gośālā.","The ISKCON temple at Ekacakrā, dedicated to the glories of Nityānanda Prabhu; beside it are an exhibition about Nityānanda and a gośālā."],
+ dei:["Śrī Śrī Nityānanda-candra in Gaurāṅga Rāya; Śrī Śrī Rādhā-Vṛndāvana-mohana z Lalito in Viśākho; Śrīla Prabhupāda.","Śrī Śrī Nityānanda-candra and Gaurāṅga Rāya; Śrī Śrī Rādhā-Vṛndāvana-mohana with Lalitā and Viśākhā; Śrīla Prabhupāda."]};
+const EK=[
+ ['ekacakra',[SITE[0],SITE[1]],
+  "Kateri dan se je pojavil Nityānanda Prabhu?",["13. dan svetle polovice meseca Māgha","Na polno luno meseca Phālguna","8. dan temne polovice meseca Bhādra"],
+  "Nityānanda Prabhu se je pojavil 13. dan svetle polovice meseca Māgha (Nityānanda-trayodaśī). Śrī Caitanya se je pojavil na polno luno meseca Phālguna, Kṛṣṇa pa 8. dan temne polovice meseca Bhādra.",
+  "On which day did Nityānanda Prabhu appear?",["The 13th day of the bright half of Māgha","The full moon of Phālguna","The 8th day of the dark half of Bhādra"],
+  "Nityānanda Prabhu appeared on the 13th day of the bright half of the month of Māgha (Nityānanda-trayodaśī). Śrī Caitanya appeared on the full moon of Phālguna, and Kṛṣṇa on the 8th day of the dark half of Bhādra."],
+ ['ekacakra',[SITE[0]+'; '+CC+', Ādi 17.12 (razlaga)',SITE[1]+'; '+CC+', Ādi 17.12 (purport)'],
+  "Zakaj je Nityānanda kot deček zapustil dom v Ekacakri?",["Sannyāsī je Hāḍāija Paṇḍita prosil, naj mu da sina za pomočnika","Zbežal je pred napadalci","Starša sta ga poslala v šolo v Navadvīpo"],
+  "Neki sannyāsī je Hāḍāija Paṇḍita prosil za sina kot brahmacārija pomočnika. Hāḍāi je privolil, a je ločitev tako težko prenašal, da je kmalu umrl. Nityānanda je s sannyāsījem romal po svetih krajih in v Mathuri slišal za Mahāprabhujeve zabave v Navadvīpi.",
+  "Why did Nityānanda leave His home in Ekacakrā as a boy?",["A sannyāsī asked Hāḍāi Paṇḍita to give him his son as an assistant","He fled from attackers","His parents sent Him to school in Navadvīpa"],
+  "A sannyāsī asked Hāḍāi Paṇḍita for his son as a brahmacārī assistant. Hāḍāi agreed, but felt the separation so deeply that he soon died. Nityānanda travelled with the sannyāsī to the holy places and in Mathurā heard of Mahāprabhu's pastimes in Navadvīpa."],
+ ['bakula',[SITE[0]+'; Caitanya-bhāgavata, Ādi 9',SITE[1]+'; Caitanya-bhāgavata, Ādi 9'],
+  "Kaj se je zgodilo, ko je mali Nityānanda v igri s prijatelji upodabljal Lakṣmaṇo?",["Ko ga je »zadelo« orožje śakti, so vsi mislili, da je res mrtev","Zlomil si je nogo","Prijatelji so ga izbrali za kralja"],
+  "Nityānanda je s prijatelji uprizarjal zabave Kṛṣṇe in Rāme. Kot Lakṣmaṇa, zadet z orožjem śakti, je obležal kot mrtev; ko je prijatelj kot Hanumān prinesel zdravilo, je oživel. Staršem in prijateljem je nato povedal, da so to vse Njegove zabave.",
+  "What happened when little Nityānanda played Lakṣmaṇa with His friends?",["When the śakti weapon “struck” Him, everyone thought He had really died","He broke His leg","His friends chose Him as king"],
+  "Nityānanda and His friends enacted the pastimes of Kṛṣṇa and Rāma. As Lakṣmaṇa, struck by the śakti weapon, He lay as if dead; when a friend playing Hanumān brought the medicine, He revived. He then told His parents and friends that these were all His own pastimes."],
+ ['bankima',[SITE[0],SITE[1]],
+  "Zakaj Rādhārāṇī Baṅkima Rāya imenujejo Bhaḍḍāpurera Ṭhākurāṇī?",["Ker so Jo našli pod drevesom nimba v Bhaḍḍāpuri","Ker Jo je prinesel kralj Bhaḍḍāpure","Ker so Jo izklesali v Bhaḍḍāpuri"],
+  "Śrīmatī Rādhārāṇī, ki stoji na levi Baṅkima Rāya, so našli pod drevesom nimba v Bhaḍḍāpuri, zato Jo imenujejo Bhaḍḍāpurera Ṭhākurāṇī, »gospodarica Bhaḍḍāpure«.",
+  "Why is Baṅkima Rāya's Rādhārāṇī called Bhaḍḍāpurera Ṭhākurāṇī?",["Because She was found under a neem tree at Bhaḍḍāpura","Because a king of Bhaḍḍāpura brought Her","Because She was carved at Bhaḍḍāpura"],
+  "Śrīmatī Rādhārāṇī, who stands at Baṅkima Rāya's left, was found under a neem tree at Bhaḍḍāpura, so She is called Bhaḍḍāpurera Ṭhākurāṇī, “the mistress of Bhaḍḍāpura”."],
+ ['hantugada',[SITE[0],SITE[1]],
+  "Na kaj spominja ime Hāṅṭugāḍā?",["Na praznik dadhi-ciḍā, pri katerem je Nityānanda prasādam sprejel kleče","Na jezero, ki ga je izkopal Bhīma","Na Nityānandovo prvo šolo"],
+  "Hāṅṭu pomeni koleno. Ime spominja na praznik dadhi-ciḍā (sploščen riž z jogurtom), pri katerem je Nityānanda prasādam sprejel kleče.",
+  "What does the name Hāṅṭugāḍā recall?",["The dadhi-ciḍā festival, at which Nityānanda received prasādam kneeling","A lake dug by Bhīma","Nityānanda's first school"],
+  "Hāṅṭu means knee. The name recalls the dadhi-ciḍā festival (flat rice with yogurt), at which Nityānanda received prasādam kneeling."],
+ ['iskconek',[SITE[0],SITE[1]],
+  "Katera Božanstva so na glavnem oltarju templja ISKCON v Ekacakri?",["Śrī Śrī Nityānanda-candra in Gaurāṅga Rāya","Śrī Śrī Rādhā-Mādhava","Jagannātha, Baladeva in Subhadrā"],
+  "Na glavnem oltarju sta Śrī Śrī Nityānanda-candra in Gaurāṅga Rāya, na drugem oltarju pa Śrī Śrī Rādhā-Vṛndāvana-mohana z Lalito in Viśākho.",
+  "Which Deities are on the main altar of the ISKCON temple in Ekacakrā?",["Śrī Śrī Nityānanda-candra and Gaurāṅga Rāya","Śrī Śrī Rādhā-Mādhava","Jagannātha, Baladeva and Subhadrā"],
+  "On the main altar are Śrī Śrī Nityānanda-candra and Gaurāṅga Rāya, and on another altar Śrī Śrī Rādhā-Vṛndāvana-mohana with Lalitā and Viśākhā."],
+];
+const NV=[
+ ['srivasa',[SITE[0],SITE[1]],
+  "S čim je Mahāprabhu potolažil Śrīvāso Ṭhākuro, ko mu je med kīrtano umrl sin?",["Rekel je, da sta On in Nityānanda njegova sinova","Sina je takoj obudil v življenje","Odpeljal ga je v Purī"],
+  "Śrīvāsa ni hotel motiti kīrtane, čeprav mu je umrl sin. Mahāprabhu ga je potolažil z besedami, da sta On in Nityānanda njegova sinova, in ga tako rešil žalosti.",
+  "How did Mahāprabhu console Śrīvāsa Ṭhākura when his son died during kīrtana?",["He said that He and Nityānanda were his sons","He at once brought the son back to life","He took him to Purī"],
+  "Śrīvāsa did not want to disturb the kīrtana, although his son had died. Mahāprabhu consoled him, saying that He and Nityānanda were his sons, and so freed him from grief."],
+ ['srivasa',[CC+', Ādi 10 (razlaga)',CC+', Ādi 10 (purport)'],
+  "Kdo je bil Śrīvāsa Ṭhākura, v čigar dvorišču je Mahāprabhu pel kīrtano?",["Inkarnacija Nārade Munija","Inkarnacija Hanumāna","Inkarnacija Brahmāja"],
+  "Śrīvāsa Ṭhākura je inkarnacija Nārade Munija. Njegov dom je postal središče Mahāprabhujeve kīrtane v Navadvīpi.",
+  "Who was Śrīvāsa Ṭhākura, in whose courtyard Mahāprabhu held kīrtana?",["An incarnation of Nārada Muni","An incarnation of Hanumān","An incarnation of Brahmā"],
+  "Śrīvāsa Ṭhākura is an incarnation of Nārada Muni. His home became the centre of Mahāprabhu's kīrtana in Navadvīpa."],
+];
+const NV2=[
+ ['simanta',['Navadvīpa-dhāma-māhātmya 6 ('+SITE[0]+')','Navadvīpa-dhāma-māhātmya 6 ('+SITE[1]+')'],
+  "Od kod po Navadvīpa-dhāma-māhātmyi izvira ime Sīmantadvīpa?",["Pārvatī si je prah Gaurāṅgovih stopal dala na prečo (sīmanta)","Tu je meja (sīmā) Navadvīpe","Tu je Śiva plesal na robu reke"],
+  "Pārvatī je na tem otoku meditirala na Gaurāṅgo. Ko se ji je prikazal, si je prah z Njegovih stopal dala na prečo (sīmanta), zato se otok imenuje Sīmantadvīpa.",
+  "According to the Navadvīpa-dhāma-māhātmya, where does the name Sīmantadvīpa come from?",["Pārvatī placed the dust of Gaurāṅga's feet on the parting of her hair (sīmanta)","It is the border (sīmā) of Navadvīpa","Śiva danced at the river's edge here"],
+  "Pārvatī meditated on Gaurāṅga on this island. When He appeared to her, she placed the dust of His feet on the parting of her hair (sīmanta), so the island is called Sīmantadvīpa."],
+];
+
 const POOL4=[
  /* Navadvīpa A: Antardvīpa */ [
   ['srivasa',[CC+', Ādi 17',CC+', Ādi 17'],
-   "Na kateri dogodek spominja ime Khol-bhāṅgā-ḍāṅgā pri Śrīvāsa-aṅgani?",["Kāzī je razbil mṛdaṅgo (khol), da bi ustavil kīrtana","Mahāprabhu je razbil vrč z vodo","Nityānanda je zlomil Mahāprabhujevo palico"],
-   "Ko je Kāzī slišal kīrtana, je prišel, razbil mṛdaṅgo in prepovedal petje. Mahāprabhu je nato vodil veliko procesijo saṅkīrtane in Kāzīja pridobil za bhakto.",
+   "Na kateri dogodek spominja ime Khol-bhāṅgā-ḍāṅgā pri Śrīvāsa-aṅgani?",["Kāzī je razbil mṛdaṅgo (khol), da bi ustavil kīrtano","Mahāprabhu je razbil vrč z vodo","Nityānanda je zlomil Mahāprabhujevo palico"],
+   "Ko je Kāzī slišal kīrtano, je prišel, razbil mṛdaṅgo in prepovedal petje. Mahāprabhu je nato vodil veliko procesijo saṅkīrtane in Kāzīja pridobil za bhakto.",
    "Which event does the name Khol-bhāṅgā-ḍāṅgā at Śrīvāsa-aṅgana recall?",["The Kāzī broke a mṛdaṅga (khol) to stop the kīrtana","Mahāprabhu broke a water pot","Nityānanda broke Mahāprabhu's staff"],
    "When the Kāzī heard the kīrtana, he came, broke a mṛdaṅga and forbade the chanting. Mahāprabhu then led a great saṅkīrtana procession and won the Kāzī over as a devotee."],
   ['nandana',[SITE[0],SITE[1]],
@@ -1791,7 +1883,7 @@ const POOL4=[
    "The house of Nandana Ācārya is where Nityānanda Prabhu met Śrī Caitanya Mahāprabhu in Navadvīpa."],
   ['murari',[CC+', Madhya 15',CC+', Madhya 15'],
    "Kateri obliki Gospoda je bil Murāri Gupta neomajno vdan, tudi ko ga je Mahāprabhu preizkušal?",["Gospodu Rāmacandri","Gospodu Narasiṁhi","Gospodu Vāmani"],
-   "Mahāprabhu je Murārija Gupto prosil, naj časte Kṛṣṇo namesto Rāme. Murāri tega ni zmogel, saj je njegovo srce pripadalo Rāmacandri. Mahāprabhu je to neomajno zvestobo hvalil.",
+   "Mahāprabhu je Murārija Gupto prosil, naj časti Kṛṣṇo namesto Rāme. Murāri tega ni zmogel, saj je njegovo srce pripadalo Rāmacandri. Mahāprabhu je to neomajno zvestobo hvalil.",
    "To which form of the Lord was Murāri Gupta unflinchingly devoted, even when Mahāprabhu tested him?",["Lord Rāmacandra","Lord Narasiṁha","Lord Vāmana"],
    "Mahāprabhu asked Murāri Gupta to worship Kṛṣṇa instead of Rāma. Murāri could not, for his heart belonged to Rāmacandra. Mahāprabhu praised this unflinching fidelity."],
   ['caitanyamath',[SITE[0],SITE[1]],
@@ -1810,7 +1902,7 @@ const POOL4=[
    "With which teacher, by tradition, did Nimāi study in Antardvīpa?",["Gaṅgādāsa Paṇḍita","Sārvabhauma Bhaṭṭācārya","Īśvara Purī"],
    "In Antardvīpa is the ṭol, the school of Gaṅgādāsa Paṇḍita, where Nimāi studied. Īśvara Purī was His spiritual master, and Sārvabhauma lived in Purī."],
   ['yogapitha',[SB+' 7.5.23–24',SB+' 7.5.23–24'],
-   "Navadvīpa ima devet otokov. Kateri proces vdanega služenja predstavlja Antardvīpa, kjer je Yogapīṭha?",["Ātma-nivedanam, popolno predanost","Kīrtanam, petje","Śravaṇam, poslušanje"],
+   "Navadvīpa ima devet otokov. Kateri proces vdanega služenja predstavlja Antardvīpa, kjer je Yogapīṭha?",["Ātma-nivedanam, popolna predanost","Kīrtanam, petje","Śravaṇam, poslušanje"],
    "Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja, ki jih Prahlāda Mahārāja našteje v Śrīmad-Bhāgavatamu. Antardvīpa, v kateri se je pojavil Mahāprabhu, predstavlja ātma-nivedanam, popolno predanost.",
    "Navadvīpa has nine islands. Which process of devotional service does Antardvīpa, home of the Yogapīṭha, represent?",["Ātma-nivedanam, full surrender","Kīrtanam, chanting","Śravaṇam, hearing"],
    "The nine islands of Navadvīpa represent the nine processes of devotional service listed by Prahlāda Mahārāja in the Śrīmad-Bhāgavatam. Antardvīpa, where Mahāprabhu appeared, represents ātma-nivedanam, full surrender."]
@@ -1917,7 +2009,7 @@ const POOL4=[
  /* Purī parikramā */ [
   ['gundica',[CC+', Madhya 12',CC+', Madhya 12'],
    "Kaj je Mahāprabhu z bhaktami storil v templju Guṇḍicā pred Ratha-yātro?",["Temeljito ga je očistil in pomil","Okrasil ga je z zlatom","Zaklenil ga je za romarje"],
-   "Pred Ratha-yātro je Mahāprabhu z bhaktami očistil in pomil tempelj Guṇḍicā. Prabhupāda pojasni, da tako tudi mi očistimo srce, da Gospod lahko sede vanj.",
+   "Pred Ratha-yātro je Mahāprabhu z bhaktami očistil in pomil tempelj Guṇḍicā. Prabhupāda pojasni, da moramo tako tudi mi očistiti srce, da bo Gospod lahko sedel vanj.",
    "What did Mahāprabhu and His devotees do in the Guṇḍicā temple before Ratha-yātrā?",["They thoroughly cleaned and washed it","They decorated it with gold","They locked it to pilgrims"],
    "Before Ratha-yātrā Mahāprabhu and His devotees cleaned and washed the Guṇḍicā temple. Prabhupāda explains that in the same way we must cleanse the heart so that the Lord may sit there."],
   ['gundica',[CC+', Madhya 14',CC+', Madhya 14'],
@@ -1926,7 +2018,7 @@ const POOL4=[
    "What happens on Herā-pañcamī, while Jagannātha stays at Guṇḍicā?",["Lakṣmī, the goddess of fortune, comes for Jagannātha","The chariot returns to the main temple","Jagannātha bathes in the sea"],
    "On the fifth day of Jagannātha's stay at Guṇḍicā, the goddess of fortune, feeling offended, comes with her retinue for the Lord. On this occasion Svarūpa Dāmodara described the love of the gopīs of Vraja."],
   ['haridas',[CC+', Antya 11',CC+', Antya 11'],
-   "Kako je Haridāsa Ṭhākura zapustil to telo?",["Gledal je Mahāprabhujev obraz in izgovarjal »Śrī Kṛṣṇa-caitanya«","V samoti v jami","Med potovanjem v Vṛndāvano"],
+   "Kako je Haridāsa Ṭhākura zapustil telo?",["Gledal je Mahāprabhujev obraz in izgovarjal »Śrī Kṛṣṇa-caitanya«","V samoti v jami","Med potovanjem v Vṛndāvano"],
    "Haridāsa Ṭhākura je položil Mahāprabhujeva stopala na svoje srce, gledal Njegov obraz, izgovarjal ime Śrī Kṛṣṇa-caitanya in tako zapustil telo.",
    "How did Haridāsa Ṭhākura leave his body?",["Gazing at Mahāprabhu's face and chanting “Śrī Kṛṣṇa-caitanya”","In solitude in a cave","While travelling to Vṛndāvana"],
    "Haridāsa Ṭhākura placed Mahāprabhu's feet on his heart, gazed at His face, chanted the name Śrī Kṛṣṇa-caitanya and thus left his body."],
@@ -1951,21 +2043,21 @@ const POOL4=[
    "Which festival is connected with Narendra-sarovara in Purī?",["Candana-yātrā, when the Deities go boating","Snāna-yātrā, Jagannātha's bathing","Gaura-pūrṇimā"],
    "During Candana-yātrā the festival Deities from Jagannātha's temple are brought to Narendra-sarovara and taken out in decorated boats."],
   ['alalanatha',[TRAD[0],TRAD[1]],
-   "Kam romarji odidejo v času anavasare, ko Jagannātha v Purīju ni viden?",["K Ālālanāthi v Brahmagiriju","V Guṇḍicā","V Siddha-bakulo"],
+   "Kam romarji odidejo v času anavasare, ko Jagannātha v Purīju ni viden?",["K Ālālanāthi v Brahmagiriju","V tempelj Guṇḍicā","V Siddha-bakulo"],
    "Po Snāna-yātri je Jagannātha dva tedna skrit (anavasara). Romarji tedaj obiščejo Ālālanātho v Brahmagiriju; po izročilu je tja odšel tudi Mahāprabhu.",
    "Where do pilgrims go during anavasara, when Jagannātha is not seen in Purī?",["To Ālālanātha at Brahmagiri","To Guṇḍicā","To Siddha-bakula"],
    "After Snāna-yātrā Jagannātha is hidden for two weeks (anavasara). Pilgrims then visit Ālālanātha at Brahmagiri; by tradition Mahāprabhu also went there."],
   ['puri',[CC+', Madhya 5',CC+', Madhya 5'],
-   "Kdo je zlomil Mahāprabhujevo sannyāsa palico (daṇḍo) na poti v Purī?",["Nityānanda Prabhu","Mukunda Datta","Jagadānanda Paṇḍita"],
+   "Kdo je na poti v Purī zlomil Mahāprabhujevo daṇḍo, palico sannyāsija?",["Nityānanda Prabhu","Mukunda Datta","Jagadānanda Paṇḍita"],
    "Na poti v Jagannātha Purī je Nityānanda Prabhu zlomil Mahāprabhujevo daṇḍo na tri kose in jo vrgel v reko Bhārgī.",
-   "Who broke Mahāprabhu's sannyāsa staff (daṇḍa) on the way to Purī?",["Nityānanda Prabhu","Mukunda Datta","Jagadānanda Paṇḍita"],
+   "Who broke Mahāprabhu's daṇḍa, the staff of a sannyāsī, on the way to Purī?",["Nityānanda Prabhu","Mukunda Datta","Jagadānanda Paṇḍita"],
    "On the way to Jagannātha Purī, Nityānanda Prabhu broke Mahāprabhu's daṇḍa into three pieces and threw it into the Bhārgī River."]
  ]
 ];
 const STAGES4=[
  {lv:3,n:["Antardvīpa – Māyāpur","Antardvīpa – Māyāpur"],sub:["Yogapīṭha, Śrīvāsa-aṅgana, Advaita-bhavana","Yogapīṭha, Śrīvāsa-aṅgana, Advaita-bhavana"],pick:5,key:'yogapitha',video:'ug7nFC9ChH8',intro:["Navadvīpa-maṇḍala parikramā se začne v Antardvīpi, kjer se je pojavil Śrī Caitanya Mahāprabhu. Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja.","The Navadvīpa-maṇḍala parikramā begins in Antardvīpa, where Śrī Caitanya Mahāprabhu appeared. The nine islands of Navadvīpa represent the nine processes of devotional service."]},
  {lv:3,n:["Osem otokov Navadvīpe","The eight islands of Navadvīpa"],sub:["Sīmanta, Godruma, Madhya, Kola, Ṛtu, Jahnu, Modadruma, Rudra","Sīmanta, Godruma, Madhya, Kola, Ṛtu, Jahnu, Modadruma, Rudra"],pick:5,main:1,key:'godruma',video:'ug7nFC9ChH8',intro:["Parikramā vodi čez Gaṅgo po ostalih osmih otokih, od Sīmantadvīpe do Rudradvīpe.","The parikramā crosses the Gaṅgā and leads around the other eight islands, from Sīmantadvīpa to Rudradvīpa."]},
- {lv:4,n:["Ekacakrā","Ekacakrā"],sub:["rojstni kraj Nityānande Prabhuja","birthplace of Nityānanda Prabhu"],pick:5,main:1,key:'ekacakra',video:'-UNhwdPawLg',intro:["Ekacakrā v Rāḍha-deśi je kraj, kjer se je pojavil Nityānanda Prabhu, Balarāma sam, ki deli milost vsem.","Ekacakrā in Rāḍha-deśa is where Nityānanda Prabhu appeared, Balarāma Himself, who gives mercy to everyone."]},
+ {lv:4,n:["Ekacakrā","Ekacakrā"],sub:["rojstni kraj Nityānande Prabhuja","birthplace of Nityānanda Prabhu"],pick:7,main:1,key:'ekacakra',video:'-UNhwdPawLg',intro:["Ekacakrā v Rāḍha-deśi je kraj, kjer se je pojavil Nityānanda Prabhu, Balarāma sam, ki deli milost vsem.","Ekacakrā in Rāḍha-deśa is where Nityānanda Prabhu appeared, Balarāma Himself, who gives mercy to everyone."]},
  {lv:5,n:["Jagannātha Purī parikramā","Jagannātha Purī parikramā"],sub:["Guṇḍicā, Siddha-bakula, Ṭoṭā-gopīnātha, Narendra-sarovara, Ālālanātha","Guṇḍicā, Siddha-bakula, Ṭoṭā-gopīnātha, Narendra-sarovara, Ālālanātha"],pick:6,main:1,key:'gundica',img:['Puri_Ratha_Yatra.jpg','Ratha-yātrā v Purīju','Ratha-yātrā in Purī'],video:'BTkKh3tZDsI',intro:["Śrī Kṣetra je poln krajev, kjer je Mahāprabhu osemnajst let živel z bhaktami: od templja Guṇḍicā do Haridāsovega samādhija ob morju.","Śrī Kṣetra is full of places where Mahāprabhu lived with His devotees for eighteen years: from the Guṇḍicā temple to Haridāsa's samādhi by the sea."]},
 ];
 /* Parikrame v atlasu / Parikramās in the atlas */
@@ -1987,6 +2079,7 @@ const ytThumb=id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`, ytUrl=id=>`https
 function ytCard(id,title){ return `<div class="yt" data-yt="${id}"><button type="button" class="ytplay" aria-label="${esc(t('playVideo'))}"><img src="${ytThumb(id)}" alt="${esc(title||'')}" loading="lazy" onerror="this.remove()"><span class="ytb">▶</span></button><a class="vb" href="${ytUrl(id)}" target="_blank" rel="noopener">${t('openYT')} ↗</a></div>` }
 function bindYT(root){ root.querySelectorAll('.yt').forEach(y=>{ const b=y.querySelector('.ytplay'); if(b) b.onclick=()=>{ b.outerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?autoplay=1" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>`; Snd.stopTrack&&Snd.stopTrack(); Snd.tanpuraOff&&Snd.tanpuraOff() } }) }
 
+POOL4[0].push(...NV); POOL4[1].push(...NV2); POOL4[2].push(...EK);
 POOL.push(...POOL4); STAGES.push(...STAGES4);
 Object.values(PLACES).forEach(P=>{ if(!P.ll&&P.at){ P.ll=PLACES[P.at].ll; P.approx=1 } });
 PLACES.advaitabh.lv=3; PLACES.madhai.lv=3;
@@ -2711,7 +2804,7 @@ const NAV={gangotri:'Gangotri Temple',kailas:'Mount Kailash',badri:'Badrinath Te
  mayapur:'ISKCON Sri Mayapur Chandrodaya Mandir',navadvip:'Nabadwip',puri:'Shree Jagannath Temple Puri',mathura:'Shri Krishna Janmasthan Mathura',vrindavan:'ISKCON Krishna Balaram Mandir Vrindavan',govardhan:'Govardhan Hill',varsana:'Shri Radha Rani Temple Barsana',radhakunda:'Radha Kund',radhadamodar:'Radha Damodar Temple Vrindavan',
  nagalapuram:'Vedanarayana Swamy Temple Nagalapuram',srikurmam:'Srikurmam Temple',tvaraha:'Sri Bhu Varaha Swamy Temple Tirumala',srimushnam:'Bhu Varaha Swamy Temple Srimushnam',simhachalam:'Simhachalam Temple',yadagiri:'Yadagirigutta Temple',thrikkakara:'Thrikkakara Vamana Moorthy Temple',sirkazhi:'Thadalan Temple Sirkazhi',
  bhadrachalam:'Bhadrachalam Sita Ramachandra Swamy Temple',triprayar:'Thriprayar Sree Rama Temple',orchha:'Ram Raja Temple Orchha',rameswaram:'Ramanathaswamy Temple Rameswaram',nathdwara:'Shrinathji Temple Nathdwara',dakor:'Ranchhodraiji Temple Dakor',jaipur:'Govind Dev Ji Temple Jaipur',karauli:'Madan Mohan Ji Temple Karauli',
- guruvayur:'Guruvayur Sri Krishna Temple',pandharpur:'Vithoba Temple Pandharpur',padmanabha:'Sree Padmanabhaswamy Temple',adikesava:'Adikesava Perumal Temple Thiruvattar',srirangapatna:'Sri Ranganathaswamy Temple Srirangapatna',gokula:'Gokul Mathura',bhandira:'Bhandirvan',nandagrama:'Nand Bhawan Nandgaon',
+ guruvayur:'Guruvayur Sri Krishna Temple',pandharpur:'Vithoba Temple Pandharpur',padmanabha:'Sree Padmanabhaswamy Temple',adikesava:'Adikesava Perumal Temple Thiruvattar',srirangapatna:'Sri Ranganathaswamy Temple Srirangapatna',gokula:'Gokul Mathura',bhandira:'Bhandirvan',nandagrama:'Nand Bhawan Nandgaon',iskconek:'ISKCON Ekachakra',
  yogapitha:'Yogapith Mayapur',srivasa:'Srivas Angan Mayapur',advaitabh:'Advaita Bhavan Mayapur',nandana:'Nandan Acharya Bhavan Mayapur',madhai:'Jagai Madhai Ghat Mayapur',caitanyamath:'Sri Chaitanya Math Mayapur',simanta:'Chand Kazi Samadhi Mayapur',godruma:'Swananda Sukhada Kunja Godrumadvipa',kola:'Dhameswar Mahaprabhu Temple Nabadwip',modadruma:'Mamgachi Nabadwip',rudra:'Rudradvip Gaudiya Math',
  ekacakra:'Ekachakra Dham Birbhum',gundica:'Gundicha Temple Puri',haridas:'Haridas Thakur Samadhi Puri',siddhabakula:'Siddha Bakula Puri',totagopinath:'Tota Gopinath Temple Puri',narendra:'Narendra Tank Puri',alalanatha:'Alarnath Temple Brahmagiri'};
 const navUrl=k=>NAV[k]?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(NAV[k]):null;
@@ -2839,22 +2932,22 @@ const HELP={
   <li><b>Mahā-mantra:</b> po vsaki stopnji vsak igralec ali ekipa s tapkanjem besed Hare, Kṛṣṇa in Rāma sestavi vseh 16 besed mahā-mantre. Pravilno sestavljena prinese +4 tilake.</li>
   <li>Pri časovni omejitvi se odgovor, ki ni izbran v 30 sekundah, šteje za napačnega.</li></ul>
   <h3>Igra v ekipah</h3>
-  <ul><li><b>Koliko ekip?</b> Na eni napravi lahko hkrati tekmuje od 1 do 6 igralcev ali ekip. Ekipa ima lahko poljubno število članov, ki se posvetujejo in odgovor izbere vodja ekipe.</li>
+  <ul><li><b>Koliko ekip?</b> Na eni napravi lahko hkrati tekmuje od 1 do 6 igralcev ali ekip. Ekipa ima lahko poljubno število članov, ki se posvetujejo, odgovor pa izbere vodja ekipe.</li>
   <li><b>Enaka vprašanja?</b> Ekipe odgovarjajo izmenično, vsaka na svoje vprašanje iz iste stopnje in iste zbirke. Igra število vprašanj na vsaki stopnji prilagodi tako, da jih <b>vsaka ekipa dobi enako</b>. Na vsaki stopnji začne naslednja ekipa, zato nobena nima prednosti.</li>
   <li><b>Prevzem:</b> če ekipa odgovori napačno (brez namiga), lahko naslednja ekipa izbere med preostalima odgovoroma. Pravilen prevzem prinese +2 tilaki, napačen nič. Prevzem lahko tudi izpusti. Pravilo vklopiš ali izklopiš na začetku.</li>
   <li><b>Točkovanje:</b> vse tilake se seštevajo sproti in so vidne v glavi igre ob imenih ekip; med stopnjami vidiš še lestvico vdanosti za vsako ekipo. Na koncu se prikaže razvrstitev s številom pravilnih odgovorov in prevzemov.</li>
   <li><b>Neodločeno:</b> če ima na vrhu več ekip enako število tilak, sledi <b>odločilno vprašanje</b>: vsaka izenačena ekipa dobi svoje novo vprašanje; zmaga, kdor edini odgovori pravilno. Če to ne uspe, sledi nov krog (največ pet).</li>
   <li><b>Ekipe na več napravah:</b> vsaka ekipa igra na svojem telefonu kot en igralec in vse vpišejo isto <b>kodo igre</b> (npr. GAURA108). Tako dobijo enaka vprašanja v enakem vrstnem redu. Na koncu primerjate tilake. Enako velja za dnevno romanje, ki ima za vse isti dan enaka vprašanja.</li>
-  <li><b>Primer za skupino:</b> 3 ekipe, osnovno romanje, časovna omejitev in prevzem vklopljeni. Vsaka ekipa dobi na vsaki stopnji enako vprašanj, po vsaki stopnji pa vsaka sestavi mahā-mantro.</li></ul>
+  <li><b>Primer za skupino:</b> 3 ekipe, osnovno romanje, časovna omejitev in prevzem vklopljeni. Vsaka ekipa dobi na vsaki stopnji enako število vprašanj, po vsaki stopnji pa vsaka sestavi mahā-mantro.</li></ul>
   <h3>Napredovanje</h3>
   <p>Med stopnjami vidiš zemljevid poti in svojo stopnjo na lestvici devetih stopenj vdanosti iz Nektarja vdanosti: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva in prema. Igra se sproti shranjuje.</p>
   <h3>Atlas – enciklopedija svetih mest</h3>
-  <p>Gumb <b>Atlas</b> odpre zemljevid vseh svetih mest obeh romanj. Za vsako mesto so opisana <b>Božanstva</b>, <b>zgodba in pomen</b> ter zapisi <b>iz knjig in izročila</b> z viri. Mesta lahko iščeš po imenu ali Božanstvu. Tapni fotografijo, da jo povečaš, in listaj po albumu s puščicami ali s potegom prsta.</p>
+  <p>Gumb <b>Atlas</b> odpre zemljevid vseh svetih mest iz vseh romanj in parikram. Za vsako mesto so opisana <b>Božanstva</b>, <b>zgodba in pomen</b> ter zapisi <b>iz knjig in izročila</b> z viri. Mesta lahko iščeš po imenu ali Božanstvu. Tapni fotografijo, da jo povečaš, in listaj po albumu s puščicami ali s potegom prsta.</p>
   <h3>Vodnik za romarje</h3>
   <ul><li><b>Za romarje:</b> pri vsakem kraju so pomembna pravila za obisk (npr. kje smejo vstopiti le hindujci), glavni prazniki z meseci, v katerih običajno padejo, in gumb <b>Navigacija do sem</b>, ki odpre zemljevid s točnim imenom templja. Urnikov darśana ne navajamo, ker se spreminjajo.</li>
   <li><b>Poti:</b> Mahāprabhujevo potovanje po južni Indiji in v Vṛndāvano po Caitanya-caritāmṛti, korak za korakom na zemljevidu.</li>
   <li><b>Koledar:</b> prazniki svetih mest po mesecih; trenutni mesec je poudarjen.</li>
-  <li><b>Moje romanje:</b> označite obiskane kraje, dodajte datum, zapis, svojo fotografijo in glasbo ob odprtju kraja. Vse ostane samo na vaši napravi.</li>
+  <li><b>Moje romanje:</b> označi obiskane kraje, dodaj datum, zapis, svojo fotografijo in glasbo ob odprtju kraja. Vse ostane samo na tvoji napravi.</li>
   <li><b>Shrani fotografije za pot:</b> v nameščeni aplikaciji shrani fotografije kraja, da so vidne tudi brez interneta. Besedila in vprašanja delujejo brez interneta že sama po sebi.</li>
   <li><b>Iz knjig:</b> pri virih so povezave na poglavja v knjigah Śrīle Prabhupāde na vedabase.io.</li>
   <li><b>Za učitelje:</b> tisk vseh vprašanj z odgovori, tisk kartic in projektorski način z večjo pisavo.</li></ul>
@@ -2890,7 +2983,7 @@ const HELP={
   <h3>Progress</h3>
   <p>Between stages you see the route map and your level on the ladder of nine devotional stages from The Nectar of Devotion: śraddhā, sādhu-saṅga, bhajana-kriyā, anartha-nivṛtti, niṣṭhā, ruci, āsakti, bhāva and prema. The game saves as you play.</p>
   <h3>Atlas – encyclopedia of holy places</h3>
-  <p>The <b>Atlas</b> button opens a map of all the holy places of both pilgrimages. For each place it describes the <b>Deities</b>, the <b>history and significance</b> and entries <b>from the books and tradition</b> with sources. You can search places by name or Deity. Tap a photo to enlarge it and browse the album with the arrows or by swiping.</p>
+  <p>The <b>Atlas</b> button opens a map of all the holy places of all the pilgrimages and parikramās. For each place it describes the <b>Deities</b>, the <b>history and significance</b> and entries <b>from the books and tradition</b> with sources. You can search places by name or Deity. Tap a photo to enlarge it and browse the album with the arrows or by swiping.</p>
   <h3>Pilgrim's guide</h3>
   <ul><li><b>For pilgrims:</b> for each place, important rules for visiting (e.g. where only Hindus may enter), the main festivals with the months in which they usually fall, and a <b>Navigate here</b> button that opens the map with the exact temple name. Darśana times are not given because they change.</li>
   <li><b>Routes:</b> Mahāprabhu's tour of South India and His journey to Vṛndāvana according to the Caitanya-caritāmṛta, step by step on the map.</li>

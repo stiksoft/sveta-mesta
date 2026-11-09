@@ -23,7 +23,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v13'` (npr. na v14).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v15'` (npr. na v16).
 
 ## English
 
