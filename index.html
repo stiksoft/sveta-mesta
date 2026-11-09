@@ -383,6 +383,20 @@ html.big .q{font-size:30px}html.big .opt{font-size:24px;padding:16px 18px}html.b
 @media print{html.printing body>*:not(#printArea){display:none!important}html.printing #printArea{display:block!important;color:#000;background:#fff;font:12pt/1.4 Georgia,serif}
  html.printing body{background:#fff!important}#printArea h1{font-size:20pt;color:#000}#printArea h2{font-size:15pt;color:#000;margin:14pt 0 6pt}#printArea p{max-width:none;margin:2pt 0}#printArea .psrc{font-size:9pt;color:#444}#printArea li{margin-bottom:8pt;break-inside:avoid}
  .pcards{display:grid;grid-template-columns:1fr 1fr;gap:8pt}.pcard{border:1px dashed #888;padding:8pt;break-inside:avoid}.pc-h{font-size:9pt;color:#555}.pc-q{font-weight:bold}.pc-a{font-size:9pt;border-top:1px dashed #aaa;padding-top:4pt;margin-top:6pt!important}.pnote{font-size:9pt}}
+
+/* v14 parikrame */
+.yt{display:grid;gap:6px}
+.ytplay{position:relative;padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;width:100%;max-width:560px}
+.ytplay img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+.ytb{position:absolute;inset:0;margin:auto;width:68px;height:48px;border-radius:12px;background:rgba(200,30,30,.92);color:#fff;font-size:24px;display:grid;place-items:center}
+.yt iframe{width:100%;max-width:560px;aspect-ratio:16/9;border:0;border-radius:12px}
+.vidrow{display:grid;gap:8px}
+.offmap{padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;max-width:560px;cursor:zoom-in}
+.offmap img{width:100%;display:block}
+.offmaps{display:grid;gap:6px}
+.copy{font-size:12.5px;color:#C9CDE6;text-align:center;margin:0;max-width:none}
+.chips button.l3{border-color:rgba(242,167,195,.6)}.chips button.l4{border-color:rgba(158,197,255,.6)}.chips button.l5{border-color:rgba(255,210,127,.6)}.chips button.l6{border-color:rgba(195,168,245,.6)}
+.lvtag.l4{border-color:rgba(158,197,255,.7);color:#CFE2FF}.lvtag.l5{border-color:rgba(255,210,127,.7);color:#FFE6B5}.lvtag.l6{border-color:rgba(195,168,245,.7);color:#D9CCFA}.lvtag.l3{border-color:rgba(242,167,195,.7);color:#F8D0DF}
 </style>
 
 <div id="app">
@@ -433,9 +447,19 @@ const T={
   steals:n=>{const m=n%100;return n+' '+(m===1?'prevzem':m===2?'prevzema':m===3||m===4?'prevzemi':'prevzemov')},srcL:'Vir',
   tbBtn:'Odločilno vprašanje',tbTitle:'Odločilno vprašanje',tbRound:r=>`${r}. krog`,tbNote:'Izenačeni igralci oziroma ekipe odgovorijo vsak na svoje vprašanje. Zmaga, kdor edini odgovori pravilno. Tilake se ne spremenijo.',tbWin:n=>`Zmagovalec po odločilnem vprašanju: ${n}`,tbWinT:n=>`Po odločilnem vprašanju je zmagala ekipa ${n}`,tbShared:'Po petih krogih je še vedno neodločeno – zmago si delite.',tbAgain:'Nihče ni edini odgovoril pravilno – sledi nov krog.',
   doneL2:'Napredno romanje je dokončano · Śrī Raṅgam',
-  lv3:'Vraja-maṇḍala',lv3D:q=>`3 stopnje · Kṛṣṇove zabave v Vraji · ${q} vprašanj`,
-  startIntro3:(n,q,p)=>`Romanje po Vraja-maṇḍali sledi Kṛṣṇovim zabavam iz Śrīmad-Bhāgavatama: od Gokule prek gozdov Vraje do Govardhane, Rādhā-kuṇḍe in Vṛndāvane. ${n} svetih krajev v treh stopnjah; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
-  doneL3:'Romanje po Vraja-maṇḍali je dokončano · Vṛndāvana',grp3:'Vraja-maṇḍala',lvTag3:'Vraja',
+  lv3:'Navadvīpa-maṇḍala parikramā',lv3D:q=>`2 stopnji · devet otokov Navadvīpe · ${q} vprašanj`,
+  lv4:'Ekacakrā parikramā',lv4D:q=>`1 stopnja · rojstni kraj Nityānande Prabhuja · ${q} vprašanj`,
+  lv5:'Jagannātha Purī parikramā',lv5D:q=>`1 stopnja · Śrī Kṣetra · ${q} vprašanj`,
+  startIntro3:(n,q,p)=>`Navadvīpa-maṇḍala parikramā vodi po devetih otokih Navadvīpe, ki predstavljajo devet procesov vdanega služenja: ${n} svetih krajev v dveh stopnjah; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
+  startIntro4:(n,q,p)=>`Ekacakrā parikramā vodi po rojstnem kraju Nityānande Prabhuja: ${n} svetih krajev; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
+  startIntro5:(n,q,p)=>`Jagannātha Purī parikramā vodi po krajih, kjer je Mahāprabhu z bhaktami živel osemnajst let: ${n} svetih krajev; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
+  doneL3:'Navadvīpa-maṇḍala parikramā je dokončana · Māyāpur',doneL4:'Ekacakrā parikramā je dokončana',doneL5:'Jagannātha Purī parikramā je dokončana',
+  grp3:'Navadvīpa-maṇḍala',grp4:'Ekacakrā',grp5:'Jagannātha Purī',lvTag3:'Navadvīpa',lvTag4:'Ekacakrā',lvTag5:'Purī',
+  tabPari:'Parikrame',playVideo:'Predvajaj video',openYT:'Odpri na YouTubu',pariMaps:'Zemljevidi parikrame',pariMapNote:'Zemljevidi in fotografije krajev Navadvīpe in Ekacakre: srimayapurdhama.com (ISKCON Māyāpur).',gmapBtn:'Interaktivni zemljevid',webBtn:'Več na srimayapurdhama.com',showMapBtn:'Pokaži na zemljevidu',pariPlaces:'Sveti kraji parikrame',approx:'Na zemljevidu je prikazano območje; točno lego odpre gumb Navigacija.',photoCredit:'Fotografija: srimayapurdhama.com (ISKCON Māyāpur)',videoL:'Video',
+  copy:'© 2026 Golokaplanet Library, by Mahī-bhartā dāsa',
+  lv6:'Vraja-maṇḍala parikramā',lv6D:q=>`3 stopnje · Kṛṣṇove zabave v Vraji · ${q} vprašanj`,
+  startIntro6:(n,q,p)=>`Vraja-maṇḍala parikramā sledi Kṛṣṇovim zabavam iz Śrīmad-Bhāgavatama: od Gokule prek gozdov Vraje do Govardhane, Rādhā-kuṇḍe in Vṛndāvane. ${n} svetih krajev v treh stopnjah; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
+  doneL6:'Vraja-maṇḍala parikramā je dokončana · Vṛndāvana',grp6:'Vraja-maṇḍala',lvTag6:'Vraja',
   tabPlaces:'Mesta',tabRoutes:'Poti',tabCal:'Koledar',tabDiary:'Moje romanje',encTravel:'Za romarje',
   festNote:'Prazniki se ravnajo po lunarnem koledarju, zato so navedeni meseci, v katerih običajno padejo. Točen datum vsako leto preverite v vaiṣṇavskem koledarju.',
   navBtn:'Navigacija do sem',offBtn:'Shrani fotografije za pot',offBusy:'Shranjujem …',offProg:(a,b)=>`Shranjujem ${a}/${b} …`,offDone:n=>`Shranjeno za pot: ${(n=>{const m=n%100;return n+' '+(m===1?'fotografija':m===2?'fotografiji':m===3||m===4?'fotografije':'fotografij')})(n)}`,offNo:'Shranjevanje v tem brskalniku ni mogoče.',
@@ -466,7 +490,7 @@ const T={
   sndAuto:'Tanpura z zvončki je vgrajena in deluje tudi brez interneta.',
   helpTitle:'Kako igrati Sveta mesta',videoFile:'navodila.mp4',noVideo:'Video z navodili se v tem brskalniku ne predvaja.',
   backGame:'Nazaj v igro',install:'Namesti aplikacijo',installed:'Igra že teče kot nameščena aplikacija.',
-  credits:'Fotografije svetih mest so z Wikimedia Commons in so na voljo pod prostimi licencami. Avtorji so navedeni pri posamezni datoteki na Wikimedia Commons. Zemljevid: © OpenStreetMap; satelitski posnetek: © Esri. Fotografija Śrīle Prabhupāde: zasebni arhiv avtorja igre. Vprašanja so preverjena v knjigah Śrīle Prabhupāde (vedabase.io).'},
+  credits:'Fotografije in zemljevidi krajev Navadvīpe in Ekacakre so s spletne strani srimayapurdhama.com (ISKCON Māyāpur), videi z YouTuba. Druge fotografije svetih mest so z Wikimedia Commons in so na voljo pod prostimi licencami. Avtorji so navedeni pri posamezni datoteki na Wikimedia Commons. Zemljevid: © OpenStreetMap; satelitski posnetek: © Esri. Fotografija Śrīle Prabhupāde: zasebni arhiv avtorja igre. Vprašanja so preverjena v knjigah Śrīle Prabhupāde (vedabase.io).'},
  en:{tag:'pilgrimage to Kṛṣṇa-prema',atlas:'Atlas',help:'Guide',sound:'Sound',chooseLang:'Choose your language',langNote:'You can switch language at any time with the SL/EN button in the header.',
   dedEyebrow:'Dedication',enter:'Enter the game',
   dedication:'Dedicated to my spiritual master <em>Śrīla Kṛṣṇa-kṣetra Swami</em> and to His Divine Grace <em>Abhay Caraṇāravinda Bhaktivedānta Swami Prabhupāda</em>.',
@@ -480,9 +504,19 @@ const T={
   steals:n=>n+(n===1?' steal':' steals'),srcL:'Source',
   tbBtn:'Tie-break question',tbTitle:'Tie-break question',tbRound:r=>`Round ${r}`,tbNote:'The tied players or teams each answer their own question. Whoever alone answers correctly wins. Tilakas do not change.',tbWin:n=>`Winner after the tie-break: ${n}`,tbWinT:n=>`Winning team after the tie-break: ${n}`,tbShared:'Still tied after five rounds – you share the victory.',tbAgain:'Nobody alone answered correctly – a new round follows.',
   doneL2:'The advanced pilgrimage is complete · Śrī Raṅgam',
-  lv3:'Vraja-maṇḍala',lv3D:q=>`3 stages · Kṛṣṇa's pastimes in Vraja · ${q} questions`,
-  startIntro3:(n,q,p)=>`The pilgrimage through Vraja-maṇḍala follows Kṛṣṇa's pastimes from the Śrīmad-Bhāgavatam: from Gokula through the forests of Vraja to Govardhana, Rādhā-kuṇḍa and Vṛndāvana. ${n} holy places in three stages; every game draws ${q} questions from a pool of ${p}.`,
-  doneL3:'The Vraja-maṇḍala pilgrimage is complete · Vṛndāvana',grp3:'Vraja-maṇḍala',lvTag3:'Vraja',
+  lv3:'Navadvīpa-maṇḍala parikramā',lv3D:q=>`2 stages · the nine islands of Navadvīpa · ${q} questions`,
+  lv4:'Ekacakrā parikramā',lv4D:q=>`1 stage · birthplace of Nityānanda Prabhu · ${q} questions`,
+  lv5:'Jagannātha Purī parikramā',lv5D:q=>`1 stage · Śrī Kṣetra · ${q} questions`,
+  startIntro3:(n,q,p)=>`The Navadvīpa-maṇḍala parikramā leads around the nine islands of Navadvīpa, which represent the nine processes of devotional service: ${n} holy places in two stages; every game draws ${q} questions from a pool of ${p}.`,
+  startIntro4:(n,q,p)=>`The Ekacakrā parikramā leads around the birthplace of Nityānanda Prabhu: ${n} holy places; every game draws ${q} questions from a pool of ${p}.`,
+  startIntro5:(n,q,p)=>`The Jagannātha Purī parikramā leads to the places where Mahāprabhu lived with His devotees for eighteen years: ${n} holy places; every game draws ${q} questions from a pool of ${p}.`,
+  doneL3:'The Navadvīpa-maṇḍala parikramā is complete · Māyāpur',doneL4:'The Ekacakrā parikramā is complete',doneL5:'The Jagannātha Purī parikramā is complete',
+  grp3:'Navadvīpa-maṇḍala',grp4:'Ekacakrā',grp5:'Jagannātha Purī',lvTag3:'Navadvīpa',lvTag4:'Ekacakrā',lvTag5:'Purī',
+  tabPari:'Parikramās',playVideo:'Play video',openYT:'Open on YouTube',pariMaps:'Parikramā maps',pariMapNote:'Maps and photos of the Navadvīpa and Ekacakrā places: srimayapurdhama.com (ISKCON Mayapur).',gmapBtn:'Interactive map',webBtn:'More at srimayapurdhama.com',showMapBtn:'Show on the map',pariPlaces:'Holy places of the parikramā',approx:'The map shows the area; the Navigate button opens the exact location.',photoCredit:'Photo: srimayapurdhama.com (ISKCON Mayapur)',videoL:'Video',
+  copy:'© 2026 Golokaplanet Library, by Mahī-bhartā dāsa',
+  lv6:'Vraja-maṇḍala parikramā',lv6D:q=>`3 stages · Kṛṣṇa's pastimes in Vraja · ${q} questions`,
+  startIntro6:(n,q,p)=>`The Vraja-maṇḍala parikramā follows Kṛṣṇa's pastimes from the Śrīmad-Bhāgavatam: from Gokula through the forests of Vraja to Govardhana, Rādhā-kuṇḍa and Vṛndāvana. ${n} holy places in three stages; every game draws ${q} questions from a pool of ${p}.`,
+  doneL6:'The Vraja-maṇḍala parikramā is complete · Vṛndāvana',grp6:'Vraja-maṇḍala',lvTag6:'Vraja',
   tabPlaces:'Places',tabRoutes:'Routes',tabCal:'Calendar',tabDiary:'My pilgrimage',encTravel:'For pilgrims',
   festNote:'Festivals follow the lunar calendar, so the months in which they usually fall are given. Check the exact date each year in a Vaiṣṇava calendar.',
   navBtn:'Navigate here',offBtn:'Save photos for the journey',offBusy:'Saving …',offProg:(a,b)=>`Saving ${a}/${b} …`,offDone:n=>`Saved for the journey: ${n} ${n===1?'photo':'photos'}`,offNo:'Saving is not possible in this browser.',
@@ -513,7 +547,7 @@ const T={
   sndAuto:'The tanpura with bells is built in and works offline too.',
   helpTitle:'How to play Holy Places',videoFile:'navodila-en.mp4',noVideo:'This browser cannot play the guide video.',
   backGame:'Back to the game',install:'Install the app',installed:'The game is already running as an installed app.',
-  credits:'Photos of the holy places are from Wikimedia Commons under free licences; the authors are credited on each file’s Wikimedia Commons page. Map: © OpenStreetMap; satellite imagery: © Esri. Photo of Śrīla Prabhupāda: private archive of the game’s author. The questions were checked against Śrīla Prabhupāda’s books (vedabase.io).'}
+  credits:'Photos and maps of the Navadvīpa and Ekacakrā places are from srimayapurdhama.com (ISKCON Mayapur), videos from YouTube. Other photos of the holy places are from Wikimedia Commons under free licences; the authors are credited on each file’s Wikimedia Commons page. Map: © OpenStreetMap; satellite imagery: © Esri. Photo of Śrīla Prabhupāda: private archive of the game’s author. The questions were checked against Śrīla Prabhupāda’s books (vedabase.io).'}
 };
 const t=(k,...a)=>{const v=T[L][k];return typeof v==='function'?v(...a):v};
 
@@ -1675,29 +1709,309 @@ const FINALQ3=['vrindavan',[SB+' 10.47.61',SB+' 10.47.61'],
  "Uddhava saw the love of the gopīs. What did he wish for?",["To be born as a bush or herb in Vṛndāvana, trampled by the gopīs' feet","To become a king in Mathurā","To attain liberation"],
  "“Let me be one of the bushes, creepers or herbs in Vṛndāvana that the gopīs trample, blessing them with the dust of their feet.” The love of the residents of Vraja is the highest perfection."];
 const STAGES3=[
- {lv:3,n:["Gokula","Gokula"],sub:["Kṛṣṇove otroške zabave","Kṛṣṇa's childhood pastimes"],pick:5,key:'gokula',intro:["Vraja-maṇḍala je dežela Kṛṣṇovih zabav. Romanje se začne v Gokuli, kjer je Kṛṣṇa kot dojenček in otrok osvobajal demone in razveseljeval mater Yaśodo.","Vraja-maṇḍala is the land of Kṛṣṇa's pastimes. The pilgrimage begins in Gokula, where Kṛṣṇa as a baby and child delivered demons and delighted mother Yaśodā."]},
- {lv:3,n:["Gozdovi Vraje","Forests of Vraja"],sub:["Bhāṇḍīravana, Tālavana in pašniki","Bhāṇḍīravana, Tālavana and the pastures"],pick:5,img:['Keshighat_Vrindavan.JPG','Yamunā pri Vṛndāvani','The Yamunā at Vṛndāvana'],intro:["V gozdovih Vraje sta Kṛṣṇa in Balarāma s pastirčki pasla teleta in krave, se igrala in premagovala demone.","In the forests of Vraja Kṛṣṇa and Balarāma herded the calves and cows with the cowherd boys, played and defeated demons."]},
- {lv:3,n:["Govardhana in ljubezen Vraje","Govardhana and the love of Vraja"],sub:["Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndāvana","Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndāvana"],pick:6,main:1,final:1,img:['Krishna_lifting_Mount_Govardhana.jpg','Kṛṣṇa dviguje Govardhano','Kṛṣṇa lifting Govardhana'],intro:["Zadnja stopnja vodi h Govardhani, k Rādhā-kuṇḍi in v Vṛndāvano, kjer se razodeva čista ljubezen prebivalcev Vraje do Kṛṣṇe.","The last stage leads to Govardhana, Rādhā-kuṇḍa and Vṛndāvana, where the pure love of Vraja's residents for Kṛṣṇa is revealed."]},
+ {lv:6,n:["Gokula","Gokula"],sub:["Kṛṣṇove otroške zabave","Kṛṣṇa's childhood pastimes"],pick:5,key:'gokula',intro:["Vraja-maṇḍala je dežela Kṛṣṇovih zabav. Romanje se začne v Gokuli, kjer je Kṛṣṇa kot dojenček in otrok osvobajal demone in razveseljeval mater Yaśodo.","Vraja-maṇḍala is the land of Kṛṣṇa's pastimes. The pilgrimage begins in Gokula, where Kṛṣṇa as a baby and child delivered demons and delighted mother Yaśodā."]},
+ {lv:6,n:["Gozdovi Vraje","Forests of Vraja"],sub:["Bhāṇḍīravana, Tālavana in pašniki","Bhāṇḍīravana, Tālavana and the pastures"],pick:5,img:['Keshighat_Vrindavan.JPG','Yamunā pri Vṛndāvani','The Yamunā at Vṛndāvana'],intro:["V gozdovih Vraje sta Kṛṣṇa in Balarāma s pastirčki pasla teleta in krave, se igrala in premagovala demone.","In the forests of Vraja Kṛṣṇa and Balarāma herded the calves and cows with the cowherd boys, played and defeated demons."]},
+ {lv:6,n:["Govardhana in ljubezen Vraje","Govardhana and the love of Vraja"],sub:["Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndāvana","Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndāvana"],pick:6,main:1,final:1,img:['Krishna_lifting_Mount_Govardhana.jpg','Kṛṣṇa dviguje Govardhano','Kṛṣṇa lifting Govardhana'],intro:["Zadnja stopnja vodi h Govardhani, k Rādhā-kuṇḍi in v Vṛndāvano, kjer se razodeva čista ljubezen prebivalcev Vraje do Kṛṣṇe.","The last stage leads to Govardhana, Rādhā-kuṇḍa and Vṛndāvana, where the pure love of Vraja's residents for Kṛṣṇa is revealed."]},
 ];
 
 STAGES3[STAGES3.length-1].fq=FINALQ3; POOL.push(...POOL3); STAGES.push(...STAGES3);
+/* ---------- Parikrame: Navadvīpa, Ekacakrā, Purī / Parikramās ---------- */
+const SMD='https://srimayapurdhama.com/wp-content/uploads/';
+const SITE=['srimayapurdhama.com (ISKCON Māyāpur)','srimayapurdhama.com (ISKCON Mayapur)'];
+const dv=(n,proc,procEn,places,placesEn,img,cap)=>({n:[n,n],loc:["Navadvīpa-maṇḍala, Zahodna Bengalija","Navadvīpa-maṇḍala, West Bengal"],at:'mayapur',img:[[SMD+img,cap,cap]],src:SITE,
+  d:[`Eden od devetih otokov Navadvīpe. Povezan je z vdanim služenjem ${proc}. Med svetimi kraji otoka so ${places}.`,`One of the nine islands of Navadvīpa. It is connected with the devotional process of ${procEn}. Its holy places include ${placesEn}.`]});
+const PLACES4={
+ yogapitha:{n:["Yogapīṭha – kraj pojavitve Śrī Caitanye","Yogapīṭha – birthplace of Śrī Caitanya"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Yogapitha-%E2%80%93-Birthplace-of-Sri-Chaitanya-Mahaprabhu-scaled.jpg','Yogapīṭha','Yogapīṭha']],src:SITE,
+  d:["Kraj, kjer se je pojavil Śrī Caitanya Mahāprabhu. Odkril ga je Śrīla Bhaktivinoda Ṭhākura, potrdil pa Śrīla Jagannātha dāsa Bābājī.","The place where Śrī Caitanya Mahāprabhu appeared. It was discovered by Śrīla Bhaktivinoda Ṭhākura and confirmed by Śrīla Jagannātha dāsa Bābājī."]},
+ srivasa:{n:["Śrīvāsa-aṅgana (Khol-bhāṅgā-ḍāṅgā)","Śrīvāsa-aṅgana (Khol-bhāṅgā-ḍāṅgā)"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/SriSrivasAngan.jpg','Śrīvāsa-aṅgana','Śrīvāsa-aṅgana']],src:SITE,
+  d:["Dvorišče Śrīvāse Ṭhākure, kjer je Mahāprabhu z bhaktami ponoči pel kīrtana. Ime Khol-bhāṅgā-ḍāṅgā spominja na mṛdaṅgo (khol), ki jo je razbil Kāzī.","The courtyard of Śrīvāsa Ṭhākura, where Mahāprabhu held night-long kīrtana with His devotees. The name Khol-bhāṅgā-ḍāṅgā recalls the mṛdaṅga (khol) broken by the Kāzī."]},
+ advaitabh:{n:["Advaita-bhavana","Advaita-bhavana"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Sri-Advaita-bhavan-scaled.jpg','Advaita-bhavana','Advaita-bhavana']],src:SITE,
+  d:["Hiša Advaite Ācārye v Māyāpurju. Advaita Ācārya je s klicanjem Gospoda pripomogel k Njegovi pojavitvi.","The house of Advaita Ācārya in Māyāpur. By calling for the Lord, Advaita Ācārya helped bring about His appearance."]},
+ murari:{n:["Hiša Murārija Gupte","House of Murāri Gupta"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Sri-Ram-Sita-Lakshman-Hanuman.jpg','Rāma, Sītā, Lakṣmaṇa in Hanumān','Rāma, Sītā, Lakṣmaṇa and Hanumān']],src:SITE,
+  d:["Śrī-pāṭ Murārija Gupte, zdravnika in Mahāprabhujevega spremljevalca, ki je bil neomajno vdan Gospodu Rāmacandri.","The śrī-pāṭ of Murāri Gupta, physician and associate of Mahāprabhu, who was unflinchingly devoted to Lord Rāmacandra."],
+  dei:["Rāma, Sītā, Lakṣmaṇa in Hanumān.","Rāma, Sītā, Lakṣmaṇa and Hanumān."]},
+ nandana:{n:["Hiša Nandane Ācārye","House of Nandana Ācārya"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Nandanacharyabhaban_v2-scaled.jpg','Nandana Ācārya-bhavana','Nandana Ācārya-bhavana']],src:SITE,
+  d:["Kraj srečanja Nityānande Prabhuja in Śrī Caitanye Mahāprabhuja v Navadvīpi.","The place where Nityānanda Prabhu and Śrī Caitanya Mahāprabhu met in Navadvīpa."]},
+ madhai:{n:["Mādhāi-ghāṭa","Mādhāi-ghāṭa"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/JagaiMadhaighat.jpg','Jagāi-Mādhāi-ghāṭa','Jagāi-Mādhāi-ghāṭa']],src:SITE,
+  d:["Ghāṭa ob Gaṅgi, povezan z bratoma Jagāijem in Mādhāijem, ki ju je odrešil Gospod.","A ghāṭa on the Gaṅgā connected with the brothers Jagāi and Mādhāi, whom the Lord delivered."]},
+ caitanyamath:{n:["Śrī Caitanya Maṭha","Śrī Caitanya Maṭha"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/SamadhiTemple_SrilaBhaktisiddhantaSaraswatiGoswamiThakur-scaled.jpg','Samādhi Śrīle Bhaktisiddhānte Sarasvatīja','Samādhi of Śrīla Bhaktisiddhānta Sarasvatī']],src:SITE,
+  d:["Maṭha s samādhijem Śrīle Bhaktisiddhānte Sarasvatīja Gosvāmīja, duhovnega učitelja Śrīle Prabhupāde.","The maṭha with the samādhi of Śrīla Bhaktisiddhānta Sarasvatī Gosvāmī, the spiritual master of Śrīla Prabhupāda."]},
+ gangadasa:{n:["Šola Gaṅgādāse Paṇḍita","School of Gaṅgādāsa Paṇḍita"],loc:["Antardvīpa, Māyāpur","Antardvīpa, Māyāpur"],at:'mayapur',img:[[SMD+'2024/08/Sri-Sri-Siksha-Ashtakam.jpg','Gaṅgādāsa Paṇḍita ṭol','Gaṅgādāsa Paṇḍita ṭol']],src:SITE,
+  d:["Ṭol (šola) Gaṅgādāse Paṇḍita, kjer se je kot učenec šolal Nimāi.","The ṭol (school) of Gaṅgādāsa Paṇḍita, where Nimāi studied as a pupil."]},
+ simanta:dv("Sīmantadvīpa","s poslušanjem (śravaṇam)","hearing (śravaṇam)","samādhi Cānd Kāzīja, aṅgana Kholāveče Śrīdhare in Sīmantinī-mandira","the samādhi of Chand Kazi, the courtyard of Kholāvecā Śrīdhara and the Sīmantinī-mandira",'2024/08/ChandKazi_Samadhi-scaled.jpg','Samādhi Cānd Kāzīja'),
+ godruma:dv("Godrumadvīpa","s petjem (kīrtanam)","chanting (kīrtanam)","Svānanda-sukhada-kuñja, bhajana-kuṭīra Śrīle Bhaktivinode Ṭhākure, Surabhi-kuñja, Hari-hara-kṣetra in Nṛsiṁha-pallī","Svānanda-sukhada-kuñja, the bhajana-kuṭīra of Śrīla Bhaktivinoda Ṭhākura, Surabhi-kuñja, Hari-hara-kṣetra and Nṛsiṁha-pallī",'2024/08/Sri-Swananda-Sukhada-Kunja.jpg','Svānanda-sukhada-kuñja'),
+ madhya:dv("Madhyadvīpa","s spominjanjem (smaraṇam)","remembering (smaraṇam)","Pañcaveṇī (Mahā-prayāga), Brāhmaṇa-puṣkara, Uccahaṭṭa (Kurukṣetra), Naimiṣāraṇya in kraj bhajana sedmih ṛṣijev","Pañcaveṇī (Mahā-prayāga), Brāhmaṇa-puṣkara, Uccahaṭṭa (Kurukṣetra), Naimiṣāraṇya and the bhajana place of the seven ṛṣis",'2024/08/Pancaveni3.jpg','Pañcaveṇī'),
+ kola:Object.assign(dv("Koladvīpa","s služenjem lotosovim stopalom (pāda-sevanam)","serving the lotus feet (pāda-sevanam)","tempelj Dhāmeśvara Mahāprabhu, bhajana-kuṭīra Śrīle Jagannātha dāse Bābājīja, Prauḍhā-māyā in samādhi Vaṁśīdāse Bābājīja","the Dhāmeśvara Mahāprabhu temple, the bhajana-kuṭīra of Śrīla Jagannātha dāsa Bābājī, Prauḍhā-māyā and the samādhi of Vaṁśīdāsa Bābājī",'2024/08/Bhajan-Kutir-of-Jagannatha-Dasa-Babaji-Maharaja.jpg','Bhajana-kuṭīra Jagannātha dāse Bābājīja'),{at:'navadvip'}),
+ ritu:dv("Ṛtudvīpa","s čaščenjem Božanstva (arcanam)","worshiping the Deity (arcanam)","Campahaṭṭa, Vidyānagara, Samudragaḍa in Rātupura z Rādhā-kuṇḍo in Śyāma-kuṇḍo","Campahaṭṭa, Vidyānagara, Samudragaḍa and Rātupura with Rādhā-kuṇḍa and Śyāma-kuṇḍa",'2024/08/Ratupura_Radhakund_Shyamkund2.jpg','Rātupura'),
+ jahnu:dv("Jahnudvīpa","z molitvijo (vandanam)","praying (vandanam)","āśrama modreca Jahnuja in Bhīṣma-ṭilā","the āśrama of the sage Jahnu and Bhīṣma-ṭilā",'2024/08/JahnuMuni2.jpg','Āśrama Jahnu Munija'),
+ modadruma:dv("Modadrumadvīpa","s služenjem (dāsyam)","servitude (dāsyam)","rojstni kraj Vṛndāvane dāse Ṭhākure v Māmgāchiju, hiša Vāsudeve Datte in śrī-pāṭ Sāraṅge Murārija Ṭhākure","the birthplace of Vṛndāvana dāsa Ṭhākura at Māmgāchi, the house of Vāsudeva Datta and the śrī-pāṭ of Sāraṅga Murāri Ṭhākura",'2025/03/Vasudeva-Dutta-house.jpeg','Hiša Vāsudeve Datte'),
+ rudra:dv("Rudradvīpa","s prijateljstvom (sakhyam)","friendship (sakhyam)","Rudradvīpa Gauḍīya Maṭha, Nidayā-ghāṭa, Śaṅkarapura in Śrī Pulina","Rudradvīpa Gauḍīya Maṭha, Nidayā-ghāṭa, Śaṅkarapura and Śrī Pulina",'2024/08/rudradvipa-gaudiya-math2-scaled.jpg','Rudradvīpa Gauḍīya Maṭha'),
+ /* Ekacakrā */
+ ekacakra:{n:["Ekacakrā – rojstni kraj Nityānande Prabhuja","Ekacakrā – birthplace of Nityānanda Prabhu"],loc:["okrožje Birbhum, Zahodna Bengalija","Birbhum district, West Bengal"],ll:[24.0614,87.8478],img:[[SMD+'2025/01/Ekacakra_Nandan_Nityananda_birthplace_Photo-Album.jpg','Garbhavāsa, rojstni kraj Nityānande','Garbhavāsa, birthplace of Nityānanda']],src:SITE,
+  d:["Vas v Rāḍha-deśi, kjer se je pojavil Nityānanda Prabhu. Njegov oče je bil Hāḍāi Paṇḍita, mati Padmāvatī. Kraj rojstva se imenuje Garbhavāsa.","The village in Rāḍha-deśa where Nityānanda Prabhu appeared. His father was Hāḍāi Paṇḍita and His mother Padmāvatī. The birthplace is called Garbhavāsa."]},
+ bankima:{n:["Ekacakrā – tempelj Baṅkima Rāya","Ekacakrā – Baṅkima Rāya temple"],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',img:[[SMD+'2025/01/Ekacakra_sundaranga_Bankima_raya_1.jpg','Baṅkima Rāya','Baṅkima Rāya']],src:SITE,
+  d:["Tempelj Božanstva Baṅkima Rāya. Po izročilu duhovnikov je Nityānanda Prabhu vstopil v telo Baṅkima Rāya.","The temple of the Deity Baṅkima Rāya. According to the priests, Nityānanda Prabhu entered the body of Baṅkima Rāya."],
+  dei:["Baṅkima Rāya (Kṛṣṇa).","Baṅkima Rāya (Kṛṣṇa)."]},
+ kadamba:{n:["Ekacakrā – Kadamba-khaṇḍī-ghāṭa","Ekacakrā – Kadamba-khaṇḍī-ghāṭa"],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',img:[[SMD+'2024/12/Ekacakra_Nandan_Kadamba_khandi_ghat.jpg','Kadamba-khaṇḍī-ghāṭa','Kadamba-khaṇḍī-ghāṭa']],src:SITE,
+  d:["Po izročilu so tu našli Božanstvo Baṅkima Rāya, ki je plavalo na vodi; Nityānanda Ga je sam dvignil in vzpostavil v templju.","By tradition the Deity of Baṅkima Rāya was found floating here; Nityānanda Himself lifted Him and installed Him in the temple."]},
+ hantugada:{n:["Ekacakrā – Hāṅṭugāḍā","Ekacakrā – Hāṅṭugāḍā"],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',img:[[SMD+'2024/12/Ekacakra_Nandan_hantugada.jpg','Hāṅṭugāḍā','Hāṅṭugāḍā']],src:SITE,
+  d:["Po izročilu je Nityānanda Prabhu na ta kraj prinesel vse svete kraje.","By tradition Nityānanda Prabhu brought all the holy places to this spot."]},
+ pandavatala:{n:["Ekacakrā – Pāṇḍava-tala","Ekacakrā – Pāṇḍava-tala"],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',img:[[SMD+'2024/12/Ekacakra_Nandan_pandavas.jpg','Pāṇḍava-tala','Pāṇḍava-tala']],src:SITE,
+  d:["Po izročilu so tu med izgnanstvom prikrito živeli pet Pāṇḍavov in Draupadī.","By tradition the five Pāṇḍavas and Draupadī lived here incognito during their exile."]},
+ bakula:{n:["Ekacakrā – Bakula-tala","Ekacakrā – Bakula-tala"],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',img:[[SMD+'2025/02/Nandan_bakulatala.jpg','Bakula-tala','Bakula-tala']],src:SITE,
+  d:["Kraj, kjer se je Nityānanda kot deček s prijatelji igral igro jhāla-jhapeṭā.","The place where Nityānanda as a boy played the game jhāla-jhapeṭā with His friends."]},
+ padmavati:{n:["Ekacakrā – jezerce Padmāvatī","Ekacakrā – Padmāvatī pond"],loc:["Ekacakrā, Birbhum","Ekacakrā, Birbhum"],at:'ekacakra',img:[[SMD+'2024/12/Ekacakra_Nandan_Padmavati_pond.jpg','Jezerce Padmāvatī','Padmāvatī pond']],src:SITE,
+  d:["Sveto jezerce, imenovano po Nityānandovi materi Padmāvatī-devī.","A sacred pond named after Nityānanda's mother, Padmāvatī-devī."]},
+ /* Purī */
+ gundica:{n:["Purī – tempelj Guṇḍicā","Purī – Guṇḍicā temple"],loc:["na koncu Velike ceste (Baḍa Daṇḍa), Purī","at the end of the Grand Road (Baḍa Daṇḍa), Purī"],ll:[19.8169,85.8404],cat:['Gundicha_Temple'],img:[],
+  d:["Tempelj, imenovan tudi Jagannāthov vrtni dvorec, približno 3 km od glavnega templja. Ob Ratha-yātri sem pripeljejo Jagannātho, Baladevo in Subhadrā, ki tu ostanejo sedem dni.","Also called Jagannātha's garden house, about 3 km from the main temple. At Ratha-yātrā Jagannātha, Baladeva and Subhadrā are brought here and stay for seven days."]},
+ haridas:{n:["Purī – samādhi Haridāse Ṭhākure","Purī – samādhi of Haridāsa Ṭhākura"],loc:["ob morju, Purī","by the sea, Purī"],at:'puri',img:[],
+  d:["Ob morski obali je Śrī Caitanya sam položil telo Haridāse Ṭhākure v grob in ga pokril s peskom.","On the seashore Śrī Caitanya Himself placed the body of Haridāsa Ṭhākura in the grave and covered it with sand."]},
+ siddhabakula:{n:["Purī – Siddha-bakula","Purī – Siddha-bakula"],loc:["Purī","Purī"],at:'puri',img:[],
+  d:["Kraj, kjer je Haridāsa Ṭhākura vsak dan pel sveta imena in kamor ga je Mahāprabhu hodil obiskovat.","The place where Haridāsa Ṭhākura chanted the holy names every day and where Mahāprabhu came to visit him."]},
+ totagopinath:{n:["Purī – Ṭoṭā-gopīnātha","Purī – Ṭoṭā-gopīnātha"],loc:["Purī","Purī"],at:'puri',img:[],
+  d:["Tempelj Gopīnāthe, ki mu je služil Gadādhara Paṇḍita.","The temple of Gopīnātha, whom Gadādhara Paṇḍita served."],dei:["Ṭoṭā-gopīnātha (Kṛṣṇa).","Ṭoṭā-gopīnātha (Kṛṣṇa)."]},
+ narendra:{n:["Purī – Narendra-sarovara","Purī – Narendra-sarovara"],loc:["Purī","Purī"],at:'puri',img:[],
+  d:["Veliko sveto jezero v Purīju, kjer ob prazniku Candana-yātrā Božanstva vozijo v čolnih.","A large sacred lake in Purī where the Deities are taken boating during the Candana-yātrā festival."]},
+ alalanatha:{n:["Brahmagiri – Ālālanātha","Brahmagiri – Ālālanātha"],loc:["Brahmagiri, približno 23 km od Purīja","Brahmagiri, about 23 km from Purī"],at:'puri',img:[],
+  d:["Tempelj, ki ga romarji obiščejo v času anavasare, ko Jagannātha v Purīju ni viden. Po izročilu je tja odšel tudi Mahāprabhu; tam je kamen, na katerem je pel saṅkīrtana.","A temple visited during anavasara, when Jagannātha is not seen in Purī. By tradition Mahāprabhu also went there; a stone on which He performed saṅkīrtana is still there."]},
+};
+Object.assign(PLACES,PLACES4);
+const POOL4=[
+ /* Navadvīpa A: Antardvīpa */ [
+  ['srivasa',[CC+', Ādi 17',CC+', Ādi 17'],
+   "Na kateri dogodek spominja ime Khol-bhāṅgā-ḍāṅgā pri Śrīvāsa-aṅgani?",["Kāzī je razbil mṛdaṅgo (khol), da bi ustavil kīrtana","Mahāprabhu je razbil vrč z vodo","Nityānanda je zlomil Mahāprabhujevo palico"],
+   "Ko je Kāzī slišal kīrtana, je prišel, razbil mṛdaṅgo in prepovedal petje. Mahāprabhu je nato vodil veliko procesijo saṅkīrtane in Kāzīja pridobil za bhakto.",
+   "Which event does the name Khol-bhāṅgā-ḍāṅgā at Śrīvāsa-aṅgana recall?",["The Kāzī broke a mṛdaṅga (khol) to stop the kīrtana","Mahāprabhu broke a water pot","Nityānanda broke Mahāprabhu's staff"],
+   "When the Kāzī heard the kīrtana, he came, broke a mṛdaṅga and forbade the chanting. Mahāprabhu then led a great saṅkīrtana procession and won the Kāzī over as a devotee."],
+  ['nandana',[SITE[0],SITE[1]],
+   "Kaj se je po izročilu zgodilo v hiši Nandane Ācārye v Māyāpurju?",["Nityānanda Prabhu in Mahāprabhu sta se srečala","Mahāprabhu je sprejel sannyāso","Rodil se je Advaita Ācārya"],
+   "Hiša Nandane Ācārye je kraj srečanja Nityānande Prabhuja s Śrī Caitanyo Mahāprabhujem v Navadvīpi.",
+   "What, by tradition, happened in the house of Nandana Ācārya in Māyāpur?",["Nityānanda Prabhu and Mahāprabhu met","Mahāprabhu accepted sannyāsa","Advaita Ācārya was born"],
+   "The house of Nandana Ācārya is where Nityānanda Prabhu met Śrī Caitanya Mahāprabhu in Navadvīpa."],
+  ['murari',[CC+', Madhya 15',CC+', Madhya 15'],
+   "Kateri obliki Gospoda je bil Murāri Gupta neomajno vdan, tudi ko ga je Mahāprabhu preizkušal?",["Gospodu Rāmacandri","Gospodu Narasiṁhi","Gospodu Vāmani"],
+   "Mahāprabhu je Murārija Gupto prosil, naj časte Kṛṣṇo namesto Rāme. Murāri tega ni zmogel, saj je njegovo srce pripadalo Rāmacandri. Mahāprabhu je to neomajno zvestobo hvalil.",
+   "To which form of the Lord was Murāri Gupta unflinchingly devoted, even when Mahāprabhu tested him?",["Lord Rāmacandra","Lord Narasiṁha","Lord Vāmana"],
+   "Mahāprabhu asked Murāri Gupta to worship Kṛṣṇa instead of Rāma. Murāri could not, for his heart belonged to Rāmacandra. Mahāprabhu praised this unflinching fidelity."],
+  ['caitanyamath',[SITE[0],SITE[1]],
+   "Čigav samādhi je v Śrī Caitanya Maṭhu v Māyāpurju?",["Śrīle Bhaktisiddhānte Sarasvatīja Gosvāmīja","Śrīle Rūpe Gosvāmīja","Śrīle Narottame dāse Ṭhākure"],
+   "V Śrī Caitanya Maṭhu je samādhi Śrīle Bhaktisiddhānte Sarasvatīja Gosvāmīja, ki je Śrīli Prabhupādi naročil, naj pridiga v angleškem jeziku.",
+   "Whose samādhi is in the Śrī Caitanya Maṭha in Māyāpur?",["Śrīla Bhaktisiddhānta Sarasvatī Gosvāmī","Śrīla Rūpa Gosvāmī","Śrīla Narottama dāsa Ṭhākura"],
+   "The Śrī Caitanya Maṭha holds the samādhi of Śrīla Bhaktisiddhānta Sarasvatī Gosvāmī, who instructed Śrīla Prabhupāda to preach in English."],
+  ['mayapur',[SITE[0],SITE[1]],
+   "Kaj je v templju ISKCON v Māyāpurju posvečeno Śrīli Prabhupādi?",["Puṣpa-samādhi, samādhi s cvetjem","Njegova rojstna hiša","Njegova prva tiskarna"],
+   "Śrīla Prabhupāda je zapustil telo v Vṛndāvanu, kjer je njegov samādhi. V Māyāpurju stoji njegov puṣpa-samādhi (»samādhi s cvetjem«).",
+   "What in ISKCON Māyāpur is dedicated to Śrīla Prabhupāda?",["A puṣpa-samādhi, a flower samādhi","His birth house","His first printing press"],
+   "Śrīla Prabhupāda left his body in Vṛndāvana, where his samādhi is. In Māyāpur stands his puṣpa-samādhi (“flower samādhi”)."],
+  ['gangadasa',[SITE[0],SITE[1]],
+   "Pri katerem učitelju se je po izročilu šolal Nimāi v Antardvīpi?",["Pri Gaṅgādāsi Paṇḍitu","Pri Sārvabhaumi Bhaṭṭācāryi","Pri Īśvari Purīju"],
+   "V Antardvīpi je ṭol, šola Gaṅgādāse Paṇḍita, kjer se je Nimāi šolal. Īśvara Purī je bil Njegov duhovni učitelj, Sārvabhauma pa je živel v Purīju.",
+   "With which teacher, by tradition, did Nimāi study in Antardvīpa?",["Gaṅgādāsa Paṇḍita","Sārvabhauma Bhaṭṭācārya","Īśvara Purī"],
+   "In Antardvīpa is the ṭol, the school of Gaṅgādāsa Paṇḍita, where Nimāi studied. Īśvara Purī was His spiritual master, and Sārvabhauma lived in Purī."],
+  ['yogapitha',[SB+' 7.5.23–24',SB+' 7.5.23–24'],
+   "Navadvīpa ima devet otokov. Kateri proces vdanega služenja predstavlja Antardvīpa, kjer je Yogapīṭha?",["Ātma-nivedanam, popolno predanost","Kīrtanam, petje","Śravaṇam, poslušanje"],
+   "Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja, ki jih Prahlāda Mahārāja našteje v Śrīmad-Bhāgavatamu. Antardvīpa, v kateri se je pojavil Mahāprabhu, predstavlja ātma-nivedanam, popolno predanost.",
+   "Navadvīpa has nine islands. Which process of devotional service does Antardvīpa, home of the Yogapīṭha, represent?",["Ātma-nivedanam, full surrender","Kīrtanam, chanting","Śravaṇam, hearing"],
+   "The nine islands of Navadvīpa represent the nine processes of devotional service listed by Prahlāda Mahārāja in the Śrīmad-Bhāgavatam. Antardvīpa, where Mahāprabhu appeared, represents ātma-nivedanam, full surrender."]
+ ],
+ /* Navadvīpa B: osem otokov */ [
+  ['simanta',[SITE[0],SITE[1]],
+   "Kateri proces vdanega služenja predstavlja Sīmantadvīpa?",["Śravaṇam, poslušanje","Smaraṇam, spominjanje","Dāsyam, služenje"],
+   "Sīmantadvīpa predstavlja śravaṇam, poslušanje o Gospodu. Na tem otoku je tudi samādhi Cānd Kāzīja.",
+   "Which process of devotional service does Sīmantadvīpa represent?",["Śravaṇam, hearing","Smaraṇam, remembering","Dāsyam, servitude"],
+   "Sīmantadvīpa represents śravaṇam, hearing about the Lord. The samādhi of Chand Kazi is also on this island."],
+  ['simanta',[SITE[0],SITE[1]],
+   "Na katerem otoku Navadvīpe stoji samādhi Cānd Kāzīja?",["Na Sīmantadvīpi","Na Godrumadvīpi","Na Rudradvīpi"],
+   "Cānd Kāzī, ki ga je Mahāprabhu pridobil za saṅkīrtano, ima samādhi na Sīmantadvīpi, kjer romarji izkažejo spoštovanje Mahāprabhujevi milosti.",
+   "On which island of Navadvīpa is the samādhi of Chand Kazi?",["Sīmantadvīpa","Godrumadvīpa","Rudradvīpa"],
+   "Chand Kazi, whom Mahāprabhu won over to saṅkīrtana, has his samādhi on Sīmantadvīpa, where pilgrims honour Mahāprabhu's mercy."],
+  ['godruma',[SITE[0],SITE[1]],
+   "Kateri proces predstavlja Godrumadvīpa, kjer je živel Śrīla Bhaktivinoda Ṭhākura?",["Kīrtanam, petje","Arcanam, čaščenje Božanstva","Vandanam, molitev"],
+   "Godrumadvīpa predstavlja kīrtanam, petje svetih imen. Tu je Svānanda-sukhada-kuñja, bhajana-kuṭīra Śrīle Bhaktivinode Ṭhākure.",
+   "Which process does Godrumadvīpa represent, where Śrīla Bhaktivinoda Ṭhākura lived?",["Kīrtanam, chanting","Arcanam, Deity worship","Vandanam, praying"],
+   "Godrumadvīpa represents kīrtanam, chanting the holy names. Here is Svānanda-sukhada-kuñja, the bhajana-kuṭīra of Śrīla Bhaktivinoda Ṭhākura."],
+  ['madhya',[SITE[0],SITE[1]],
+   "Kateri sveti kraji Indije so po izročilu navzoči v Madhyadvīpi?",["Naimiṣāraṇya, Kurukṣetra (Uccahaṭṭa) in Puṣkara","Dvārakā, Rāmeśvaram in Badrīnāth","Ayodhyā, Kāśī in Gayā"],
+   "V Madhyadvīpi, ki predstavlja smaraṇam, so po izročilu navzoči Naimiṣāraṇya, Uccahaṭṭa (Kurukṣetra), Brāhmaṇa-puṣkara in Pañcaveṇī (Mahā-prayāga).",
+   "Which holy places of India are, by tradition, present in Madhyadvīpa?",["Naimiṣāraṇya, Kurukṣetra (Uccahaṭṭa) and Puṣkara","Dvārakā, Rāmeśvaram and Badrīnāth","Ayodhyā, Kāśī and Gayā"],
+   "In Madhyadvīpa, which represents smaraṇam, Naimiṣāraṇya, Uccahaṭṭa (Kurukṣetra), Brāhmaṇa-puṣkara and Pañcaveṇī (Mahā-prayāga) are present by tradition."],
+  ['kola',[SITE[0],SITE[1]],
+   "Čigav bhajana-kuṭīra je na Koladvīpi, ki predstavlja pāda-sevanam?",["Śrīle Jagannātha dāse Bābājīja","Śrīle Raghunātha dāse Gosvāmīja","Śrīle Lokanātha Gosvāmīja"],
+   "Na Koladvīpi, današnjem mestu Navadvīpa, sta bhajana-kuṭīra Śrīle Jagannātha dāse Bābājīja, ki je potrdil kraj Mahāprabhujeve pojavitve, in tempelj Dhāmeśvara Mahāprabhu.",
+   "Whose bhajana-kuṭīra is on Koladvīpa, which represents pāda-sevanam?",["Śrīla Jagannātha dāsa Bābājī","Śrīla Raghunātha dāsa Gosvāmī","Śrīla Lokanātha Gosvāmī"],
+   "On Koladvīpa, today's town of Navadvīpa, are the bhajana-kuṭīra of Śrīla Jagannātha dāsa Bābājī, who confirmed Mahāprabhu's birthplace, and the Dhāmeśvara Mahāprabhu temple."],
+  ['ritu',[SITE[0],SITE[1]],
+   "Kateri proces predstavlja Ṛtudvīpa, kjer sta v Rātupuri Rādhā-kuṇḍa in Śyāma-kuṇḍa?",["Arcanam, čaščenje Božanstva","Sakhyam, prijateljstvo","Kīrtanam, petje"],
+   "Ṛtudvīpa predstavlja arcanam, čaščenje Božanstva. V Rātupuri sta Rādhā-kuṇḍa in Śyāma-kuṇḍa Navadvīpe.",
+   "Which process does Ṛtudvīpa represent, where Rādhā-kuṇḍa and Śyāma-kuṇḍa are found at Rātupura?",["Arcanam, Deity worship","Sakhyam, friendship","Kīrtanam, chanting"],
+   "Ṛtudvīpa represents arcanam, Deity worship. At Rātupura are the Rādhā-kuṇḍa and Śyāma-kuṇḍa of Navadvīpa."],
+  ['jahnu',[SB+' 9.15.3',SB+' 9.15.3'],
+   "Po kom se imenuje Jahnudvīpa in kaj je ta modrec storil z Gaṅgo?",["Po Jahnuju, ki je popil vso vodo Gaṅge","Po Jahnuju, ki je Gaṅgo privedel na Zemljo","Po Jahnuju, ki je zgradil ghāṭe"],
+   "Jahnu je v enem požirku popil vso vodo Gaṅge; zato se Gaṅgā imenuje tudi Jāhnavī. Na Jahnudvīpi, ki predstavlja vandanam, je njegov āśrama.",
+   "After whom is Jahnudvīpa named, and what did this sage do with the Gaṅgā?",["After Jahnu, who drank all the water of the Gaṅgā","After Jahnu, who brought the Gaṅgā to earth","After Jahnu, who built the ghāṭas"],
+   "Jahnu drank all the water of the Gaṅgā in one sip; therefore the Gaṅgā is also called Jāhnavī. His āśrama is on Jahnudvīpa, which represents vandanam."],
+  ['modadruma',[CC+', Madhya 15',CC+', Madhya 15'],
+   "Kaj je Vāsudeva Datta, čigar hiša je na Modadrumadvīpi, prosil Mahāprabhuja?",["Naj nanj prenese grehe vseh bitij in jih osvobodi","Naj ga vzame s sabo v Purī","Naj mu podari bogastvo"],
+   "Vāsudeva Datta je iz sočutja prosil, naj on sam trpi za grehe vseh živih bitij, oni pa naj bodo osvobojeni. Mahāprabhuja je ta prošnja globoko ganila.",
+   "What did Vāsudeva Datta, whose house is on Modadrumadvīpa, ask of Mahāprabhu?",["To take on himself the sins of all beings and deliver them","To take him to Purī","To give him wealth"],
+   "Out of compassion Vāsudeva Datta asked that he himself suffer for the sins of all living beings and that they be delivered. Mahāprabhu was deeply moved by this request."],
+  ['modadruma',[SITE[0],SITE[1]],
+   "Kdo se je po izročilu rodil v Māmgāchiju na Modadrumadvīpi?",["Vṛndāvana dāsa Ṭhākura, avtor Caitanya-bhāgavate","Kṛṣṇadāsa Kavirāja Gosvāmī","Narottama dāsa Ṭhākura"],
+   "V Māmgāchiju je rojstni kraj Vṛndāvane dāse Ṭhākure, ki je napisal Caitanya-bhāgavato. Kṛṣṇadāsa Kavirāja je pozneje napisal Caitanya-caritāmṛto.",
+   "Who, by tradition, was born at Māmgāchi on Modadrumadvīpa?",["Vṛndāvana dāsa Ṭhākura, author of the Caitanya-bhāgavata","Kṛṣṇadāsa Kavirāja Gosvāmī","Narottama dāsa Ṭhākura"],
+   "Māmgāchi is the birthplace of Vṛndāvana dāsa Ṭhākura, who wrote the Caitanya-bhāgavata. Kṛṣṇadāsa Kavirāja later wrote the Caitanya-caritāmṛta."],
+  ['rudra',[SITE[0],SITE[1]],
+   "Kateri proces vdanega služenja predstavlja Rudradvīpa?",["Sakhyam, prijateljstvo","Dāsyam, služenje","Ātma-nivedanam, predanost"],
+   "Rudradvīpa predstavlja sakhyam, prijateljstvo z Gospodom. Med njenimi kraji so Śaṅkarapura in Śrī Pulina.",
+   "Which process of devotional service does Rudradvīpa represent?",["Sakhyam, friendship","Dāsyam, servitude","Ātma-nivedanam, surrender"],
+   "Rudradvīpa represents sakhyam, friendship with the Lord. Among its places are Śaṅkarapura and Śrī Pulina."]
+ ],
+ /* Ekacakrā */ [
+  ['ekacakra',[CC+', Ādi 13.61',CC+', Ādi 13.61'],
+   "V katerem delu Bengalije se je pojavil Nityānanda Prabhu?",["V Rāḍha-deśi, kjer Gaṅgā ni vidna","V Navadvīpi ob Gaṅgi","V Orisi ob morju"],
+   "Nityānanda Prabhu se je pojavil v Rāḍha-deśi, delu Bengalije, kjer Gaṅgā ni vidna. Śrīla Prabhupāda pojasni, da je to vas Ekacakrā v okrožju Birbhum.",
+   "In which part of Bengal did Nityānanda Prabhu appear?",["In Rāḍha-deśa, where the Gaṅgā is not visible","In Navadvīpa on the Gaṅgā","In Orissa by the sea"],
+   "Nityānanda Prabhu appeared in Rāḍha-deśa, the part of Bengal where the Gaṅgā is not visible. Śrīla Prabhupāda explains that this is the village of Ekacakrā in Birbhum district."],
+  ['ekacakra',[CC+', Ādi 13.61 (razlaga)',CC+', Ādi 13.61 (purport)'],
+   "Kako je bilo ime očetu Nityānande Prabhuja?",["Hāḍāi Paṇḍita","Jagannātha Miśra","Upananda"],
+   "Oče Nityānande Prabhuja je bil Hāḍāi Paṇḍita, ki je častil Śivovo Božanstvo Bhāṇḍīśvara. Jagannātha Miśra je bil oče Śrī Caitanye.",
+   "What was the name of Nityānanda Prabhu's father?",["Hāḍāi Paṇḍita","Jagannātha Miśra","Upananda"],
+   "Nityānanda Prabhu's father was Hāḍāi Paṇḍita, who worshiped a Deity of Śiva called Bhāṇḍīśvara. Jagannātha Miśra was the father of Śrī Caitanya."],
+  ['padmavati',[SITE[0],SITE[1]],
+   "Po kom se imenuje jezerce Padmāvatī v Ekacakri?",["Po Nityānandovi materi Padmāvatī-devī","Po boginji Lakṣmī","Po reki Padmā"],
+   "Jezerce nosi ime Nityānandove matere, Padmāvatī-devī.",
+   "After whom is the Padmāvatī pond in Ekacakrā named?",["Nityānanda's mother, Padmāvatī-devī","The goddess Lakṣmī","The Padmā River"],
+   "The pond bears the name of Nityānanda's mother, Padmāvatī-devī."],
+  ['ekacakra',[SITE[0]+'; Caitanya-bhāgavata, Ādi 2.40–42',SITE[1]+'; Caitanya-bhāgavata, Ādi 2.40–42'],
+   "Kaj se je po Caitanya-bhāgavati zgodilo ob pojavitvi Nityānande Prabhuja?",["Polbogovi so skrivaj sipali cvetje in Rāḍha je začela cveteti","Nastal je lunin mrk","Gaṅgā je spremenila tok"],
+   "Caitanya-bhāgavata opisuje, da so polbogovi ob Nityānandovi pojavitvi skrivaj sipali cvetje in da je dežela Rāḍha od tedaj cvetela. Kraj rojstva se imenuje Garbhavāsa.",
+   "According to the Caitanya-bhāgavata, what happened when Nityānanda Prabhu appeared?",["The demigods secretly showered flowers and Rāḍha began to prosper","A lunar eclipse took place","The Gaṅgā changed its course"],
+   "The Caitanya-bhāgavata describes that at Nityānanda's appearance the demigods secretly showered flowers and that the land of Rāḍha prospered from that day. The birthplace is called Garbhavāsa."],
+  ['kadamba',[SITE[0],SITE[1]],
+   "Kaj se je po izročilu zgodilo na Kadamba-khaṇḍī-ghāṭi?",["Našli so Božanstvo Baṅkima Rāya, ki je plavalo na vodi","Nityānanda se je tu rodil","Pāṇḍave so tu skrili orožje"],
+   "Po izročilu je Božanstvo Baṅkima Rāya plavalo na vodi pri Kadamba-khaṇḍī-ghāṭi. Nityānanda Prabhu Ga je sam dvignil in vzpostavil v templju.",
+   "What, by tradition, happened at Kadamba-khaṇḍī-ghāṭa?",["The Deity of Baṅkima Rāya was found floating on the water","Nityānanda was born here","The Pāṇḍavas hid their weapons here"],
+   "By tradition the Deity of Baṅkima Rāya was floating on the water at Kadamba-khaṇḍī-ghāṭa. Nityānanda Prabhu Himself lifted Him and installed Him in the temple."],
+  ['bankima',[SITE[0],SITE[1]],
+   "Kaj o Božanstvu Baṅkima Rāya pripovedujejo duhovniki v Ekacakri?",["Da je Nityānanda Prabhu vstopil v telo Baṅkima Rāya","Da Ga je izklesal Viśvakarmā","Da Ga je prinesel Mahāprabhu iz Purīja"],
+   "Po pripovedovanju duhovnikov templja je Nityānanda Prabhu vstopil v telo Baṅkima Rāya.",
+   "What do the priests in Ekacakrā say about the Deity of Baṅkima Rāya?",["That Nityānanda Prabhu entered the body of Baṅkima Rāya","That Viśvakarmā carved Him","That Mahāprabhu brought Him from Purī"],
+   "According to the temple priests, Nityānanda Prabhu entered the body of Baṅkima Rāya."],
+  ['hantugada',[SITE[0],SITE[1]],
+   "Kaj je po izročilu Nityānanda Prabhu storil v Hāṅṭugāḍi?",["Tja je prinesel vse svete kraje","Tam je napisal knjigo","Tam je sprejel sannyāso"],
+   "Po izročilu je Nityānanda Prabhu v Hāṅṭugāḍo prinesel vse svete kraje.",
+   "What, by tradition, did Nityānanda Prabhu do at Hāṅṭugāḍā?",["He brought all the holy places there","He wrote a book there","He accepted sannyāsa there"],
+   "By tradition Nityānanda Prabhu brought all the holy places to Hāṅṭugāḍā."],
+  ['pandavatala',[SITE[0],SITE[1]],
+   "Kdo je po izročilu prikrito živel v Pāṇḍava-tali v Ekacakri?",["Pet Pāṇḍavov in Draupadī med izgnanstvom","Rāma, Sītā in Lakṣmaṇa","Kṛṣṇa in Balarāma"],
+   "Po izročilu so pet Pāṇḍavov in Draupadī tu prikrito živeli med izgnanstvom.",
+   "Who, by tradition, lived incognito at Pāṇḍava-tala in Ekacakrā?",["The five Pāṇḍavas and Draupadī during their exile","Rāma, Sītā and Lakṣmaṇa","Kṛṣṇa and Balarāma"],
+   "By tradition the five Pāṇḍavas and Draupadī lived here incognito during their exile."],
+  ['bakula',[SITE[0],SITE[1]],
+   "Kaj je Nityānanda kot deček počel v Bakula-tali?",["S prijatelji se je igral igro jhāla-jhapeṭā","Učil se je sanskrta","Pasel je krave za plačilo"],
+   "V Bakula-tali se je Nityānanda kot deček s prijatelji igral igro jhāla-jhapeṭā.",
+   "What did Nityānanda do as a boy at Bakula-tala?",["He played the game jhāla-jhapeṭā with His friends","He studied Sanskrit","He herded cows for pay"],
+   "At Bakula-tala Nityānanda as a boy played the game jhāla-jhapeṭā with His friends."]
+ ],
+ /* Purī parikramā */ [
+  ['gundica',[CC+', Madhya 12',CC+', Madhya 12'],
+   "Kaj je Mahāprabhu z bhaktami storil v templju Guṇḍicā pred Ratha-yātro?",["Temeljito ga je očistil in pomil","Okrasil ga je z zlatom","Zaklenil ga je za romarje"],
+   "Pred Ratha-yātro je Mahāprabhu z bhaktami očistil in pomil tempelj Guṇḍicā. Prabhupāda pojasni, da tako tudi mi očistimo srce, da Gospod lahko sede vanj.",
+   "What did Mahāprabhu and His devotees do in the Guṇḍicā temple before Ratha-yātrā?",["They thoroughly cleaned and washed it","They decorated it with gold","They locked it to pilgrims"],
+   "Before Ratha-yātrā Mahāprabhu and His devotees cleaned and washed the Guṇḍicā temple. Prabhupāda explains that in the same way we must cleanse the heart so that the Lord may sit there."],
+  ['gundica',[CC+', Madhya 14',CC+', Madhya 14'],
+   "Kaj se zgodi na Herā-pañcamī, ko je Jagannātha v templju Guṇḍicā?",["Boginja sreče Lakṣmī pride po Jagannātho","Voz se vrne v glavni tempelj","Jagannātha se okopa v morju"],
+   "Peti dan, ko Jagannātha biva v Guṇḍicī, boginja sreče iz užaljenosti pride s spremstvom po Gospoda. Ob tem je Svarūpa Dāmodara opisal ljubezen gopī v Vraji.",
+   "What happens on Herā-pañcamī, while Jagannātha stays at Guṇḍicā?",["Lakṣmī, the goddess of fortune, comes for Jagannātha","The chariot returns to the main temple","Jagannātha bathes in the sea"],
+   "On the fifth day of Jagannātha's stay at Guṇḍicā, the goddess of fortune, feeling offended, comes with her retinue for the Lord. On this occasion Svarūpa Dāmodara described the love of the gopīs of Vraja."],
+  ['haridas',[CC+', Antya 11',CC+', Antya 11'],
+   "Kako je Haridāsa Ṭhākura zapustil to telo?",["Gledal je Mahāprabhujev obraz in izgovarjal »Śrī Kṛṣṇa-caitanya«","V samoti v jami","Med potovanjem v Vṛndāvano"],
+   "Haridāsa Ṭhākura je položil Mahāprabhujeva stopala na svoje srce, gledal Njegov obraz, izgovarjal ime Śrī Kṛṣṇa-caitanya in tako zapustil telo.",
+   "How did Haridāsa Ṭhākura leave his body?",["Gazing at Mahāprabhu's face and chanting “Śrī Kṛṣṇa-caitanya”","In solitude in a cave","While travelling to Vṛndāvana"],
+   "Haridāsa Ṭhākura placed Mahāprabhu's feet on his heart, gazed at His face, chanted the name Śrī Kṛṣṇa-caitanya and thus left his body."],
+  ['haridas',[CC+', Antya 11',CC+', Antya 11'],
+   "Kaj je storil Mahāprabhu po odhodu Haridāse Ṭhākure?",["Sam je njegovo telo položil v pesek ob morju in plesal okoli groba","Telo je poslal v Navadvīpo","Ukazal je, naj ga sežgejo"],
+   "Mahāprabhu je nosil Haridāsovo telo in plesal, ga okopal v morju, ga položil v grob v pesku ob obali in ga sam pokril s peskom. Nato je za praznik sam prosil prasādam v trgovinah.",
+   "What did Mahāprabhu do after Haridāsa Ṭhākura's departure?",["He Himself placed his body in the sand by the sea and danced around the grave","He sent the body to Navadvīpa","He ordered it to be cremated"],
+   "Mahāprabhu carried Haridāsa's body and danced, bathed it in the sea, placed it in a grave in the sand on the shore and covered it Himself. He then personally begged prasādam in the shops for the festival."],
+  ['siddhabakula',[CC+', Madhya 11',CC+', Madhya 11'],
+   "Zakaj Haridāsa Ṭhākura v Purīju ni hodil v Jagannāthov tempelj?",["Iz ponižnosti, da ne bi motil duhovnikov, saj se je imel za nizkega","Ker je bil prestar za pot","Ker je bil tempelj zaprt"],
+   "Haridāsa Ṭhākura se je imel za nizkega in ni hotel motiti služabnikov templja. Mahāprabhu mu je zato dal bivališče v mirnem vrtu blizu templja in ga vsak dan obiskoval; izročilo ta kraj imenuje Siddha-bakula.",
+   "Why did Haridāsa Ṭhākura not go into Jagannātha's temple in Purī?",["Out of humility, so as not to disturb the priests, considering himself low","Because he was too old to walk","Because the temple was closed"],
+   "Haridāsa Ṭhākura considered himself low and did not want to disturb the temple servants. So Mahāprabhu gave him a quiet place in a garden near the temple and visited him every day; tradition calls this place Siddha-bakula."],
+  ['totagopinath',[CC+', Madhya 16',CC+', Madhya 16'],
+   "Kateri Mahāprabhujev spremljevalec je v Purīju služil Gopīnāthi v Ṭoṭi?",["Gadādhara Paṇḍita","Svarūpa Dāmodara","Rāya Rāmānanda"],
+   "Gadādhara Paṇḍita je sprejel zaobljubo, da ne zapusti Purīja (kṣetra-sannyāsa), in tam služil Gopīnāthi.",
+   "Which associate of Mahāprabhu served Gopīnātha at Ṭoṭā in Purī?",["Gadādhara Paṇḍita","Svarūpa Dāmodara","Rāya Rāmānanda"],
+   "Gadādhara Paṇḍita took the vow not to leave Purī (kṣetra-sannyāsa) and served Gopīnātha there."],
+  ['narendra',[TRAD[0],TRAD[1]],
+   "Kateri praznik povezujemo z Narendra-sarovaro v Purīju?",["Candana-yātrā, ko Božanstva vozijo v čolnih","Snāna-yātrā, kopanje Jagannāthe","Gaura-pūrṇimā"],
+   "Ob prazniku Candana-yātrā Božanstva iz Jagannāthovega templja pripeljejo k Narendra-sarovari in jih vozijo v okrašenih čolnih.",
+   "Which festival is connected with Narendra-sarovara in Purī?",["Candana-yātrā, when the Deities go boating","Snāna-yātrā, Jagannātha's bathing","Gaura-pūrṇimā"],
+   "During Candana-yātrā the festival Deities from Jagannātha's temple are brought to Narendra-sarovara and taken out in decorated boats."],
+  ['alalanatha',[TRAD[0],TRAD[1]],
+   "Kam romarji odidejo v času anavasare, ko Jagannātha v Purīju ni viden?",["K Ālālanāthi v Brahmagiriju","V Guṇḍicā","V Siddha-bakulo"],
+   "Po Snāna-yātri je Jagannātha dva tedna skrit (anavasara). Romarji tedaj obiščejo Ālālanātho v Brahmagiriju; po izročilu je tja odšel tudi Mahāprabhu.",
+   "Where do pilgrims go during anavasara, when Jagannātha is not seen in Purī?",["To Ālālanātha at Brahmagiri","To Guṇḍicā","To Siddha-bakula"],
+   "After Snāna-yātrā Jagannātha is hidden for two weeks (anavasara). Pilgrims then visit Ālālanātha at Brahmagiri; by tradition Mahāprabhu also went there."],
+  ['puri',[CC+', Madhya 5',CC+', Madhya 5'],
+   "Kdo je zlomil Mahāprabhujevo sannyāsa palico (daṇḍo) na poti v Purī?",["Nityānanda Prabhu","Mukunda Datta","Jagadānanda Paṇḍita"],
+   "Na poti v Jagannātha Purī je Nityānanda Prabhu zlomil Mahāprabhujevo daṇḍo na tri kose in jo vrgel v reko Bhārgī.",
+   "Who broke Mahāprabhu's sannyāsa staff (daṇḍa) on the way to Purī?",["Nityānanda Prabhu","Mukunda Datta","Jagadānanda Paṇḍita"],
+   "On the way to Jagannātha Purī, Nityānanda Prabhu broke Mahāprabhu's daṇḍa into three pieces and threw it into the Bhārgī River."]
+ ]
+];
+const STAGES4=[
+ {lv:3,n:["Antardvīpa – Māyāpur","Antardvīpa – Māyāpur"],sub:["Yogapīṭha, Śrīvāsa-aṅgana, Advaita-bhavana","Yogapīṭha, Śrīvāsa-aṅgana, Advaita-bhavana"],pick:5,key:'yogapitha',video:'ug7nFC9ChH8',intro:["Navadvīpa-maṇḍala parikramā se začne v Antardvīpi, kjer se je pojavil Śrī Caitanya Mahāprabhu. Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja.","The Navadvīpa-maṇḍala parikramā begins in Antardvīpa, where Śrī Caitanya Mahāprabhu appeared. The nine islands of Navadvīpa represent the nine processes of devotional service."]},
+ {lv:3,n:["Osem otokov Navadvīpe","The eight islands of Navadvīpa"],sub:["Sīmanta, Godruma, Madhya, Kola, Ṛtu, Jahnu, Modadruma, Rudra","Sīmanta, Godruma, Madhya, Kola, Ṛtu, Jahnu, Modadruma, Rudra"],pick:5,main:1,key:'godruma',video:'ug7nFC9ChH8',intro:["Parikramā vodi čez Gaṅgo po ostalih osmih otokih, od Sīmantadvīpe do Rudradvīpe.","The parikramā crosses the Gaṅgā and leads around the other eight islands, from Sīmantadvīpa to Rudradvīpa."]},
+ {lv:4,n:["Ekacakrā","Ekacakrā"],sub:["rojstni kraj Nityānande Prabhuja","birthplace of Nityānanda Prabhu"],pick:5,main:1,key:'ekacakra',video:'-UNhwdPawLg',intro:["Ekacakrā v Rāḍha-deśi je kraj, kjer se je pojavil Nityānanda Prabhu, Balarāma sam, ki deli milost vsem.","Ekacakrā in Rāḍha-deśa is where Nityānanda Prabhu appeared, Balarāma Himself, who gives mercy to everyone."]},
+ {lv:5,n:["Jagannātha Purī parikramā","Jagannātha Purī parikramā"],sub:["Guṇḍicā, Siddha-bakula, Ṭoṭā-gopīnātha, Narendra-sarovara, Ālālanātha","Guṇḍicā, Siddha-bakula, Ṭoṭā-gopīnātha, Narendra-sarovara, Ālālanātha"],pick:6,main:1,key:'gundica',img:['Puri_Ratha_Yatra.jpg','Ratha-yātrā v Purīju','Ratha-yātrā in Purī'],video:'BTkKh3tZDsI',intro:["Śrī Kṣetra je poln krajev, kjer je Mahāprabhu osemnajst let živel z bhaktami: od templja Guṇḍicā do Haridāsovega samādhija ob morju.","Śrī Kṣetra is full of places where Mahāprabhu lived with His devotees for eighteen years: from the Guṇḍicā temple to Haridāsa's samādhi by the sea."]},
+];
+/* Parikrame v atlasu / Parikramās in the atlas */
+const PARI=[
+ {lv:3,n:['Navadvīpa-maṇḍala parikramā','Navadvīpa-maṇḍala parikramā'],video:'ug7nFC9ChH8',area:'mayapur',
+  intro:['Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja: Antardvīpa ātma-nivedanam, Sīmantadvīpa śravaṇam, Godrumadvīpa kīrtanam, Madhyadvīpa smaraṇam, Koladvīpa pāda-sevanam, Ṛtudvīpa arcanam, Jahnudvīpa vandanam, Modadrumadvīpa dāsyam in Rudradvīpa sakhyam.','The nine islands of Navadvīpa represent the nine processes of devotional service: Antardvīpa ātma-nivedanam, Sīmantadvīpa śravaṇam, Godrumadvīpa kīrtanam, Madhyadvīpa smaraṇam, Koladvīpa pāda-sevanam, Ṛtudvīpa arcanam, Jahnudvīpa vandanam, Modadrumadvīpa dāsyam and Rudradvīpa sakhyam.'],
+  maps:[[SMD+'2024/12/Map_Navadvipa-Mandal-All-01-scaled.jpg','Navadvīpa-maṇḍala – vsi sveti kraji','Navadvīpa-maṇḍala – all holy places'],[SMD+'2026/01/Map_Pancakrash-Parikrama-Updated-Diatrics-05-scaled.jpg','Māyāpur pañcakrośa parikramā','Māyāpur pañcakrośa parikramā'],
+   [SMD+'2024/12/Map_Godrumadvipa-01.jpg','Godrumadvīpa','Godrumadvīpa'],[SMD+'2024/12/Map_Madhyadvipa-01.jpg','Madhyadvīpa','Madhyadvīpa'],[SMD+'2024/12/Map_Koladvipa-01.jpg','Koladvīpa','Koladvīpa'],[SMD+'2024/12/Map_Ritudvipa-01.jpg','Ṛtudvīpa','Ṛtudvīpa'],[SMD+'2024/12/Map_Jahnudvipa-01.jpg','Jahnudvīpa','Jahnudvīpa'],[SMD+'2024/12/Map_Modadrumadvipa-01.jpg','Modadrumadvīpa','Modadrumadvīpa'],[SMD+'2024/12/Map_Rudradvipa-01.jpg','Rudradvīpa','Rudradvīpa']],
+  gmap:'https://www.google.com/maps/d/viewer?mid=1mhW-wsBOLPdlwJRpXBIvuo-UWTAmKak',web:'https://srimayapurdhama.com/srinavadvipadhama/'},
+ {lv:4,n:['Ekacakrā parikramā','Ekacakrā parikramā'],video:'-UNhwdPawLg',area:'ekacakra',
+  intro:['Ekacakrā v okrožju Birbhum, približno 20 km od Rampurhata, je rojstni kraj Nityānande Prabhuja. Romarji obiščejo Garbhavāso, tempelj Baṅkima Rāya, Kadamba-khaṇḍī-ghāṭo, Hāṅṭugāḍo, Pāṇḍava-talo, Bakula-talo in jezerce Padmāvatī.','Ekacakrā in Birbhum district, about 20 km from Rampurhat, is the birthplace of Nityānanda Prabhu. Pilgrims visit Garbhavāsa, the Baṅkima Rāya temple, Kadamba-khaṇḍī-ghāṭa, Hāṅṭugāḍā, Pāṇḍava-tala, Bakula-tala and the Padmāvatī pond.'],
+  maps:[],web:'https://srimayapurdhama.com/ekacakra/'},
+ {lv:5,n:['Jagannātha Purī parikramā','Jagannātha Purī parikramā'],video:'BTkKh3tZDsI',area:'puri',
+  intro:['Parikramā Śrī Kṣetre vodi od templja Jagannāthe po Veliki cesti do templja Guṇḍicā, k Siddha-bakuli, Haridāsovemu samādhiju ob morju, Ṭoṭā-gopīnāthi, Narendra-sarovari in v Brahmagiri k Ālālanāthi.','The parikramā of Śrī Kṣetra leads from Jagannātha’s temple along the Grand Road to the Guṇḍicā temple, to Siddha-bakula, Haridāsa’s samādhi by the sea, Ṭoṭā-gopīnātha, Narendra-sarovara and to Ālālanātha at Brahmagiri.'],maps:[]},
+ {lv:6,n:['Vraja-maṇḍala parikramā','Vraja-maṇḍala parikramā'],video:'aPMBRsRat44',area:'vrindavan',
+  intro:['Vraja-maṇḍala je dežela Kṛṣṇovih zabav: Gokula, gozdovi Vraje, Govardhana, Rādhā-kuṇḍa, Varṣāṇā, Nandagrāma in Vṛndāvana z Yamuno.','Vraja-maṇḍala is the land of Kṛṣṇa’s pastimes: Gokula, the forests of Vraja, Govardhana, Rādhā-kuṇḍa, Varṣāṇā, Nandagrāma and Vṛndāvana with the Yamunā.'],maps:[]},
+];
+const ytThumb=id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`, ytUrl=id=>`https://www.youtube.com/watch?v=${id}`;
+function ytCard(id,title){ return `<div class="yt" data-yt="${id}"><button type="button" class="ytplay" aria-label="${esc(t('playVideo'))}"><img src="${ytThumb(id)}" alt="${esc(title||'')}" loading="lazy" onerror="this.remove()"><span class="ytb">▶</span></button><a class="vb" href="${ytUrl(id)}" target="_blank" rel="noopener">${t('openYT')} ↗</a></div>` }
+function bindYT(root){ root.querySelectorAll('.yt').forEach(y=>{ const b=y.querySelector('.ytplay'); if(b) b.onclick=()=>{ b.outerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${y.dataset.yt}?autoplay=1" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe>`; Snd.stopTrack&&Snd.stopTrack(); Snd.tanpuraOff&&Snd.tanpuraOff() } }) }
+
+POOL.push(...POOL4); STAGES.push(...STAGES4);
+Object.values(PLACES).forEach(P=>{ if(!P.ll&&P.at){ P.ll=PLACES[P.at].ll; P.approx=1 } });
+PLACES.advaitabh.lv=3; PLACES.madhai.lv=3;
+const LEVELS=[1,2,3,4,5,6];
 const LVL=lv=>STAGES.map((x,i)=>x.lv===lv?i:-1).filter(i=>i>=0);
-const placesOf=lv=>{const a=[];LVL(lv).forEach(si=>[...POOL[si],...(STAGES[si].fq?[STAGES[si].fq]:[])].forEach(q=>{const k=ALIAS[q[0]]||q[0];if(!a.includes(k))a.push(k)}));return a};
-const ATLAS1=placesOf(1), ATLAS2=placesOf(2), ATLAS3=placesOf(3);
-const NEW2=ATLAS2.filter(k=>!ATLAS1.includes(k)), NEW3=ATLAS3.filter(k=>!ATLAS1.includes(k)&&!ATLAS2.includes(k));
-const ATLAS=[...ATLAS1,...NEW2,...NEW3];
+const placesOf=lv=>{const a=[];LVL(lv).forEach(si=>[...POOL[si],...(STAGES[si].fq?[STAGES[si].fq]:[])].forEach(q=>{const k=ALIAS[q[0]]||q[0];if(!a.includes(k))a.push(k)}));Object.keys(PLACES).forEach(k=>{if(PLACES[k].lv===lv&&!a.includes(k))a.push(k)});return a};
+const ATLAS1=placesOf(1), ATLAS2=placesOf(2), ATLAS3=placesOf(6);
+const ATLASL={}; LEVELS.forEach(l=>ATLASL[l]=placesOf(l));
+const ATLAS=[]; LEVELS.forEach(l=>ATLASL[l].forEach(k=>{if(!ATLAS.includes(k))ATLAS.push(k)}));
+const lvOfPlace=k=>LEVELS.find(l=>ATLASL[l].includes(k))||1;
+const NEW2=ATLAS.filter(k=>lvOfPlace(k)===2), NEW3=ATLAS.filter(k=>lvOfPlace(k)>2);
 const MANTRA_W=['Hare','Kṛṣṇa','Hare','Kṛṣṇa','Kṛṣṇa','Kṛṣṇa','Hare','Hare','Hare','Rāma','Hare','Rāma','Rāma','Rāma','Hare','Hare'];
 const MANTRA_HTML='<span class="ml">Hare Kṛṣṇa Hare Kṛṣṇa Kṛṣṇa Kṛṣṇa Hare Hare</span><span class="ml">Hare Rāma Hare Rāma Rāma Rāma Hare Hare</span>';
 const LADDER=["śraddhā","sādhu-saṅga","bhajana-kriyā","anartha-nivṛtti","niṣṭhā","ruci","āsakti","bhāva","prema"];
 const lvQ=lv=>LVL(lv).reduce((s,i)=>s+STAGES[i].pick,0), lvPool=lv=>LVL(lv).reduce((s,i)=>s+POOL[i].length,0)+1;
-const FULLQ=lvQ(1), FULLQ2=lvQ(2), FULLQ3=lvQ(3), POOLSIZE=lvPool(1), POOLSIZE2=lvPool(2), POOLSIZE3=lvPool(3);
+const FULLQ=lvQ(1), FULLQ2=lvQ(2), FULLQ3=lvQ(6), POOLSIZE=lvPool(1), POOLSIZE2=lvPool(2), POOLSIZE3=lvPool(6);
 const NPLACES=ATLAS1.length, NPLACES2=ATLAS2.length, NPLACES3=ATLAS3.length;
+const lvPoolN=lv=>LVL(lv).reduce((s,i)=>s+POOL[i].length+(STAGES[i].fq?1:0),0);
+const introOf=lv=>lv===1?t('startIntro',NPLACES,FULLQ,POOLSIZE):lv===2?t('startIntro2',NPLACES2,FULLQ2,POOLSIZE2):t('startIntro'+lv,ATLASL[lv].length,lvQ(lv),lvPoolN(lv));
 const stImg=st=>st.img?[st.img[0]]:imgsOf(st.key), stCap=st=>st.img?(L==='en'?st.img[2]:st.img[1]):pn(st.key);
 /* question accessors: Q=[place,src,slq,slo,slex,enq,eno,enex] */
 const qText=Q=>L==='en'?Q[5]:Q[2], qOpts=Q=>L==='en'?Q[6]:Q[3], qEx=Q=>L==='en'?Q[7]:Q[4], qSrc=Q=>tr(Q[1]);
 
 /* ---------- fotografije / photos ---------- */
-const photoUrl=(f,w=1800)=>'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(f)+'?width='+w;
+const photoUrl=(f,w=1800)=>/^https?:/.test(f)?f:'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(f)+'?width='+w;
 const imgsOf=k=>(PLACES[k].img||[]);
 function photoTag(list,w,cls,alt){
   const files=list.map(x=>Array.isArray(x)?x[0]:x);
@@ -1732,7 +2046,7 @@ function miniMap(key){
   <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#EE7F2D" stroke="#F4E5BC" stroke-width="2.5"/></svg>`;
 }
 function bigMap(state,numbers,clickable,keys){
-  keys=(keys||ATLAS).filter(k=>!(state&&state(k)==='hide'));
+  keys=(keys||ATLAS).filter(k=>!(state&&state(k)==='hide')&&!PLACES[k].approx);
   const col=k=>{const t=state?state(k):'done';return t==='now'?'#EE7F2D':t==='next'?'rgba(174,179,206,.55)':'#E9B84E'};
   const dk=k=>clickable?` data-k="${k}"`:'';
   const outer=keys.filter(k=>!VRAJA.includes(k));
@@ -1933,23 +2247,21 @@ let setup=Object.assign({mode:'full',lv:1,teams:false,timer:false,steal:true,nam
 const MAXP=6;
 function startScreen(){
   screenFn=startScreen; S=null; renderHeader(); startScene();
-  const saved=load(); const teams=setup.teams, daily=setup.mode==='daily', lv=[1,2,3].includes(setup.lv)?setup.lv:1;
+  const saved=load(); const teams=setup.teams, daily=setup.mode==='daily', lv=LEVELS.includes(setup.lv)?setup.lv:1;
   const dk=dayKey(), drec=store.get('sm-daily',{});
   const nIn=daily?1:MAXP; const lastFilled=setup.names.slice(0,nIn).reduce((m,v,i)=>v?i:m,-1);
   const vis=daily?1:Math.min(MAXP,Math.max(2,lastFilled+2));
   stageEl(`<div class="card">
     <div class="eyebrow">${t('game')}</div>
     <h1>${t('title')}</h1>
-    <p>${daily||lv===1?t('startIntro',NPLACES,FULLQ,POOLSIZE):lv===2?t('startIntro2',NPLACES2,FULLQ2,POOLSIZE2):t('startIntro3',NPLACES3,FULLQ3,POOLSIZE3)}</p>
+    <p>${introOf(daily?1:lv)}</p>
     <div class="modes">
       <button class="mode ${!daily?'on':''}" data-mode="full" type="button"><b>${t('modeFull')}</b><span>${t('modeFullD')}</span></button>
       <button class="mode ${daily?'on':''}" data-mode="daily" type="button"><b>${t('modeDaily')}</b><span>${t('modeDailyD')}${drec[dk]!==undefined?` · ${t('today')}: ${drec[dk]}`:''}</span></button>
     </div>
     ${daily?'':`<div class="eyebrow" style="margin-top:2px">${t('levelL')}</div>
     <div class="lvls">
-      <button class="mode ${lv===1?'on':''}" data-lv="1" type="button"><b>${t('lv1')}</b><span>${t('lv1D',FULLQ)}</span></button>
-      <button class="mode ${lv===2?'on':''}" data-lv="2" type="button"><b>${t('lv2')}</b><span>${t('lv2D',FULLQ2)}</span></button>
-      <button class="mode ${lv===3?'on':''}" data-lv="3" type="button"><b>${t('lv3')}</b><span>${t('lv3D',FULLQ3)}</span></button>
+      ${LEVELS.map(l=>`<button class="mode ${lv===l?'on':''}" data-lv="${l}" type="button"><b>${t('lv'+l)}</b><span>${t('lv'+l+'D',lvQ(l))}</span></button>`).join('')}
     </div>`}
     <div class="rules"><ul>${T[L].rules.map(r=>`<li>${r}</li>`).join('')}</ul></div>
     ${daily?'':`<div class="opts-row"><div class="seg" style="min-width:220px;grid-template-columns:repeat(2,minmax(0,1fr))"><button type="button" data-team="0" class="${!teams?'on':''}">${t('players')}</button><button type="button" data-team="1" class="${teams?'on':''}">${t('teams')}</button></div>
@@ -1959,6 +2271,7 @@ function startScreen(){
     ${daily?'':`<div class="codebox"><label class="check" for="gcode" style="font-weight:600">${t('codeL')}</label><input type="text" id="gcode" maxlength="16" autocomplete="off" placeholder="${esc(t('codePh'))}" value="${esc(setup.code||'')}"><span class="note">${t('codeNote')}</span></div>`}
     <div class="row"><button class="btn" id="go" type="button">${daily?t('beginDaily'):t('begin')}</button>${saved&&!saved.done?`<button class="btn ghost" id="resume" type="button">${t('resume')}</button>`:''}<button class="btn ghost" id="howto" type="button">${t('howto')}</button><button class="btn ghost" id="atlas2" type="button">${t('atlasBtn')}</button><button class="btn ghost" id="teach" type="button">${t('teacherBtn')}</button><button class="btn ghost" id="dedi" type="button">${t('dedi')}</button></div>
     ${chant()}
+    <p class="copy">${t('copy')}</p>
   </div>`,'start');
   const ins=[...$('stage').querySelectorAll('.setup-players input')];
   ins.forEach((inp,i)=>inp.addEventListener('input',()=>{ if(inp.value.trim()&&ins[i+1]) ins[i+1].classList.remove('more') }));
@@ -1988,6 +2301,8 @@ function mapScreen(){
     <div class="eyebrow">${S.daily?`<span class="daily-badge">${t('dailyTitle')} · ${S.date}</span>`:`${t('lv'+lv)} · ${t('stageOf',S.pi+1,S.plan.length)}`}${st.main?' · '+t('mainPlace'):''}</div>
     <div class="intro">${arch(stImg(st),stCap(st),500,'lg')}<div style="display:grid;gap:10px;min-width:0"><h2>${tr(st.n)}</h2><p>${tr(st.intro)}</p></div></div>
     ${S.daily?'':`<div class="stages">${LVL(lv).map((i,n)=>{const x=STAGES[i];return `<div class="st ${i<si?'done':i===si?'now':''} ${x.main?'main':''}"><div class="dot">${i<si?'✓':n+1}</div><div style="min-width:0"><div class="nm">${tr(x.n)}</div><div class="sb">${tr(x.sub)}</div></div></div>`}).join('')}</div>`}
+    ${st.video?`<div class="vidrow"><div class="eyebrow">${t('videoL')}</div>${ytCard(st.video,tr(st.n))}</div>`:''}
+    ${lv===3?`<div class="offmaps"><button type="button" class="offmap" id="offmap"><img src="${PARI[0].maps[0][0]}" alt="${esc(tr(PARI[0].n))}" loading="lazy"></button><p class="note">${t('pariMapNote')}</p></div>`:''}
     <div class="mapwrap">${bigMap(k=>{const s=stageOfPlace(k,lv);return s<si?(S.daily?'next':'done'):s===si?'now':'next'},false,true,keys)}
       <div class="legend">${S.daily?'':`<span><i style="background:#E9B84E"></i>${t('visited')}</span>`}<span><i style="background:#EE7F2D"></i>${t('thisStage')}</span>${S.daily?'':`<span><i style="background:rgba(174,179,206,.55)"></i>${t('next')}</span>`}<span>${t('tapPoint')}</span></div></div>
     <div style="display:grid;gap:10px">${lad}</div>
@@ -1995,7 +2310,8 @@ function mapScreen(){
     <div class="row"><button class="btn" id="enter" type="button">${t('enterStage',tr(st.n))}</button></div>
     ${chant()}
   </div>`);
-  bindSvgPoints($('stage'));
+  bindSvgPoints($('stage')); bindYT($('stage'));
+  if($('offmap')) $('offmap').onclick=()=>lightbox(PARI[0].maps.map(m=>({src:m[0],cap:L==='en'?m[2]:m[1]})),0);
   $('enter').onclick=()=>{S.view='q';S.hint=false;S.ans=null;S.stl=0;S.sans=null;S.deadline=null;save();qScreen()};
 }
 
@@ -2140,7 +2456,7 @@ const stageFirstPlace=si=>ALIAS[POOL[si][0][0]]||POOL[si][0][0];
 /* ---------- Konec / End ---------- */
 function ranking(){ return S.players.map((p,i)=>({p,i})).sort((a,b)=>b.p.score-a.p.score||((b.i===S.tbWin)-(a.i===S.tbWin))) }
 function endScreen(){
-  screenFn=endScreen; S.view='end'; renderHeader(-1); const lv=S.lv||1; setBg(lv===2?'padmanabha':'vrindavan');
+  screenFn=endScreen; S.view='end'; renderHeader(-1); const lv=S.lv||1; setBg({1:'vrindavan',2:'padmanabha',3:'yogapitha',4:'ekacakra',5:'puri',6:'vrindavan'}[lv]||'vrindavan');
   if(!S._fan){S._fan=1;save();Snd.fanfare()}
   const r=ranking();
   const tie=r.length>1&&r[0].p.score===r[1].p.score&&S.tbWin==null;
@@ -2153,7 +2469,7 @@ function endScreen(){
   const keys=placesOf(lv);
   const gal=keys.map((k,i)=>`<button class="thumb" data-k="${k}" type="button"><div class="ph">${photoTag(imgsOf(k),480,'',pn(k))}<span class="no">${i+1}</span></div><div class="cap"><b>${esc(pn(k))}</b><small>${esc(tr(PLACES[k].loc))}</small></div></button>`).join('');
   stageEl(`<div class="card wide">
-    <div class="eyebrow">${lv===2?t('doneL2'):lv===3?t('doneL3'):t('done')}</div>
+    <div class="eyebrow">${lv===1?t('done'):t('doneL'+lv)}</div>
     <h2>${head}</h2>
     ${tie?`<p class="tbnote">${S.tbShared?t('tbShared'):t('tbNote')}</p>${S.tbShared?'':`<div class="row"><button class="btn" id="tbgo" type="button">${t('tbBtn')}</button></div>`}`:''}
     <div class="pair">${arch(['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG'],L==='en'?'Rādhā and Kṛṣṇa':'Rādhā in Kṛṣṇa',500,'lg')}${arch(['Chaitanya-Mahabrabhu-at-Jagannath.jpg','Chaitanya_Mahaprabhu_in_Dhameswar_Mahaprabhu_temple,_Nabadwip.jpg'],'Śrī Caitanya Mahāprabhu',500,'lg')}</div>
@@ -2166,7 +2482,7 @@ function endScreen(){
     <div class="gallery">${gal}</div>
     <div class="row"><button class="btn" id="again" type="button">${t('again')}</button></div>
   </div>`);
-  buildAtlas($('endAtlas'),lv===2?'srirangam':'vrindavan',lv);
+  buildAtlas($('endAtlas'),{1:'vrindavan',2:'srirangam',3:'yogapitha',4:'ekacakra',5:'puri',6:'vrindavan'}[lv]||'vrindavan',lv);
   $('stage').querySelectorAll('.thumb').forEach(b=>b.onclick=()=>openAtlas(b.dataset.k));
   $('again').onclick=()=>{store.set(KEY,null);startScreen()};
   if($('tbgo')) $('tbgo').onclick=startTB;
@@ -2242,14 +2558,14 @@ async function fetchAlbum(k){
 const deiOf=k=>{const P=PLACES[k];return P.dei||DEI[k]||null};
 function factsOf(k){ const out=[], seen=new Set(); const push=Q=>{ if(!Q||(ALIAS[Q[0]]||Q[0])!==k) return; const ex=qEx(Q); if(seen.has(ex)) return; seen.add(ex); out.push({ex,src:qSrc(Q)}) };
   POOL.forEach(st=>st.forEach(push)); push(FINALQ); push(FINALQ2); push(FINALQ3); return out }
-const lvOfPlace=k=>ATLAS1.includes(k)?1:ATLAS2.includes(k)?2:3;
+
 const searchText=k=>{const P=PLACES[k];return [P.n[0],P.n[1],P.loc[0],P.loc[1],...(deiOf(k)||[])].join(' ').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()};
 let atlasFocus=null, atlasView='place', atlasRoute=null;
 function openAtlas(focus,view){ atlasFocus=focus||atlasFocus||'mayapur'; atlasView=view||'place'; $('atlas').hidden=false; $('atlasTitle').textContent=t('atlasTitle'); $('atlasClose').textContent=t('close');
-  $('atlasTabs').innerHTML=[['place','tabPlaces'],['routes','tabRoutes'],['cal','tabCal'],['diary','tabDiary']].map(([v,k])=>`<button type="button" data-v="${v}" class="${atlasView===v?'on':''}">${t(k)}</button>`).join('');
+  $('atlasTabs').innerHTML=[['place','tabPlaces'],['pari','tabPari'],['routes','tabRoutes'],['cal','tabCal'],['diary','tabDiary']].map(([v,k])=>`<button type="button" data-v="${v}" class="${atlasView===v?'on':''}">${t(k)}</button>`).join('');
   $('atlasTabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{atlasView=b.dataset.v;$('atlasTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));ATL&&ATL.view(atlasView)});
   buildAtlas($('atlasBox'),atlasFocus); }
-let ATL=null;
+let ATL=null, ATL_MAP=null;
 $('atlasClose').onclick=()=>{$('atlas').hidden=true;$('atlasBox').innerHTML='';ATL=null};
 document.addEventListener('keydown',e=>{ if(!$('lightbox').hidden){ if(e.key==='Escape') lbClose(); else if(e.key==='ArrowRight') lbStep(1); else if(e.key==='ArrowLeft') lbStep(-1); return }
   if(e.key==='Escape'){ if(!$('atlas').hidden)$('atlasClose').click(); else if(!$('sndPanel').hidden)$('sndPanel').hidden=true } });
@@ -2261,9 +2577,10 @@ function buildAtlas(box,focus,lvOnly){
   box.innerHTML='<div class="amap"></div><div class="apanel"></div>';
   const mapEl=box.querySelector('.amap'), panel=box.querySelector('.apanel');
   let lmap=null, markers={}, routeLayer=null;
-  const fillOf=mk=>MAIN.includes(mk)?'#E9B84E':(NEW2.includes(mk)?'#7FC8A9':(NEW3.includes(mk)?'#C3A8F5':'#EE7F2D'));
+  const LVCOL={1:'#EE7F2D',2:'#7FC8A9',3:'#F2A7C3',4:'#9EC5FF',5:'#FFD27F',6:'#C3A8F5'};
+  const fillOf=mk=>MAIN.includes(mk)?'#E9B84E':LVCOL[lvOfPlace(mk)];
   const mstyle=(mk,on)=>({radius:on?11:(MAIN.includes(mk)?7:5.5),fillColor:on?'#F4E5BC':fillOf(mk),color:DIARY[mk]&&DIARY[mk].v?'#F4E5BC':'#0D1330',weight:DIARY[mk]&&DIARY[mk].v?3:1.5});
-  const chip=x=>`<button type="button" data-k="${x}" class="${x===focus?'on':''} ${NEW2.includes(x)?'l2':''} ${NEW3.includes(x)?'l3':''}">${DIARY[x]&&DIARY[x].v?'✓ ':''}${esc(short(x))}</button>`;
+  const chip=x=>`<button type="button" data-k="${x}" class="${x===focus?'on':''} l${lvOfPlace(x)}">${DIARY[x]&&DIARY[x].v?'✓ ':''}${esc(short(x))}</button>`;
   const bindChips=root=>root.querySelectorAll('.chips button[data-k]').forEach(b=>b.onclick=()=>{atlasView='place';syncTabs();select(b.dataset.k)});
   const syncTabs=()=>{ if(overlay) $('atlasTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.v===atlasView)) };
   const restyle=()=>Object.entries(markers).forEach(([mk,m])=>m.setStyle&&m.setStyle(mstyle(mk,mk===focus)));
@@ -2276,11 +2593,12 @@ function buildAtlas(box,focus,lvOnly){
     if(lmap&&!atlasRoute){lmap.flyTo(P.ll,VZOOM.includes(k)?11:(['mayapur','navadvip'].includes(k)?12:(NEW2.includes(k)?9:7)),{duration:.8})}
     mapEl.querySelectorAll('circle[data-k]').forEach(c=>c.setAttribute('stroke',c.dataset.k===k?'#F4E5BC':'#0D1330'));
     const fest=festOf(k), note=NOTES[k], nav=navUrl(k);
-    const g=[1,2,3].map(l=>keys.filter(x=>lvOfPlace(x)===l));
+    const g=LEVELS.map(l=>keys.filter(x=>lvOfPlace(x)===l));
     panel.innerHTML=`${atlasRoute?`<button type="button" class="btn ghost small" id="backRoute">← ${esc(tr(atlasRoute.n))}</button>`:''}
       <div class="afind"><input type="search" id="afq" placeholder="${esc(t('encSearch'))}" autocomplete="off"><div class="res" id="afr"></div></div>
       <div class="hero-ph" id="aph">${photoTag(imgsOf(k),1600,'',pn(k))}<span class="zoom">⤢ ${t('zoom')}</span></div>
-      <div><div class="eyebrow">${keys.indexOf(k)+1} / ${keys.length}${MAIN.includes(k)?' · '+t('mainPlace'):''}${[1,2,3].filter(l=>placesOf(l).includes(k)).map(l=>`<span class="lvtag ${l>1?'l'+l:''}">${t('lvTag'+l)}</span>`).join('')}</div><h2 style="font-size:26px">${esc(pn(k))}</h2><div class="loc" style="max-width:none">${esc(tr(P.loc))}</div></div>
+      <div><div class="eyebrow">${keys.indexOf(k)+1} / ${keys.length}${MAIN.includes(k)?' · '+t('mainPlace'):''}${LEVELS.filter(l=>ATLASL[l].includes(k)).map(l=>`<span class="lvtag ${l>1?'l'+l:''}">${t('lvTag'+l)}</span>`).join('')}</div><h2 style="font-size:26px">${esc(pn(k))}</h2><div class="loc" style="max-width:none">${esc(tr(P.loc))}</div>${P.approx?`<p class="note">${t('approx')}</p>`:''}</div>
+      ${imgsOf(k).some(x=>/srimayapurdhama/.test(x[0]))?`<p class="note" style="margin-top:-8px">${t('photoCredit')}</p>`:''}
       ${dei?`<section class="enc dei"><h4>${t('encDei')}</h4><p>${esc(tr(dei))}</p></section>`:''}
       ${tr(P.d)?`<section class="enc"><h4>${t('encStory')}</h4><p>${esc(tr(P.d))}</p></section>`:''}
       <section class="enc"><h4>${t('encTravel')}</h4>
@@ -2329,6 +2647,16 @@ function buildAtlas(box,focus,lvOnly){
   const view=(v,rid)=>{
     atlasView=v; syncTabs();
     if(v==='place'){ atlasRoute=null; drawRoute(null); return select(focus) }
+    if(v==='pari'){
+      panel.innerHTML=`<h2 style="font-size:24px">${t('tabPari')}</h2>${PARI.map((p,pi)=>`<section class="enc pari"><h4>${esc(tr(p.n))}</h4><p>${esc(tr(p.intro))}</p>
+        ${ytCard(p.video,tr(p.n))}
+        ${p.maps.length?`<div class="grp">${t('pariMaps')}</div><div class="album">${p.maps.map((m,i)=>`<button type="button" data-pm="${pi}:${i}"><img loading="lazy" src="${m[0]}" alt="${esc(L==='en'?m[2]:m[1])}" onerror="this.parentNode.remove()"></button>`).join('')}</div><p class="note">${t('pariMapNote')}</p>`:''}
+        <div class="row"><button type="button" class="btn small" data-show="${pi}">${t('showMapBtn')}</button>${p.gmap?`<a class="btn ghost small" href="${p.gmap}" target="_blank" rel="noopener">${t('gmapBtn')} ↗</a>`:''}${p.web?`<a class="btn ghost small" href="${p.web}" target="_blank" rel="noopener">${t('webBtn')} ↗</a>`:''}</div>
+        <div class="grp">${t('pariPlaces')}</div><div class="chips">${ATLASL[p.lv].filter(x=>keys.includes(x)).map(chip).join('')}</div></section>`).join('')}`;
+      panel.scrollTop=0; bindChips(panel); bindYT(panel);
+      panel.querySelectorAll('[data-pm]').forEach(b=>b.onclick=()=>{const [pi,i]=b.dataset.pm.split(':').map(Number);lightbox(PARI[pi].maps.map(m=>({src:m[0],cap:L==='en'?m[2]:m[1]})),i)});
+      panel.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>{ const p=PARI[+b.dataset.show]; const ks=ATLASL[p.lv].filter(x=>keys.includes(x)&&!PLACES[x].approx); if(lmap&&ks.length){ ks.length>1?lmap.fitBounds(window.L.latLngBounds(ks.map(x=>PLACES[x].ll)).pad(.3),{maxZoom:13}):lmap.setView(PLACES[ks[0]].ll,12) } });
+      return }
     if(v==='routes'){
       const r=rid?ROUTES.find(x=>x.id===rid):null; atlasRoute=r; drawRoute(r);
       panel.innerHTML=`<h2 style="font-size:24px">${t('tabRoutes')}</h2>${ROUTES.map(x=>`<section class="enc route ${r&&r.id===x.id?'on':''}"><h4>${esc(tr(x.n))}</h4><p>${esc(tr(x.intro))}</p><span class="src">${t('srcL')}: ${esc(tr(x.src))}${vbHtml(tr(x.src))}</span>
@@ -2365,10 +2693,10 @@ function buildAtlas(box,focus,lvOnly){
       mapEl.appendChild(sw); window.L.DomEvent.disableClickPropagation(sw);
       sw.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.b===baseK) return; lmap.removeLayer(BASE[baseK]); baseK=b.dataset.b; store.set('sm-base',baseK); BASE[baseK].addTo(lmap); sw.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)) });
       if(lvOnly===1) window.L.polyline(keys.map(k=>PLACES[k].ll),{color:'#EE7F2D',weight:1.5,opacity:.6,dashArray:'4 6'}).addTo(lmap);
-      keys.forEach(k=>{const P=PLACES[k];
+      keys.filter(k=>!PLACES[k].approx).forEach(k=>{const P=PLACES[k];
         const m=window.L.circleMarker(P.ll,Object.assign({fillOpacity:1},mstyle(k,false))).addTo(lmap);
         m.bindTooltip(short(k),{direction:'top',offset:[0,-6]}); m.on('click',()=>{atlasView='place';syncTabs();atlasRoute=null;drawRoute(null);select(k)}); markers[k]=m;});
-      lmap.fitBounds(window.L.latLngBounds(keys.map(k=>PLACES[k].ll)).pad(.08));
+      lmap.fitBounds(window.L.latLngBounds(keys.map(k=>PLACES[k].ll)).pad(.08)); ATL_MAP=lmap;
       setTimeout(()=>{if(lmap)lmap.invalidateSize()},250);
       setTimeout(()=>{if(okTiles===0&&box.isConnected){try{lmap.remove()}catch(e){} svgFallback(); view(atlasView,atlasRoute&&atlasRoute.id)}},4500);
     }catch(e){svgFallback()}
@@ -2383,7 +2711,9 @@ const NAV={gangotri:'Gangotri Temple',kailas:'Mount Kailash',badri:'Badrinath Te
  mayapur:'ISKCON Sri Mayapur Chandrodaya Mandir',navadvip:'Nabadwip',puri:'Shree Jagannath Temple Puri',mathura:'Shri Krishna Janmasthan Mathura',vrindavan:'ISKCON Krishna Balaram Mandir Vrindavan',govardhan:'Govardhan Hill',varsana:'Shri Radha Rani Temple Barsana',radhakunda:'Radha Kund',radhadamodar:'Radha Damodar Temple Vrindavan',
  nagalapuram:'Vedanarayana Swamy Temple Nagalapuram',srikurmam:'Srikurmam Temple',tvaraha:'Sri Bhu Varaha Swamy Temple Tirumala',srimushnam:'Bhu Varaha Swamy Temple Srimushnam',simhachalam:'Simhachalam Temple',yadagiri:'Yadagirigutta Temple',thrikkakara:'Thrikkakara Vamana Moorthy Temple',sirkazhi:'Thadalan Temple Sirkazhi',
  bhadrachalam:'Bhadrachalam Sita Ramachandra Swamy Temple',triprayar:'Thriprayar Sree Rama Temple',orchha:'Ram Raja Temple Orchha',rameswaram:'Ramanathaswamy Temple Rameswaram',nathdwara:'Shrinathji Temple Nathdwara',dakor:'Ranchhodraiji Temple Dakor',jaipur:'Govind Dev Ji Temple Jaipur',karauli:'Madan Mohan Ji Temple Karauli',
- guruvayur:'Guruvayur Sri Krishna Temple',pandharpur:'Vithoba Temple Pandharpur',padmanabha:'Sree Padmanabhaswamy Temple',adikesava:'Adikesava Perumal Temple Thiruvattar',srirangapatna:'Sri Ranganathaswamy Temple Srirangapatna',gokula:'Gokul Mathura',bhandira:'Bhandirvan',nandagrama:'Nand Bhawan Nandgaon'};
+ guruvayur:'Guruvayur Sri Krishna Temple',pandharpur:'Vithoba Temple Pandharpur',padmanabha:'Sree Padmanabhaswamy Temple',adikesava:'Adikesava Perumal Temple Thiruvattar',srirangapatna:'Sri Ranganathaswamy Temple Srirangapatna',gokula:'Gokul Mathura',bhandira:'Bhandirvan',nandagrama:'Nand Bhawan Nandgaon',
+ yogapitha:'Yogapith Mayapur',srivasa:'Srivas Angan Mayapur',advaitabh:'Advaita Bhavan Mayapur',nandana:'Nandan Acharya Bhavan Mayapur',madhai:'Jagai Madhai Ghat Mayapur',caitanyamath:'Sri Chaitanya Math Mayapur',simanta:'Chand Kazi Samadhi Mayapur',godruma:'Swananda Sukhada Kunja Godrumadvipa',kola:'Dhameswar Mahaprabhu Temple Nabadwip',modadruma:'Mamgachi Nabadwip',rudra:'Rudradvip Gaudiya Math',
+ ekacakra:'Ekachakra Dham Birbhum',gundica:'Gundicha Temple Puri',haridas:'Haridas Thakur Samadhi Puri',siddhabakula:'Siddha Bakula Puri',totagopinath:'Tota Gopinath Temple Puri',narendra:'Narendra Tank Puri',alalanatha:'Alarnath Temple Brahmagiri'};
 const navUrl=k=>NAV[k]?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(NAV[k]):null;
 const NOTES={
  badri:["Tempelj je pozimi zaprt. Datume odprtja in zaprtja vsako leto razglasijo.","The temple is closed in winter. The opening and closing dates are announced every year."],
@@ -2455,7 +2785,7 @@ function teacherScreen(lvSel){
   stageEl(`<div class="card">
     <div class="eyebrow">${t('teachEyebrow')}</div><h2>${t('teachTitle')}</h2>
     <p>${t('teachIntro')}</p>
-    <div class="lvls">${[1,2,3].map(l=>`<button class="mode ${lv===l?'on':''}" data-lv="${l}" type="button"><b>${t('lv'+l)}</b><span>${t('teachN',LVL(l).reduce((s,i)=>s+POOL[i].length,0)+1)}</span></button>`).join('')}</div>
+    <div class="lvls">${LEVELS.map(l=>`<button class="mode ${lv===l?'on':''}" data-lv="${l}" type="button"><b>${t('lv'+l)}</b><span>${t('teachN',lvPoolN(l))}</span></button>`).join('')}</div>
     <div class="row"><button class="btn" id="prQ" type="button">${t('printQ')}</button><button class="btn ghost" id="prC" type="button">${t('printC')}</button></div>
     <label class="check" for="bigC"><input type="checkbox" id="bigC" ${BIG?'checked':''}>${t('bigMode')}</label>
     <p class="note">${t('teachNote')}</p>
@@ -2492,10 +2822,11 @@ $('lbImg').onerror=function(){ const a=lbList[lbI]; if(a&&this.src!==a.src) this
 const HELP={
  sl:()=>`<h3>Cilj igre</h3>
   <p>Prepotuješ sveta mesta Indije in zbiraš tilake. Ob tem spoznaš Božanstva, templje, zabave Gospoda in velike bhakte, ki so ta mesta obiskali. Vprašanja temeljijo na knjigah Śrīle Prabhupāde; kjer podatek izhaja iz izročila templja ali zgodovine, je to navedeno pri viru. Zmaga, kdor do konca zbere največ tilak.</p>
-  <h3>Tri romanja in dnevna igra</h3>
+  <h3>Romanja, parikrame in dnevna igra</h3>
   <ul><li><b>Osnovno romanje:</b> 7 stopenj, od izvira Gaṅge do Vṛndāvane. Vsaka igra izbere ${FULLQ} novih vprašanj iz zbirke ${POOLSIZE}.</li>
   <li><b>Napredno romanje:</b> 5 stopenj po templjih daśāvatāre (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) in k velikim Božanstvom Kṛṣṇe: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala in ležeči Viṣṇu. ${FULLQ2} vprašanj iz zbirke ${POOLSIZE2}.</li>
-  <li><b>Vraja-maṇḍala:</b> 3 stopnje po Kṛṣṇovih zabavah v Vraji iz Śrīmad-Bhāgavatama: Gokula, gozdovi Vraje, Govardhana in Vṛndāvana. ${FULLQ3} vprašanj iz zbirke ${POOLSIZE3}.</li>
+  <li><b>Parikrame:</b> Navadvīpa-maṇḍala (devet otokov Navadvīpe), Ekacakrā (rojstni kraj Nityānande Prabhuja) in Jagannātha Purī. Vsaka ima svoj video in zemljevid v atlasu pod zavihkom <b>Parikrame</b>.</li>
+  <li><b>Vraja-maṇḍala parikramā:</b> 3 stopnje po Kṛṣṇovih zabavah v Vraji iz Śrīmad-Bhāgavatama: Gokula, gozdovi Vraje, Govardhana in Vṛndāvana. ${FULLQ3} vprašanj iz zbirke ${POOLSIZE3}.</li>
   <li><b>Dnevno romanje:</b> vsak dan druga stopnja iz vseh romanj s 5 vprašanji. Vprašanja so tisti dan za vse enaka. Igra šteje zaporedne dni.</li></ul>
   <h3>Potek</h3>
   <ol><li>Izberi način in romanje, vpiši imena igralcev ali ekip ter pritisni <b>Začni romanje</b>.</li>
@@ -2532,10 +2863,11 @@ const HELP={
   <h3>Jezik</h3><p>Gumb <b>EN</b> ali <b>SL</b> v glavi kadar koli zamenja jezik.</p>`,
  en:()=>`<h3>Aim of the game</h3>
   <p>You travel through the holy places of India and collect tilakas. Along the way you learn about the Deities, the temples, the Lord's pastimes and the great devotees who visited these places. The questions are based on Śrīla Prabhupāda's books; where a fact comes from temple tradition or history, the source says so. Whoever collects the most tilakas by the end wins.</p>
-  <h3>Three pilgrimages and a daily game</h3>
+  <h3>Pilgrimages, parikramās and a daily game</h3>
   <ul><li><b>Basic pilgrimage:</b> 7 stages, from the source of the Gaṅgā to Vṛndāvana. Every game draws ${FULLQ} new questions from a pool of ${POOLSIZE}.</li>
   <li><b>Advanced pilgrimage:</b> 5 stages through the temples of the daśāvatāra (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) and to the great Deities of Kṛṣṇa: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala and the reclining Viṣṇu. ${FULLQ2} questions from a pool of ${POOLSIZE2}.</li>
-  <li><b>Vraja-maṇḍala:</b> 3 stages through Kṛṣṇa's pastimes in Vraja from the Śrīmad-Bhāgavatam: Gokula, the forests of Vraja, Govardhana and Vṛndāvana. ${FULLQ3} questions from a pool of ${POOLSIZE3}.</li>
+  <li><b>Parikramās:</b> Navadvīpa-maṇḍala (the nine islands of Navadvīpa), Ekacakrā (birthplace of Nityānanda Prabhu) and Jagannātha Purī. Each has its own video and map in the atlas under the <b>Parikramās</b> tab.</li>
+  <li><b>Vraja-maṇḍala parikramā:</b> 3 stages through Kṛṣṇa's pastimes in Vraja from the Śrīmad-Bhāgavatam: Gokula, the forests of Vraja, Govardhana and Vṛndāvana. ${FULLQ3} questions from a pool of ${POOLSIZE3}.</li>
   <li><b>Daily pilgrimage:</b> every day a different stage from all pilgrimages, with 5 questions. The questions are the same for everyone that day. The game counts the days in a row.</li></ul>
   <h3>How it works</h3>
   <ol><li>Choose a mode and a pilgrimage, enter the names of the players or teams and press <b>Begin the pilgrimage</b>.</li>
@@ -2586,6 +2918,7 @@ function helpScreen(){
     <div class="row"><button class="btn" id="installBtn" type="button" hidden>${t('install')}</button>${standalone()?`<span class="muted">${t('installed')}</span>`:''}</div>
     <div class="dev">${DEV[L].map(([a,b])=>`<div><b>${a}</b><p>${b}</p></div>`).join('')}</div>
     <p class="src">${t('credits')}</p>
+    <p class="copy">${t('copy')}</p>
     <div class="row"><button class="btn" id="hback" type="button">${S?t('backGame'):t('home')}</button></div>
   </div>`);
   if(installEvt) $('installBtn').hidden=false;

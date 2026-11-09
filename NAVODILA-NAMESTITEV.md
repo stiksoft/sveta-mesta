@@ -23,7 +23,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v12'` (npr. na v13).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v13'` (npr. na v14).
 
 ## English
 
@@ -43,3 +43,8 @@ This folder contains the whole game as a web app (PWA) for Android, iPhone/iPad,
 ## Novo v različici 12 / New in version 12
 - Tretje romanje Vraja-maṇḍala; vodnik za romarje (navigacija, prazniki, pravila obiska); poti Mahāprabhuja; koledar; dnevnik romanja; shranjevanje fotografij za pot; povezave na vedabase.io; tisk in projektorski način za učitelje.
 - Vraja-maṇḍala pilgrimage; pilgrim's guide (navigation, festivals, visiting rules); Mahāprabhu's routes; calendar; pilgrimage diary; offline photos; vedabase.io links; print and projector mode for teachers.
+
+## Novo v različici 13 / New in version 13
+- Parikrame: Navadvīpa-maṇḍala, Ekacakrā, Jagannātha Purī in Vraja-maṇḍala, vsaka z videom (YouTube), zemljevidom in opisi v atlasu.
+- Parikramās: Navadvīpa-maṇḍala, Ekacakrā, Jagannātha Purī and Vraja-maṇḍala, each with a video (YouTube), a map and descriptions in the atlas.
+- © 2026 Golokaplanet Library, by Mahī-bhartā dāsa
