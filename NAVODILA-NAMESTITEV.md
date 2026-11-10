@@ -23,7 +23,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v18'` (npr. na v19).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v20'` (npr. na v21).
 
 ## English
 
@@ -70,3 +70,10 @@ This folder contains the whole game as a web app (PWA) for Android, iPhone/iPad,
 - Hrvaščina kot tretji jezik vmesnika (vsebine krajev in vprašanja so v hrvaški različici zaenkrat v angleščini).
 - Izbira glasbe ozadja v meniju Zvok; brez splošne opombe o urnikih.
 - New: atlas back/forward and previous/next place, presentations, disk archive, password-protected content editor, Croatian UI, Daśāvatāra pilgrimage name, background music chooser.
+
+## v20
+- Prezentacije: lastne prezentacije s prosojnicami Naslov, Besedilo, Sveto mesto, Slike in Video (YouTube ali video z diska); izbira slik in besedil iz atlasa, lastna besedila, slike z diska; predvajanje z listanjem (puščice, poteg prsta), povečevanjem (+ / −, dva prsta, Ctrl + kolešček) in celozaslonskim načinom; na telefonu pokončna postavitev.
+- »Shrani na disk« ustvari .zip z vsemi slikami in videi (odpre se z »Odpri z diska«, po razširitvi pa se predvaja tudi brez aplikacije z index.html).
+- Gesla za urejanje: eno polje za geslo; ustvarjalec vpiše glavno geslo in v zavihku »Gesla za učitelje« ustvari kratka gesla oblike ABCD-1234.
+- Napis »© 2026 Golokaplanet, mbd« in številka različice.
+- Hrvaščina: prevedena Vraja-maṇḍala parikramā (kraji in vprašanja).
