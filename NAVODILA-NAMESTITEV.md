@@ -23,7 +23,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v15'` (npr. na v16).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v17'` (npr. na v18).
 
 ## English
 
@@ -48,3 +48,16 @@ This folder contains the whole game as a web app (PWA) for Android, iPhone/iPad,
 - Parikrame: Navadvīpa-maṇḍala, Ekacakrā, Jagannātha Purī in Vraja-maṇḍala, vsaka z videom (YouTube), zemljevidom in opisi v atlasu.
 - Parikramās: Navadvīpa-maṇḍala, Ekacakrā, Jagannātha Purī and Vraja-maṇḍala, each with a video (YouTube), a map and descriptions in the atlas.
 - © 2026 Golokaplanet Library, by Mahī-bhartā dāsa
+
+## Novo v različici 16 / New in version 16
+- Vraja-maṇḍala: gozdovi Madhuvana, Tālavana, Kumudavana, Kāmyavana, Khadiravana, Bilvavana, Lohavana in Kokilavana ter Vṛndā-kuṇḍa s templjem ISKCON (vir: Vraja-maṇḍala, ISKCON Desire Tree; Back to Godhead). Razširjen opis Gokule/Mahāvane in 12 novih vprašanj.
+- Vraja-maṇḍala: the forests Madhuvana, Tālavana, Kumudavana, Kāmyavana, Khadiravana, Bilvavana, Lohavana and Kokilavana, plus Vṛndā-kuṇḍa with the ISKCON temple (source: Vraja-maṇḍala, ISKCON Desire Tree; Back to Godhead). Expanded Gokula/Mahāvana description and 12 new questions.
+
+## Novo v različici 17 / New in version 17
+- Navadvīpa-dhāma: vseh 67 opisanih svetih krajev devetih otokov (srimayapurdhama.com) s fotografijami in opisi, razvrščenih po otokih; največji poudarek na Templju vedskega planetarija (TOVP).
+- Novo v zavihku Parikrame: Gaura-maṇḍala (Śāntipura, Kāṭoyā, Ambikā-kālanā, Pānihāṭi, Remuṇā …), Śrīla Prabhupāda in Māyāpur (citati, časovnica, samādhi, kuṭīra, soba, rojstni kraj) ter guru-paramparā.
+- Ekacakrā: Gauḍīya Maṭha in nove fotografije; Purī: Gambhīrā, Indradyumna-sarovara, Caṭaka-parvata in fotografije ISKCON Desire Tree; Kāmyavana s fotografijami.
+- Glasba: gumb 🔊 za utišanje in gumba Tišje / Glasneje.
+- Navadvīpa-dhāma: all 67 described holy places of the nine islands (srimayapurdhama.com) with photos and descriptions, grouped by island; greatest highlight on the Temple of the Vedic Planetarium (TOVP).
+- New in the Parikramās tab: Gaura-maṇḍala, Śrīla Prabhupāda and Mayapur, and the guru-paramparā.
+- Music: 🔊 mute button and Quieter / Louder buttons.
