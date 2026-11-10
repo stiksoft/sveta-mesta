@@ -23,7 +23,7 @@ Mapa vsebuje celotno igro kot spletno aplikacijo (PWA) za Android, iPhone/iPad, 
 - **Mapa `glasba/`:** če imate dovoljenje lastnika avtorskih pravic, lahko posnetke naložite v mapo `glasba/` in jih navedete v datoteki `glasba/seznam.json` (glej `PRIMER-seznam.json`). Takrat jih slišijo vsi obiskovalci. Posnetki Śrīle Prabhupāde so © The Bhaktivedanta Book Trust, zato jih brez dovoljenja ne objavljajte v javnem repozitoriju.
 
 ### 4. Posodobitve
-Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v17'` (npr. na v18).
+Ob vsaki spremembi datotek v `sw.js` zvišajte številko v vrstici `const CACHE='sveta-mesta-v18'` (npr. na v19).
 
 ## English
 
@@ -61,3 +61,12 @@ This folder contains the whole game as a web app (PWA) for Android, iPhone/iPad,
 - Navadvīpa-dhāma: all 67 described holy places of the nine islands (srimayapurdhama.com) with photos and descriptions, grouped by island; greatest highlight on the Temple of the Vedic Planetarium (TOVP).
 - New in the Parikramās tab: Gaura-maṇḍala, Śrīla Prabhupāda and Mayapur, and the guru-paramparā.
 - Music: 🔊 mute button and Quieter / Louder buttons.
+
+## Novo v različici 18 / New in version 18
+- Atlas: gumba ‹ › za nazaj/naprej po ogledanih straneh (Kraji, Parikrame, Poti, Koledar, Moje romanje) in pas ◀ ▶ na vrhu opisa za prejšnji/naslednji kraj (tudi puščici na tipkovnici). Atlas se odpre pri TOVP.
+- Za učitelje: izdelava prezentacij (predvajanje čez cel zaslon, shranjevanje kot HTML, tisk/PDF), arhiv na disku (izvoz in uvoz vseh podatkov) in urejevalnik vsebin z osebnim geslom: kraji, slike, besedila, glasba, vprašanja in odgovori ter lastna romanja.
+- Gesla: ustvarjalec v razdelku »Za ustvarjalca programa« z glavnim geslom ustvari osebna gesla oblike SM-XXXXXX-XXXX in jih dodeli posameznikom.
+- »Napredno romanje« se zdaj imenuje »Daśāvatāra romanje« (tudi v videu z navodili).
+- Hrvaščina kot tretji jezik vmesnika (vsebine krajev in vprašanja so v hrvaški različici zaenkrat v angleščini).
+- Izbira glasbe ozadja v meniju Zvok; brez splošne opombe o urnikih.
+- New: atlas back/forward and previous/next place, presentations, disk archive, password-protected content editor, Croatian UI, Daśāvatāra pilgrimage name, background music chooser.

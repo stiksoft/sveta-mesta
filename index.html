@@ -261,7 +261,7 @@ input::placeholder{color:#7f86a8}
 .basesw button{border:0;background:transparent;color:var(--candana);font-size:13px;padding:7px 11px}
 .basesw button.on{background:var(--gold);color:var(--night);font-weight:700}
 /* language screen */
-.langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
 .langbtn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 12px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--candana);font-family:var(--f-display);font-size:24px}
 .langbtn small{font-family:var(--f-body);font-size:13px;color:var(--muted)}
 .langbtn:hover,.langbtn.on{border-color:var(--gold);background:rgba(233,184,78,.1)}
@@ -406,6 +406,38 @@ html.big .q{font-size:30px}html.big .opt{font-size:24px;padding:16px 18px}html.b
 ul.tl{margin:0;padding-left:0;list-style:none;display:grid;gap:4px;font-size:14px}ul.tl b{color:#E9B84E;margin-right:6px;font-variant-numeric:tabular-nums}
 .mutebtn{min-width:38px;padding-left:8px!important;padding-right:8px!important}
 .qvol{display:flex;gap:6px;flex-wrap:wrap}
+
+/* v18 nav */
+.ahist{display:flex;gap:4px}.ahist button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--candana);font-size:20px;line-height:1;cursor:pointer}
+.ahist button:disabled{opacity:.35;cursor:default}.ahist button:not(:disabled):hover{border-color:var(--gold)}
+.pnav{position:sticky;top:-16px;z-index:5;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;margin:-16px -18px 0;padding:10px 18px;background:rgba(13,19,48,.97);border-bottom:1px solid var(--line)}
+.pnav .btn{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:flex;gap:6px;align-items:center}
+.pnav .btn span{overflow:hidden;text-overflow:ellipsis}
+.pnav #pNext{justify-content:flex-end}
+.pcount{display:grid;text-align:center;font-size:13px;color:var(--candana);font-variant-numeric:tabular-nums}.pcount small{font-size:11px;color:var(--muted)}
+#bgSel{width:100%}
+
+/* v18 editor, pres */
+.tbox{display:grid;gap:8px;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.18)}.tbox h3{margin:0;font-size:19px}.tbox p{margin:0}
+.creator summary{cursor:pointer;color:var(--muted);font-size:13.5px}.creator{display:grid;gap:8px}
+.edcard{max-width:980px}.edtabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+.edform{display:grid;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.2)}
+.edf{display:grid;gap:5px}.edf>label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron,#EE7F2D)}
+.ed3{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 8px;align-items:start}.ed3 span{font-size:11px;color:var(--muted);padding-top:9px}
+.edcard input[type=text],.edcard input[type=number],.edcard input[type=search],.edcard textarea,.edcard select,.card select,.card input[type=search],.tbox input[type=text],.tbox input[type=password]{width:100%;box-sizing:border-box;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.3);color:var(--candana);font:inherit;font-size:15px}
+.edcard .row select,.edcard .row input{width:auto;flex:1 1 140px;min-width:0}
+.edform,.edf,.ed3>*,.edcard>*{min-width:0}.edform .row{flex-wrap:wrap}
+.edimgs{display:grid;gap:8px}.edimg{display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:8px;align-items:center}.edimg img{width:84px;height:60px;object-fit:cover;border-radius:8px;background:#000}.edimg>div{display:grid;gap:4px}
+ol.edq{display:grid;gap:8px;padding-left:22px;margin:0}ol.edq li p{margin:0 0 4px}
+.edst{border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:8px;margin:0 0 10px}.edst legend{padding:0 6px;color:var(--gold)}
+.pschips{min-height:8px}
+#presView{position:fixed;inset:0;z-index:300;background:#000;display:grid;grid-template-rows:minmax(0,1fr) auto}
+#presView[hidden]{display:none}
+.pv-stage{display:grid;place-items:center;min-height:0;padding:min(2vh,16px)}.pv-stage>.sl{width:min(100%,calc((100vh - 70px)*16/9));height:auto;aspect-ratio:16/9;border-radius:6px}
+.pv-stage>.sl-place{display:grid}
+.pv-bar{display:flex;gap:8px;justify-content:center;align-items:center;padding:8px;color:#ccc;font:14px system-ui}.pv-bar button{background:#1b2350;color:#F4E5BC;border:1px solid #3a4580;border-radius:8px;padding:7px 14px;cursor:pointer;font-size:15px}
+@media (max-width:700px){.pv-stage>.sl{aspect-ratio:auto;height:calc(100vh - 80px)}}
+@media print{#printArea.presprint{background:#0D1330!important}#printArea.presprint h1,#printArea.presprint h2{color:#E9B84E}@page{size:landscape;margin:0}}
 </style>
 
 <div id="app">
@@ -425,7 +457,7 @@ ul.tl{margin:0;padding-left:0;list-style:none;display:grid;gap:4px;font-size:14p
 </div>
 <div class="sndpanel" id="sndPanel" hidden></div>
 <div class="atlas" id="atlas" hidden>
-  <div class="atlas-top"><h2 id="atlasTitle">Atlas svetih mest</h2><div class="atabs" id="atlasTabs"></div><button class="btn ghost small" id="atlasClose" type="button">Zapri</button></div>
+  <div class="atlas-top"><div class="ahist"><button type="button" id="aBack" aria-label="Nazaj" disabled>‹</button><button type="button" id="aFwd" aria-label="Naprej" disabled>›</button></div><h2 id="atlasTitle">Atlas svetih mest</h2><div class="atabs" id="atlasTabs"></div><button class="btn ghost small" id="atlasClose" type="button">Zapri</button></div>
   <div class="atlasbox" id="atlasBox"></div>
 </div>
 <div class="lightbox" id="lightbox" hidden><button class="lbnav prev" id="lbPrev" type="button" aria-label="Prejšnja / Previous">‹</button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button class="lbnav next" id="lbNext" type="button" aria-label="Naslednja / Next">›</button><div class="lbbar"><span id="lbCount"></span><button class="btn ghost small" id="lbClose" type="button">Zapri</button></div></div>
@@ -438,7 +470,9 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let L=store.get('sm-lang','sl');
 const LI=()=>L==='en'?1:0;
-const tr=x=>Array.isArray(x)?x[LI()]:x;
+const HR={};
+const tr=x=>Array.isArray(x)?(L==='hr'?(x[2]||HR[x[0]]||x[1]):x[LI()]):x;
+const LX=(sl,en)=>L==='en'?en:L==='hr'?(HR[sl]||en):sl;
 function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 const shuffle=(a,r=Math.random)=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 
@@ -450,13 +484,13 @@ const T={
   game:'Družabna igra · 1–6 igralcev ali ekip',title:'Sveta mesta',
   startIntro:(n,q,p)=>`Romanje skozi ${n} svetih mest Indije, od izvira Gaṅge do Vṛndāvane. Glavne postaje so Navadvīpa-dhāma, Jagannātha Purī in na koncu Vṛndāvana. Vsaka igra izbere ${q} novih vprašanj iz zbirke ${p}.`,
   modeFull:'Veliko romanje',modeFullD:'Celotno romanje po stopnjah za 1–6 igralcev ali ekip.',modeDaily:'Dnevno romanje',modeDailyD:'Vsak dan nova stopnja s 5 vprašanji, za vse enaka. Zbiraj zaporedne dni.',
-  levelL:'Izberi romanje',lv1:'Osnovno romanje',lv1D:q=>`7 stopenj · od Himalaje do Vṛndāvane · ${q} vprašanj`,lv2:'Napredno romanje',lv2D:q=>`5 stopenj · daśāvatāra in velika Božanstva · ${q} vprašanj`,
-  startIntro2:(n,q,p)=>`Napredno romanje vodi k templjem desetih inkarnacij (daśāvatāra) in k velikim Božanstvom Kṛṣṇe po vsej Indiji: ${n} svetih mest v petih stopnjah. Vsaka igra izbere ${q} novih vprašanj iz zbirke ${p}.`,
+  levelL:'Izberi romanje',lv1:'Osnovno romanje',lv1D:q=>`7 stopenj · od Himalaje do Vṛndāvane · ${q} vprašanj`,lv2:'Daśāvatāra romanje',lv2D:q=>`5 stopenj · daśāvatāra in velika Božanstva · ${q} vprašanj`,
+  startIntro2:(n,q,p)=>`Daśāvatāra romanje vodi k templjem desetih inkarnacij (daśāvatāra) in k velikim Božanstvom Kṛṣṇe po vsej Indiji: ${n} svetih mest v petih stopnjah. Vsaka igra izbere ${q} novih vprašanj iz zbirke ${p}.`,
   stealOpt:'Prevzem: ob napačnem odgovoru lahko odgovori naslednji (+2)',codeL:'Koda igre (neobvezno)',codeNote:'Ekipe na različnih napravah vpišejo isto kodo in dobijo enaka vprašanja v enakem vrstnem redu.',codePh:'npr. GAURA108',
   wrongShort:'Napačno.',stealNow:n=>`Prevzem: odgovori lahko ${n} za 2 tilaki.`,stealHow:'Izberite enega od preostalih odgovorov ali prevzem izpustite.',stealTurn:'Prevzem',stealSkip:'Ne prevzamemo',stealOk:n=>`Prevzem je uspel: ${n} +2 tilaki.`,stealNo:n=>`Prevzem ni uspel (${n}).`,stealPass:n=>`Prevzem je izpuščen (${n}).`,
   steals:n=>{const m=n%100;return n+' '+(m===1?'prevzem':m===2?'prevzema':m===3||m===4?'prevzemi':'prevzemov')},srcL:'Vir',
   tbBtn:'Odločilno vprašanje',tbTitle:'Odločilno vprašanje',tbRound:r=>`${r}. krog`,tbNote:'Vsak izenačeni igralec oziroma ekipa odgovori na svoje vprašanje. Zmaga, kdor edini odgovori pravilno. Število tilak se ne spremeni.',tbWin:n=>`Zmagovalec po odločilnem vprašanju: ${n}`,tbWinT:n=>`Po odločilnem vprašanju je zmagala ekipa ${n}`,tbShared:'Po petih krogih je še vedno neodločeno – zmago si delite.',tbAgain:'Nihče ni edini odgovoril pravilno – sledi nov krog.',
-  doneL2:'Napredno romanje je dokončano · Śrī Raṅgam',
+  doneL2:'Daśāvatāra romanje je dokončano · Śrī Raṅgam',
   lv3:'Navadvīpa-maṇḍala parikramā',lv3D:q=>`2 stopnji · devet otokov Navadvīpe · ${q} vprašanj`,
   lv4:'Ekacakrā parikramā',lv4D:q=>`1 stopnja · rojstni kraj Nityānande Prabhuja · ${q} vprašanj`,
   lv5:'Jagannātha Purī parikramā',lv5D:q=>`1 stopnja · Śrī Kṣetra · ${q} vprašanj`,
@@ -465,7 +499,7 @@ const T={
   startIntro5:(n,q,p)=>`Jagannātha Purī parikramā vodi po krajih, kjer je Mahāprabhu z bhaktami živel osemnajst let: ${n} svetih krajev; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
   doneL3:'Navadvīpa-maṇḍala parikramā je dokončana · Māyāpur',doneL4:'Ekacakrā parikramā je dokončana',doneL5:'Jagannātha Purī parikramā je dokončana',
   grp3:'Navadvīpa-maṇḍala',grp4:'Ekacakrā',grp5:'Jagannātha Purī',lvTag3:'Navadvīpa',lvTag4:'Ekacakrā',lvTag5:'Purī',
-  tabPari:'Parikrame',photoCreditIDT:'Fotografije: ISKCON Desire Tree (iskcondesiretree.com).',spotTitle:'Največji poudarek',pariQuotes:'Śrīla Prabhupāda o Māyāpurju',pariTimeline:'Časovnica',pariPeople:'Ācārye v učenjski verigi',openPlace:'Odpri v atlasu',muteOn:'Utišaj glasbo',muteOff:'Vklopi glasbo',quieter:'Tišje',louder:'Glasneje',musVol:'Glasnost glasbe v ozadju',playVideo:'Predvajaj video',openYT:'Odpri na YouTubu',pariMaps:'Zemljevidi parikrame',pariMapNote:'Zemljevidi in fotografije krajev Navadvīpe in Ekacakre: srimayapurdhama.com (ISKCON Māyāpur).',gmapBtn:'Interaktivni zemljevid',webBtn:'Več na srimayapurdhama.com',showMapBtn:'Pokaži na zemljevidu',pariPlaces:'Sveti kraji parikrame',approx:'Na zemljevidu je prikazano območje; točno lego odpre gumb Navigacija.',photoCredit:'Fotografija: srimayapurdhama.com (ISKCON Māyāpur)',videoL:'Video',
+  tabPari:'Parikrame',navBack:'Nazaj',navFwd:'Naprej',prevPlace:'Prejšnji kraj',nextPlace:'Naslednji kraj',bgMusic:'Glasba ozadja',bgTanpura:'Tanpura (vgrajena)',photoCreditIDT:'Fotografije: ISKCON Desire Tree (iskcondesiretree.com).',spotTitle:'Največji poudarek',pariQuotes:'Śrīla Prabhupāda o Māyāpurju',pariTimeline:'Časovnica',pariPeople:'Ācārye v učenjski verigi',openPlace:'Odpri v atlasu',muteOn:'Utišaj glasbo',muteOff:'Vklopi glasbo',quieter:'Tišje',louder:'Glasneje',musVol:'Glasnost glasbe v ozadju',playVideo:'Predvajaj video',openYT:'Odpri na YouTubu',pariMaps:'Zemljevidi parikrame',pariMapNote:'Zemljevidi in fotografije krajev Navadvīpe in Ekacakre: srimayapurdhama.com (ISKCON Māyāpur).',gmapBtn:'Interaktivni zemljevid',webBtn:'Več na srimayapurdhama.com',showMapBtn:'Pokaži na zemljevidu',pariPlaces:'Sveti kraji parikrame',approx:'Na zemljevidu je prikazano območje; točno lego odpre gumb Navigacija.',photoCredit:'Fotografija: srimayapurdhama.com (ISKCON Māyāpur)',videoL:'Video',
   copy:'© 2026 Golokaplanet Library, by Mahī-bhartā dāsa',
   lv6:'Vraja-maṇḍala parikramā',lv6D:q=>`3 stopnje · Kṛṣṇove zabave v Vraji · ${q} vprašanj`,
   startIntro6:(n,q,p)=>`Vraja-maṇḍala parikramā sledi Kṛṣṇovim zabavam iz Śrīmad-Bhāgavatama: od Gokule prek gozdov Vraje do Govardhane, Rādhā-kuṇḍe in Vṛndāvane. ${n} svetih krajev v treh stopnjah; vsaka igra izbere ${q} vprašanj iz zbirke ${p}.`,
@@ -479,7 +513,7 @@ const T={
   showRoute:'Pokaži pot',thisMonth:'ta mesec',teacherBtn:'Za učitelje',
   teachEyebrow:'Za učitelje in skupine',teachTitle:'Tisk in projektor',teachIntro:'Natisneš lahko vsa vprašanja z odgovori, razlagami in viri ali kartice za igro brez naprave. Projektorski način poveča pisavo za igro na velikem zaslonu.',
   teachN:n=>`${n} vprašanj v zbirki`,printQ:'Natisni vprašanja z odgovori',printC:'Natisni kartice',bigMode:'Projektorski način (večja pisava)',teachNote:'V oknu za tisk lahko izbereš »Shrani kot PDF«.',printAns:'Odgovor',printCardsNote:'Kartice razreži. Pravilen odgovor je na dnu kartice; pred igro ga prepogni.',
-  encDei:'Božanstva',encStory:'Zgodba in pomen',encBooks:'Iz knjig in izročila',encSearch:'Išči sveto mesto ali Božanstvo …',encNone:'Ni zadetkov.',grp1:'Osnovno romanje',grp2:'Napredno romanje',zoom:'povečaj',lvTag1:'osnovno',lvTag2:'napredno',
+  encDei:'Božanstva',encStory:'Zgodba in pomen',encBooks:'Iz knjig in izročila',encSearch:'Išči sveto mesto ali Božanstvo …',encNone:'Ni zadetkov.',grp1:'Osnovno romanje',grp2:'Daśāvatāra romanje',zoom:'povečaj',lvTag1:'osnovno',lvTag2:'napredno',
   players:'Igralci',teams:'Ekipe',timerOpt:'Časovna omejitev 30 s',
   pname:i=>i===0?'Ime igralca 1':`Igralec ${i+1} (neobvezno)`,tname:i=>i===0?'Ime ekipe 1':`Ekipa ${i+1} (neobvezno)`,defP:'Bhakta',defT:'Ekipa Gaura',
   rules:['Izberi pravilen odgovor <b>a)</b>, <b>b)</b> ali <b>c)</b>. Pravilen odgovor prinese <b style="color:var(--gold)">4 tilake</b>.','<b>Namig</b> odstrani en napačen odgovor. Pravilen odgovor po namigu prinese 2 tilaki.','<b>Niz saṅkīrtane:</b> vsak tretji pravilen odgovor zapored brez namiga prinese še 2 tilaki.','Več igralcev ali ekip dobi <b>enako število vprašanj</b>. <b>Prevzem:</b> po napačnem odgovoru lahko naslednji odgovori za 2 tilaki.','Po vsaki stopnji vsak igralec sestavi Hare Kṛṣṇa mahā-mantro za 4 tilake.','Zmaga, kdor do konca zbere največ tilak; ob izenačenju odloči odločilno vprašanje.'],
@@ -507,7 +541,7 @@ const T={
   game:'Board game · 1–6 players or teams',title:'Holy Places',
   startIntro:(n,q,p)=>`A pilgrimage through ${n} holy places of India, from the source of the Gaṅgā to Vṛndāvana. The main stations are Navadvīpa-dhāma, Jagannātha Purī and finally Vṛndāvana. Every game draws ${q} new questions from a pool of ${p}.`,
   modeFull:'Great pilgrimage',modeFullD:'The whole pilgrimage, stage by stage, for 1–6 players or teams.',modeDaily:'Daily pilgrimage',modeDailyD:'A new stage with 5 questions every day, the same for everyone. Build a streak of days.',
-  levelL:'Choose the pilgrimage',lv1:'Basic pilgrimage',lv1D:q=>`7 stages · from the Himalayas to Vṛndāvana · ${q} questions`,lv2:'Advanced pilgrimage',lv2D:q=>`5 stages · daśāvatāra and the great Deities · ${q} questions`,
+  levelL:'Choose the pilgrimage',lv1:'Basic pilgrimage',lv1D:q=>`7 stages · from the Himalayas to Vṛndāvana · ${q} questions`,lv2:'Daśāvatāra pilgrimage',lv2D:q=>`5 stages · daśāvatāra and the great Deities · ${q} questions`,
   startIntro2:(n,q,p)=>`The advanced pilgrimage leads to the temples of the ten incarnations (daśāvatāra) and to the great Deities of Kṛṣṇa throughout India: ${n} holy places in five stages. Every game draws ${q} new questions from a pool of ${p}.`,
   stealOpt:'Steal: after a wrong answer the next one may answer (+2)',codeL:'Game code (optional)',codeNote:'Teams on different devices enter the same code and get the same questions in the same order.',codePh:'e.g. GAURA108',
   wrongShort:'Wrong.',stealNow:n=>`Steal: ${n} may answer for 2 tilakas.`,stealHow:'Choose one of the remaining answers or pass.',stealTurn:'Steal',stealSkip:'We pass',stealOk:n=>`Steal succeeded: ${n} +2 tilakas.`,stealNo:n=>`Steal failed (${n}).`,stealPass:n=>`Steal passed (${n}).`,
@@ -522,7 +556,7 @@ const T={
   startIntro5:(n,q,p)=>`The Jagannātha Purī parikramā leads to the places where Mahāprabhu lived with His devotees for eighteen years: ${n} holy places; every game draws ${q} questions from a pool of ${p}.`,
   doneL3:'The Navadvīpa-maṇḍala parikramā is complete · Māyāpur',doneL4:'The Ekacakrā parikramā is complete',doneL5:'The Jagannātha Purī parikramā is complete',
   grp3:'Navadvīpa-maṇḍala',grp4:'Ekacakrā',grp5:'Jagannātha Purī',lvTag3:'Navadvīpa',lvTag4:'Ekacakrā',lvTag5:'Purī',
-  tabPari:'Parikramās',photoCreditIDT:'Photos: ISKCON Desire Tree (iskcondesiretree.com).',spotTitle:'Greatest highlight',pariQuotes:'Śrīla Prabhupāda on Mayapur',pariTimeline:'Timeline',pariPeople:'Ācāryas in the disciplic succession',openPlace:'Open in the atlas',muteOn:'Mute music',muteOff:'Unmute music',quieter:'Quieter',louder:'Louder',musVol:'Background music volume',playVideo:'Play video',openYT:'Open on YouTube',pariMaps:'Parikramā maps',pariMapNote:'Maps and photos of the Navadvīpa and Ekacakrā places: srimayapurdhama.com (ISKCON Mayapur).',gmapBtn:'Interactive map',webBtn:'More at srimayapurdhama.com',showMapBtn:'Show on the map',pariPlaces:'Holy places of the parikramā',approx:'The map shows the area; the Navigate button opens the exact location.',photoCredit:'Photo: srimayapurdhama.com (ISKCON Mayapur)',videoL:'Video',
+  tabPari:'Parikramās',navBack:'Back',navFwd:'Forward',prevPlace:'Previous place',nextPlace:'Next place',bgMusic:'Background music',bgTanpura:'Tanpura (built in)',photoCreditIDT:'Photos: ISKCON Desire Tree (iskcondesiretree.com).',spotTitle:'Greatest highlight',pariQuotes:'Śrīla Prabhupāda on Mayapur',pariTimeline:'Timeline',pariPeople:'Ācāryas in the disciplic succession',openPlace:'Open in the atlas',muteOn:'Mute music',muteOff:'Unmute music',quieter:'Quieter',louder:'Louder',musVol:'Background music volume',playVideo:'Play video',openYT:'Open on YouTube',pariMaps:'Parikramā maps',pariMapNote:'Maps and photos of the Navadvīpa and Ekacakrā places: srimayapurdhama.com (ISKCON Mayapur).',gmapBtn:'Interactive map',webBtn:'More at srimayapurdhama.com',showMapBtn:'Show on the map',pariPlaces:'Holy places of the parikramā',approx:'The map shows the area; the Navigate button opens the exact location.',photoCredit:'Photo: srimayapurdhama.com (ISKCON Mayapur)',videoL:'Video',
   copy:'© 2026 Golokaplanet Library, by Mahī-bhartā dāsa',
   lv6:'Vraja-maṇḍala parikramā',lv6D:q=>`3 stages · Kṛṣṇa's pastimes in Vraja · ${q} questions`,
   startIntro6:(n,q,p)=>`The Vraja-maṇḍala parikramā follows Kṛṣṇa's pastimes from the Śrīmad-Bhāgavatam: from Gokula through the forests of Vraja to Govardhana, Rādhā-kuṇḍa and Vṛndāvana. ${n} holy places in three stages; every game draws ${q} questions from a pool of ${p}.`,
@@ -536,7 +570,7 @@ const T={
   showRoute:'Show the route',thisMonth:'this month',teacherBtn:'For teachers',
   teachEyebrow:'For teachers and groups',teachTitle:'Print and projector',teachIntro:'You can print all the questions with answers, explanations and sources, or cards for playing without a device. Projector mode enlarges the text for playing on a big screen.',
   teachN:n=>`${n} questions in the pool`,printQ:'Print questions with answers',printC:'Print cards',bigMode:'Projector mode (larger text)',teachNote:'In the print dialog you can choose “Save as PDF”.',printAns:'Answer',printCardsNote:'Cut out the cards. The correct answer is at the bottom of each card; fold it under before playing.',
-  encDei:'Deities',encStory:'History and significance',encBooks:'From the books and tradition',encSearch:'Search a holy place or Deity …',encNone:'No results.',grp1:'Basic pilgrimage',grp2:'Advanced pilgrimage',zoom:'enlarge',lvTag1:'basic',lvTag2:'advanced',
+  encDei:'Deities',encStory:'History and significance',encBooks:'From the books and tradition',encSearch:'Search a holy place or Deity …',encNone:'No results.',grp1:'Basic pilgrimage',grp2:'Daśāvatāra pilgrimage',zoom:'enlarge',lvTag1:'basic',lvTag2:'advanced',
   players:'Players',teams:'Teams',timerOpt:'30-second time limit',
   pname:i=>i===0?'Player 1 name':`Player ${i+1} (optional)`,tname:i=>i===0?'Team 1 name':`Team ${i+1} (optional)`,defP:'Bhakta',defT:'Team Gaura',
   rules:['Choose the right answer <b>a)</b>, <b>b)</b> or <b>c)</b>. A correct answer earns <b style="color:var(--gold)">4 tilakas</b>.','<b>Hint</b> removes one wrong answer. A correct answer after a hint earns 2 tilakas.','<b>Saṅkīrtana streak:</b> every third correct answer in a row without a hint earns 2 more tilakas.','Several players or teams get <b>the same number of questions</b>. <b>Steal:</b> after a wrong answer the next one may answer for 2 tilakas.','After each stage every player builds the Hare Kṛṣṇa mahā-mantra for 4 tilakas.','Whoever collects the most tilakas wins; a tie is settled by a tie-break question.'],
@@ -559,7 +593,56 @@ const T={
   backGame:'Back to the game',install:'Install the app',installed:'The game is already running as an installed app.',
   credits:'Photos and maps of the Navadvīpa and Ekacakrā places are from srimayapurdhama.com (ISKCON Mayapur), videos from YouTube. Other photos of the holy places are from Wikimedia Commons under free licences; the authors are credited on each file’s Wikimedia Commons page. Map: © OpenStreetMap; satellite imagery: © Esri. Photo of Śrīla Prabhupāda: private archive of the game’s author. The questions were checked against Śrīla Prabhupāda’s books (vedabase.io).'}
 };
-const t=(k,...a)=>{const v=T[L][k];return typeof v==='function'?v(...a):v};
+const t=(k,...a)=>{const v=(T[L]&&T[L][k]!==undefined)?T[L][k]:T.en[k];return typeof v==='function'?v(...a):v};
+/* ---------- v18: nova besedila ---------- */
+Object.assign(T.sl,{lvTag2:'daśāvatāra',
+ archBusy:'Pripravljam …',archDone:'Shranjeno ✓',archBad:'Datoteke ni bilo mogoče prebrati ali shraniti.',archConfirm:'Uvoz bo prepisal nastavitve, dnevnik in lastne vsebine na tej napravi s tistimi iz arhiva. Nadaljujem?',
+ presTitle:'Izdelava prezentacij',presIntro:'Iz svetih mest izdelaj prezentacijo: izberi romanje, parikramo ali lastni izbor krajev. Prezentacijo lahko predvajaš čez cel zaslon, jo shraniš kot datoteko HTML za svoj arhiv ali natisneš oziroma shraniš kot PDF.',presBtn:'Izdelaj prezentacijo',
+ archTitle:'Arhiv na disku',archIntro:'Shrani vse svoje podatke v eno datoteko na računalnik, USB-ključ ali zunanji disk: dnevnik, nastavitve, lastne vsebine iz urejevalnika, lastne fotografije in glasbo. Datoteko lahko pozneje uvoziš na isti ali drugi napravi.',archMedia:'Vključi fotografije in glasbo (večja datoteka)',archExp:'Shrani arhiv na disk',archImp:'Uvozi arhiv',
+ edTitle:'Urejanje vsebin',edOn:'Urejanje je na tej napravi odklenjeno. Dodajaš, spreminjaš in brišeš lahko kraje, slike, besedila, glasbo, vprašanja in odgovore ter pripraviš svoja romanja.',edOpen:'Odpri urejevalnik',edLock:'Zakleni urejanje',
+ edLocked:'Za urejanje vseh vsebin atlasa in igre vpiši osebno geslo, ki ti ga dodeli ustvarjalec programa.',edUnlock:'Odkleni',edCreator:'Za ustvarjalca programa',edMasterPh:'Glavno geslo ustvarjalca',edGen:'Ustvari gesla',
+ edNote:'Spremembe se shranijo samo na tej napravi. S funkcijo Arhiv na disku jih lahko preneseš na drugo napravo ali deliš z drugimi.',edBad:'Geslo ni veljavno.',edBadPw:'Glavno geslo ni pravilno.',edNewCode:'+ Novo osebno geslo',edWho:'Komu je dodeljeno',
+ edTabPlaces:'Kraji in slike',edTabQ:'Vprašanja',edTabLv:'Romanja',edPick:'izberi sveto mesto',edNewPlace:'Nov kraj',edNewNote:'Nov kraj bo viden v atlasu pri izbranem romanju. Vpiši koordinate ali izberi bližnji kraj.',
+ edName:'Ime',edLoc:'Lega (opis)',edLL:'Koordinate (širina, dolžina)',edNear:'— ali bližnji kraj —',edLv:'Romanje',edAddUrl:'Dodaj sliko (povezava)',edAddFile:'Naloži sliko',edMusic:'Glasba ob odprtju kraja',edMusicNone:'— brez —',edAddAudio:'Naloži posnetek',
+ edSave:'Shrani',edShow:'Pokaži kraj',edHide:'Skrij kraj',edReset:'Povrni izvirnik',edDelete:'Izbriši',edRestoreQ:n=>`Obnovi izbrisana vprašanja (${n})`,edNewQ:'Novo vprašanje',edEdit:'Uredi',edDelQ:'Izbriši',edNoStages:'To romanje še nima stopenj.',
+ edLvIntro:'Pripravi svoje romanje: vpiši ime in opis, dodaj stopnje, nato v zavihku Vprašanja vsaki stopnji dodaj vprašanja. Romanje se pojavi med romanji, ko ima vsaj eno vprašanje.',edStagesN:'stopenj',edQN:'vprašanj',edNoLv:'Lastnih romanj še ni.',edNewLv:'Novo romanje',
+ edLvName:'Ime romanja',edLvDesc:'Opis romanja',edStage:'Stopnja',edStageName:'Ime stopnje',edStageIntro:'Uvod v stopnjo',edPickN:'Vprašanj v eni igri',edDelStage:'Odstrani stopnjo',edAddStage:'Dodaj stopnjo',
+ edSaveNote:'Po shranjevanju se aplikacija znova naloži, da se spremembe uveljavijo povsod.',edPlaceL:'Sveto mesto',edQ:'Vprašanje',edOptOk:'Pravilni odgovor',edOpt:n=>`Napačni odgovor ${n-1}`,edEx:'Razlaga',edQReq:'Vpiši vprašanje in vse tri odgovore (vsaj v enem jeziku).',edConfirm:'Ali si prepričan?',
+ presSub:n=>`${n} svetih mest`,presMine:'Moj izbor svetih mest',presSrcLv:'Romanje',presSrcPari:'Parikrama',presSrcMine:'Lastni izbor',presChosen:'Izbrani kraji',presName:'Naslov prezentacije',presEnd:'Sklepna stran z mahā-mantro',presImgs:'Fotografij na kraj',
+ presCount:n=>`Prezentacija bo imela ${n} svetih mest.`,presPlay:'Predvajaj',presHtml:'Shrani kot HTML',presPrint:'Natisni / PDF',presNote:'Med predvajanjem: puščici ← → ali preslednica, Esc za izhod, ⤢ za cel zaslon. Fotografije s spleta se v shranjeni datoteki prikažejo, ko je naprava povezana s spletom.',presEmpty:'Izberi vsaj eno sveto mesto.'});
+Object.assign(T.en,{lvTag2:'daśāvatāra',startIntro2:(n,q,p)=>`The Daśāvatāra pilgrimage leads to the temples of the ten incarnations (daśāvatāra) and to the great Deities of Kṛṣṇa throughout India: ${n} holy places in five stages. Every game draws ${q} new questions from a pool of ${p}.`,doneL2:'The Daśāvatāra pilgrimage is complete · Śrī Raṅgam',genNote:'',
+ langNote:'You can switch language at any time with the language button in the header.',
+ archBusy:'Preparing …',archDone:'Saved ✓',archBad:'The file could not be read or saved.',archConfirm:'Importing will replace the settings, diary and custom content on this device with those from the archive. Continue?',
+ presTitle:'Create presentations',presIntro:'Make a presentation from the holy places: choose a pilgrimage, a parikramā or your own selection of places. You can play it full screen, save it as an HTML file for your archive, or print it or save it as a PDF.',presBtn:'Create a presentation',
+ archTitle:'Archive on disk',archIntro:'Save all your data in one file on your computer, a USB stick or an external drive: diary, settings, custom content from the editor, your own photos and music. You can import the file later on the same or another device.',archMedia:'Include photos and music (larger file)',archExp:'Save archive to disk',archImp:'Import archive',
+ edTitle:'Content editor',edOn:'Editing is unlocked on this device. You can add, change and delete places, images, texts, music, questions and answers, and create your own pilgrimages.',edOpen:'Open the editor',edLock:'Lock editing',
+ edLocked:'To edit all the content of the atlas and the game, enter the personal password assigned to you by the creator of the program.',edUnlock:'Unlock',edCreator:'For the program’s creator',edMasterPh:'Creator’s master password',edGen:'Create passwords',
+ edNote:'Changes are saved on this device only. With Archive on disk you can move them to another device or share them.',edBad:'The password is not valid.',edBadPw:'The master password is not correct.',edNewCode:'+ New personal password',edWho:'Assigned to',
+ edTabPlaces:'Places and images',edTabQ:'Questions',edTabLv:'Pilgrimages',edPick:'choose a holy place',edNewPlace:'New place',edNewNote:'The new place will appear in the atlas under the chosen pilgrimage. Enter coordinates or choose a nearby place.',
+ edName:'Name',edLoc:'Location (description)',edLL:'Coordinates (latitude, longitude)',edNear:'— or a nearby place —',edLv:'Pilgrimage',edAddUrl:'Add image (link)',edAddFile:'Upload image',edMusic:'Music when the place opens',edMusicNone:'— none —',edAddAudio:'Upload recording',
+ edSave:'Save',edShow:'Show place',edHide:'Hide place',edReset:'Restore original',edDelete:'Delete',edRestoreQ:n=>`Restore deleted questions (${n})`,edNewQ:'New question',edEdit:'Edit',edDelQ:'Delete',edNoStages:'This pilgrimage has no stages yet.',
+ edLvIntro:'Create your own pilgrimage: enter a name and description, add stages, then add questions to each stage in the Questions tab. The pilgrimage appears among the pilgrimages once it has at least one question.',edStagesN:'stages',edQN:'questions',edNoLv:'No custom pilgrimages yet.',edNewLv:'New pilgrimage',
+ edLvName:'Pilgrimage name',edLvDesc:'Pilgrimage description',edStage:'Stage',edStageName:'Stage name',edStageIntro:'Stage introduction',edPickN:'Questions per game',edDelStage:'Remove stage',edAddStage:'Add stage',
+ edSaveNote:'After saving, the app reloads so that the changes apply everywhere.',edPlaceL:'Holy place',edQ:'Question',edOptOk:'Correct answer',edOpt:n=>`Wrong answer ${n-1}`,edEx:'Explanation',edQReq:'Enter the question and all three answers (at least in one language).',edConfirm:'Are you sure?',
+ presSub:n=>`${n} holy places`,presMine:'My selection of holy places',presSrcLv:'Pilgrimage',presSrcPari:'Parikramā',presSrcMine:'Own selection',presChosen:'Chosen places',presName:'Presentation title',presEnd:'Closing slide with the mahā-mantra',presImgs:'Photos per place',
+ presCount:n=>`The presentation will have ${n} holy places.`,presPlay:'Play',presHtml:'Save as HTML',presPrint:'Print / PDF',presNote:'While playing: arrow keys ← → or space, Esc to exit, ⤢ for full screen. Web photos in the saved file appear when the device is online.',presEmpty:'Choose at least one holy place.'});
+T.sl.langNote='Jezik lahko kadar koli zamenjaš z gumbom za jezik v glavi.';
+const NEWHR={lvTag2:'daśāvatāra',genNote:'',
+ archBusy:'Pripremam …',archDone:'Spremljeno ✓',archBad:'Datoteku nije bilo moguće pročitati ili spremiti.',archConfirm:'Uvoz će zamijeniti postavke, dnevnik i vlastiti sadržaj na ovom uređaju onima iz arhive. Nastaviti?',
+ presTitle:'Izrada prezentacija',presIntro:'Od svetih mjesta izradi prezentaciju: odaberi hodočašće, parikramu ili vlastiti izbor mjesta. Prezentaciju možeš prikazati preko cijelog zaslona, spremiti kao HTML datoteku za svoju arhivu ili ispisati odnosno spremiti kao PDF.',presBtn:'Izradi prezentaciju',
+ archTitle:'Arhiva na disku',archIntro:'Spremi sve svoje podatke u jednu datoteku na računalo, USB-stick ili vanjski disk: dnevnik, postavke, vlastiti sadržaj iz uređivača, vlastite fotografije i glazbu. Datoteku kasnije možeš uvesti na istom ili drugom uređaju.',archMedia:'Uključi fotografije i glazbu (veća datoteka)',archExp:'Spremi arhivu na disk',archImp:'Uvezi arhivu',
+ edTitle:'Uređivanje sadržaja',edOn:'Uređivanje je na ovom uređaju otključano. Možeš dodavati, mijenjati i brisati mjesta, slike, tekstove, glazbu, pitanja i odgovore te pripremiti vlastita hodočašća.',edOpen:'Otvori uređivač',edLock:'Zaključaj uređivanje',
+ edLocked:'Za uređivanje svog sadržaja atlasa i igre upiši osobnu lozinku koju ti dodjeljuje autor programa.',edUnlock:'Otključaj',edCreator:'Za autora programa',edMasterPh:'Glavna lozinka autora',edGen:'Izradi lozinke',
+ edNote:'Promjene se spremaju samo na ovom uređaju. Funkcijom Arhiva na disku možeš ih prenijeti na drugi uređaj ili podijeliti s drugima.',edBad:'Lozinka nije valjana.',edBadPw:'Glavna lozinka nije točna.',edNewCode:'+ Nova osobna lozinka',edWho:'Kome je dodijeljena',
+ edTabPlaces:'Mjesta i slike',edTabQ:'Pitanja',edTabLv:'Hodočašća',edPick:'odaberi sveto mjesto',edNewPlace:'Novo mjesto',edNewNote:'Novo mjesto bit će vidljivo u atlasu kod odabranog hodočašća. Upiši koordinate ili odaberi obližnje mjesto.',
+ edName:'Ime',edLoc:'Položaj (opis)',edLL:'Koordinate (širina, dužina)',edNear:'— ili obližnje mjesto —',edLv:'Hodočašće',edAddUrl:'Dodaj sliku (poveznica)',edAddFile:'Učitaj sliku',edMusic:'Glazba pri otvaranju mjesta',edMusicNone:'— bez —',edAddAudio:'Učitaj snimku',
+ edSave:'Spremi',edShow:'Prikaži mjesto',edHide:'Sakrij mjesto',edReset:'Vrati izvornik',edDelete:'Izbriši',edRestoreQ:n=>`Vrati izbrisana pitanja (${n})`,edNewQ:'Novo pitanje',edEdit:'Uredi',edDelQ:'Izbriši',edNoStages:'Ovo hodočašće još nema etapa.',
+ edLvIntro:'Pripremi vlastito hodočašće: upiši ime i opis, dodaj etape, a zatim u kartici Pitanja svakoj etapi dodaj pitanja. Hodočašće se pojavljuje među hodočašćima kad ima barem jedno pitanje.',edStagesN:'etapa',edQN:'pitanja',edNoLv:'Još nema vlastitih hodočašća.',edNewLv:'Novo hodočašće',
+ edLvName:'Ime hodočašća',edLvDesc:'Opis hodočašća',edStage:'Etapa',edStageName:'Ime etape',edStageIntro:'Uvod u etapu',edPickN:'Pitanja u jednoj igri',edDelStage:'Ukloni etapu',edAddStage:'Dodaj etapu',
+ edSaveNote:'Nakon spremanja aplikacija se ponovno učitava kako bi promjene vrijedile posvuda.',edPlaceL:'Sveto mjesto',edQ:'Pitanje',edOptOk:'Točan odgovor',edOpt:n=>`Netočan odgovor ${n-1}`,edEx:'Objašnjenje',edQReq:'Upiši pitanje i sva tri odgovora (barem na jednom jeziku).',edConfirm:'Jesi li siguran?',
+ presSub:n=>`${n} svetih mjesta`,presMine:'Moj izbor svetih mjesta',presSrcLv:'Hodočašće',presSrcPari:'Parikramā',presSrcMine:'Vlastiti izbor',presChosen:'Odabrana mjesta',presName:'Naslov prezentacije',presEnd:'Završna stranica s mahā-mantrom',presImgs:'Fotografija po mjestu',
+ presCount:n=>`Prezentacija će imati ${n} svetih mjesta.`,presPlay:'Prikaži',presHtml:'Spremi kao HTML',presPrint:'Ispiši / PDF',presNote:'Tijekom prikaza: strelice ← → ili razmaknica, Esc za izlaz, ⤢ za cijeli zaslon. Fotografije s weba u spremljenoj datoteci prikazuju se kad je uređaj povezan s internetom.',presEmpty:'Odaberi barem jedno sveto mjesto.'};
+
 
 /* ---------- Sveta mesta / Holy places ---------- */
 const PLACES = {
@@ -1221,7 +1304,7 @@ const STAGES=[
  {n:["Jagannātha Purī","Jagannātha Purī"],sub:["Śrī Kṣetra, kjer je Mahāprabhu živel 18 let","Śrī Kṣetra, where Mahāprabhu lived for 18 years"],pick:7,main:1,img:['Lord_Jagannath,_Balaram_and_Shubhadra_in_ISKCON_temple,_Pune.jpg','Jagannātha, Baladeva, Subhadrā','Jagannātha, Baladeva, Subhadrā'],intro:["V Purīju je Śrī Caitanya preživel zadnjih osemnajst let, plesal pred vozovi Ratha-yātre in okušal ločitev od Kṛṣṇe v razpoloženju Rādhārāṇī.","In Purī Śrī Caitanya spent His last eighteen years, danced before the Ratha-yātrā chariots and tasted separation from Kṛṣṇa in the mood of Rādhārāṇī."]},
  {n:["Vraja – Vṛndāvana","Vraja – Vṛndāvana"],sub:["večno prebivališče Rādhe in Kṛṣṇe","the eternal abode of Rādhā and Kṛṣṇa"],pick:8,main:1,final:1,img:['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG','Rādhā in Kṛṣṇa','Rādhā and Kṛṣṇa'],intro:["Zadnja postaja je Vraja-dhāma, kjer Kṛṣṇa kot pastirček večno uživa z gopījami, kravami in Śrīmatī Rādhārāṇī. Tu se romanje izpolni.","The last station is Vraja-dhāma, where Kṛṣṇa as a cowherd boy eternally enjoys with the gopīs, the cows and Śrīmatī Rādhārāṇī. Here the pilgrimage is fulfilled."]},
 ];
-/* ---------- Napredno romanje / Advanced level ----------
+/* ---------- Daśāvatāra romanje / Daśāvatāra level ----------
    Viri: knjige Śrīle Prabhupāde (vedabase.io). Kjer podatek izvira iz izročila templja ali zgodovine, je vir tako označen. */
 const TRAD=['Izročilo templja','Temple tradition'], HIST=['Zgodovina templja','Temple history'];
 const POOL2 = [
@@ -1568,7 +1651,7 @@ const FINALQ2 = ['srirangam',[SB+' 1.3.28',SB+' 1.3.28'],
  "ete cāṁśa-kalāḥ puṁsaḥ kṛṣṇas tu bhagavān svayam: all the incarnations are plenary portions or portions of the plenary portions of the Lord, but Lord Śrī Kṛṣṇa is the original Personality of Godhead. So all the holy places of the daśāvatāra lead to Him and to the chanting of His names."];
 
 const STAGES2=[
- {lv:2,n:["Matsya, Kūrma in Varāha","Matsya, Kūrma and Varāha"],sub:["Nagalapuram, Śrīkūrmam, Tirumala, Śrīmuṣṇam","Nagalapuram, Śrīkūrmam, Tirumala, Śrīmuṣṇam"],pick:5,img:['Srikurmanatha_swamy_temple,_Srikurmam,_Srikakulam_Kurmavataram_4.jpg','Gospod Kūrma v Śrīkūrmamu','Lord Kūrma at Śrīkūrmam'],intro:["Napredno romanje sledi daśāvatāri, desetim inkarnacijam Gospoda. Začne se pri templjih ribe Matsye, želve Kūrme in merjasca Varāhe, ki so rešili Vede, goro Mandaro in Zemljo.","The advanced pilgrimage follows the daśāvatāra, the ten incarnations of the Lord. It begins at the temples of the fish Matsya, the tortoise Kūrma and the boar Varāha, who saved the Vedas, Mandara Mountain and the earth."]},
+ {lv:2,n:["Matsya, Kūrma in Varāha","Matsya, Kūrma and Varāha"],sub:["Nagalapuram, Śrīkūrmam, Tirumala, Śrīmuṣṇam","Nagalapuram, Śrīkūrmam, Tirumala, Śrīmuṣṇam"],pick:5,img:['Srikurmanatha_swamy_temple,_Srikurmam,_Srikakulam_Kurmavataram_4.jpg','Gospod Kūrma v Śrīkūrmamu','Lord Kūrma at Śrīkūrmam'],intro:["Daśāvatāra romanje sledi daśāvatāri, desetim inkarnacijam Gospoda. Začne se pri templjih ribe Matsye, želve Kūrme in merjasca Varāhe, ki so rešili Vede, goro Mandaro in Zemljo.","The Daśāvatāra pilgrimage follows the daśāvatāra, the ten incarnations of the Lord. It begins at the temples of the fish Matsya, the tortoise Kūrma and the boar Varāha, who saved the Vedas, Mandara Mountain and the earth."]},
  {lv:2,n:["Gospod Narasiṁha","Lord Narasiṁha"],sub:["Siṁhācalam, Yādagirigutta, Ahobilam","Siṁhācalam, Yādagirigutta, Ahobilam"],pick:5,img:['Simhachalam_Temple_Vimana_Gopuram_View.JPG','Siṁhācalam','Siṁhācalam'],intro:["Gospod Narasiṁha je zaščitil Prahlādo Mahārāja. Do nebhakt je strašen, do bhakt pa nežen kot levinja do mladičev. Mahāprabhu ga je opeval na Siṁhācalamu.","Lord Narasiṁha protected Prahlāda Mahārāja. He is terrible to nondevotees but gentle to devotees, like a lioness with her cubs. Mahāprabhu glorified Him at Siṁhācalam."]},
  {lv:2,n:["Vāmana in Rāma","Vāmana and Rāma"],sub:["Thrikkakara, Sīrkāḻi, Bhadrācalam, Triprayar, Orchha, Rāmeśvaram","Thrikkakara, Sīrkāḻi, Bhadrācalam, Triprayar, Orchha, Rāmeśvaram"],pick:6,img:['Ramanathaswamy_temple_corridor.JPG','Hodnik templja v Rāmeśvaramu','Temple corridor, Rāmeśvaram'],intro:["Vāmana je od Balija Mahārāja prosil za tri korake in dobil vse, kar je Bali imel, tudi njegovo glavo. Gospod Rāma je kot idealni kralj zgradil most na Laṅko.","Vāmana asked Bali Mahārāja for three steps and received everything Bali had, even his head. Lord Rāma, the ideal king, built the bridge to Laṅkā."]},
  {lv:2,n:["Kṛṣṇova Božanstva","Kṛṣṇa's Deities"],sub:["Nāthdvārā, Jaipur, Karauli, Ḍākor, Dvārakā, Guruvāyūr, Paṇḍharpur","Nāthdvārā, Jaipur, Karauli, Dakor, Dvārakā, Guruvāyūr, Pandharpur"],pick:7,main:1,img:['Dakor_Ranchhod_Ji_Mandir_and_Tirtha,_Gujarat_067.jpg','Ḍākor','Dakor'],intro:["Kṛṣṇa se v Božanstvih razodeva svojim bhaktam: kot Gopāla Mādhavendri Purīju, kot Govinda, Gopīnātha in Madana-mohana Gosvāmījem in kot kralj Dvārake.","Kṛṣṇa reveals Himself to His devotees in His Deities: as Gopāla to Mādhavendra Purī, as Govinda, Gopīnātha and Madana-mohana to the Gosvāmīs, and as the King of Dvārakā."]},
@@ -2462,13 +2545,40 @@ STAGES4[0].pick=7; STAGES4[1].pick=7; STAGES4[3].pick=7;
 STAGES4[0].intro=[STAGES4[0].intro[0]+' Največji poudarek je Tempelj vedskega planetarija (TOVP), Śrī Māyāpur Candrodaya Mandir.',STAGES4[0].intro[1]+' The greatest highlight is the Temple of the Vedic Planetarium (TOVP), Śrī Māyāpur Candrodaya Mandir.'];
 
 POOL.push(...POOL4); STAGES.push(...STAGES4);
-Object.values(PLACES).forEach(P=>{ if(!P.ll&&P.at){ P.ll=PLACES[P.at].ll; P.approx=1 } });
+/* ---------- v18: lastne vsebine (urejevalnik za učitelje) / custom content ---------- */
+const CUST=Object.assign({places:{},qedit:{},qdel:{},qnew:[],levels:[]},store.get('sm-cust',null)||{});
+const saveCust=()=>store.set('sm-cust',CUST);
+const hstr=s=>{let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (4294967296*(2097151&h2)+(h1>>>0)).toString(36)};
+const qid=Q=>hstr(Q[0]+'|'+Q[2]);
+const QMETA=new WeakMap();
+const BASELV=6, CUSTLV=[];
+function custLvT(lang){ CUST.levels.forEach((C,i)=>{ const lv=BASELV+1+i, li=lang==='en'?1:0, nm=(lang==='hr'&&C.n[2])||C.n[li]||C.n[0], ds=(lang==='hr'&&C.d&&C.d[2])||(C.d&&(C.d[li]||C.d[0]))||'', ns=C.stages.length;
+  const W={sl:['stopenj','vprašanj','svetih mest','Vsaka igra izžreba','vprašanj iz zbirke','je dokončano'],en:['stages','questions','holy places','Every game draws','questions from a pool of','is complete'],hr:['etapa','pitanja','svetih mjesta','Svaka igra izvlači','pitanja iz zbirke od','je završeno']}[lang];
+  Object.assign(T[lang],{['lv'+lv]:nm,['lv'+lv+'D']:q=>`${ns} ${W[0]} · ${q} ${W[1]}`,['startIntro'+lv]:(n,q,p)=>`${ds?ds+' ':''}${n} ${W[2]}. ${W[3]} ${q} ${W[4]} ${p}.`,['doneL'+lv]:nm+' '+W[5],['grp'+lv]:nm,['lvTag'+lv]:nm}) }) }
+(function applyCust(){ try{
+  Object.entries(CUST.places).forEach(([k,c])=>{
+    if(c.isNew){ PLACES[k]=Object.assign({n:['',''],loc:['',''],img:[],src:['lastna vsebina','own content'],lv:c.lv||1,cust:1},c) }
+    else if(PLACES[k]){ const P=PLACES[k]; ['n','loc','d','dei','img','s'].forEach(f=>{ if(c[f]!==undefined) P[f]=c[f] }); if(c.hide) P.hidden=1; P.edited=1 }
+    const P=PLACES[k]; if(!P) return; if(c.ll&&c.ll.length===2){ P.ll=c.ll; P.approx=0; delete P.at } });
+  POOL.forEach((pool,si)=>{ for(let i=pool.length-1;i>=0;i--){ const Q=pool[i], id=qid(Q); if(CUST.qdel[id]) pool.splice(i,1); else if(CUST.qedit[id]){ pool[i]=CUST.qedit[id]; QMETA.set(pool[i],{kind:'base',id}) } else QMETA.set(Q,{kind:'base',id}) } });
+  const lvStages=lv=>STAGES.map((x,i)=>x.lv===lv?i:-1).filter(i=>i>=0);
+  CUST.qnew.forEach(x=>{ const si=lvStages(x.lv)[x.st]; if(si===undefined||!PLACES[x.Q[0]]) return; POOL[si].push(x.Q); QMETA.set(x.Q,{kind:'new',id:x.id}) });
+  CUST.levels.forEach((C,i)=>{ const lv=BASELV+1+i; let any=false;
+    C.stages.forEach((st,j)=>{ const qs=(st.qs||[]).filter(Q=>PLACES[Q[0]]); qs.forEach((Q,qi)=>QMETA.set(Q,{kind:'cust',lvi:i,sti:j,qi:(st.qs||[]).indexOf(Q)}));
+      if(!qs.length) return; any=true;
+      STAGES.push({lv,n:st.n,sub:st.sub&&st.sub[0]?st.sub:st.n,intro:st.intro&&st.intro[0]?st.intro:(C.d||st.n),pick:Math.max(1,Math.min(+st.pick||5,qs.length)),key:st.key&&PLACES[st.key]?st.key:qs[0][0],custSt:j}); POOL.push(qs) });
+    if(any) CUSTLV.push(lv) });
+  custLvT('sl'); custLvT('en');
+}catch(e){ console.warn('cust',e) } })();
+
+Object.values(PLACES).forEach(P=>{ if(!P.ll&&P.at&&PLACES[P.at]){ P.ll=PLACES[P.at].ll; P.approx=1 } if(!P.ll) P.ll=[23.42,88.39],P.approx=1 });
 PLACES.advaitabh.lv=3; PLACES.madhai.lv=3;
 const LEVELS=[1,2,3,4,5,6];
 const LVL=lv=>STAGES.map((x,i)=>x.lv===lv?i:-1).filter(i=>i>=0);
+CUSTLV.forEach(l=>LEVELS.push(l));
 const placesOf=lv=>{const a=[];LVL(lv).forEach(si=>[...POOL[si],...(STAGES[si].fq?[STAGES[si].fq]:[])].forEach(q=>{const k=ALIAS[q[0]]||q[0];if(!a.includes(k))a.push(k)}));Object.keys(PLACES).forEach(k=>{if(PLACES[k].lv===lv&&!a.includes(k))a.push(k)});return a};
 const ATLAS1=placesOf(1), ATLAS2=placesOf(2), ATLAS3=placesOf(6);
-const ATLASL={}; LEVELS.forEach(l=>ATLASL[l]=placesOf(l));
+const ATLASL={}; LEVELS.forEach(l=>ATLASL[l]=placesOf(l).filter(k=>!PLACES[k].hidden));
 const ATLAS=[]; LEVELS.forEach(l=>ATLASL[l].forEach(k=>{if(!ATLAS.includes(k))ATLAS.push(k)}));
 const lvOfPlace=k=>LEVELS.find(l=>ATLASL[l].includes(k))||1;
 const NEW2=ATLAS.filter(k=>lvOfPlace(k)===2), NEW3=ATLAS.filter(k=>lvOfPlace(k)>2);
@@ -2480,12 +2590,12 @@ const FULLQ=lvQ(1), FULLQ2=lvQ(2), FULLQ3=lvQ(6), POOLSIZE=lvPool(1), POOLSIZE2=
 const NPLACES=ATLAS1.length, NPLACES2=ATLAS2.length, NPLACES3=ATLAS3.length;
 const lvPoolN=lv=>LVL(lv).reduce((s,i)=>s+POOL[i].length+(STAGES[i].fq?1:0),0);
 const introOf=lv=>lv===1?t('startIntro',NPLACES,FULLQ,POOLSIZE):lv===2?t('startIntro2',NPLACES2,FULLQ2,POOLSIZE2):t('startIntro'+lv,ATLASL[lv].length,lvQ(lv),lvPoolN(lv));
-const stImg=st=>st.img?[st.img[0]]:imgsOf(st.key), stCap=st=>st.img?(L==='en'?st.img[2]:st.img[1]):pn(st.key);
+const stImg=st=>st.img?[st.img[0]]:imgsOf(st.key), stCap=st=>st.img?(LX(st.img[1],st.img[2])):pn(st.key);
 /* question accessors: Q=[place,src,slq,slo,slex,enq,eno,enex] */
-const qText=Q=>L==='en'?Q[5]:Q[2], qOpts=Q=>L==='en'?Q[6]:Q[3], qEx=Q=>L==='en'?Q[7]:Q[4], qSrc=Q=>tr(Q[1]);
+const qText=Q=>L==='en'?Q[5]:L==='hr'?(Q[8]||HR[Q[2]]||Q[5]):Q[2], qOpts=Q=>L==='en'?Q[6]:L==='hr'?(Q[9]||(Q[3].every(o=>HR[o])?Q[3].map(o=>HR[o]):Q[6])):Q[3], qEx=Q=>L==='en'?Q[7]:L==='hr'?(Q[10]||HR[Q[4]]||Q[7]):Q[4], qSrc=Q=>tr(Q[1]);
 
 /* ---------- fotografije / photos ---------- */
-const photoUrl=(f,w=1800)=>/^https?:/.test(f)?f:'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(f)+'?width='+w;
+const photoUrl=(f,w=1800)=>/^media:/.test(f)?(MEDIA[f.slice(6)]||''):/^(https?:|data:|blob:)/.test(f)?f:'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(f)+'?width='+w;
 const imgsOf=k=>(PLACES[k].img||[]);
 function photoTag(list,w,cls,alt){
   const files=list.map(x=>Array.isArray(x)?x[0]:x);
@@ -2515,7 +2625,7 @@ function baseMap(thin){
 }
 function miniMap(key){
   const [x,y]=prj(...LL(key));
-  return `<svg class="minimap" viewBox="0 0 300 310" role="img" aria-label="${L==='en'?'Location on the map':'Lega na zemljevidu'}">${baseMap(true)}
+  return `<svg class="minimap" viewBox="0 0 300 310" role="img" aria-label="${LX('Lega na zemljevidu','Location on the map')}">${baseMap(true)}
   <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="14" fill="none" stroke="#EE7F2D" stroke-width="3" class="pulse"/>
   <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#EE7F2D" stroke="#F4E5BC" stroke-width="2.5"/></svg>`;
 }
@@ -2525,12 +2635,12 @@ function bigMap(state,numbers,clickable,keys){
   const dk=k=>clickable?` data-k="${k}"`:'';
   const outer=keys.filter(k=>!VRAJA.includes(k));
   const routePts=keys.map(k=>VRAJA.includes(k)?LL('vrindavan'):LL(k));
-  let g=`<svg class="bigmap" viewBox="0 0 300 310" role="img" aria-label="${L==='en'?'Map of the holy places':'Zemljevid svetih mest'}">${baseMap(false)}
-  <text x="${prj(86,33.5)[0]}" y="${prj(86,33.5)[1]}" fill="rgba(174,179,206,.6)" font-size="8" letter-spacing="2" text-anchor="middle">${L==='en'?'TIBET':'TIBET'}</text>
+  let g=`<svg class="bigmap" viewBox="0 0 300 310" role="img" aria-label="${LX('Zemljevid svetih mest','Map of the holy places')}">${baseMap(false)}
+  <text x="${prj(86,33.5)[0]}" y="${prj(86,33.5)[1]}" fill="rgba(174,179,206,.6)" font-size="8" letter-spacing="2" text-anchor="middle">${LX('TIBET','TIBET')}</text>
   <text x="${prj(84.6,28.2)[0]}" y="${prj(84.6,28.2)[1]}" fill="rgba(174,179,206,.6)" font-size="6.5" letter-spacing="1.5" text-anchor="middle">NEPAL</text>
-  <text x="${prj(79,22)[0]}" y="${prj(79,22)[1]}" fill="rgba(174,179,206,.45)" font-size="10" letter-spacing="4" text-anchor="middle">${L==='en'?'INDIA':'INDIJA'}</text>
-  <text x="${prj(85.6,15.2)[0]}" y="${prj(85.6,15.2)[1]}" fill="rgba(127,163,224,.6)" font-size="6.5" font-style="italic" text-anchor="middle">${L==='en'?'Bay of Bengal':'Bengalski zaliv'}</text>
-  <text x="${prj(68.5,17)[0]}" y="${prj(68.5,17)[1]}" fill="rgba(127,163,224,.6)" font-size="6.5" font-style="italic" text-anchor="middle">${L==='en'?'Arabian Sea':'Arabsko morje'}</text>
+  <text x="${prj(79,22)[0]}" y="${prj(79,22)[1]}" fill="rgba(174,179,206,.45)" font-size="10" letter-spacing="4" text-anchor="middle">${LX('INDIJA','INDIA')}</text>
+  <text x="${prj(85.6,15.2)[0]}" y="${prj(85.6,15.2)[1]}" fill="rgba(127,163,224,.6)" font-size="6.5" font-style="italic" text-anchor="middle">${LX('Bengalski zaliv','Bay of Bengal')}</text>
+  <text x="${prj(68.5,17)[0]}" y="${prj(68.5,17)[1]}" fill="rgba(127,163,224,.6)" font-size="6.5" font-style="italic" text-anchor="middle">${LX('Arabsko morje','Arabian Sea')}</text>
   ${keys.every(k=>ATLAS1.includes(k))&&state?`<polyline points="${pts(routePts)}" fill="none" stroke="rgba(238,127,45,.55)" stroke-width="1" stroke-dasharray="3 3"/>`:''}`;
   outer.forEach(k=>{const [x,y]=prj(...LL(k));const n=keys.indexOf(k)+1;
     g+=`<g${dk(k)}><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${clickable?9:0}" fill="transparent"/><circle${dk(k)} cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${numbers?5.2:3.6}" fill="${col(k)}" stroke="#0D1330" stroke-width="1"/>${numbers?`<text x="${x.toFixed(1)}" y="${(y+2).toFixed(1)}" font-size="5.6" font-weight="700" text-anchor="middle" fill="#0D1330" pointer-events="none">${n}</text>`:''}</g>`});
@@ -2598,14 +2708,14 @@ function idb(op,val){ return new Promise((res,rej)=>{ if(!window.indexedDB) retu
 function renderSndPanel(){
   const p=$('sndPanel'); if(!p||p.hidden) return;
   p.innerHTML=`<h3>${t('sndTitle')}</h3>
-   <div class="seg">${[['tanpura','sndTanpura'],['mine','sndMine'],['off','sndOff']].map(([m,k])=>`<button type="button" data-m="${m}" class="${Snd.mode===m?'on':''}">${t(k)}</button>`).join('')}</div>
+   <label class="check" for="bgSel" style="display:grid;gap:4px"><span>${t('bgMusic')}</span><select id="bgSel"><option value="tanpura" ${Snd.mode==='tanpura'?'selected':''}>${t('bgTanpura')}</option>${Snd.tracks.map((x,i)=>`<option value="t${i}" ${Snd.mode==='mine'&&Snd.ti===i?'selected':''}>${esc(x.name)}</option>`).join('')}<option value="off" ${Snd.mode==='off'?'selected':''}>${t('sndOff')}</option></select></label>
    <label class="check" for="vol" style="display:grid;gap:4px"><span>${t('musVol')} · ${Snd.muted?'🔇':Math.round(Snd.vol*100)+' %'}</span><input type="range" id="vol" min="0" max="1" step="0.05" value="${Snd.vol}"></label>
    <div class="qvol"><button type="button" class="btn ghost small" id="vDown">− ${t('quieter')}</button><button type="button" class="btn ghost small" id="vUp">+ ${t('louder')}</button><button type="button" class="btn ghost small" id="vMute">${Snd.muted?'🔊 '+t('muteOff'):'🔇 '+t('muteOn')}</button></div>
    <label class="check" for="fxc"><input type="checkbox" id="fxc" ${Snd.fx?'checked':''}>${t('fx')}</label>
    <div class="tracks">${Snd.tracks.length?Snd.tracks.map((x,i)=>`<div class="tr ${Snd.mode==='mine'&&i===Snd.ti?'cur':''}"><button type="button" data-play="${i}">▶</button><span>${esc(x.name)}</span>${x.fixed?'':`<button type="button" data-del="${esc(x.id)}">${t('remove')}</button>`}</div>`).join(''):`<span class="note">${t('noTracks')}</span>`}</div>
    <label class="btn ghost small" for="addTr" style="text-align:center;cursor:pointer">${t('add')}</label><input type="file" id="addTr" accept="audio/*" multiple hidden>
    <p class="note">${t('sndNote')}</p><p class="note">${t('sndAuto')}</p>`;
-  p.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>Snd.setMode(b.dataset.m));
+  $('bgSel').onchange=e=>{ const v=e.target.value; if(v[0]==='t'){ Snd.ti=+v.slice(1); Snd.mode='mine'; store.set('sm-snd','mine'); Snd.resume(); Snd.apply(); renderSndPanel() } else Snd.setMode(v) };
   $('vol').oninput=e=>Snd.setVol(+e.target.value);
   $('vDown').onclick=()=>{Snd.setVol(Snd.vol-.1);renderSndPanel()}; $('vUp').onclick=()=>{Snd.setVol(Snd.vol+.1);renderSndPanel()}; $('vMute').onclick=()=>Snd.toggleMute();
   $('fxc').onchange=e=>{Snd.fx=e.target.checked;store.set('sm-fx',Snd.fx)};
@@ -2646,7 +2756,7 @@ function maxPer(){const qpp=totalQ()/S.players.length;return qpp*4+Math.floor(qp
 function rankOf(p){return Math.min(8,Math.floor(p.score/maxPer()*9.4))}
 
 function renderHeader(active){
-  $('brandTag').textContent=t('tag'); $('brandName').textContent=t('title'); $('atlasBtn').textContent=t('atlas'); $('helpBtn').textContent=t('help'); $('sndBtn').textContent=t('sound'); $('langBtn').textContent=L==='en'?'SL':'EN';
+  $('brandTag').textContent=t('tag'); $('brandName').textContent=t('title'); $('atlasBtn').textContent=t('atlas'); $('helpBtn').textContent=t('help'); $('sndBtn').textContent=t('sound'); $('langBtn').textContent=L==='sl'?'EN':L==='en'?'HR':'SL';
   $('sndBtn').classList.toggle('on',Snd.mode!=='off'); Snd.gains(); document.documentElement.lang=L;
   if(!S){$('players').innerHTML='';return}
   $('players').innerHTML=S.players.map((p,i)=>`<div class="pchip ${active===i?'on':''}">${TILAKA(active===i?'#E9B84E':'#AEB3CE')}<span>${esc(p.name)}</span><b>${p.score}</b>${p.streak>=2?`<span class="fire">×${p.streak}</span>`:''}</div>`).join('');
@@ -2671,17 +2781,18 @@ function langScreen(){
   $('scene').innerHTML=photoTag(['Radha_kund.jpg','Keshighat_Vrindavan.JPG'],1800,'bgph','')+'<div class="shade"></div><div class="frame"></div>';
   stageEl(`<div class="card center-txt" style="max-width:560px">
     ${TILAKA('#E9B84E').replace('class="tilaka"','class="tilaka" style="width:34px;height:46px"')}
-    <h1 style="font-size:clamp(34px,7vw,48px)">Sveta mesta · Holy Places</h1>
-    <div class="eyebrow">Izberi jezik · Choose your language</div>
+    <h1 style="font-size:clamp(30px,6.4vw,46px)">Sveta mesta · Holy Places · Sveta mjesta</h1>
+    <div class="eyebrow">Izberi jezik · Choose your language · Odaberi jezik</div>
     <div class="langs" style="width:100%">
       <button class="langbtn ${L==='sl'?'on':''}" data-l="sl" type="button">Slovenščina<small>Slovenian</small></button>
       <button class="langbtn ${L==='en'?'on':''}" data-l="en" type="button">English<small>angleščina</small></button>
+      <button class="langbtn ${L==='hr'?'on':''}" data-l="hr" type="button">Hrvatski<small>hrvaščina · Croatian</small></button>
     </div>
     ${chant()}
   </div>`,'center');
   $('stage').querySelectorAll('.langbtn').forEach(b=>b.onclick=()=>{L=b.dataset.l;store.set('sm-lang',L);Snd.resume();Snd.apply();dedicationScreen()});
 }
-function switchLang(){ L=L==='en'?'sl':'en'; store.set('sm-lang',L); bgKey=null; renderHeader(); if(screenFn) screenFn(); const p=$('sndPanel'); if(!p.hidden) renderSndPanel(); if(!$('atlas').hidden) openAtlas(atlasFocus) }
+function switchLang(){ L=L==='sl'?'en':L==='en'?'hr':'sl'; store.set('sm-lang',L); bgKey=null; renderHeader(); if(screenFn) screenFn(); const p=$('sndPanel'); if(!p.hidden) renderSndPanel(); if(!$('atlas').hidden) openAtlas(atlasFocus) }
 
 /* ---------- Posvetilo / Dedication ---------- */
 function dedicationScreen(){
@@ -2714,7 +2825,7 @@ function startScene(){
   if(bgKey==='__start'+L&&$('scene').querySelector('.hero')) return; bgKey='__start'+L;
   const P=k=>[imgsOf(k),short(k)];
   const row1=[P('puri'),[['Chaitanya_Mahaprabhu_in_Dhameswar_Mahaprabhu_temple,_Nabadwip.jpg'],'Śrī Caitanya'],P('mayapur'),P('vrindavan'),[['Radhamadhava.JPG'],'Rādhā-Mādhava'],P('kailas'),P('srirangam'),P('govardhan'),[['Lord_Jagannath,_Balaram_and_Shubhadra_in_ISKCON_temple,_Pune.jpg'],'Jagannātha'],P('dvaraka'),P('badri'),P('varsana')];
-  const row2=[P('kasi'),P('tirumala'),[['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG'],'Rādhā-Kṛṣṇa'],P('prayag'),P('mukti'),P('udupi'),P('kuruksetra'),[['Chaitanya-Mahabrabhu-at-Jagannath.jpg'],L==='en'?'Mahāprabhu in Purī':'Mahāprabhu v Purīju'],P('ayodhya'),P('mathura'),P('ahobilam'),P('gangotri'),P('haridwar'),P('radhakunda')];
+  const row2=[P('kasi'),P('tirumala'),[['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG'],'Rādhā-Kṛṣṇa'],P('prayag'),P('mukti'),P('udupi'),P('kuruksetra'),[['Chaitanya-Mahabrabhu-at-Jagannath.jpg'],LX('Mahāprabhu v Purīju','Mahāprabhu in Purī')],P('ayodhya'),P('mathura'),P('ahobilam'),P('gangotri'),P('haridwar'),P('radhakunda')];
   const track=items=>{const a=items.map(([f,l])=>arch(f,l,360)).join('');return `<div class="track">${a}${a}</div>`};
   $('scene').innerHTML=`<div class="hero">${photoTag(imgsOf('radhakunda'),1800,'bgph','Rādhā-kuṇḍa')}
     <div class="tint"></div>${mandalaSvg()}
@@ -2748,7 +2859,7 @@ function startScreen(){
       <label class="check" for="stl"><input type="checkbox" id="stl" ${setup.steal?'checked':''}>${t('stealOpt')}</label></div>`}
     <div class="setup-players">${Array.from({length:nIn},(_,i)=>`<input type="text" id="pn${i}" class="${i>=vis?'more':''}" placeholder="${esc(teams&&!daily?t('tname',i):t('pname',i))}" maxlength="18" autocomplete="off" value="${esc(setup.names[i]||'')}">`).join('')}</div>
     ${daily?'':`<div class="codebox"><label class="check" for="gcode" style="font-weight:600">${t('codeL')}</label><input type="text" id="gcode" maxlength="16" autocomplete="off" placeholder="${esc(t('codePh'))}" value="${esc(setup.code||'')}"><span class="note">${t('codeNote')}</span></div>`}
-    <div class="row"><button class="btn" id="go" type="button">${daily?t('beginDaily'):t('begin')}</button>${saved&&!saved.done?`<button class="btn ghost" id="resume" type="button">${t('resume')}</button>`:''}<button class="btn ghost" id="howto" type="button">${t('howto')}</button><button class="btn ghost" id="atlas2" type="button">${t('atlasBtn')}</button><button class="btn ghost" id="teach" type="button">${t('teacherBtn')}</button><button class="btn ghost" id="dedi" type="button">${t('dedi')}</button></div>
+    <div class="row"><button class="btn" id="go" type="button">${daily?t('beginDaily'):t('begin')}</button>${saved&&!saved.done?`<button class="btn ghost" id="resume" type="button">${t('resume')}</button>`:''}<button class="btn ghost" id="howto" type="button">${t('howto')}</button><button class="btn ghost" id="atlas2" type="button">${t('atlasBtn')}</button><button class="btn ghost" id="presS" type="button">${t('presTitle')}</button><button class="btn ghost" id="teach" type="button">${t('teacherBtn')}</button><button class="btn ghost" id="dedi" type="button">${t('dedi')}</button></div>
     ${chant()}
     <p class="copy">${t('copy')}</p>
   </div>`,'start');
@@ -2765,7 +2876,7 @@ function startScreen(){
     let names=(daily?setup.names.slice(0,1):setup.names.slice(0,MAXP)).filter(Boolean); if(!names.length) names=[teams&&!daily?t('defT'):t('defP')];
     S=fresh(names,{lv,teams:teams&&!daily,timer:setup.timer&&!daily,steal:setup.steal&&!daily,code:daily?'':setup.code,daily,date:dk}); save(); Snd.resume(); mapScreen() };
   if($('resume')) $('resume').onclick=()=>{S=saved;route()};
-  $('howto').onclick=helpScreen; $('atlas2').onclick=()=>openAtlas(); $('dedi').onclick=dedicationScreen; $('teach').onclick=()=>teacherScreen(lv);
+  $('howto').onclick=helpScreen; $('atlas2').onclick=()=>openAtlas(); $('dedi').onclick=dedicationScreen; $('teach').onclick=()=>teacherScreen(lv); $('presS').onclick=()=>presScreen({lv});
 }
 function route(){ if(S.done){ if(S.view==='tb') return tbScreen(); return S.daily?dailyEnd():endScreen() } if(S.view==='q') return qScreen(); if(S.view==='mantra') return mantraScreen(); mapScreen(); }
 
@@ -2790,7 +2901,7 @@ function mapScreen(){
     ${chant()}
   </div>`);
   bindSvgPoints($('stage')); bindYT($('stage'));
-  if($('offmap')) $('offmap').onclick=()=>lightbox(PARI[0].maps.map(m=>({src:m[0],cap:L==='en'?m[2]:m[1]})),0);
+  if($('offmap')) $('offmap').onclick=()=>lightbox(PARI[0].maps.map(m=>({src:m[0],cap:LX(m[1],m[2])})),0);
   $('enter').onclick=()=>{S.view='q';S.hint=false;S.ans=null;S.stl=0;S.sans=null;S.deadline=null;save();qScreen()};
 }
 
@@ -2951,7 +3062,7 @@ function endScreen(){
     <div class="eyebrow">${lv===1?t('done'):t('doneL'+lv)}</div>
     <h2>${head}</h2>
     ${tie?`<p class="tbnote">${S.tbShared?t('tbShared'):t('tbNote')}</p>${S.tbShared?'':`<div class="row"><button class="btn" id="tbgo" type="button">${t('tbBtn')}</button></div>`}`:''}
-    <div class="pair">${arch(['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG'],L==='en'?'Rādhā and Kṛṣṇa':'Rādhā in Kṛṣṇa',500,'lg')}${arch(['Chaitanya-Mahabrabhu-at-Jagannath.jpg','Chaitanya_Mahaprabhu_in_Dhameswar_Mahaprabhu_temple,_Nabadwip.jpg'],'Śrī Caitanya Mahāprabhu',500,'lg')}</div>
+    <div class="pair">${arch(['Krishna_and_Radha,_Kangra_school,_watercolor_and_gold,_Tokyo_National_Museum.JPG'],LX('Rādhā in Kṛṣṇa','Rādhā and Kṛṣṇa'),500,'lg')}${arch(['Chaitanya-Mahabrabhu-at-Jagannath.jpg','Chaitanya_Mahaprabhu_in_Dhameswar_Mahaprabhu_temple,_Nabadwip.jpg'],'Śrī Caitanya Mahāprabhu',500,'lg')}</div>
     <div class="rank">${r.map(({p},i)=>`<div class="r ${i===0&&!tie?'first':''}"><span class="pos">${i+1}</span><span class="nm">${esc(p.name)}<br><span class="muted" style="font-size:13.5px">${t('correctN',p.ok)}${p.st?' · '+t('steals',p.st):''} · ${t('levelN',LADDER[rankOf(p)])}</span></span><span class="pts">${TILAKA('#E9B84E')}${p.score}</span></div>`).join('')}</div>
     <p>${t('endText')}</p>
     <div class="mantra">${MANTRA_HTML}</div>
@@ -3024,7 +3135,7 @@ async function fetchAlbum(k){
   const extra=[]; Object.keys(ALIAS).forEach(a=>{if(ALIAS[a]===k) extra.push(...imgsOf(a))});
   const seen=new Set(); const out=[];
   const add=(file,src,th,cap)=>{const n=fnorm(file); if(seen.has(n)) return; seen.add(n); out.push({src,th,cap})};
-  [...imgsOf(k),...extra].forEach(x=>add(x[0],photoUrl(x[0],1800),photoUrl(x[0],260),L==='en'?x[2]:x[1]));
+  [...imgsOf(k),...extra].forEach(x=>add(x[0],photoUrl(x[0],1800),photoUrl(x[0],260),LX(x[1],x[2])));
   albumCache[ck]=out.slice();
   const P=PLACES[k], isk=ISK[k]||{}; const iskCap='ISKCON · '+pn(k);
   const big=p=>p.imageinfo[0].thumburl;
@@ -3040,14 +3151,15 @@ function factsOf(k){ const out=[], seen=new Set(); const push=Q=>{ if(!Q||(ALIAS
 
 const searchText=k=>{const P=PLACES[k];return [P.n[0],P.n[1],P.loc[0],P.loc[1],...(deiOf(k)||[])].join(' ').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()};
 let atlasFocus=null, atlasView='place', atlasRoute=null;
-function openAtlas(focus,view){ atlasFocus=focus||atlasFocus||'mayapur'; atlasView=view||'place'; $('atlas').hidden=false; $('atlasTitle').textContent=t('atlasTitle'); $('atlasClose').textContent=t('close');
+function openAtlas(focus,view){ atlasFocus=focus||atlasFocus||'tovp'; atlasView=view||'place'; $('atlas').hidden=false; $('atlasTitle').textContent=t('atlasTitle'); $('atlasClose').textContent=t('close');
   $('atlasTabs').innerHTML=[['place','tabPlaces'],['pari','tabPari'],['routes','tabRoutes'],['cal','tabCal'],['diary','tabDiary']].map(([v,k])=>`<button type="button" data-v="${v}" class="${atlasView===v?'on':''}">${t(k)}</button>`).join('');
   $('atlasTabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{atlasView=b.dataset.v;$('atlasTabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));ATL&&ATL.view(atlasView)});
   buildAtlas($('atlasBox'),atlasFocus); }
-let ATL=null, ATL_MAP=null;
+let ATL=null, ATL_MAP=null, ATL_STEP=null;
 $('atlasClose').onclick=()=>{$('atlas').hidden=true;$('atlasBox').innerHTML='';ATL=null};
 document.addEventListener('keydown',e=>{ if(!$('lightbox').hidden){ if(e.key==='Escape') lbClose(); else if(e.key==='ArrowRight') lbStep(1); else if(e.key==='ArrowLeft') lbStep(-1); return }
-  if(e.key==='Escape'){ if(!$('atlas').hidden)$('atlasClose').click(); else if(!$('sndPanel').hidden)$('sndPanel').hidden=true } });
+  if(e.key==='Escape'){ if(!$('atlas').hidden)$('atlasClose').click(); else if(!$('sndPanel').hidden)$('sndPanel').hidden=true }
+  if(!$('atlas').hidden&&atlasView==='place'&&ATL_STEP&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||'')&&!e.altKey&&!e.ctrlKey&&!e.metaKey){ if(e.key==='ArrowRight'){e.preventDefault();ATL_STEP(1)} else if(e.key==='ArrowLeft'){e.preventDefault();ATL_STEP(-1)} } });
 const VZOOM=['mathura','vrindavan','govardhan','varsana','radhakunda','radhadamodar','gokula','bhandira','nandagrama'];
 function buildAtlas(box,focus,lvOnly){
   const overlay=box.id==='atlasBox';
@@ -3057,7 +3169,7 @@ function buildAtlas(box,focus,lvOnly){
   const mapEl=box.querySelector('.amap'), panel=box.querySelector('.apanel');
   let lmap=null, markers={}, routeLayer=null;
   const LVCOL={1:'#EE7F2D',2:'#7FC8A9',3:'#F2A7C3',4:'#9EC5FF',5:'#FFD27F',6:'#C3A8F5'};
-  const fillOf=mk=>MAIN.includes(mk)?'#E9B84E':LVCOL[lvOfPlace(mk)];
+  const fillOf=mk=>MAIN.includes(mk)?'#E9B84E':(LVCOL[lvOfPlace(mk)]||'#9AD0FF');
   const mstyle=(mk,on)=>({radius:on?11:(MAIN.includes(mk)?7:5.5),fillColor:on?'#F4E5BC':fillOf(mk),color:DIARY[mk]&&DIARY[mk].v?'#F4E5BC':'#0D1330',weight:DIARY[mk]&&DIARY[mk].v?3:1.5});
   const chip=x=>`<button type="button" data-k="${x}" class="${x===focus?'on':''} l${lvOfPlace(x)}">${DIARY[x]&&DIARY[x].v?'✓ ':''}${esc(short(x))}</button>`;
   const bindChips=root=>root.querySelectorAll('.chips button[data-k]').forEach(b=>b.onclick=()=>{atlasView='place';syncTabs();select(b.dataset.k)});
@@ -3065,15 +3177,26 @@ function buildAtlas(box,focus,lvOnly){
   const restyle=()=>Object.entries(markers).forEach(([mk,m])=>m.setStyle&&m.setStyle(mstyle(mk,mk===focus)));
   const drawRoute=r=>{ if(!lmap) return; if(routeLayer){lmap.removeLayer(routeLayer);routeLayer=null} if(!r) return;
     routeLayer=window.L.polyline(r.steps.map(s=>PLACES[s[0]].ll),{color:'#F4E5BC',weight:3,opacity:.85}).addTo(lmap); lmap.fitBounds(routeLayer.getBounds().pad(.15)) };
+  const HIST=[]; let HI=-1, NAVF=false;
+  const sameE=(a,b)=>a&&b&&a.v===b.v&&a.k===b.k&&a.rid===b.rid;
+  const remember=e=>{ if(!overlay||NAVF) return; const top=HIST[HI]; if(sameE(top,e)) return; if(top&&e.v==='place'&&top.v==='place'&&!top.k){HIST[HI]=e;return} HIST.splice(HI+1); HIST.push(e); HI=HIST.length-1; histBtns() };
+  const histBtns=()=>{ if(!overlay) return; $('aBack').disabled=HI<=0; $('aFwd').disabled=HI>=HIST.length-1; $('aBack').title=$('aBack').ariaLabel=t('navBack'); $('aFwd').title=$('aFwd').ariaLabel=t('navFwd') };
+  const goHist=d=>{ const i=HI+d; if(i<0||i>=HIST.length) return; HI=i; const e=HIST[i]; NAVF=true; try{ if(e.v==='place'){ atlasView='place'; syncTabs(); atlasRoute=null; drawRoute(null); select(e.k||focus) } else view(e.v,e.rid) } finally{ NAVF=false } histBtns() };
+  if(overlay){ $('aBack').onclick=()=>goHist(-1); $('aFwd').onclick=()=>goHist(1); }
+  const grpOf=k=>{ const l=lvOfPlace(k); return keys.filter(x=>lvOfPlace(x)===l) };
+  const stepPlace=d=>{ const g=grpOf(focus); const i=g.indexOf(focus); const n=g[(i+d+g.length)%g.length]; atlasView='place'; syncTabs(); select(n) };
+  if(overlay) ATL_STEP=stepPlace;
   const select=async k=>{
-    focus=k; if(overlay) atlasFocus=k;
+    focus=k; if(overlay) atlasFocus=k; remember({v:'place',k});
     const P=PLACES[k], dei=deiOf(k), facts=factsOf(k), lv=lvOfPlace(k), d=DIARY[k]||{};
     restyle();
     if(lmap&&!atlasRoute){lmap.flyTo(P.ll,VZOOM.includes(k)?11:(['mayapur','navadvip'].includes(k)?12:(NEW2.includes(k)?9:7)),{duration:.8})}
     mapEl.querySelectorAll('circle[data-k]').forEach(c=>c.setAttribute('stroke',c.dataset.k===k?'#F4E5BC':'#0D1330'));
     const fest=festOf(k), note=NOTES[k], nav=navUrl(k);
     const g=LEVELS.map(l=>keys.filter(x=>lvOfPlace(x)===l));
-    panel.innerHTML=`${atlasRoute?`<button type="button" class="btn ghost small" id="backRoute">← ${esc(tr(atlasRoute.n))}</button>`:''}
+    const gk=grpOf(k), gi=gk.indexOf(k);
+    panel.innerHTML=`<div class="pnav"><button type="button" class="btn ghost small" id="pPrev" aria-label="${esc(t('prevPlace'))}">◀ <span>${esc(short(gk[(gi-1+gk.length)%gk.length]))}</span></button><span class="pcount">${gi+1} / ${gk.length}<small>${esc(t('grp'+lv))}</small></span><button type="button" class="btn ghost small" id="pNext" aria-label="${esc(t('nextPlace'))}"><span>${esc(short(gk[(gi+1)%gk.length]))}</span> ▶</button></div>
+      ${atlasRoute?`<button type="button" class="btn ghost small" id="backRoute">← ${esc(tr(atlasRoute.n))}</button>`:''}
       <div class="afind"><input type="search" id="afq" placeholder="${esc(t('encSearch'))}" autocomplete="off"><div class="res" id="afr"></div></div>
       <div class="hero-ph" id="aph">${photoTag(imgsOf(k),1600,'',pn(k))}<span class="zoom">⤢ ${t('zoom')}</span></div>
       <div><div class="eyebrow">${keys.indexOf(k)+1} / ${keys.length}${MAIN.includes(k)?' · '+t('mainPlace'):''}${LEVELS.filter(l=>ATLASL[l].includes(k)).map(l=>`<span class="lvtag ${l>1?'l'+l:''}">${t('lvTag'+l)}</span>`).join('')}</div><h2 style="font-size:26px">${esc(pn(k))}</h2><div class="loc" style="max-width:none">${esc(tr(P.loc))}</div>${P.approx?`<p class="note">${t('approx')}</p>`:''}</div>
@@ -3084,7 +3207,7 @@ function buildAtlas(box,focus,lvOnly){
         ${note?`<p class="warn">${esc(tr(note))}</p>`:''}
         ${fest.length?`<ul class="fest">${fest.map(f=>`<li><b>${esc(tr(f[1]))}</b> · ${monRange(f[2])}</li>`).join('')}</ul><p class="note">${t('festNote')}</p>`:''}
         <div class="row">${nav?`<a class="btn small" href="${nav}" target="_blank" rel="noopener">${t('navBtn')}</a>`:''}${overlay?`<button type="button" class="btn ghost small" id="offBtn">${OFF[k]?t('offDone',OFF[k]):t('offBtn')}</button>`:''}</div>
-        <p class="note">${t('genNote')}</p></section>
+      </section>
       <section class="enc"><h4>${t('album')}</h4><div class="album" id="alb"><span class="muted" style="font-size:13.5px">${t('loading')}</span></div></section>
       ${facts.length?`<section class="enc"><details ${facts.length<=4?'open':''}><summary>${t('encBooks')} · ${facts.length}</summary><ul class="facts">${facts.map(f=>`<li><p>${f.ex}</p><span class="src">${t('srcL')}: ${esc(f.src)}${vbHtml(f.src)}</span></li>`).join('')}</ul></details></section>`:''}
       ${overlay?`<section class="enc diary"><h4>${t('diaryH')}</h4>
@@ -3098,6 +3221,7 @@ function buildAtlas(box,focus,lvOnly){
       <section class="enc">${g.map((gg,i)=>gg.length?`<div class="grp" style="margin-top:${i?10:0}px">${t('grp'+(i+1))}</div><div class="chips">${gg.map(chip).join('')}</div>`:'').join('')}</section>`;
     panel.scrollTop=0;
     bindChips(panel);
+    panel.querySelector('#pPrev').onclick=()=>stepPlace(-1); panel.querySelector('#pNext').onclick=()=>stepPlace(1);
     if($('backRoute')) $('backRoute').onclick=()=>view('routes',atlasRoute.id);
     const q=panel.querySelector('#afq'), res=panel.querySelector('#afr');
     q.oninput=()=>{ const v=q.value.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim(); if(!v){res.innerHTML='';return}
@@ -3113,7 +3237,7 @@ function buildAtlas(box,focus,lvOnly){
       if($('offBtn')) $('offBtn').onclick=e=>saveOffline(k,e.target);
       playPlaceTrack(k);
     }
-    let al=imgsOf(k).map(x=>({src:photoUrl(x[0],1800),cap:L==='en'?x[2]:x[1]})), ai=0;
+    let al=imgsOf(k).map(x=>({src:photoUrl(x[0],1800),cap:LX(x[1],x[2])})), ai=0;
     const ph=panel.querySelector('#aph'); ph.onclick=()=>{ if(al.length) lightbox(al,ai) };
     const showHero=i=>{ const a=al[i]; if(!a) return; ai=i; ph.innerHTML=`<img src="${a.src}" alt="${esc(a.cap)}" onload="this.classList.add('in')"><span class="zoom">⤢ ${t('zoom')}</span>`;
       panel.querySelectorAll('#alb button').forEach(x=>x.classList.toggle('on',+x.dataset.i===i)) };
@@ -3124,7 +3248,7 @@ function buildAtlas(box,focus,lvOnly){
     if(!ph.querySelector('img')&&al.length) showHero(0);
   };
   const view=(v,rid)=>{
-    atlasView=v; syncTabs();
+    atlasView=v; syncTabs(); if(v!=='place') remember({v,rid:rid||null});
     if(v==='place'){ atlasRoute=null; drawRoute(null); return select(focus) }
     if(v==='pari'){
       const pk=p=>(p.keys||ATLASL[p.lv]).filter(x=>keys.includes(x)&&(!p.groups||p.groups.includes(PLACES[x].isl||'mayapur')));
@@ -3133,15 +3257,15 @@ function buildAtlas(box,focus,lvOnly){
       panel.innerHTML=`<h2 style="font-size:24px">${t('tabPari')}</h2>${PARI.map((p,pi)=>`<section class="enc pari"><h4>${esc(tr(p.n))}</h4>${p.img?`<img class="pariimg" loading="lazy" src="${p.img}" alt="${esc(tr(p.n))}" onerror="this.remove()">`:''}<p>${esc(tr(p.intro))}</p>
         ${spot(p)}
         ${p.video?ytCard(p.video,tr(p.n)):''}
-        ${p.quotes?`<div class="grp">${t('pariQuotes')}</div><ul class="facts">${p.quotes.map(q=>`<li><p>${esc(L==='en'?q[1]:q[0])}</p><span class="src">${esc(L==='en'?q[3]:q[2])}</span></li>`).join('')}</ul>`:''}
-        ${p.timeline?`<div class="grp">${t('pariTimeline')}</div><ul class="tl">${p.timeline.map(x=>`<li><b>${x[0]}</b> ${esc(L==='en'?x[2]:x[1])}</li>`).join('')}</ul>`:''}
-        ${p.people?`<div class="grp">${t('pariPeople')}</div><ul class="facts">${p.people.map(x=>`<li><p><b>${esc(x[0])}</b> – ${esc(L==='en'?x[2]:x[1])}</p>${x[3]?`<div class="chips">${chip(x[3])}</div>`:''}</li>`).join('')}</ul>`:''}
-        ${(p.maps||[]).length?`<div class="grp">${t('pariMaps')}</div><div class="album">${p.maps.map((m,i)=>`<button type="button" data-pm="${pi}:${i}"><img loading="lazy" src="${m[0]}" alt="${esc(L==='en'?m[2]:m[1])}" onerror="this.parentNode.remove()"></button>`).join('')}</div><p class="note">${t('pariMapNote')}</p>`:''}
+        ${p.quotes?`<div class="grp">${t('pariQuotes')}</div><ul class="facts">${p.quotes.map(q=>`<li><p>${esc(LX(q[0],q[1]))}</p><span class="src">${esc(LX(q[2],q[3]))}</span></li>`).join('')}</ul>`:''}
+        ${p.timeline?`<div class="grp">${t('pariTimeline')}</div><ul class="tl">${p.timeline.map(x=>`<li><b>${x[0]}</b> ${esc(LX(x[1],x[2]))}</li>`).join('')}</ul>`:''}
+        ${p.people?`<div class="grp">${t('pariPeople')}</div><ul class="facts">${p.people.map(x=>`<li><p><b>${esc(x[0])}</b> – ${esc(LX(x[1],x[2]))}</p>${x[3]?`<div class="chips">${chip(x[3])}</div>`:''}</li>`).join('')}</ul>`:''}
+        ${(p.maps||[]).length?`<div class="grp">${t('pariMaps')}</div><div class="album">${p.maps.map((m,i)=>`<button type="button" data-pm="${pi}:${i}"><img loading="lazy" src="${m[0]}" alt="${esc(LX(m[1],m[2]))}" onerror="this.parentNode.remove()"></button>`).join('')}</div><p class="note">${t('pariMapNote')}</p>`:''}
         <div class="row"><button type="button" class="btn small" data-show="${pi}">${t('showMapBtn')}</button>${p.gmap?`<a class="btn ghost small" href="${p.gmap}" target="_blank" rel="noopener">${t('gmapBtn')} ↗</a>`:''}${p.web?`<a class="btn ghost small" href="${p.web}" target="_blank" rel="noopener">${t('webBtn')} ↗</a>`:''}</div>
         <div class="grp">${t('pariPlaces')} · ${pk(p).length}</div>${pchips(p)}</section>`).join('')}`;
       panel.scrollTop=0; bindChips(panel); bindYT(panel);
       panel.querySelectorAll('[data-k2],.spotimg').forEach(b=>b.onclick=()=>{atlasView='place';syncTabs();select(b.dataset.k2||b.dataset.k)});
-      panel.querySelectorAll('[data-pm]').forEach(b=>b.onclick=()=>{const [pi,i]=b.dataset.pm.split(':').map(Number);lightbox(PARI[pi].maps.map(m=>({src:m[0],cap:L==='en'?m[2]:m[1]})),i)});
+      panel.querySelectorAll('[data-pm]').forEach(b=>b.onclick=()=>{const [pi,i]=b.dataset.pm.split(':').map(Number);lightbox(PARI[pi].maps.map(m=>({src:m[0],cap:LX(m[1],m[2])})),i)});
       panel.querySelectorAll('[data-show]').forEach(b=>b.onclick=()=>{ const p=PARI[+b.dataset.show]; const ks=(p.keys||ATLASL[p.lv]).filter(x=>keys.includes(x)&&!PLACES[x].approx); if(lmap&&ks.length){ ks.length>1?lmap.fitBounds(window.L.latLngBounds(ks.map(x=>PLACES[x].ll)).pad(.3),{maxZoom:13}):lmap.setView(PLACES[ks[0]].ll,12) } });
       return }
     if(v==='routes'){
@@ -3176,7 +3300,7 @@ function buildAtlas(box,focus,lvOnly){
       BASE[baseK].addTo(lmap);
       Object.values(BASE).forEach(b=>b.on('tileload',()=>okTiles++));
       const sw=document.createElement('div'); sw.className='basesw';
-      sw.innerHTML=`<button type="button" data-b="map" class="${baseK==='map'?'on':''}">${L==='en'?'Map':'Zemljevid'}</button><button type="button" data-b="sat" class="${baseK==='sat'?'on':''}">${L==='en'?'Satellite':'Satelit'}</button>`;
+      sw.innerHTML=`<button type="button" data-b="map" class="${baseK==='map'?'on':''}">${LX('Zemljevid','Map')}</button><button type="button" data-b="sat" class="${baseK==='sat'?'on':''}">${LX('Satelit','Satellite')}</button>`;
       mapEl.appendChild(sw); window.L.DomEvent.disableClickPropagation(sw);
       sw.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(b.dataset.b===baseK) return; lmap.removeLayer(BASE[baseK]); baseK=b.dataset.b; store.set('sm-base',baseK); BASE[baseK].addTo(lmap); sw.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b)) });
       if(lvOnly===1) window.L.polyline(keys.map(k=>PLACES[k].ll),{color:'#EE7F2D',weight:1.5,opacity:.6,dashArray:'4 6'}).addTo(lmap);
@@ -3227,7 +3351,7 @@ const FEST=[
  ['nathdwara',['Annakūṭa','Annakūṭa'],[10,11]],
 ];
 const festOf=k=>FEST.filter(f=>f[0]===k);
-const monRange=m=>m.map(x=>MON[L][x-1]).join(L==='en'?'–':'–');
+const monRange=m=>m.map(x=>(MON[L]||MON.en)[x-1]).join(L==='en'?'–':'–');
 /* Poti po Caitanya-caritāmṛti / Routes from the Caitanya-caritāmṛta */
 /* v17: navigacija in opombe za nove kraje */
 Object.assign(NAV,{tovp:'Temple of the Vedic Planetarium Mayapur',spsamadhi:'Srila Prabhupada Pushpa Samadhi Mandir Mayapur',spkutir:'Srila Prabhupada Bhajan Kutir ISKCON Mayapur',sproom:'ISKCON Mayapur Srila Prabhupada Room',
@@ -3277,12 +3401,301 @@ async function saveOffline(k,btn){
     OFF[k]=n; store.set('sm-off',OFF); btn.textContent=t('offDone',n);
   }catch(e){ btn.textContent=t('offNo') } btn.disabled=false }
 /* Glasba ob mestu / Music for a place */
-function playPlaceTrack(k){ const d=DIARY[k]; if(!d||!d.track||Snd.mode==='off') return; const i=Snd.tracks.findIndex(x=>x.id===d.track); if(i<0) return; if(Snd.ti===i&&Snd.mode==='mine') return; Snd.ti=i; Snd.mode='mine'; store.set('sm-snd','mine'); Snd.apply() }
+function playPlaceTrack(k){ const d=Object.assign({},CUST.places[k]&&CUST.places[k].track?{track:CUST.places[k].track}:{},DIARY[k]&&DIARY[k].track?{track:DIARY[k].track}:{}); if(!d.track||Snd.mode==='off') return; const i=Snd.tracks.findIndex(x=>x.id===d.track); if(i<0) return; if(Snd.ti===i&&Snd.mode==='mine') return; Snd.ti=i; Snd.mode='mine'; store.set('sm-snd','mine'); Snd.apply() }
+/* ---------- v18: mediji, gesla, urejevalnik, arhiv, prezentacije ---------- */
+const MEDIA={};
+function midb(op,key,val){ return new Promise((res,rej)=>{ if(!window.indexedDB) return rej('no idb'); const rq=indexedDB.open('sveta-mesta-media',1);
+  rq.onupgradeneeded=()=>rq.result.createObjectStore('m'); rq.onerror=()=>rej(rq.error);
+  rq.onsuccess=()=>{ const tx=rq.result.transaction('m',/get/.test(op)?'readonly':'readwrite'), st=tx.objectStore('m'); let r;
+    if(op==='get') r=st.get(key); else if(op==='getAll'){ const out=[]; const c=st.openCursor(); c.onsuccess=()=>{ const cu=c.result; if(cu){ out.push([cu.key,cu.value]); cu.continue() } else res(out) }; c.onerror=()=>rej(c.error); return }
+    else if(op==='put') r=st.put(val,key); else r=st.delete(key);
+    r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error) } }) }
+async function loadMedia(){ try{ (await midb('getAll')).forEach(([k,b])=>{ MEDIA[k]=URL.createObjectURL(b) }) }catch(e){} }
+const blobToData=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(b)});
+const dataToBlob=async d=>(await fetch(d)).blob();
+async function saveFile(name,blob){
+  if(window.showSaveFilePicker){ try{ const h=await showSaveFilePicker({suggestedName:name}); const w=await h.createWritable(); await w.write(blob); await w.close(); return true }catch(e){ if(e&&e.name==='AbortError') return false } }
+  const u=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),4000); return true }
+const pickFile=accept=>new Promise(res=>{ const i=document.createElement('input'); i.type='file'; i.accept=accept; i.onchange=()=>res(i.files[0]||null); i.click() });
+
+/* --- osebna gesla (koda) --- */
+const ED_SECRET='b84a691745e5fb7c18e1d150', ED_MASTER='1xmyacqrmda', ED_REVOKED=[];
+const normCode=c=>String(c||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+const codeCheck=id=>hstr(ED_SECRET+'|'+id).toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,4).padEnd(4,'X');
+const fmtCode=id=>`SM-${id}-${codeCheck(id)}`;
+function codeOk(c){ const n=normCode(c); const m=n.match(/^SM([A-Z0-9]{6})([A-Z0-9]{4})$/); return !!m&&codeCheck(m[1])===m[2]&&!ED_REVOKED.includes(m[1]) }
+const newCodeId=()=>{const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let s='';const r=crypto.getRandomValues(new Uint8Array(6));r.forEach(x=>s+=A[x%A.length]);return s};
+const edUnlocked=()=>{ const e=store.get('sm-ed',null); return !!(e&&(e.master||codeOk(e.code))) };
+
+/* --- arhiv na disk --- */
+async function exportArchive(withMedia,btn){
+  const old=btn&&btn.textContent; if(btn){btn.disabled=true;btn.textContent=t('archBusy')}
+  try{
+    const ls={}; for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(/^sm-/.test(k)&&k!=='sm-ed') ls[k]=localStorage.getItem(k) }
+    const out={app:'sveta-mesta',ver:18,date:new Date().toISOString(),ls,media:[],photos:[],tracks:[]};
+    if(withMedia){
+      try{ for(const [k,b] of await midb('getAll')) out.media.push([k,await blobToData(b)]) }catch(e){}
+      for(const k of Object.keys(DIARY)){ if(DIARY[k].photo){ try{ const b=await pidb('get',k); if(b) out.photos.push([k,await blobToData(b)]) }catch(e){} } }
+      try{ for(const r of await idb('getAll')) out.tracks.push({id:r.id,name:r.name,data:await blobToData(r.blob)}) }catch(e){}
+    }
+    const ok=await saveFile(`sveta-mesta-arhiv-${dayKey()}.json`,new Blob([JSON.stringify(out)],{type:'application/json'}));
+    if(btn) btn.textContent=ok?t('archDone'):old;
+  }catch(e){ if(btn) btn.textContent=t('archBad') } if(btn) btn.disabled=false }
+async function importArchive(){
+  const f=await pickFile('.json,application/json'); if(!f) return;
+  let j; try{ j=JSON.parse(await f.text()) }catch(e){ alertBox(t('archBad')); return }
+  if(!j||j.app!=='sveta-mesta'||!j.ls){ alertBox(t('archBad')); return }
+  if(!confirm(t('archConfirm'))) return;
+  Object.entries(j.ls).forEach(([k,v])=>{ if(/^sm-/.test(k)) try{ localStorage.setItem(k,v) }catch(e){} });
+  for(const [k,d] of j.media||[]){ try{ await midb('put',k,await dataToBlob(d)) }catch(e){} }
+  for(const [k,d] of j.photos||[]){ try{ await pidb('put',k,await dataToBlob(d)) }catch(e){} }
+  for(const r of j.tracks||[]){ try{ await idb('put',{id:r.id,name:r.name,blob:await dataToBlob(r.data)}) }catch(e){} }
+  store.set('sm-ret','teach'); location.reload() }
+function alertBox(msg){ try{ alert(msg) }catch(e){} }
+
+/* --- zaslon Za učitelje: razširitev --- */
+function teachExtras(){
+  return `<section class="tbox"><h3>${t('presTitle')}</h3><p>${t('presIntro')}</p><div class="row"><button class="btn" id="tPres" type="button">${t('presBtn')}</button></div></section>
+  <section class="tbox"><h3>${t('archTitle')}</h3><p>${t('archIntro')}</p>
+    <label class="check" for="archM"><input type="checkbox" id="archM" checked>${t('archMedia')}</label>
+    <div class="row"><button class="btn" id="archE" type="button">${t('archExp')}</button><button class="btn ghost" id="archI" type="button">${t('archImp')}</button></div></section>
+  <section class="tbox"><h3>${t('edTitle')}</h3>${edUnlocked()?`<p>${t('edOn')}</p><div class="row"><button class="btn" id="edOpen" type="button">${t('edOpen')}</button><button class="btn ghost" id="edLock" type="button">${t('edLock')}</button></div>`:
+    `<p>${t('edLocked')}</p><div class="row" style="align-items:stretch"><input type="text" id="edCode" placeholder="SM-XXXXXX-XXXX" autocomplete="off" style="flex:1;min-width:180px"><button class="btn" id="edGo" type="button">${t('edUnlock')}</button></div><p class="note" id="edMsg"></p>`}
+    <details class="creator"><summary>${t('edCreator')}</summary><div class="row" style="align-items:stretch"><input type="password" id="edPw" placeholder="${esc(t('edMasterPh'))}" autocomplete="off" style="flex:1;min-width:180px"><button class="btn ghost" id="edPwGo" type="button">${t('edGen')}</button></div><div id="edCodes"></div></details>
+    <p class="note">${t('edNote')}</p></section>` }
+function bindTeachExtras(lv){
+  $('tPres').onclick=()=>presScreen({lv});
+  $('archE').onclick=e=>exportArchive($('archM').checked,e.target); $('archI').onclick=importArchive;
+  if($('edOpen')) $('edOpen').onclick=()=>editorScreen('places');
+  if($('edLock')) $('edLock').onclick=()=>{ store.set('sm-ed',null); teacherScreen(lv) };
+  if($('edGo')) $('edGo').onclick=()=>{ const c=$('edCode').value; if(codeOk(c)){ store.set('sm-ed',{code:normCode(c),at:dayKey()}); editorScreen('places') } else $('edMsg').textContent=t('edBad') };
+  $('edPwGo').onclick=()=>{ if(hstr('sm-master|'+$('edPw').value)!==ED_MASTER){ $('edCodes').innerHTML=`<p class="warn">${t('edBadPw')}</p>`; return }
+    const list=store.get('sm-codes',[]);
+    const draw=()=>{ $('edCodes').innerHTML=`<div class="row"><button class="btn small" id="cgNew" type="button">${t('edNewCode')}</button><button class="btn ghost small" id="cgMe" type="button">${t('edOpen')}</button></div>
+      <ul class="facts">${list.map((c,i)=>`<li><p><b style="font-family:monospace;letter-spacing:.06em">${fmtCode(c.id)}</b> · ${esc(c.at)}</p><input type="text" data-cn="${i}" value="${esc(c.who||'')}" placeholder="${esc(t('edWho'))}"></li>`).join('')}</ul>`;
+      $('cgNew').onclick=()=>{ list.unshift({id:newCodeId(),at:dayKey(),who:''}); store.set('sm-codes',list); draw() };
+      $('cgMe').onclick=()=>{ store.set('sm-ed',{master:1,at:dayKey()}); editorScreen('places') };
+      $('edCodes').querySelectorAll('[data-cn]').forEach(inp=>inp.oninput=()=>{ list[+inp.dataset.cn].who=inp.value; store.set('sm-codes',list) }) };
+    draw() } }
+
+/* --- urejevalnik --- */
+const allLevels=()=>[...[1,2,3,4,5,6].map(l=>({lv:l,name:t('lv'+l),cust:-1})),...CUST.levels.map((C,i)=>({lv:BASELV+1+i,name:tr(C.n)||('#'+(i+1)),cust:i}))];
+const stagesOfLv=lv=>{ if(lv>BASELV){ const C=CUST.levels[lv-BASELV-1]; return C?C.stages.map((s,j)=>({j,name:tr(s.n)||('#'+(j+1))})):[] } return STAGES.map((x,i)=>x.lv===lv?i:-1).filter(i=>i>=0).map((si,j)=>({j,si,name:tr(STAGES[si].n)})) };
+const placeOpts=sel=>{ const ks=Object.keys(PLACES).sort((a,b)=>pn(a).localeCompare(pn(b))); return ks.map(k=>`<option value="${k}" ${k===sel?'selected':''}>${esc(pn(k)||k)}${PLACES[k].hidden?' ✕':''}</option>`).join('') };
+const ta=(id,v,rows=3)=>`<textarea id="${id}" rows="${rows}">${esc(v||'')}</textarea>`;
+const inp=(id,v,ph)=>`<input type="text" id="${id}" value="${esc(v||'')}" ${ph?`placeholder="${esc(ph)}"`:''}>`;
+const pair=(lab,id,v,area)=>`<div class="edf"><label>${lab}</label><div class="ed3"><span>SL</span>${area?ta(id+'0',v&&v[0]):inp(id+'0',v&&v[0])}<span>EN</span>${area?ta(id+'1',v&&v[1]):inp(id+'1',v&&v[1])}<span>HR</span>${area?ta(id+'2',v&&v[2]):inp(id+'2',v&&v[2])}</div></div>`;
+const rdPair=id=>{ const a=[0,1,2].map(i=>($(id+i)||{}).value||''); a.forEach((x,i)=>a[i]=x.trim()); if(!a[0]&&!a[1]&&!a[2]) return null; if(!a[1]) a[1]=a[0]; if(!a[0]) a[0]=a[1]; if(!a[2]) a.pop(); return a };
+function edReload(where){ saveCust(); store.set('sm-ret',where||'ed'); location.reload() }
+function editorScreen(tab,arg){
+  if(!edUnlocked()) return teacherScreen();
+  screenFn=()=>editorScreen(tab,arg); renderHeader(-1); setBg('mayapur');
+  const tabs=[['places','edTabPlaces'],['q','edTabQ'],['lv','edTabLv']].map(([v,k])=>`<button type="button" data-et="${v}" class="${tab===v?'on':''}">${t(k)}</button>`).join('');
+  let body='';
+  if(tab==='places'){
+    const k=arg&&arg.k, isNew=arg&&arg.isNew, P=k?PLACES[k]:null, C=k?(CUST.places[k]||{}):{};
+    body=`<div class="row" style="align-items:stretch"><select id="edSel" style="flex:1;min-width:200px"><option value="">— ${t('edPick')} —</option>${placeOpts(k)}</select><button class="btn ghost" id="edNewP" type="button">+ ${t('edNewPlace')}</button></div>`;
+    if(P||isNew){ const Q=P||{n:['',''],loc:['',''],d:null,dei:null,img:[]};
+      body+=`<div class="edform">${isNew?`<p class="note">${t('edNewNote')}</p>`:''}
+        ${pair(t('edName'),'fN',Q.n)}${pair(t('edLoc'),'fL',Q.loc)}${pair(t('encStory'),'fD',Q.d,1)}${pair(t('encDei'),'fE',Q.dei,1)}
+        <div class="edf"><label>${t('edLL')}</label><div class="row">${inp('fLL',P&&P.ll&&!P.approx?P.ll.join(', '):'','27.58, 77.70')}<select id="fAt"><option value="">${t('edNear')}</option>${placeOpts(P&&P.at||'')}</select></div></div>
+        ${isNew||(P&&P.cust)?`<div class="edf"><label>${t('edLv')}</label><select id="fLv">${allLevels().map(x=>`<option value="${x.lv}" ${Q.lv===x.lv?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div>`:''}
+        <div class="edf"><label>${t('album')}</label><div id="fImgs" class="edimgs"></div>
+          <div class="row" style="align-items:stretch">${inp('fUrl','','https://…')}<button class="btn ghost small" id="fAddUrl" type="button">${t('edAddUrl')}</button><button class="btn ghost small" id="fAddFile" type="button">${t('edAddFile')}</button></div></div>
+        <div class="edf"><label>${t('edMusic')}</label><div class="row"><select id="fTr"><option value="">${t('edMusicNone')}</option>${Snd.tracks.map(x=>`<option value="${esc(x.id)}" ${C.track===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select><button class="btn ghost small" id="fAddTr" type="button">${t('edAddAudio')}</button></div></div>
+        <div class="row"><button class="btn" id="fSave" type="button">${t('edSave')}</button>
+          ${P&&!P.cust?`<button class="btn ghost" id="fHide" type="button">${P.hidden?t('edShow'):t('edHide')}</button>${CUST.places[k]?`<button class="btn ghost" id="fReset" type="button">${t('edReset')}</button>`:''}`:''}
+          ${P&&P.cust?`<button class="btn ghost" id="fDel" type="button">${t('edDelete')}</button>`:''}</div></div>` }
+  } else if(tab==='q'){
+    const lvs=allLevels(), lv=(arg&&arg.lv)||1, sts=stagesOfLv(lv), sj=Math.min((arg&&arg.st)||0,Math.max(0,sts.length-1));
+    let qs=[]; if(lv>BASELV){ const C=CUST.levels[lv-BASELV-1]; qs=C&&C.stages[sj]?(C.stages[sj].qs||[]).map((Q,qi)=>({Q,ref:{kind:'cust',lvi:lv-BASELV-1,sti:sj,qi}})):[] }
+    else if(sts[sj]) qs=POOL[sts[sj].si].map(Q=>({Q,ref:QMETA.get(Q)||{kind:'base',id:qid(Q)}}));
+    const delN=lv<=BASELV?Object.keys(CUST.qdel).length:0;
+    body=`<div class="row"><select id="qLv">${lvs.map(x=>`<option value="${x.lv}" ${x.lv===lv?'selected':''}>${esc(x.name)}</option>`).join('')}</select><select id="qSt">${sts.map(s=>`<option value="${s.j}" ${s.j===sj?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>
+      ${sts.length?`<div class="row"><button class="btn" id="qNew" type="button">+ ${t('edNewQ')}</button>${delN?`<button class="btn ghost small" id="qRest" type="button">${t('edRestoreQ',delN)}</button>`:''}</div>
+      <ol class="edq">${qs.map((x,i)=>`<li><p><b>${esc(qText(x.Q))}</b> <i>(${esc(pn(x.Q[0])||x.Q[0])})</i>${x.ref.kind!=='base'||CUST.qedit[x.ref.id]?' <span class="lvtag">✎</span>':''}</p><div class="row"><button class="btn ghost small" data-qe="${i}" type="button">${t('edEdit')}</button><button class="btn ghost small" data-qd="${i}" type="button">${t('edDelQ')}</button></div></li>`).join('')}</ol>`:`<p class="note">${t('edNoStages')}</p>`}
+      <div id="qForm"></div>`;
+    editorScreen._qs=qs; editorScreen._lv=lv; editorScreen._sj=sj;
+  } else if(tab==='lv'){
+    const i=arg&&arg.i, C=arg&&arg.keep?editorScreen._C:i!==undefined&&i>=0?CUST.levels[i]:(arg&&arg.isNew?{n:['',''],d:['',''],stages:[{n:['',''],intro:['',''],pick:5,qs:[]}]}:null);
+    body=`<p>${t('edLvIntro')}</p><ul class="facts">${CUST.levels.map((x,j)=>`<li><p><b>${esc(tr(x.n))}</b> · ${x.stages.length} ${t('edStagesN')} · ${x.stages.reduce((s,y)=>s+(y.qs||[]).length,0)} ${t('edQN')}</p><div class="row"><button class="btn ghost small" data-le="${j}" type="button">${t('edEdit')}</button><button class="btn ghost small" data-lq="${j}" type="button">${t('edTabQ')}</button><button class="btn ghost small" data-ld="${j}" type="button">${t('edDelete')}</button></div></li>`).join('')||`<li><p class="muted">${t('edNoLv')}</p></li>`}</ul>
+      <div class="row"><button class="btn" id="lvNew" type="button">+ ${t('edNewLv')}</button></div>`;
+    if(C) body+=`<div class="edform">${pair(t('edLvName'),'lN',C.n)}${pair(t('edLvDesc'),'lD',C.d,1)}
+      <div id="lvSt">${C.stages.map((s,j)=>`<fieldset class="edst"><legend>${t('edStage')} ${j+1}</legend>${pair(t('edStageName'),'sN'+j+'_',s.n)}${pair(t('edStageIntro'),'sI'+j+'_',s.intro,1)}<div class="edf"><label>${t('edPickN')}</label><input type="number" id="sP${j}" min="1" max="50" value="${s.pick||5}"></div>${C.stages.length>1?`<button class="btn ghost small" data-sd="${j}" type="button">${t('edDelStage')}</button>`:''}</fieldset>`).join('')}</div>
+      <div class="row"><button class="btn ghost small" id="lvAddSt" type="button">+ ${t('edAddStage')}</button></div>
+      <div class="row"><button class="btn" id="lvSave" type="button">${t('edSave')}</button></div></div>`;
+    editorScreen._C=C; editorScreen._i=i;
+  }
+  stageEl(`<div class="card edcard"><div class="eyebrow">${t('teachEyebrow')}</div><h2>${t('edTitle')}</h2>
+    <div class="seg edtabs">${tabs}</div>${body}
+    <p class="note">${t('edSaveNote')}</p>
+    <div class="row"><button class="btn ghost" id="edBack" type="button">${t('teacherBtn')}</button><button class="btn ghost" id="edHome" type="button">${t('home')}</button></div></div>`);
+  $('stage').querySelectorAll('[data-et]').forEach(b=>b.onclick=()=>editorScreen(b.dataset.et));
+  $('edBack').onclick=()=>teacherScreen(); $('edHome').onclick=startScreen;
+  if(tab==='places') bindPlaceEd(arg);
+  if(tab==='q') bindQEd();
+  if(tab==='lv') bindLvEd();
+}
+function bindPlaceEd(arg){
+  $('edSel').onchange=e=>e.target.value&&editorScreen('places',{k:e.target.value});
+  $('edNewP').onclick=()=>editorScreen('places',{isNew:1});
+  if(!$('fSave')) return;
+  const k=arg.k, P=k?PLACES[k]:null; let imgs=(P?imgsOf(k):[]).map(x=>x.slice());
+  const drawImgs=()=>{ $('fImgs').innerHTML=imgs.map((x,i)=>`<div class="edimg"><img src="${photoUrl(x[0],260)}" alt="" onerror="this.style.opacity=.2"><div>${inp('ic'+i+'_0',x[1],'SL')}${inp('ic'+i+'_1',x[2],'EN')}</div><button type="button" class="btn ghost small" data-ix="${i}" aria-label="${esc(t('remove'))}">✕</button></div>`).join('')||`<p class="muted">${t('noPhotos')}</p>`;
+    $('fImgs').querySelectorAll('[data-ix]').forEach(b=>b.onclick=()=>{ readCaps(); imgs.splice(+b.dataset.ix,1); drawImgs() }) };
+  const readCaps=()=>imgs.forEach((x,i)=>{ if($('ic'+i+'_0')){ x[1]=$('ic'+i+'_0').value; x[2]=$('ic'+i+'_1').value||x[1] } });
+  drawImgs();
+  $('fAddUrl').onclick=()=>{ const u=$('fUrl').value.trim(); if(!/^https?:\/\//.test(u)) return; readCaps(); imgs.push([u,'','']); $('fUrl').value=''; drawImgs() };
+  $('fAddFile').onclick=async()=>{ const f=await pickFile('image/*'); if(!f) return; try{ const b=await resizePhoto(f); const id='m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); await midb('put',id,b); MEDIA[id]=URL.createObjectURL(b); readCaps(); imgs.push(['media:'+id,f.name.replace(/\.[^.]+$/,''),'']); drawImgs() }catch(e){ alertBox(t('archBad')) } };
+  $('fAddTr').onclick=async()=>{ const f=await pickFile('audio/*'); if(!f) return; const id=Date.now()+'-'+Math.random().toString(36).slice(2); try{ await idb('put',{id,name:f.name.replace(/\.[^.]+$/,''),blob:f}); await Snd.loadTracks(); const s=$('fTr'); const o=document.createElement('option'); o.value=id; o.textContent=f.name; o.selected=true; s.appendChild(o) }catch(e){} };
+  $('fSave').onclick=()=>{ readCaps(); const n=rdPair('fN'); if(!n){ $('fN0').focus(); return }
+    const c=Object.assign(CUST.places[k]||{},{n,loc:rdPair('fL')||['',''],d:rdPair('fD'),dei:rdPair('fE'),img:imgs.map(x=>[x[0],x[1]||'',x[2]||x[1]||''])});
+    if(!c.d) delete c.d; if(!c.dei) delete c.dei;
+    const ll=$('fLL').value.split(/[,;\s]+/).map(Number).filter(x=>!isNaN(x)&&x!==0); if(ll.length===2) c.ll=ll; else delete c.ll;
+    const at=$('fAt').value; if(at) c.at=at; else delete c.at;
+    if($('fLv')) c.lv=+$('fLv').value;
+    const tr0=$('fTr').value; if(tr0) c.track=tr0; else delete c.track;
+    let key=k; if(arg.isNew){ key='u'+Date.now().toString(36); c.isNew=1; if(!c.ll&&!c.at) c.at='mayapur'; c.src=['lastna vsebina','own content'] }
+    CUST.places[key]=c; edReload('ed:places:'+key) };
+  if($('fHide')) $('fHide').onclick=()=>{ const c=CUST.places[k]||(CUST.places[k]={}); c.hide=!P.hidden; if(!c.hide) delete c.hide; if(!Object.keys(c).length) delete CUST.places[k]; edReload('ed:places:'+k) };
+  if($('fReset')) $('fReset').onclick=()=>{ if(!confirm(t('edConfirm'))) return; delete CUST.places[k]; edReload('ed:places:'+k) };
+  if($('fDel')) $('fDel').onclick=()=>{ if(!confirm(t('edConfirm'))) return; delete CUST.places[k]; edReload('ed:places') };
+}
+function qFormHtml(Q){ Q=Q||[]; const v=(i,j)=>j===undefined?Q[i]:(Q[i]||[])[j];
+  return `<div class="edform"><div class="edf"><label>${t('edPlaceL')}</label><select id="qP">${placeOpts(Q[0])}</select></div>
+    ${pair(t('edQ'),'qq',[Q[2],Q[5],Q[8]],1)}
+    ${[0,1,2].map(o=>pair(o===0?t('edOptOk'):t('edOpt',o+1),'qo'+o+'_',[v(3,o),v(6,o),v(9,o)])).join('')}
+    ${pair(t('edEx'),'qx',[Q[4],Q[7],Q[10]],1)}${pair(t('srcL'),'qs',Q[1])}
+    <div class="row"><button class="btn" id="qSave" type="button">${t('edSave')}</button><button class="btn ghost" id="qCancel" type="button">${t('close')}</button></div></div>` }
+function readQ(){ const q=rdPair('qq'), o=[0,1,2].map(i=>rdPair('qo'+i+'_')), x=rdPair('qx')||['',''], s=rdPair('qs')||['',''];
+  if(!q||o.some(a=>!a)){ alertBox(t('edQReq')); return null }
+  const Q=[$('qP').value,[s[0],s[1]],q[0],o.map(a=>a[0]),x[0],q[1],o.map(a=>a[1]),x[1]];
+  if(q[2]||o.some(a=>a[2])||x[2]){ Q[8]=q[2]||q[1]; Q[9]=o.map(a=>a[2]||a[1]); Q[10]=x[2]||x[1] } return Q }
+function bindQEd(){
+  const lv=editorScreen._lv, sj=editorScreen._sj, qs=editorScreen._qs;
+  $('qLv').onchange=e=>editorScreen('q',{lv:+e.target.value,st:0}); if($('qSt')) $('qSt').onchange=e=>editorScreen('q',{lv,st:+e.target.value});
+  const back='ed:q:'+lv+':'+sj;
+  const open=(Q,ref)=>{ $('qForm').innerHTML=qFormHtml(Q); $('qForm').scrollIntoView({behavior:'smooth'}); $('qCancel').onclick=()=>$('qForm').innerHTML='';
+    $('qSave').onclick=()=>{ const N=readQ(); if(!N) return;
+      if(!ref){ if(lv>BASELV){ const st=CUST.levels[lv-BASELV-1].stages[sj]; (st.qs||(st.qs=[])).push(N) } else CUST.qnew.push({id:'n'+Date.now().toString(36),lv,st:sj,Q:N}) }
+      else if(ref.kind==='base') CUST.qedit[ref.id]=N;
+      else if(ref.kind==='new'){ const x=CUST.qnew.find(y=>y.id===ref.id); if(x) x.Q=N }
+      else if(ref.kind==='cust') CUST.levels[ref.lvi].stages[ref.sti].qs[ref.qi]=N;
+      edReload(back) } };
+  if($('qNew')) $('qNew').onclick=()=>open(null,null);
+  if($('qRest')) $('qRest').onclick=()=>{ if(!confirm(t('edConfirm'))) return; CUST.qdel={}; edReload(back) };
+  $('stage').querySelectorAll('[data-qe]').forEach(b=>b.onclick=()=>{ const x=qs[+b.dataset.qe]; open(x.Q,x.ref) });
+  $('stage').querySelectorAll('[data-qd]').forEach(b=>b.onclick=()=>{ if(!confirm(t('edConfirm'))) return; const r=qs[+b.dataset.qd].ref;
+    if(r.kind==='base'){ CUST.qdel[r.id]=1; delete CUST.qedit[r.id] } else if(r.kind==='new') CUST.qnew=CUST.qnew.filter(y=>y.id!==r.id); else if(r.kind==='cust') CUST.levels[r.lvi].stages[r.sti].qs.splice(r.qi,1);
+    edReload(back) });
+}
+function bindLvEd(){
+  const C=editorScreen._C, i=editorScreen._i;
+  $('lvNew').onclick=()=>editorScreen('lv',{isNew:1});
+  $('stage').querySelectorAll('[data-le]').forEach(b=>b.onclick=()=>editorScreen('lv',{i:+b.dataset.le}));
+  $('stage').querySelectorAll('[data-lq]').forEach(b=>b.onclick=()=>editorScreen('q',{lv:BASELV+1+(+b.dataset.lq),st:0}));
+  $('stage').querySelectorAll('[data-ld]').forEach(b=>b.onclick=()=>{ if(!confirm(t('edConfirm'))) return; CUST.levels.splice(+b.dataset.ld,1); edReload('ed:lv') });
+  if(!C) return;
+  const read=()=>{ C.n=rdPair('lN')||C.n; C.d=rdPair('lD')||['','']; C.stages.forEach((s,j)=>{ s.n=rdPair('sN'+j+'_')||['#'+(j+1),'#'+(j+1)]; s.intro=rdPair('sI'+j+'_')||['','']; s.pick=Math.max(1,+$('sP'+j).value||5) }) };
+  $('lvAddSt').onclick=()=>{ read(); C.stages.push({n:['',''],intro:['',''],pick:5,qs:[]}); editorScreen('lv',i>=0?{i,keep:1}:{isNew:1,keep:1}) };
+  $('stage').querySelectorAll('[data-sd]').forEach(b=>b.onclick=()=>{ read(); C.stages.splice(+b.dataset.sd,1); editorScreen('lv',i>=0?{i,keep:1}:{isNew:1,keep:1}) });
+  $('lvSave').onclick=()=>{ read(); if(!C.n||!C.n[0]){ $('lN0').focus(); return } if(!(i>=0)) CUST.levels.push(C); edReload('ed:q:'+(BASELV+1+(i>=0?i:CUST.levels.length-1))+':0') };
+}
+
+/* --- prezentacije --- */
+function presSlides(keys,o,title){
+  const sl=[]; const img1=k=>imgsOf(k)[0];
+  sl.push({type:'title',title,sub:t('presSub',keys.length),img:keys.map(img1).find(Boolean)});
+  keys.forEach(k=>{ const P=PLACES[k], ims=imgsOf(k).slice(0,o.nImg||1);
+    sl.push({type:'place',k,title:pn(k),loc:tr(P.loc),img:ims[0],dei:o.dei?(deiOf(k)?tr(deiOf(k)):''):'',text:o.story?tr(P.d)||'':'',
+      facts:o.books?factsOf(k).slice(0,3):[],note:o.travel&&NOTES[k]?tr(NOTES[k]):'',fest:o.travel?festOf(k).map(f=>tr(f[1])+' · '+monRange(f[2])):[]});
+    if(ims.length>1) sl.push({type:'photos',title:pn(k),imgs:ims.slice(1)}) });
+  if(o.end) sl.push({type:'end'});
+  return sl }
+const slideImg=(x,inline)=>x?`<img src="${inline&&inline[x[0]]?inline[x[0]]:photoUrl(x[0],1600)}" alt="${esc(LX(x[1],x[2]))}">`:'';
+function slideHtml(s,inline){
+  if(s.type==='title') return `<section class="sl sl-title">${slideImg(s.img,inline)}<div class="sl-shade"></div><div class="sl-in"><h1>${esc(s.title)}</h1><p>${esc(s.sub)}</p><p class="sl-copy">${esc(t('copy'))}</p></div></section>`;
+  if(s.type==='photos') return `<section class="sl sl-photos"><h2>${esc(s.title)}</h2><div class="sl-grid">${s.imgs.map(x=>`<figure>${slideImg(x,inline)}<figcaption>${esc(LX(x[1],x[2]))}</figcaption></figure>`).join('')}</div></section>`;
+  if(s.type==='end') return `<section class="sl sl-title sl-end"><div class="sl-in"><p class="sl-mantra">Hare Kṛṣṇa Hare Kṛṣṇa Kṛṣṇa Kṛṣṇa Hare Hare<br>Hare Rāma Hare Rāma Rāma Rāma Hare Hare</p><p>${esc(t('endText'))}</p></div></section>`;
+  return `<section class="sl sl-place"><div class="sl-pic">${slideImg(s.img,inline)}${s.img?`<span>${esc(LX(s.img[1],s.img[2]))}</span>`:''}</div><div class="sl-txt"><h2>${esc(s.title)}</h2><p class="sl-loc">${esc(s.loc)}</p>
+    ${s.dei?`<h3>${esc(t('encDei'))}</h3><p>${esc(s.dei)}</p>`:''}${s.text?`<p>${esc(s.text)}</p>`:''}
+    ${s.facts.length?`<h3>${esc(t('encBooks'))}</h3><ul>${s.facts.map(f=>`<li>${f.ex} <small>(${esc(f.src)})</small></li>`).join('')}</ul>`:''}
+    ${s.note||s.fest.length?`<h3>${esc(t('encTravel'))}</h3>${s.note?`<p>${esc(s.note)}</p>`:''}${s.fest.length?`<p>${s.fest.map(esc).join(' · ')}</p>`:''}`:''}</div></section>` }
+const PRES_CSS=`.sl{position:relative;width:100%;height:100%;overflow:hidden;background:#0D1330;color:#F4E5BC;font-family:Georgia,serif;box-sizing:border-box}
+.sl img{display:block}.sl-title>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.sl-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,19,48,.25),rgba(13,19,48,.9))}
+.sl-in{position:absolute;left:6%;right:6%;bottom:9%;display:grid;gap:12px}.sl-in h1{font-size:clamp(28px,5.5vw,64px);margin:0;color:#E9B84E;font-weight:500}.sl-in p{font-size:clamp(15px,2vw,24px);margin:0;max-width:60ch}.sl-copy{opacity:.7;font-size:14px!important}
+.sl-end .sl-in{top:0;bottom:0;align-content:center;text-align:center;justify-items:center}.sl-mantra{font-size:clamp(20px,3.4vw,40px)!important;color:#E9B84E;line-height:1.5}
+.sl-place{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}.sl-pic{position:relative;background:#000}.sl-pic img{width:100%;height:100%;object-fit:cover}.sl-pic span{position:absolute;left:0;right:0;bottom:0;padding:8px 14px;font:13px/1.3 system-ui,sans-serif;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#eee}
+.sl-txt{padding:4% 5%;overflow:auto;display:grid;align-content:start;gap:8px;font:clamp(13px,1.45vw,19px)/1.5 system-ui,sans-serif}.sl-txt h2{font:500 clamp(22px,3.2vw,42px)/1.15 Georgia,serif;color:#E9B84E;margin:0}.sl-loc{opacity:.75;margin:0}.sl-txt h3{font:600 12px/1 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#EE7F2D;margin:10px 0 0}.sl-txt p,.sl-txt ul{margin:0}.sl-txt small{opacity:.7}
+.sl-photos{padding:3% 4%;display:grid;grid-template-rows:auto 1fr;gap:12px}.sl-photos h2{font:500 clamp(20px,3vw,38px) Georgia,serif;color:#E9B84E;margin:0}.sl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;min-height:0}.sl-grid figure{margin:0;display:grid;grid-template-rows:1fr auto;min-height:0}.sl-grid img{width:100%;height:100%;object-fit:cover;border-radius:8px;min-height:0}.sl-grid figcaption{font:13px system-ui,sans-serif;opacity:.8;padding-top:4px}
+@media (max-width:700px){.sl-place{grid-template-columns:1fr;grid-template-rows:40% 60%}}`;
+let PRES=null;
+function presPlay(slides,start){
+  let el=$('presView'); if(!el){ el=document.createElement('div'); el.id='presView'; document.body.appendChild(el) }
+  PRES={slides,i:start||0}; el.hidden=false;
+  const draw=()=>{ el.innerHTML=`<style>${PRES_CSS}</style><div class="pv-stage">${slideHtml(PRES.slides[PRES.i])}</div>
+    <div class="pv-bar"><button type="button" id="pvPrev" aria-label="${esc(t('navBack'))}">◀</button><span>${PRES.i+1} / ${PRES.slides.length}</span><button type="button" id="pvNext" aria-label="${esc(t('navFwd'))}">▶</button><button type="button" id="pvFs">⤢</button><button type="button" id="pvX">${t('close')}</button></div>`;
+    $('pvPrev').onclick=()=>step(-1); $('pvNext').onclick=()=>step(1); $('pvX').onclick=close;
+    $('pvFs').onclick=()=>{ try{ document.fullscreenElement?document.exitFullscreen():el.requestFullscreen() }catch(e){} } };
+  const step=d=>{ PRES.i=Math.max(0,Math.min(PRES.slides.length-1,PRES.i+d)); draw() };
+  const close=()=>{ el.hidden=true; el.innerHTML=''; PRES=null; document.removeEventListener('keydown',key); try{ if(document.fullscreenElement) document.exitFullscreen() }catch(e){} };
+  const key=e=>{ if(!PRES) return; if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();step(1)} else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();step(-1)} else if(e.key==='Escape') close() };
+  document.addEventListener('keydown',key); draw() }
+async function presExportHtml(slides,title,btn){
+  const old=btn.textContent; btn.disabled=true; btn.textContent=t('archBusy');
+  const inline={}; for(const s of slides){ for(const x of [s.img,...(s.imgs||[])]){ if(x&&/^media:/.test(x[0])&&!inline[x[0]]){ try{ inline[x[0]]=await blobToData(await (await fetch(photoUrl(x[0]))).blob()) }catch(e){} } } }
+  const html=`<!doctype html><html lang="${L}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><style>html,body{margin:0;height:100%;background:#000}body{display:grid;place-items:center}.deck{width:100vw;height:100vh;max-width:calc(100vh*16/9);max-height:calc(100vw*9/16);position:relative}.deck>.sl{position:absolute;inset:0;display:none}.deck>.sl.on{display:grid}.deck>.sl-title.on,.deck>.sl-end.on{display:block}.nav{position:fixed;right:12px;bottom:10px;font:13px system-ui;color:#aaa;display:flex;gap:8px;align-items:center}.nav button{background:#222;color:#eee;border:1px solid #444;border-radius:6px;padding:6px 10px;cursor:pointer}
+${PRES_CSS}@media print{body{display:block}.nav{display:none}.deck{width:100%;height:auto;max-width:none;max-height:none}.deck>.sl{position:relative;display:grid!important;height:100vh;page-break-after:always}.deck>.sl-title,.deck>.sl-end{display:block!important}}</style></head><body><div class="deck">${slides.map((s,i)=>slideHtml(s,inline).replace('<section class="sl','<section class="'+(i?'':'on ')+'sl')).join('')}</div>
+<div class="nav"><button onclick="go(-1)">◀</button><span id="n"></span><button onclick="go(1)">▶</button></div>
+<script>var S=document.querySelectorAll('.deck>.sl'),i=0;function show(){S.forEach(function(s,j){s.classList.toggle('on',j===i)});document.getElementById('n').textContent=(i+1)+' / '+S.length}function go(d){i=Math.max(0,Math.min(S.length-1,i+d));show()}document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(1);if(e.key==='ArrowLeft'||e.key==='PageUp')go(-1)});document.addEventListener('click',function(e){if(!e.target.closest('.nav'))go(e.clientX>innerWidth/3?1:-1)});show();<\/script></body></html>`;
+  await saveFile((title||'prezentacija').replace(/[^\w\-āīūṛṝḷṅñṭḍṇśṣṁḥ ]+/gi,'').trim().replace(/\s+/g,'-')+'.html',new Blob([html],{type:'text/html'}));
+  btn.textContent=old; btn.disabled=false }
+function presPrint(slides,title){
+  const el=document.createElement('div'); el.id='printArea'; el.className='presprint';
+  el.innerHTML=`<style>${PRES_CSS}.presprint .sl{height:100vh;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}</style>`+slides.map(s=>slideHtml(s)).join('');
+  document.body.appendChild(el); document.documentElement.classList.add('printing');
+  const done=()=>{el.remove();document.documentElement.classList.remove('printing');window.removeEventListener('afterprint',done)};
+  window.addEventListener('afterprint',done); setTimeout(()=>{ try{window.print()}catch(e){} setTimeout(()=>{ if(document.getElementById('printArea')) done() },1500) },400) }
+function presScreen(o){
+  o=Object.assign({src:'lv',lv:1,pi:0,sel:[],dei:1,story:1,books:1,travel:0,end:1,nImg:2,title:''},store.get('sm-pres',{}),o||{});
+  if(!LEVELS.includes(o.lv)) o.lv=1;
+  screenFn=()=>presScreen(o); renderHeader(-1); setBg('vrindavan');
+  const keysOf=()=>o.src==='lv'?ATLASL[o.lv]:o.src==='pari'?((PARI[o.pi].keys||ATLASL[PARI[o.pi].lv]).filter(k=>ATLAS.includes(k))):o.sel.filter(k=>PLACES[k]);
+  const ttl=()=>o.title||(o.src==='lv'?t('lv'+o.lv):o.src==='pari'?tr(PARI[o.pi].n):t('presMine'));
+  stageEl(`<div class="card"><div class="eyebrow">${t('teachEyebrow')}</div><h2>${t('presTitle')}</h2><p>${t('presIntro')}</p>
+    <div class="seg" style="grid-template-columns:repeat(3,minmax(0,1fr))">${[['lv','presSrcLv'],['pari','presSrcPari'],['mine','presSrcMine']].map(([v,k])=>`<button type="button" data-ps="${v}" class="${o.src===v?'on':''}">${t(k)}</button>`).join('')}</div>
+    ${o.src==='lv'?`<select id="psLv">${LEVELS.map(l=>`<option value="${l}" ${o.lv===l?'selected':''}>${esc(t('lv'+l))}</option>`).join('')}</select>`:''}
+    ${o.src==='pari'?`<select id="psPi">${PARI.map((p,i)=>`<option value="${i}" ${o.pi===i?'selected':''}>${esc(tr(p.n))}</option>`).join('')}</select>`:''}
+    ${o.src==='mine'?`<input type="search" id="psQ" placeholder="${esc(t('encSearch'))}" autocomplete="off"><div class="chips pschips" id="psRes"></div><div class="grp">${t('presChosen')} · ${o.sel.length}</div><div class="chips" id="psSel">${o.sel.map(k=>`<button type="button" class="on" data-rm="${k}">✕ ${esc(short(k))}</button>`).join('')}</div>`:''}
+    <div class="edf"><label>${t('presName')}</label>${inp('psT',o.title,ttl())}</div>
+    <div class="opts-row">${[['dei','encDei'],['story','encStory'],['books','encBooks'],['travel','encTravel'],['end','presEnd']].map(([f,k])=>`<label class="check"><input type="checkbox" data-po="${f}" ${o[f]?'checked':''}>${t(k)}</label>`).join('')}
+      <label class="check">${t('presImgs')} <select id="psN">${[1,2,3,4].map(n=>`<option ${o.nImg===n?'selected':''}>${n}</option>`).join('')}</select></label></div>
+    <p class="note">${t('presCount',keysOf().length)}</p>
+    <div class="row"><button class="btn" id="psPlay" type="button">▶ ${t('presPlay')}</button><button class="btn ghost" id="psHtml" type="button">${t('presHtml')}</button><button class="btn ghost" id="psPrint" type="button">${t('presPrint')}</button></div>
+    <p class="note">${t('presNote')}</p>
+    <div class="row"><button class="btn ghost" id="psBack" type="button">${t('teacherBtn')}</button><button class="btn ghost" id="psHome" type="button">${t('home')}</button></div></div>`);
+  const keep=()=>{ o.title=$('psT').value.trim(); store.set('sm-pres',{dei:o.dei,story:o.story,books:o.books,travel:o.travel,end:o.end,nImg:o.nImg,sel:o.sel,src:o.src}) };
+  $('stage').querySelectorAll('[data-ps]').forEach(b=>b.onclick=()=>{ keep(); o.src=b.dataset.ps; o.title=''; presScreen(o) });
+  if($('psLv')) $('psLv').onchange=e=>{ o.lv=+e.target.value; o.title=''; presScreen(o) };
+  if($('psPi')) $('psPi').onchange=e=>{ o.pi=+e.target.value; o.title=''; presScreen(o) };
+  $('stage').querySelectorAll('[data-po]').forEach(c=>c.onchange=()=>{ o[c.dataset.po]=c.checked?1:0; keep() });
+  $('psN').onchange=e=>{ o.nImg=+e.target.value; keep() };
+  if($('psQ')){ const q=$('psQ'), res=$('psRes'); q.oninput=()=>{ const v=q.value.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim(); if(!v){res.innerHTML='';return}
+      res.innerHTML=ATLAS.filter(x=>searchText(x).includes(v)&&!o.sel.includes(x)).slice(0,16).map(x=>`<button type="button" data-ad="${x}">+ ${esc(short(x))}</button>`).join('')||`<span class="muted">${t('encNone')}</span>`;
+      res.querySelectorAll('[data-ad]').forEach(b=>b.onclick=()=>{ keep(); o.sel.push(b.dataset.ad); presScreen(o) }) };
+    $('psSel').querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{ keep(); o.sel=o.sel.filter(x=>x!==b.dataset.rm); presScreen(o) }); }
+  const build=()=>{ keep(); const ks=keysOf(); if(!ks.length){ alertBox(t('presEmpty')); return null } return presSlides(ks,o,o.title||ttl()) };
+  $('psPlay').onclick=()=>{ const s=build(); if(s) presPlay(s,0) };
+  $('psHtml').onclick=e=>{ const s=build(); if(s) presExportHtml(s,o.title||ttl(),e.target) };
+  $('psPrint').onclick=()=>{ const s=build(); if(s) presPrint(s,o.title||ttl()) };
+  $('psBack').onclick=()=>teacherScreen(); $('psHome').onclick=startScreen;
+}
+
 
 /* ---------- Za učitelje in skupine / For teachers and groups ---------- */
 let BIG=store.get('sm-big',false); document.documentElement.classList.toggle('big',!!BIG);
 function teacherScreen(lvSel){
-  screenFn=()=>teacherScreen(lvSel); renderHeader(-1); setBg('navadvip'); const lv=lvSel||setup.lv||1;
+  screenFn=()=>teacherScreen(lvSel); renderHeader(-1); setBg('navadvip'); let lv=lvSel||setup.lv||1; if(!LEVELS.includes(lv)) lv=1;
   stageEl(`<div class="card">
     <div class="eyebrow">${t('teachEyebrow')}</div><h2>${t('teachTitle')}</h2>
     <p>${t('teachIntro')}</p>
@@ -3290,8 +3703,10 @@ function teacherScreen(lvSel){
     <div class="row"><button class="btn" id="prQ" type="button">${t('printQ')}</button><button class="btn ghost" id="prC" type="button">${t('printC')}</button></div>
     <label class="check" for="bigC"><input type="checkbox" id="bigC" ${BIG?'checked':''}>${t('bigMode')}</label>
     <p class="note">${t('teachNote')}</p>
+    ${teachExtras()}
     <div class="row"><button class="btn ghost" id="tback" type="button">${t('home')}</button></div>
   </div>`);
+  bindTeachExtras(lv);
   $('stage').querySelectorAll('[data-lv]').forEach(b=>b.onclick=()=>teacherScreen(+b.dataset.lv));
   $('bigC').onchange=e=>{BIG=e.target.checked;store.set('sm-big',BIG);document.documentElement.classList.toggle('big',BIG)};
   $('prQ').onclick=()=>printSheet(lv,false); $('prC').onclick=()=>printSheet(lv,true);
@@ -3325,7 +3740,7 @@ const HELP={
   <p>Prepotuješ sveta mesta Indije in zbiraš tilake. Ob tem spoznaš Božanstva, templje, zabave Gospoda in velike bhakte, ki so ta mesta obiskali. Vprašanja temeljijo na knjigah Śrīle Prabhupāde; kjer podatek izhaja iz izročila templja ali zgodovine, je to navedeno pri viru. Zmaga, kdor do konca zbere največ tilak.</p>
   <h3>Romanja, parikrame in dnevna igra</h3>
   <ul><li><b>Osnovno romanje:</b> 7 stopenj, od izvira Gaṅge do Vṛndāvane. Vsaka igra izbere ${FULLQ} novih vprašanj iz zbirke ${POOLSIZE}.</li>
-  <li><b>Napredno romanje:</b> 5 stopenj po templjih daśāvatāre (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) in k velikim Božanstvom Kṛṣṇe: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala in ležeči Viṣṇu. ${FULLQ2} vprašanj iz zbirke ${POOLSIZE2}.</li>
+  <li><b>Daśāvatāra romanje:</b> 5 stopenj po templjih daśāvatāre (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) in k velikim Božanstvom Kṛṣṇe: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala in ležeči Viṣṇu. ${FULLQ2} vprašanj iz zbirke ${POOLSIZE2}.</li>
   <li><b>Parikrame:</b> Navadvīpa-maṇḍala (devet otokov Navadvīpe), Ekacakrā (rojstni kraj Nityānande Prabhuja) in Jagannātha Purī. Vsaka ima svoj video in zemljevid v atlasu pod zavihkom <b>Parikrame</b>.</li>
   <li><b>Navadvīpa-dhāma:</b> vsi opisani sveti kraji devetih otokov z največjim poudarkom na Templju vedskega planetarija (TOVP); v zavihku <b>Parikrame</b> so še Gaura-maṇḍala, Śrīla Prabhupāda in Māyāpur ter guru-paramparā.</li>
   <li><b>Glasba:</b> gumb 🔊 v glavi glasbo v ozadju utiša ali vklopi; v meniju <b>Zvok</b> jo z gumboma Tišje in Glasneje ali drsnikom nastaviš tišje.</li>
@@ -3360,15 +3775,16 @@ const HELP={
   <li><b>Moje romanje:</b> označi obiskane kraje, dodaj datum, zapis, svojo fotografijo in glasbo ob odprtju kraja. Vse ostane samo na tvoji napravi.</li>
   <li><b>Shrani fotografije za pot:</b> v nameščeni aplikaciji shrani fotografije kraja, da so vidne tudi brez interneta. Besedila in vprašanja delujejo brez interneta že sama po sebi.</li>
   <li><b>Iz knjig:</b> pri virih so povezave na poglavja v knjigah Śrīle Prabhupāde na vedabase.io.</li>
-  <li><b>Za učitelje:</b> tisk vseh vprašanj z odgovori, tisk kartic in projektorski način z večjo pisavo.</li></ul>
+  <li><b>Za učitelje:</b> tisk vseh vprašanj z odgovori, tisk kartic, projektorski način z večjo pisavo, <b>izdelava prezentacij</b> (predvajanje, HTML, PDF), <b>arhiv na disku</b> (shrani in uvozi vse svoje podatke) in – z osebnim geslom, ki ga dodeli ustvarjalec programa – <b>urejanje vsebin</b>: kraji, slike, besedila, glasba, vprašanja in odgovori ter lastna romanja.</li>
+  <li><b>Listanje v atlasu:</b> gumba <b>‹ ›</b> v glavi atlasa vodita nazaj in naprej po ogledanih straneh (kraji, Parikrame, Poti, Koledar …). Pas na vrhu opisa (◀ ▶ ali puščici na tipkovnici) odpre prejšnji in naslednji kraj, ne da bi se moral pomikati navzdol.</li></ul>
   <h3>Zvok in mahā-mantra</h3>
   <p>V ozadju igre se predvaja Hare Kṛṣṇa mahā-mantra. Gumb <b>Zvok</b> odpre nastavitve: mahā-mantra, vgrajena <b>tanpura</b>, ki deluje brez interneta, ali izklop. Dodaš lahko tudi svoje posnetke bhajanov, ki ostanejo samo na tvoji napravi.</p>
-  <h3>Jezik</h3><p>Gumb <b>EN</b> ali <b>SL</b> v glavi kadar koli zamenja jezik.</p>`,
+  <h3>Jezik</h3><p>Gumb za jezik v glavi kadar koli zamenja jezik: slovenščina, angleščina in hrvaščina.</p>`,
  en:()=>`<h3>Aim of the game</h3>
   <p>You travel through the holy places of India and collect tilakas. Along the way you learn about the Deities, the temples, the Lord's pastimes and the great devotees who visited these places. The questions are based on Śrīla Prabhupāda's books; where a fact comes from temple tradition or history, the source says so. Whoever collects the most tilakas by the end wins.</p>
   <h3>Pilgrimages, parikramās and a daily game</h3>
   <ul><li><b>Basic pilgrimage:</b> 7 stages, from the source of the Gaṅgā to Vṛndāvana. Every game draws ${FULLQ} new questions from a pool of ${POOLSIZE}.</li>
-  <li><b>Advanced pilgrimage:</b> 5 stages through the temples of the daśāvatāra (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) and to the great Deities of Kṛṣṇa: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala and the reclining Viṣṇu. ${FULLQ2} questions from a pool of ${POOLSIZE2}.</li>
+  <li><b>Daśāvatāra pilgrimage:</b> 5 stages through the temples of the daśāvatāra (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) and to the great Deities of Kṛṣṇa: Śrīnāthjī, Govinda, Gopīnātha, Madana-mohana, Raṇchoḍrāya, Guruvāyūrappan, Viṭhṭhala and the reclining Viṣṇu. ${FULLQ2} questions from a pool of ${POOLSIZE2}.</li>
   <li><b>Parikramās:</b> Navadvīpa-maṇḍala (the nine islands of Navadvīpa), Ekacakrā (birthplace of Nityānanda Prabhu) and Jagannātha Purī. Each has its own video and map in the atlas under the <b>Parikramās</b> tab.</li>
   <li><b>Navadvīpa-dhāma:</b> all described holy places of the nine islands, with the greatest highlight on the Temple of the Vedic Planetarium (TOVP); the <b>Parikramās</b> tab also has Gaura-maṇḍala, Śrīla Prabhupāda and Mayapur, and the guru-paramparā.</li>
   <li><b>Music:</b> the 🔊 button in the header mutes or unmutes the background music; in the <b>Sound</b> menu make it quieter with the Quieter and Louder buttons or the slider.</li>
@@ -3403,25 +3819,124 @@ const HELP={
   <li><b>My pilgrimage:</b> mark the places you have visited and add a date, a note, your own photo and music for the place. Everything stays on your device only.</li>
   <li><b>Save photos for the journey:</b> in the installed app, saves a place's photos so they show without internet. Texts and questions already work offline.</li>
   <li><b>From the books:</b> sources link to the chapters of Śrīla Prabhupāda's books on vedabase.io.</li>
-  <li><b>For teachers:</b> print all questions with answers, print cards, and projector mode with larger text.</li></ul>
+  <li><b>For teachers:</b> print all questions with answers, print cards, projector mode with larger text, <b>create presentations</b> (play, HTML, PDF), <b>archive on disk</b> (save and import all your data) and – with a personal password assigned by the program’s creator – the <b>content editor</b>: places, images, texts, music, questions and answers, and your own pilgrimages.</li>
+  <li><b>Browsing the atlas:</b> the <b>‹ ›</b> buttons in the atlas header go back and forward through the pages you viewed (places, Parikramās, Routes, Calendar …). The bar at the top of a description (◀ ▶ or the arrow keys) opens the previous and next place without scrolling down.</li></ul>
   <h3>Sound and mahā-mantra</h3>
   <p>The Hare Kṛṣṇa mahā-mantra plays in the background of the game. The <b>Sound</b> button opens the settings: the mahā-mantra, the built-in <b>tanpura</b> (works offline) or off. You can also add your own bhajan recordings, which stay on your device only.</p>
-  <h3>Language</h3><p>The <b>SL</b> or <b>EN</b> button in the header switches the language at any time.</p>`};
+  <h3>Language</h3><p>The language button in the header switches between Slovenian, English and Croatian at any time.</p>`};
 let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;const b=$('installBtn');if(b)b.hidden=false});
 const standalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
 const DEV={sl:[['Android','Odpri igro v Chromu. Meni ⋮ → <i>Namesti aplikacijo</i> ali <i>Dodaj na začetni zaslon</i>.'],['iPhone in iPad','Odpri igro v Safariju. Gumb Deli → <i>Dodaj na začetni zaslon</i> → Dodaj.'],['Windows in Linux','Chrome ali Edge: ikona za namestitev desno v naslovni vrstici.'],['Mac','Chrome: ikona za namestitev. Safari: Datoteka → <i>Dodaj v Dock</i>.']],
  en:[['Android','Open the game in Chrome. Menu ⋮ → <i>Install app</i> or <i>Add to Home screen</i>.'],['iPhone and iPad','Open the game in Safari. Share button → <i>Add to Home Screen</i> → Add.'],['Windows and Linux','Chrome or Edge: the install icon on the right of the address bar.'],['Mac','Chrome: the install icon. Safari: File → <i>Add to Dock</i>.']]};
+/* ---------- Hrvatski / Croatian ---------- */
+T.hr=Object.assign({},T.en,{tag:'hodočašće prema Kṛṣṇa-premi',atlas:'Atlas',help:'Upute',sound:'Zvuk',chooseLang:'Odaberi jezik',langNote:'Jezik možeš promijeniti u bilo kojem trenutku gumbom za jezik u zaglavlju.',
+  dedEyebrow:'Posveta',enter:'Uđi u igru',
+  dedication:'Posvećeno mom duhovnom učitelju <em>Śrīli Kṛṣṇa-kṣetri Swamiju</em> i Njegovoj Božanskoj Milosti <em>Abhayu Caraṇāravindi Bhaktivedānti Swamiju Prabhupādi</em>.',
+  game:'Društvena igra · 1–6 igrača ili ekipa',title:'Sveta mjesta',
+  startIntro:(n,q,p)=>`Hodočašće kroz ${n} svetih mjesta Indije, od izvora Gaṅge do Vṛndāvane. Glavne postaje su Navadvīpa-dhāma, Jagannātha Purī i na kraju Vṛndāvana. Svaka igra izvlači ${q} novih pitanja iz zbirke od ${p}.`,
+  modeFull:'Veliko hodočašće',modeFullD:'Cijelo hodočašće po etapama za 1–6 igrača ili ekipa.',modeDaily:'Dnevno hodočašće',modeDailyD:'Svaki dan nova etapa s 5 pitanja, ista za sve. Skupljaj uzastopne dane.',
+  levelL:'Odaberi hodočašće',lv1:'Osnovno hodočašće',lv1D:q=>`7 etapa · od Himalaje do Vṛndāvane · ${q} pitanja`,lv2:'Daśāvatāra hodočašće',lv2D:q=>`5 etapa · daśāvatāra i velika Božanstva · ${q} pitanja`,
+  startIntro2:(n,q,p)=>`Daśāvatāra hodočašće vodi do hramova deset inkarnacija (daśāvatāra) i do velikih Kṛṣṇinih Božanstava diljem Indije: ${n} svetih mjesta u pet etapa. Svaka igra izvlači ${q} novih pitanja iz zbirke od ${p}.`,
+  stealOpt:'Krađa: nakon pogrešnog odgovora sljedeći smije odgovoriti (+2)',codeL:'Šifra igre (neobavezno)',codeNote:'Ekipe na različitim uređajima unesu istu šifru i dobiju ista pitanja istim redom.',codePh:'npr. GAURA108',
+  wrongShort:'Netočno.',stealNow:n=>`Krađa: ${n} smije odgovoriti za 2 tilake.`,stealHow:'Odaberi jedan od preostalih odgovora ili preskoči.',stealTurn:'Krađa',stealSkip:'Preskačemo',stealOk:n=>`Krađa uspjela: ${n} +2 tilake.`,stealNo:n=>`Krađa nije uspjela (${n}).`,stealPass:n=>`Krađa preskočena (${n}).`,
+  steals:n=>n+(n===1?' krađa':(n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?' krađe':' krađa')),srcL:'Izvor',
+  tbBtn:'Dodatno pitanje',tbTitle:'Dodatno pitanje za neriješeno',tbRound:r=>`${r}. krug`,tbNote:'Svaki izjednačeni igrač ili ekipa odgovara na svoje pitanje. Pobjeđuje onaj tko jedini odgovori točno. Broj tilaka se ne mijenja.',tbWin:n=>`Pobjednik nakon dodatnog pitanja: ${n}`,tbWinT:n=>`Pobjednička ekipa nakon dodatnog pitanja: ${n}`,tbShared:'I nakon pet krugova neriješeno – pobjedu dijelite.',tbAgain:'Nitko nije jedini odgovorio točno – slijedi novi krug.',
+  doneL2:'Daśāvatāra hodočašće je završeno · Śrī Raṅgam',
+  lv3:'Navadvīpa-maṇḍala parikramā',lv3D:q=>`2 etape · devet otoka Navadvīpe · ${q} pitanja`,
+  lv4:'Ekacakrā parikramā',lv4D:q=>`1 etapa · rodno mjesto Nityānande Prabhua · ${q} pitanja`,
+  lv5:'Jagannātha Purī parikramā',lv5D:q=>`1 etapa · Śrī Kṣetra · ${q} pitanja`,
+  startIntro3:(n,q,p)=>`Navadvīpa-maṇḍala parikramā vodi oko devet otoka Navadvīpe, koji predstavljaju devet procesa predanog služenja: ${n} svetih mjesta u dvije etape; svaka igra izvlači ${q} pitanja iz zbirke od ${p}.`,
+  startIntro4:(n,q,p)=>`Ekacakrā parikramā vodi oko rodnog mjesta Nityānande Prabhua: ${n} svetih mjesta; svaka igra izvlači ${q} pitanja iz zbirke od ${p}.`,
+  startIntro5:(n,q,p)=>`Jagannātha Purī parikramā vodi do mjesta gdje je Mahāprabhu osamnaest godina živio sa svojim bhaktama: ${n} svetih mjesta; svaka igra izvlači ${q} pitanja iz zbirke od ${p}.`,
+  doneL3:'Navadvīpa-maṇḍala parikramā je završena · Māyāpur',doneL4:'Ekacakrā parikramā je završena',doneL5:'Jagannātha Purī parikramā je završena',
+  grp3:'Navadvīpa-maṇḍala',grp4:'Ekacakrā',grp5:'Jagannātha Purī',lvTag3:'Navadvīpa',lvTag4:'Ekacakrā',lvTag5:'Purī',
+  tabPari:'Parikrame',navBack:'Natrag',navFwd:'Naprijed',prevPlace:'Prethodno mjesto',nextPlace:'Sljedeće mjesto',bgMusic:'Glazba u pozadini',bgTanpura:'Tanpura (ugrađena)',photoCreditIDT:'Fotografije: ISKCON Desire Tree (iskcondesiretree.com).',spotTitle:'Najveći naglasak',pariQuotes:'Śrīla Prabhupāda o Māyāpuru',pariTimeline:'Kronologija',pariPeople:'Ācārye u učeničkom slijedu',openPlace:'Otvori u atlasu',muteOn:'Utišaj glazbu',muteOff:'Uključi glazbu',quieter:'Tiše',louder:'Glasnije',musVol:'Glasnoća glazbe u pozadini',playVideo:'Pokreni video',openYT:'Otvori na YouTubeu',pariMaps:'Karte parikrame',pariMapNote:'Karte i fotografije mjesta Navadvīpe i Ekacakre: srimayapurdhama.com (ISKCON Māyāpur).',gmapBtn:'Interaktivna karta',webBtn:'Više na srimayapurdhama.com',showMapBtn:'Prikaži na karti',pariPlaces:'Sveta mjesta parikrame',approx:'Karta prikazuje područje; točnu lokaciju otvara gumb Navigacija.',photoCredit:'Fotografija: srimayapurdhama.com (ISKCON Māyāpur)',videoL:'Video',
+  copy:'© 2026 Golokaplanet Library, by Mahī-bhartā dāsa',
+  lv6:'Vraja-maṇḍala parikramā',lv6D:q=>`3 etape · Kṛṣṇine zabave u Vraji · ${q} pitanja`,
+  startIntro6:(n,q,p)=>`Vraja-maṇḍala parikramā prati Kṛṣṇine zabave iz Śrīmad-Bhāgavatama: od Gokule kroz šume Vraje do Govardhane, Rādhā-kuṇḍe i Vṛndāvane. ${n} svetih mjesta u tri etape; svaka igra izvlači ${q} pitanja iz zbirke od ${p}.`,
+  doneL6:'Vraja-maṇḍala parikramā je završena · Vṛndāvana',grp6:'Vraja-maṇḍala',lvTag6:'Vraja',
+  tabPlaces:'Mjesta',tabRoutes:'Putovi',tabCal:'Kalendar',tabDiary:'Moje hodočašće',encTravel:'Za hodočasnike',
+  festNote:'Blagdani se ravnaju po lunarnom kalendaru, zato su navedeni mjeseci u koje obično padaju. Točan datum svake godine provjeri u vaiṣṇavskom kalendaru.',
+  navBtn:'Navigacija do mjesta',offBtn:'Spremi fotografije za put',offBusy:'Spremam …',offProg:(a,b)=>`Spremam ${a}/${b} …`,offDone:n=>`Spremljeno za put: ${n} fotografija`,offNo:'U ovom pregledniku spremanje nije moguće.',
+  genNote:'',noPhotos:'Za ovo mjesto još nema provjerenih fotografija.',
+  diaryH:'Moj dnevnik',diaryVisited:'Posjećeno',diaryDate:'Datum posjeta',diaryNote:'Moja bilješka o posjetu …',diaryPhoto:'Dodaj svoju fotografiju',diaryMine:'Moja fotografija',diaryTrack:'Glazba kad se mjesto otvori',
+  diaryCount:(a,b)=>`Posjećenih mjesta: ${a} od ${b}.`,diaryEmpty:'Još nema posjećenih mjesta. Kod svakog mjesta možeš označiti „Posjećeno“ i dodati datum, bilješku i svoju fotografiju.',diaryLocal:'Dnevnik i fotografije ostaju samo na ovom uređaju.',
+  showRoute:'Prikaži put',thisMonth:'ovaj mjesec',teacherBtn:'Za učitelje',
+  teachEyebrow:'Za učitelje i grupe',teachTitle:'Ispis i projektor',teachIntro:'Možeš ispisati sva pitanja s odgovorima, objašnjenjima i izvorima ili kartice za igru bez uređaja. Način za projektor povećava tekst za igru na velikom zaslonu.',
+  teachN:n=>`${n} pitanja u zbirci`,printQ:'Ispiši pitanja s odgovorima',printC:'Ispiši kartice',bigMode:'Način za projektor (veći tekst)',teachNote:'U dijalogu za ispis možeš odabrati „Spremi kao PDF“.',printAns:'Odgovor',printCardsNote:'Izreži kartice. Točan odgovor je na dnu svake kartice; prije igre ga presavij.',
+  encDei:'Božanstva',encStory:'Povijest i značenje',encBooks:'Iz knjiga i predaje',encSearch:'Traži sveto mjesto ili Božanstvo …',encNone:'Nema rezultata.',grp1:'Osnovno hodočašće',grp2:'Daśāvatāra hodočašće',zoom:'povećaj',lvTag1:'osnovno',lvTag2:'daśāvatāra',
+  players:'Igrači',teams:'Ekipe',timerOpt:'Vremensko ograničenje 30 sekundi',
+  pname:i=>i===0?'Ime 1. igrača':`${i+1}. igrač (neobavezno)`,tname:i=>i===0?'Ime 1. ekipe':`${i+1}. ekipa (neobavezno)`,defP:'Bhakta',defT:'Ekipa Gaura',
+  rules:['Odaberi točan odgovor <b>a)</b>, <b>b)</b> ili <b>c)</b>. Točan odgovor donosi <b style="color:var(--gold)">4 tilake</b>.','<b>Pomoć</b> uklanja jedan netočan odgovor. Točan odgovor nakon pomoći donosi 2 tilake.','<b>Saṅkīrtana niz:</b> svaki treći uzastopni točan odgovor bez pomoći donosi još 2 tilake.','Više igrača ili ekipa dobiva <b>jednak broj pitanja</b>. <b>Krađa:</b> nakon pogrešnog odgovora sljedeći smije odgovoriti za 2 tilake.','Nakon svake etape svaki igrač slaže Hare Kṛṣṇa mahā-mantru za 4 tilake.','Pobjeđuje tko skupi najviše tilaka; neriješeno odlučuje dodatno pitanje.'],
+  begin:'Započni hodočašće',beginDaily:'Započni današnje hodočašće',resume:'Nastavi spremljenu igru',howto:'Upute i video',atlasBtn:'Atlas svetih mjesta',dedi:'Posveta',
+  stageOf:(a,b)=>`${a}. etapa od ${b}`,mainPlace:'glavno sveto mjesto',visited:'posjećeno',thisStage:'ova etapa',next:'slijedi',tapPoint:'Dodirni točku za opis i fotografije.',
+  tilak:n=>'tilaka',
+  ladderNote:'Ljestvica stupnjeva predanosti iz Nektara predanosti (Bhakti-rasāmṛta-sindhu) u igri služi kao simbol napretka.',enterStage:s=>`Uđi: ${s}`,
+  onMap:'na karti',showOnMap:'Prikaži na karti',turn:'Na redu:',turnTeam:'Na redu je ekipa:',pts4:'4 tilake',pts2:'2 tilake',streak:'niz',streakNext:'sljedeći donosi +2',
+  hint:'Pomoć (ukloni jedan netočan odgovor)',nextQ:'Sljedeće pitanje',endStage:'Završi etapu',right:'Točno!',bonus:'saṅkīrtana niz',correctIs:'Točan odgovor',timeUp:'Vrijeme je isteklo.',
+  mantraEyebrow:s=>`Kraj ${s}. etape · yuga-dharma`,mantraTitle:'Složi mahā-mantru',mantraText:'Za doba Kali Gospodin je dao jedan proces: harer nāma harer nāma harer nāmaiva kevalam, kalau nāsty eva nāsty eva nāsty eva gatir anyathā.',mantraSrc:'Bṛhan-nāradīya Purāṇa, citirano u Caitanya-caritāmṛti, Ādi 17.21',
+  mantraTurn:'dodiruj riječi pravim redom (16 riječi) za 4 tilake',mantraOk:n=>`${n}: +4 tilake`,mantraNo:'Nije sasvim točno. Mantra glasi:',back:'Ukloni zadnju',skip:'Preskoči',nextPlayer:'Sljedeći igrač',onward:'Dalje',
+  done:'Hodočašće je završeno · Vṛndāvana',tie:'Neriješeno na vrhu',winner:n=>`Pobjednik: ${n}`,winnerT:n=>`Pobjednička ekipa: ${n}`,solo:n=>`Čestitamo, ${n}! Hodočašće je završeno.`,correctN:n=>`točnih: ${n}`,levelN:l=>`${l}. etapa`,
+  endText:'Śrī Caitanya Mahāprabhu je svima bez razlike darovao Kṛṣṇa-premu. Hodočašće svetim mjestima nastavlja se u srcu pjevanjem svetih imena.',routeTap:'Put hodočašća – dodirni točku',placesIn:'Sveta mjesta u igri',again:'Igraj ponovno s novim pitanjima',home:'Natrag na početak',
+  dailyTitle:'Dnevno hodočašće',dailyDone:'Današnje hodočašće je završeno',today:'danas',best:'najbolje',days:n=>n===1?'dan zaredom':'dana zaredom',dailyCome:'Sutra te čeka nova etapa.',dailyAgain:'Ponovi današnje',
+  atlasTitle:'Atlas svetih mjesta',close:'Zatvori',album:'Album',allPlaces:'Sva sveta mjesta',loading:'Učitavam fotografije …',offline:'Fotografije će se prikazati kad uređaj bude povezan s internetom.',lat:'S',lon:'I',
+  sndTitle:'Zvuk i glazba',sndTanpura:'Tanpura',sndMine:'Mahā-mantra',sndOff:'Isključeno',vol:'Glasnoća',fx:'Zvučni efekti (zvono)',add:'Dodaj snimke',noTracks:'Još nema vlastitih snimki.',remove:'ukloni',
+  sndNote:'U pozadini igre svira Hare Kṛṣṇa mahā-mantra. Možeš dodati i vlastite snimke bhajana; ostaju samo na ovom uređaju.',
+  sndAuto:'Tanpura sa zvončićima je ugrađena i radi i bez interneta.',
+  helpTitle:'Kako igrati Sveta mjesta',videoFile:'navodila-en.mp4',noVideo:'Ovaj preglednik ne može reproducirati video s uputama.',
+  backGame:'Natrag u igru',install:'Instaliraj aplikaciju',installed:'Igra već radi kao instalirana aplikacija.',
+  credits:'Fotografije i karte mjesta Navadvīpe i Ekacakre su sa srimayapurdhama.com (ISKCON Māyāpur), videozapisi s YouTubea. Ostale fotografije svetih mjesta su s Wikimedia Commons pod slobodnim licencama; autori su navedeni na stranici svake datoteke na Wikimedia Commons. Karta: © OpenStreetMap; satelitske snimke: © Esri. Fotografija Śrīle Prabhupāde: privatni arhiv autora igre. Pitanja su provjerena u knjigama Śrīle Prabhupāde (vedabase.io).'});
+MON.hr=['siječanj','veljača','ožujak','travanj','svibanj','lipanj','srpanj','kolovoz','rujan','listopad','studeni','prosinac'];
+DEV.hr=[['Android','Otvori igru u Chromeu. Izbornik ⋮ → <i>Instaliraj aplikaciju</i> ili <i>Dodaj na početni zaslon</i>.'],['iPhone i iPad','Otvori igru u Safariju. Gumb Dijeli → <i>Dodaj na početni zaslon</i> → Dodaj.'],['Windows i Linux','Chrome ili Edge: ikona za instalaciju desno u adresnoj traci.'],['Mac','Chrome: ikona za instalaciju. Safari: Datoteka → <i>Dodaj u Dock</i>.']];
+HELP.hr=()=>`<h3>Cilj igre</h3>
+  <p>Putuješ svetim mjestima Indije i skupljaš tilake. Usput upoznaješ Božanstva, hramove, Gospodinove zabave i velike bhakte koji su posjetili ta mjesta. Pitanja se temelje na knjigama Śrīle Prabhupāde; kad podatak potječe iz hramske predaje ili povijesti, to piše u izvoru. Pobjeđuje tko do kraja skupi najviše tilaka.</p>
+  <h3>Hodočašća, parikrame i dnevna igra</h3>
+  <ul><li><b>Osnovno hodočašće:</b> 7 etapa, od izvora Gaṅge do Vṛndāvane. Svaka igra izvlači ${FULLQ} novih pitanja iz zbirke od ${POOLSIZE}.</li>
+  <li><b>Daśāvatāra hodočašće:</b> 5 etapa kroz hramove daśāvatāre (Matsya, Kūrma, Varāha, Narasiṁha, Vāmana, Rāma) i do velikih Kṛṣṇinih Božanstava. ${FULLQ2} pitanja iz zbirke od ${POOLSIZE2}.</li>
+  <li><b>Parikrame:</b> Navadvīpa-maṇḍala (devet otoka Navadvīpe), Ekacakrā (rodno mjesto Nityānande Prabhua), Jagannātha Purī i Vraja-maṇḍala. Svaka ima svoj video i kartu u atlasu pod karticom <b>Parikrame</b>, gdje su još Gaura-maṇḍala, Śrīla Prabhupāda i Māyāpur te guru-paramparā. Najveći naglasak Navadvīpe je Hram vedskog planetarija (TOVP).</li>
+  <li><b>Dnevno hodočašće:</b> svaki dan druga etapa iz svih hodočašća, s 5 pitanja, isto za sve. Igra broji dane zaredom.</li></ul>
+  <h3>Kako se igra</h3>
+  <ol><li>Odaberi način i hodočašće, upiši imena igrača ili ekipa i pritisni <b>Započni hodočašće</b>.</li>
+  <li>Uz svako pitanje u pozadini je fotografija svetog mjesta, a uz ime mala karta. Dodirni kartu za atlas.</li>
+  <li>Odaberi odgovor <b>a)</b>, <b>b)</b> ili <b>c)</b>; na računalu možeš pritisnuti A, B ili C.</li>
+  <li>Nakon odgovora pročitaj objašnjenje i izvor.</li></ol>
+  <h3>Bodovi – tilake</h3>
+  <ul><li>Točan odgovor: <b style="color:var(--gold)">+4 tilake</b>; nakon pomoći, koja ukloni jedan netočan odgovor: +2 tilake.</li>
+  <li><b>Saṅkīrtana niz:</b> svaki treći uzastopni točan odgovor bez pomoći donosi još +2 tilake.</li>
+  <li><b>Mahā-mantra:</b> nakon svake etape svaki igrač ili ekipa složi svih 16 riječi mahā-mantre za +4 tilake.</li>
+  <li>S uključenim vremenskim ograničenjem odgovor koji nije odabran u 30 sekundi računa se kao netočan.</li></ul>
+  <h3>Igra u ekipama</h3>
+  <ul><li>Na jednom uređaju može se natjecati 1 do 6 igrača ili ekipa; svaka ekipa dobiva <b>jednak broj pitanja</b>.</li>
+  <li><b>Krađa:</b> ako ekipa odgovori netočno (bez pomoći), sljedeća smije birati između dva preostala odgovora za +2 tilake.</li>
+  <li><b>Neriješeno:</b> slijedi <b>dodatno pitanje</b>; pobjeđuje tko jedini odgovori točno.</li>
+  <li><b>Ekipe na više uređaja:</b> sve unesu istu <b>šifru igre</b> (npr. GAURA108) i dobiju ista pitanja istim redom.</li></ul>
+  <h3>Atlas – enciklopedija svetih mjesta</h3>
+  <p>Gumb <b>Atlas</b> otvara kartu svih svetih mjesta. Za svako mjesto opisuje <b>Božanstva</b>, <b>povijest i značenje</b> i unose <b>iz knjiga i predaje</b> s izvorima. Gumbi <b>‹ ›</b> u zaglavlju atlasa vode natrag i naprijed kroz pregledane stranice, a traka na vrhu opisa (◀ ▶ ili strelice na tipkovnici) vodi na prethodno i sljedeće mjesto bez pomicanja prema dolje.</p>
+  <h3>Vodič za hodočasnike</h3>
+  <ul><li><b>Za hodočasnike:</b> pravila posjeta, glavni blagdani s mjesecima i gumb <b>Navigacija do mjesta</b>.</li>
+  <li><b>Putovi</b>, <b>Kalendar</b> i <b>Moje hodočašće</b> (dnevnik s datumom, bilješkom, vlastitom fotografijom i glazbom).</li>
+  <li><b>Za učitelje:</b> ispis pitanja i kartica, način za projektor, <b>izrada prezentacija</b>, <b>arhiva na disku</b> i – uz lozinku koju dodjeljuje autor – <b>uređivanje sadržaja</b>: mjesta, slika, glazbe, pitanja i vlastitih hodočašća.</li></ul>
+  <h3>Zvuk i mahā-mantra</h3>
+  <p>U pozadini igre svira Hare Kṛṣṇa mahā-mantra. Gumb <b>Zvuk</b> otvara postavke: odabir glazbe u pozadini, glasnoću (Tiše / Glasnije) i vlastite snimke. Gumb 🔊 u zaglavlju utišava ili uključuje glazbu.</p>
+  <h3>Jezik</h3><p>Gumb za jezik u zaglavlju izmjenjuje slovenski, engleski i hrvatski.</p>`;
+/* prijevodi etap, parikram in poti (ključ: slovensko besedilo) */
+const HRST=["Himalaja","Gaṅgā, Kailāsa, Badrīnāth, Muktināth","Hodočašće počinje visoko u Himalaji, gdje Gaṅgā, koja je dotaknula Gospodinova lotosova stopala, prvi put silazi na zemlju.","Uz svetu Gaṅgu","Haridvār, Prayāga, Kāśī, Gayā","Gaṅgā teče u ravnice. Na njezinim obalama Śrī Caitanya Mahāprabhu primio je inicijaciju i poučio Rūpu i Sanātanu.","Južna Indija","Tirumala, Ahobilam, Śrī Raṅgam, Uḍupī","Na putovanju južnom Indijom Śrī Caitanya posjetio je hramove Viṣṇua i Lakṣmī i posvuda nadahnuo ljude da pjevaju Hare Kṛṣṇa.","Zemlje dharme","Naimiṣāraṇya, Ayodhyā, Kurukṣetra, Dvārakā","Mjesta gdje je izgovoren Bhāgavatam, gdje je vladao Gospodin Rāma i gdje je Kṛṣṇa izgovorio Bhagavad-gītu.","Navadvīpa-dhāma","gdje se pojavio Śrī Caitanya","Navadvīpa ima devet otoka koji predstavljaju devet procesa predanog služenja. U Māyāpuru se pojavio Śrī Caitanya Mahāprabhu, Rādhā i Kṛṣṇa zajedno, koji je proširio pokret saṅkīrtane.","Jagannātha Purī","Śrī Kṣetra, gdje je Mahāprabhu živio 18 godina","U Purīju je Śrī Caitanya proveo posljednjih osamnaest godina, plesao pred kolima Ratha-yātre i kušao odvojenost od Kṛṣṇe u raspoloženju Rādhārāṇī.","Vraja – Vṛndāvana","vječno prebivalište Rādhe i Kṛṣṇe","Posljednja postaja je Vraja-dhāma, gdje Kṛṣṇa kao pastirski dječak vječno uživa s gopījama, kravama i Śrīmatī Rādhārāṇī. Ovdje se hodočašće ispunjava.","Matsya, Kūrma i Varāha","Nagalapuram, Śrīkūrmam, Tirumala, Śrīmuṣṇam","Daśāvatāra hodočašće prati daśāvatāru, deset Gospodinovih inkarnacija. Počinje kod hramova ribe Matsye, kornjače Kūrme i vepra Varāhe, koji su spasili Vede, planinu Mandaru i Zemlju.","Gospodin Narasiṁha","Siṁhācalam, Yādagirigutta, Ahobilam","Gospodin Narasiṁha zaštitio je Prahlādu Mahārāju. Strašan je prema nebhaktama, a nježan prema bhaktama, poput lavice prema mladuncima. Mahāprabhu Ga je slavio u Siṁhācalamu.","Vāmana i Rāma","Thrikkakara, Sīrkāḻi, Bhadrācalam, Triprayar, Orchha, Rāmeśvaram","Vāmana je zatražio od Bali Mahārāje tri koraka i dobio sve što je Bali imao, čak i njegovu glavu. Gospodin Rāma, idealni kralj, sagradio je most do Laṅke.","Kṛṣṇina Božanstva","Nāthdvārā, Jaipur, Karauli, Dakor, Dvārakā, Guruvāyūr, Pandharpur","Kṛṣṇa se otkriva svojim bhaktama u svojim Božanstvima: kao Gopāla Mādhavendri Purīju, kao Govinda, Gopīnātha i Madana-mohana Gosvāmījima i kao kralj Dvārake.","Ležeći Viṣṇu","Ananta Padmanābha, Ādi-keśava, Śrīraṅgapaṭṭaṇa, Śrī Raṅgam","Posljednja etapa vodi do Viṣṇua koji leži na Ananta-Śeṣi. Ovdje je Mahāprabhu pronašao Brahma-saṁhitu, koja slavi Govindu, izvornu Osobu Boga.","Gokula","Kṛṣṇine dječje zabave","Vraja-maṇḍala je zemlja Kṛṣṇinih zabava. Hodočašće počinje u Gokuli, gdje je Kṛṣṇa kao beba i dijete oslobađao demone i radovao majku Yaśodu.","Šume Vraje","Dvanaest šuma: Madhuvana, Tālavana, Kumudavana, Kāmyavana …","U šumama Vraje Kṛṣṇa i Balarāma s pastirskim dječacima čuvali su telad i krave, igrali se i pobjeđivali demone.","Govardhana i ljubav Vraje","Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndā-kuṇḍa, Vṛndāvana","Posljednja etapa vodi do Govardhane, Rādhā-kuṇḍe i Vṛndāvane, gdje se otkriva čista ljubav stanovnika Vraje prema Kṛṣṇi.","Antardvīpa – Māyāpur","TOVP, Yogapīṭha, Śrīvāsa-aṅgana, Prabhupādin samādhi","Navadvīpa-maṇḍala parikramā počinje u Antardvīpi, gdje se pojavio Śrī Caitanya Mahāprabhu. Devet otoka Navadvīpe predstavlja devet procesa predanog služenja. Najveći naglasak je Hram vedskog planetarija (TOVP), Śrī Māyāpur Candrodaya Mandir.","Osam otoka Navadvīpe","Sīmanta, Godruma, Madhya, Kola, Ṛtu, Jahnu, Modadruma, Rudra","Parikramā prelazi Gaṅgu i vodi oko ostalih osam otoka, od Sīmantadvīpe do Rudradvīpe.","Ekacakrā","rodno mjesto Nityānande Prabhua","Ekacakrā u Rāḍha-deśi je mjesto gdje se pojavio Nityānanda Prabhu, sam Balarāma, koji svima daje milost.","Jagannātha Purī parikramā","Guṇḍicā, Siddha-bakula, Ṭoṭā-gopīnātha, Narendra-sarovara, Ālālanātha","Śrī Kṣetra je puna mjesta gdje je Mahāprabhu osamnaest godina živio sa svojim bhaktama: od hrama Guṇḍicā do Haridāsina samādhija uz more.","Navadvīpa-maṇḍala parikramā","Devet otoka Navadvīpe predstavlja devet procesa predanog služenja: Antardvīpa ātma-nivedanam, Sīmantadvīpa śravaṇam, Godrumadvīpa kīrtanam, Madhyadvīpa smaraṇam, Koladvīpa pāda-sevanam, Ṛtudvīpa arcanam, Jahnudvīpa vandanam, Modadrumadvīpa dāsyam i Rudradvīpa sakhyam. Najveći naglasak Navadvīpa-dhāme je Hram vedskog planetarija (TOVP), koji je zamislio Śrīla Prabhupāda.","Gaura-maṇḍala","Hodočasnici neka posjete svako mjesto povezano sa zabavama Gospodina Caitanye Mahāprabhua i Njegovih pratitelja, čak i ona gdje je boravio samo kratko. Prema svetim spisima Navadvīpa-Māyāpur je duhovno jednak Vṛndāvani.","Śrīla Prabhupāda i Māyāpur","Śrīla Prabhupāda, osnivač-ācārya ISKCON-a, proširio je Bhagavad-gītu i bhakti-yogu po cijelom svijetu i uspostavio Śrī Māyāpur-dhāmu kao svjetsko duhovno sjedište ISKCON-a. ISKCON je osnovao u srpnju 1966.","Guru-paramparā","Guru-paramparā je učenički slijed kojim se vedsko znanje prenosi od Kṛṣṇe preko Brahme do današnjih učitelja; Bhagavad-gītā (4.2) kaže da se taj slijed s vremenom prekinuo. Śrīla Prabhupāda naglašava slijeđenje guruovih uputa umjesto izmišljanja novih tumačenja.","Ekacakrā parikramā","Ekacakrā u okrugu Birbhum, oko 20 km od Rampurhata, rodno je mjesto Nityānande Prabhua. Hodočasnici posjećuju Garbhavāsu, hram Baṅkima Rāya, Kadamba-khaṇḍī-ghāṭu, Hāṅṭugāḍu, Pāṇḍava-talu, Bakula-talu i jezerce Padmāvatī.","Parikramā Śrī Kṣetre vodi od Jagannāthina hrama Velikom cestom do hrama Guṇḍicā, do Siddha-bakule, Haridāsina samādhija uz more, Ṭoṭā-gopīnāthe, Narendra-sarovare i do Ālālanāthe u Brahmagiriju.","Vraja-maṇḍala parikramā","Vraja-maṇḍala je zemlja Kṛṣṇinih zabava: Gokula, šume Vraje, Govardhana, Rādhā-kuṇḍa, Varṣāṇā, Nandagrāma i Vṛndāvana s Yamunom.","Mahāprabhuovo putovanje južnom Indijom","Nakon prihvaćanja sannyāse Śrī Caitanya je iz Purīja otišao na jug i posvuda nadahnuo ljude da pjevaju Hare Kṛṣṇa. Prikazana su samo mjesta iz ove igre, redom iz Caitanya-caritāmṛte.","Mahāprabhuovo putovanje u Vṛndāvanu","Śrī Caitanya je otišao u Vṛndāvanu kroz šumu Jhārikhaṇḍa. Na povratku je poučio Rūpu Gosvāmīja u Prayāgi i Sanātanu Gosvāmīja u Kāśīju."];
+Object.assign(HR,{'Zemljevid':'Karta','Satelit':'Satelit','Lega na zemljevidu':'Položaj na karti','Zemljevid svetih mest':'Karta svetih mjesta','INDIJA':'INDIJA','TIBET':'TIBET','Bengalski zaliv':'Bengalski zaljev','Arabsko morje':'Arapsko more','Rādhā in Kṛṣṇa':'Rādhā i Kṛṣṇa','Mahāprabhu v Purīju':'Mahāprabhu u Purīju'});
+
+const HRSL=["Himalaja", "Gaṅgā, Kailāsa, Badrīnāth, Muktināth", "Romanje se začne visoko v Himalaji, kjer Gaṅgā, ki se je dotaknila Gospodovih lotosovih stopal, prvič pride na Zemljo.", "Ob sveti Gaṅgi", "Haridvār, Prayāga, Kāśī, Gayā", "Gaṅgā se spusti na ravnino. Ob njej je Śrī Caitanya Mahāprabhu prejel iniciacijo ter poučil Rūpo in Sanātano.", "Južna Indija", "Tirumala, Ahobilam, Śrī Raṅgam, Uḍupī", "Na potovanju po Južni Indiji je Śrī Caitanya obiskal templje Viṣṇuja in Lakṣmī ter povsod navdihnil ljudi k petju Hare Kṛṣṇa.", "Dežele dharme", "Naimiṣāraṇya, Ayodhyā, Kurukṣetra, Dvārakā", "Kraji, kjer je bil govorjen Bhāgavatam, kjer je vladal Gospod Rāma in kjer je Kṛṣṇa govoril Bhagavad-gīto.", "Navadvīpa-dhāma", "kraj pojavitve Śrī Caitanye", "Navadvīpa ima devet otokov, ki predstavljajo devet procesov vdanega služenja. V Māyāpurju se je pojavil Śrī Caitanya Mahāprabhu, Rādhā in Kṛṣṇa v eni osebi, ki je razširil saṅkīrtano.", "Jagannātha Purī", "Śrī Kṣetra, kjer je Mahāprabhu živel 18 let", "V Purīju je Śrī Caitanya preživel zadnjih osemnajst let, plesal pred vozovi Ratha-yātre in okušal ločitev od Kṛṣṇe v razpoloženju Rādhārāṇī.", "Vraja – Vṛndāvana", "večno prebivališče Rādhe in Kṛṣṇe", "Zadnja postaja je Vraja-dhāma, kjer Kṛṣṇa kot pastirček večno uživa z gopījami, kravami in Śrīmatī Rādhārāṇī. Tu se romanje izpolni.", "Matsya, Kūrma in Varāha", "Nagalapuram, Śrīkūrmam, Tirumala, Śrīmuṣṇam", "Daśāvatāra romanje sledi daśāvatāri, desetim inkarnacijam Gospoda. Začne se pri templjih ribe Matsye, želve Kūrme in merjasca Varāhe, ki so rešili Vede, goro Mandaro in Zemljo.", "Gospod Narasiṁha", "Siṁhācalam, Yādagirigutta, Ahobilam", "Gospod Narasiṁha je zaščitil Prahlādo Mahārāja. Do nebhakt je strašen, do bhakt pa nežen kot levinja do mladičev. Mahāprabhu ga je opeval na Siṁhācalamu.", "Vāmana in Rāma", "Thrikkakara, Sīrkāḻi, Bhadrācalam, Triprayar, Orchha, Rāmeśvaram", "Vāmana je od Balija Mahārāja prosil za tri korake in dobil vse, kar je Bali imel, tudi njegovo glavo. Gospod Rāma je kot idealni kralj zgradil most na Laṅko.", "Kṛṣṇova Božanstva", "Nāthdvārā, Jaipur, Karauli, Ḍākor, Dvārakā, Guruvāyūr, Paṇḍharpur", "Kṛṣṇa se v Božanstvih razodeva svojim bhaktam: kot Gopāla Mādhavendri Purīju, kot Govinda, Gopīnātha in Madana-mohana Gosvāmījem in kot kralj Dvārake.", "Ležeči Viṣṇu", "Ananta Padmanābha, Ādi-keśava, Śrīraṅgapaṭṭaṇa, Śrī Raṅgam", "Zadnja stopnja vodi k Viṣṇuju, ki leži na Ananta-Śeṣi. Tu je Mahāprabhu našel Brahma-saṁhito, ki opeva Govindo, izvorno Osebnost Božanstva.", "Gokula", "Kṛṣṇove otroške zabave", "Vraja-maṇḍala je dežela Kṛṣṇovih zabav. Romanje se začne v Gokuli, kjer je Kṛṣṇa kot dojenček in otrok osvobajal demone in razveseljeval mater Yaśodo.", "Gozdovi Vraje", "Dvanajst gozdov: Madhuvana, Tālavana, Kumudavana, Kāmyavana …", "V gozdovih Vraje sta Kṛṣṇa in Balarāma s pastirčki pasla teleta in krave, se igrala in premagovala demone.", "Govardhana in ljubezen Vraje", "Govardhana, Rādhā-kuṇḍa, Nandagrāma, Vṛndā-kuṇḍa, Vṛndāvana", "Zadnja stopnja vodi h Govardhani, k Rādhā-kuṇḍi in v Vṛndāvano, kjer se razodeva čista ljubezen prebivalcev Vraje do Kṛṣṇe.", "Antardvīpa – Māyāpur", "TOVP, Yogapīṭha, Śrīvāsa-aṅgana, Prabhupādov samādhi", "Navadvīpa-maṇḍala parikramā se začne v Antardvīpi, kjer se je pojavil Śrī Caitanya Mahāprabhu. Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja. Največji poudarek je Tempelj vedskega planetarija (TOVP), Śrī Māyāpur Candrodaya Mandir.", "Osem otokov Navadvīpe", "Sīmanta, Godruma, Madhya, Kola, Ṛtu, Jahnu, Modadruma, Rudra", "Parikramā vodi čez Gaṅgo po ostalih osmih otokih, od Sīmantadvīpe do Rudradvīpe.", "Ekacakrā", "rojstni kraj Nityānande Prabhuja", "Ekacakrā v Rāḍha-deśi je kraj, kjer se je pojavil Nityānanda Prabhu, Balarāma sam, ki deli milost vsem.", "Jagannātha Purī parikramā", "Guṇḍicā, Siddha-bakula, Ṭoṭā-gopīnātha, Narendra-sarovara, Ālālanātha", "Śrī Kṣetra je poln krajev, kjer je Mahāprabhu osemnajst let živel z bhaktami: od templja Guṇḍicā do Haridāsovega samādhija ob morju.", "Navadvīpa-maṇḍala parikramā", "Devet otokov Navadvīpe predstavlja devet procesov vdanega služenja: Antardvīpa ātma-nivedanam, Sīmantadvīpa śravaṇam, Godrumadvīpa kīrtanam, Madhyadvīpa smaraṇam, Koladvīpa pāda-sevanam, Ṛtudvīpa arcanam, Jahnudvīpa vandanam, Modadrumadvīpa dāsyam in Rudradvīpa sakhyam. Največji poudarek Navadvīpa-dhāme je Tempelj vedskega planetarija (TOVP), ki ga je zasnoval Śrīla Prabhupāda.", "Gaura-maṇḍala", "Romarji naj obiščejo vsak kraj, povezan z zabavami Gospoda Caitanye Mahāprabhuja in Njegovih spremljevalcev, tudi kraje, kjer je ostal le kratek čas. Navadvīpa-Māyāpur je po sklepu svetih spisov duhovno enak Vṛndāvani.", "Śrīla Prabhupāda in Māyāpur", "Śrīla Prabhupāda, ustanovitelj-ācārya ISKCON-a, je Bhagavad-gīto in bhakti-yogo razširil po vsem svetu in Śrī Māyāpur-dhāmo vzpostavil kot svetovni duhovni sedež ISKCON-a. ISKCON je ustanovil julija 1966.", "Guru-paramparā", "Guru-paramparā je učenjska veriga, po kateri se vedsko znanje prenaša od Kṛṣṇe prek Brahme do današnjih učiteljev; Bhagavad-gītā (4.2) pove, da se je ta veriga sčasoma pretrgala. Śrīla Prabhupāda poudarja, da je treba slediti navodilom gurua in ne izmišljati novih razlag.", "Ekacakrā parikramā", "Ekacakrā v okrožju Birbhum, približno 20 km od Rampurhata, je rojstni kraj Nityānande Prabhuja. Romarji obiščejo Garbhavāso, tempelj Baṅkima Rāya, Kadamba-khaṇḍī-ghāṭo, Hāṅṭugāḍo, Pāṇḍava-talo, Bakula-talo in jezerce Padmāvatī.", "Parikramā Śrī Kṣetre vodi od templja Jagannāthe po Veliki cesti do templja Guṇḍicā, k Siddha-bakuli, Haridāsovemu samādhiju ob morju, Ṭoṭā-gopīnāthi, Narendra-sarovari in v Brahmagiri k Ālālanāthi.", "Vraja-maṇḍala parikramā", "Vraja-maṇḍala je dežela Kṛṣṇovih zabav: Gokula, gozdovi Vraje, Govardhana, Rādhā-kuṇḍa, Varṣāṇā, Nandagrāma in Vṛndāvana z Yamuno.", "Mahāprabhujevo potovanje po južni Indiji", "Śrī Caitanya je po sprejemu sannyāse iz Purīja odšel na jug in povsod navdihnil ljudi k petju Hare Kṛṣṇa. Prikazana so le mesta iz te igre, v vrstnem redu iz Caitanya-caritāmṛte.", "Mahāprabhujevo potovanje v Vṛndāvano", "Śrī Caitanya je skozi gozd Jhārikhaṇḍa odšel v Vṛndāvano. Na poti nazaj je v Prayāgi poučil Rūpo Gosvāmīja, v Kāśīju pa Sanātano Gosvāmīja."];
+HRSL.forEach((x,i)=>{ if(HRST[i]) HR[x]=HRST[i] });
+Object.assign(T.hr,NEWHR); custLvT('hr');
 function helpScreen(){
   screenFn=helpScreen; renderHeader(-1);setBg('navadvip');
   stageEl(`<div class="card help">
     <div class="eyebrow">${t('help')}</div>
     <h2>${t('helpTitle')}</h2>
-    <video controls playsinline preload="metadata" poster="${L==='en'?'navodila-poster-en.jpg':'navodila-poster.jpg'}" src="${t('videoFile')}">${t('noVideo')}</video>
-    ${HELP[L]()}
+    <video controls playsinline preload="metadata" poster="${L==='sl'?'navodila-poster.jpg':'navodila-poster-en.jpg'}" src="${t('videoFile')}">${t('noVideo')}</video>
+    ${(HELP[L]||HELP.en)()}
     <h3>${t('install')}</h3>
     <div class="row"><button class="btn" id="installBtn" type="button" hidden>${t('install')}</button>${standalone()?`<span class="muted">${t('installed')}</span>`:''}</div>
-    <div class="dev">${DEV[L].map(([a,b])=>`<div><b>${a}</b><p>${b}</p></div>`).join('')}</div>
+    <div class="dev">${(DEV[L]||DEV.en).map(([a,b])=>`<div><b>${a}</b><p>${b}</p></div>`).join('')}</div>
     <p class="src">${t('credits')}</p>
     <p class="copy">${t('copy')}</p>
     <div class="row"><button class="btn" id="hback" type="button">${S?t('backGame'):t('home')}</button></div>
@@ -3441,6 +3956,9 @@ if('serviceWorker' in navigator && location.protocol==='https:' && !/claude\.ai|
 }
 Snd.loadTracks().then(()=>{Snd.chooseDefault();renderHeader()});
 setTimeout(()=>ATLAS.filter(k=>!imgsOf(k).length).forEach(k=>ensureImg(k)),2500);
-langScreen();
+loadMedia().finally(()=>{ const r=store.get('sm-ret',null); store.set('sm-ret',null);
+  if(!r) return langScreen();
+  try{ renderHeader(); if(r==='teach') return teacherScreen(); const p=r.split(':');
+    if(p[1]==='places') return editorScreen('places',p[2]?{k:p[2]}:null); if(p[1]==='q') return editorScreen('q',{lv:+p[2]||1,st:+p[3]||0}); return editorScreen(p[1]||'places') }catch(e){ langScreen() } });
 
 </script>
